@@ -1,0 +1,38 @@
+[
+  {
+    "url": "/",
+    "title": "Ana Sayfa",
+    "content_file": "content/pages/home.md",
+    "status": "active"
+  },
+  {
+    "url": "/menu",
+    "title": "Menu",
+    "content_file": "content/pages/menu.md",
+    "status": "active"
+  },
+  {
+    "url": "/reservations",
+    "title": "Rezervasyonlar",
+    "content_file": "content/pages/reservations.md",
+    "status": "active"
+  },
+  {
+    "url": "/about-1",
+    "title": "Hakkımızda",
+    "content_file": "content/pages/about.md",
+    "status": "active"
+  },
+  {
+    "url": "/experiences",
+    "title": "Deneyimler",
+    "content_file": "content/pages/experiences.md",
+    "status": "active"
+  },
+  {
+    "url": "/#contact",
+    "title": "İletişim",
+    "content_file": "content/pages/home.md#contact",
+    "status": "section-on-home"
+  }
+]

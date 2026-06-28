@@ -1,0 +1,175 @@
+{
+  "note": "Sonunda * olan ürünler ana yemek porsiyonundadır. %10 servis bedeli hesaba eklenecektir.",
+  "main_menu_hours": null,
+  "wine_menu": {
+    "title": "ŞARAP MENÜSÜ",
+    "hours": "18:00 23:00",
+    "items": [],
+    "note": "Public sayfada şarap menüsü başlığı ve saat bilgisi görünüyor; ürün listesi görünmüyor."
+  },
+  "items": [
+    {
+      "category": "TOPRAKTAN",
+      "name": "Mezetaryen Meze Seçkisi",
+      "description": "Üç Çeşit Mevsimsel “Mezetaryen” mezesi",
+      "price": "₺580",
+      "tags": [
+        "Vegan",
+        "Vejetaryen"
+      ]
+    },
+    {
+      "category": "TOPRAKTAN",
+      "name": "Urla Enginar Confit",
+      "description": "Taze Yeşillikler, Laktofermante Meyve ve Memecik Zeytinyağı",
+      "price": "₺450",
+      "tags": [
+        "Vegan",
+        "Vejetaryen"
+      ]
+    },
+    {
+      "category": "TOPRAKTAN",
+      "name": "Tuzlu Kavun",
+      "description": "Antakya tuzlu yoğurdu, kavun dilimleri, beyaz leblebi ve Memecik zeytinyağı",
+      "price": "₺420",
+      "tags": [
+        "Vejetaryen"
+      ]
+    },
+    {
+      "category": "TOPRAKTAN",
+      "name": "Üç Mantarlı Taze Cavatelli",
+      "description": "Porçini, sarıkız, istiridye mantarı, yıllanmış koyun Mihaliç Peyniri",
+      "price": "₺550",
+      "tags": [
+        "Vejetaryen"
+      ]
+    },
+    {
+      "category": "TOPRAKTAN",
+      "name": "Kereviz Şinitzel",
+      "description": "Panelenmiş kereviz dilimleri, hibeş ve kaşık salata.",
+      "price": "₺820",
+      "tags": [
+        "Vegan",
+        "Vejetaryen"
+      ]
+    },
+    {
+      "category": "TOPRAKTAN",
+      "name": "“Çİ” Salatası",
+      "description": "Roka, yabani semizotu, Yedikule marul, mevsim meyvesi, Çorum Kargı tulumu, fırın ceviz, salatalık vinaigrette.",
+      "price": "₺500",
+      "tags": [
+        "Vegan",
+        "Vejetaryen"
+      ]
+    },
+    {
+      "category": "DENİZDEN",
+      "name": "Avokadolu Füme Somon Tartar",
+      "description": "Kapari meyvesi ve kıtırlarla",
+      "price": "₺580",
+      "tags": []
+    },
+    {
+      "category": "DENİZDEN",
+      "name": "Karışık Kabuklu Kasesi",
+      "description": "Vongole, kidonya, kara midye, sülünez, tarak, domates veya şarap sosla",
+      "price": "₺820",
+      "tags": []
+    },
+    {
+      "category": "DENİZDEN",
+      "name": "“Çİ” Karides",
+      "description": "Afyon ekşi mayalı ekmeği ve botargalı tereyağı",
+      "price": "₺820",
+      "tags": []
+    },
+    {
+      "category": "DENİZDEN",
+      "name": "Izgara Baby Kalamar",
+      "description": "Domates civesi ve yıllanmış Mihaliç peyniri.",
+      "price": "₺780",
+      "tags": []
+    },
+    {
+      "category": "DENİZDEN",
+      "name": "Aslan Balığı",
+      "description": "Fesleğen ve yeşil elmalı beurre blanc sos.",
+      "price": "₺900",
+      "tags": []
+    },
+    {
+      "category": "DENİZDEN",
+      "name": "Izgara Granyöz",
+      "description": "Hıyarlı karabuğday salata ve esmer tereyağlı kapari sos",
+      "price": "₺950",
+      "tags": []
+    },
+    {
+      "category": "DENİZDEN",
+      "name": "Karidesli Arpa Şehriye Risotto",
+      "description": "Bisk ve keçi peyniri",
+      "price": "₺950",
+      "tags": []
+    },
+    {
+      "category": "DENİZDEN",
+      "name": "Deniz Mahsullü Makarna",
+      "description": "San Marzano domates sosu, karides, kalamar, iç midye, vongole, Divle obruk peyniri",
+      "price": "₺950",
+      "tags": []
+    },
+    {
+      "category": "OTLAKTAN",
+      "name": "Sakatat Pate",
+      "description": "Kuzu uykuluk, kuzu beyni, tavuk ciğeri ve yüreği.",
+      "price": "₺650",
+      "tags": []
+    },
+    {
+      "category": "OTLAKTAN",
+      "name": "Dana Yanak Ragu",
+      "description": "Salsa salata",
+      "price": "₺750",
+      "tags": []
+    },
+    {
+      "category": "OTLAKTAN",
+      "name": "Arnavut Ciğeri",
+      "description": "Soğan salatası ve el açması kıtır yufka ekmeği",
+      "price": "₺750",
+      "tags": []
+    },
+    {
+      "category": "OTLAKTAN",
+      "name": "Izgara Kuzu Kokoreç",
+      "description": "Denizli kale biberi, Antakya tuzlu yoğurdu ve kibrit hıyar salata",
+      "price": "₺980",
+      "tags": []
+    },
+    {
+      "category": "OTLAKTAN",
+      "name": "Kuzu Haşlama",
+      "description": "Siyah bira ve sebzeler",
+      "price": "₺1.250",
+      "tags": []
+    },
+    {
+      "category": "OTLAKTAN",
+      "name": "Izgara Kuzu Sırt",
+      "description": "Karamelize kereviz püresi ve fasulye",
+      "price": "₺1.300",
+      "tags": []
+    },
+    {
+      "category": "OTLAKTAN",
+      "name": "Izgara Dana Kontrfile Dilimleri",
+      "description": "Kabak polenta ve karamelize soğan sos",
+      "price": "₺1.200",
+      "tags": []
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+category,name,description,price,tags
+TOPRAKTAN,Mezetaryen Meze Seçkisi,Üç Çeşit Mevsimsel “Mezetaryen” mezesi,₺580,Vegan;Vejetaryen
+TOPRAKTAN,Urla Enginar Confit,"Taze Yeşillikler, Laktofermante Meyve ve Memecik Zeytinyağı",₺450,Vegan;Vejetaryen
+TOPRAKTAN,Tuzlu Kavun,"Antakya tuzlu yoğurdu, kavun dilimleri, beyaz leblebi ve Memecik zeytinyağı",₺420,Vejetaryen
+TOPRAKTAN,Üç Mantarlı Taze Cavatelli,"Porçini, sarıkız, istiridye mantarı, yıllanmış koyun Mihaliç Peyniri",₺550,Vejetaryen
+TOPRAKTAN,Kereviz Şinitzel,"Panelenmiş kereviz dilimleri, hibeş ve kaşık salata.",₺820,Vegan;Vejetaryen
+TOPRAKTAN,“Çİ” Salatası,"Roka, yabani semizotu, Yedikule marul, mevsim meyvesi, Çorum Kargı tulumu, fırın ceviz, salatalık vinaigrette.",₺500,Vegan;Vejetaryen
+DENİZDEN,Avokadolu Füme Somon Tartar,Kapari meyvesi ve kıtırlarla,₺580,
+DENİZDEN,Karışık Kabuklu Kasesi,"Vongole, kidonya, kara midye, sülünez, tarak, domates veya şarap sosla",₺820,
+DENİZDEN,“Çİ” Karides,Afyon ekşi mayalı ekmeği ve botargalı tereyağı,₺820,
+DENİZDEN,Izgara Baby Kalamar,Domates civesi ve yıllanmış Mihaliç peyniri.,₺780,
+DENİZDEN,Aslan Balığı,Fesleğen ve yeşil elmalı beurre blanc sos.,₺900,
+DENİZDEN,Izgara Granyöz,Hıyarlı karabuğday salata ve esmer tereyağlı kapari sos,₺950,
+DENİZDEN,Karidesli Arpa Şehriye Risotto,Bisk ve keçi peyniri,₺950,
+DENİZDEN,Deniz Mahsullü Makarna,"San Marzano domates sosu, karides, kalamar, iç midye, vongole, Divle obruk peyniri",₺950,
+OTLAKTAN,Sakatat Pate,"Kuzu uykuluk, kuzu beyni, tavuk ciğeri ve yüreği.",₺650,
+OTLAKTAN,Dana Yanak Ragu,Salsa salata,₺750,
+OTLAKTAN,Arnavut Ciğeri,Soğan salatası ve el açması kıtır yufka ekmeği,₺750,
+OTLAKTAN,Izgara Kuzu Kokoreç,"Denizli kale biberi, Antakya tuzlu yoğurdu ve kibrit hıyar salata",₺980,
+OTLAKTAN,Kuzu Haşlama,Siyah bira ve sebzeler,₺1.250,
+OTLAKTAN,Izgara Kuzu Sırt,Karamelize kereviz püresi ve fasulye,₺1.300,
+OTLAKTAN,Izgara Dana Kontrfile Dilimleri,Kabak polenta ve karamelize soğan sos,₺1.200,

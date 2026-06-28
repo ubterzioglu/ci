@@ -1,0 +1,32 @@
+[
+  {
+    "label_tr": "Ana Sayfa",
+    "label_en": "HOME",
+    "url": "/"
+  },
+  {
+    "label_tr": "Menu",
+    "label_en": "MENUS",
+    "url": "/menu"
+  },
+  {
+    "label_tr": "İletişim",
+    "label_en": "CONTACT",
+    "url": "/#contact"
+  },
+  {
+    "label_tr": "Rezervasyonlar",
+    "label_en": "RESERVATIONS",
+    "url": "/reservations"
+  },
+  {
+    "label_tr": "Hakkımızda",
+    "label_en": "ABOUT",
+    "url": "/about-1"
+  },
+  {
+    "label_tr": "Deneyimler",
+    "label_en": "EXPERIENCES",
+    "url": "/experiences"
+  }
+]

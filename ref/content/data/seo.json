@@ -1,0 +1,22 @@
+{
+  "/": {
+    "title": "Ana Sayfa | Ci Neo Cucina",
+    "description_suggested": "Kaş’ta doğal malzemeler, Akdeniz ve Anadolu’dan ilham alan zamansız mutfak diliyle Çi Neo Cucina."
+  },
+  "/menu": {
+    "title": "Menu | Ci Neo Cucina",
+    "description_suggested": "Çi Neo Cucina ana menüsü: topraktan, denizden ve otlaktan lezzetler; yerel üreticilerden şarap seçkisi."
+  },
+  "/reservations": {
+    "title": "Rezervasyonlar | Ci Neo Cucina",
+    "description_suggested": "Çi Neo Cucina’da rezervasyon talebi oluşturun; kişi sayısı, tarih ve saat bilgilerinizi paylaşın."
+  },
+  "/about-1": {
+    "title": "Hakkımızda | Ci Neo Cucina",
+    "description_suggested": "Çi Neo Cucina’nın dinginlik, sürdürülebilirlik, yerel malzeme ve Akdeniz sofrası odaklı hikâyesi."
+  },
+  "/experiences": {
+    "title": "Deneyimler | Ci Neo Cucina",
+    "description_suggested": "Çi Neo Cucina deneyimleri ve özel etkinlik duyuruları."
+  }
+}

@@ -54,11 +54,7 @@ interface DeepLResponse {
 // ---------------------------------------------------------------------------
 // Translation helper
 // ---------------------------------------------------------------------------
-async function translate(
-  text: string,
-  targetLang: DeepLTarget,
-  apiKey: string
-): Promise<string> {
+async function translate(text: string, targetLang: DeepLTarget, apiKey: string): Promise<string> {
   // Free keys end with ':fx' → use the free-tier endpoint
   const baseUrl = apiKey.endsWith(':fx')
     ? 'https://api-free.deepl.com/v2/translate'
@@ -93,10 +89,7 @@ async function translate(
 // ---------------------------------------------------------------------------
 // Write JSON result to src/lib/i18n/generated/
 // ---------------------------------------------------------------------------
-async function writeLocaleJson(
-  locale: string,
-  data: Record<string, string>
-): Promise<void> {
+async function writeLocaleJson(locale: string, data: Record<string, string>): Promise<void> {
   const dir = join(process.cwd(), 'src', 'lib', 'i18n', 'generated');
   mkdirSync(dir, { recursive: true });
   const destPath = join(dir, `sample.${locale}.json`);
@@ -113,7 +106,7 @@ async function main(): Promise<void> {
   if (!apiKey) {
     console.log(
       'DEEPL_API_KEY is not set in .env.local — skipping translation.\n' +
-        'Add DEEPL_API_KEY=<your-key> to .env.local and re-run pnpm i18n:translate.'
+        'Add DEEPL_API_KEY=<your-key> to .env.local and re-run pnpm i18n:translate.',
     );
     process.exit(0);
   }

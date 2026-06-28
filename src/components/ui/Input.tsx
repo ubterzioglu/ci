@@ -15,10 +15,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     return (
       <div className="flex flex-col gap-1">
         {label && (
-          <label
-            htmlFor={id}
-            className="font-body text-sm font-medium text-charcoal"
-          >
+          <label htmlFor={id} className="font-body text-charcoal text-sm font-medium">
             {label}
           </label>
         )}
@@ -31,7 +28,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           {...rest}
         />
         {error && (
-          <p id={`${id}-error`} className="font-body text-sm text-wine">
+          <p id={`${id}-error`} className="font-body text-wine text-sm">
             {error}
           </p>
         )}

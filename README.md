@@ -101,36 +101,36 @@ Open http://localhost:3000 in your browser.
 
 ## Environment Variables
 
-| Variable | Purpose | Required |
-|----------|---------|----------|
-| `NEXT_PUBLIC_SITE_URL` | Canonical site URL (no trailing slash); used for Open Graph and sitemap | Yes |
-| `NEXT_PUBLIC_SUPABASE_URL` | Supabase project URL (e.g., `https://<project-ref>.supabase.co`) | Yes |
-| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Anon/publishable key for browser access | Yes |
-| `SUPABASE_SERVICE_ROLE_KEY` | Service role key for server-side operations (never expose in browser) | Yes |
-| `SUPABASE_SECRET_KEY` | Alternative server-side secret key (optional) | No |
-| `SUPABASE_ACCESS_TOKEN` | Supabase CLI access token (used by seed and type generation scripts) | No |
-| `SUPABASE_DB_URL` | Direct Postgres connection string (used by seed script) | No |
-| `DEEPL_API_KEY` | DeepL API key for generating EN/DE translations from Turkish source | No |
-| `RESEND_API_KEY` | Resend email provider API key for form notifications (if empty, forms only store submissions) | No |
-| `RESERVATION_NOTIFICATION_EMAIL` | Email address to receive reservation form submissions | No |
-| `CONTACT_NOTIFICATION_EMAIL` | Email address to receive contact form submissions | No |
+| Variable                         | Purpose                                                                                       | Required |
+| -------------------------------- | --------------------------------------------------------------------------------------------- | -------- |
+| `NEXT_PUBLIC_SITE_URL`           | Canonical site URL (no trailing slash); used for Open Graph and sitemap                       | Yes      |
+| `NEXT_PUBLIC_SUPABASE_URL`       | Supabase project URL (e.g., `https://<project-ref>.supabase.co`)                              | Yes      |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY`  | Anon/publishable key for browser access                                                       | Yes      |
+| `SUPABASE_SERVICE_ROLE_KEY`      | Service role key for server-side operations (never expose in browser)                         | Yes      |
+| `SUPABASE_SECRET_KEY`            | Alternative server-side secret key (optional)                                                 | No       |
+| `SUPABASE_ACCESS_TOKEN`          | Supabase CLI access token (used by seed and type generation scripts)                          | No       |
+| `SUPABASE_DB_URL`                | Direct Postgres connection string (used by seed script)                                       | No       |
+| `DEEPL_API_KEY`                  | DeepL API key for generating EN/DE translations from Turkish source                           | No       |
+| `RESEND_API_KEY`                 | Resend email provider API key for form notifications (if empty, forms only store submissions) | No       |
+| `RESERVATION_NOTIFICATION_EMAIL` | Email address to receive reservation form submissions                                         | No       |
+| `CONTACT_NOTIFICATION_EMAIL`     | Email address to receive contact form submissions                                             | No       |
 
 ## Available Scripts
 
-| Script | Purpose |
-|--------|---------|
-| `pnpm dev` | Start Next.js development server on port 3000 |
-| `pnpm build` | Build production bundle |
-| `pnpm start` | Start production server |
-| `pnpm lint` | Run ESLint on source files |
-| `pnpm typecheck` | Run TypeScript type checker |
-| `pnpm format` | Format all code with Prettier |
-| `pnpm format:check` | Check code formatting without changes |
-| `pnpm db:types` | Generate TypeScript types from Supabase schema |
-| `pnpm db:seed` | Seed the database with initial content from `scripts/seed-supabase.ts` |
-| `pnpm db:reset` | (Local Supabase only) Reset database and re-apply migrations |
+| Script                 | Purpose                                                                   |
+| ---------------------- | ------------------------------------------------------------------------- |
+| `pnpm dev`             | Start Next.js development server on port 3000                             |
+| `pnpm build`           | Build production bundle                                                   |
+| `pnpm start`           | Start production server                                                   |
+| `pnpm lint`            | Run ESLint on source files                                                |
+| `pnpm typecheck`       | Run TypeScript type checker                                               |
+| `pnpm format`          | Format all code with Prettier                                             |
+| `pnpm format:check`    | Check code formatting without changes                                     |
+| `pnpm db:types`        | Generate TypeScript types from Supabase schema                            |
+| `pnpm db:seed`         | Seed the database with initial content from `scripts/seed-supabase.ts`    |
+| `pnpm db:reset`        | (Local Supabase only) Reset database and re-apply migrations              |
 | `pnpm assets:download` | Download legacy Wix images and store locally in `public/images/imported/` |
-| `pnpm i18n:translate` | Generate EN/DE translations from Turkish source via DeepL |
+| `pnpm i18n:translate`  | Generate EN/DE translations from Turkish source via DeepL                 |
 
 ## Project Structure
 

@@ -41,6 +41,7 @@ pnpm db:seed
 ```
 
 This script is defined in `scripts/seed-supabase.ts` and:
+
 - Inserts page content (home, menu, about, etc.)
 - Inserts menu categories and items
 - Inserts site settings (navigation, contact info, hours)
@@ -90,6 +91,7 @@ All tables have RLS enabled. The security model is:
 **What**: Create, read, update, delete all content
 
 The `service_role` key bypasses all RLS policies and is used for:
+
 - Creating and updating pages, menu items, settings
 - Managing reservation requests (updating status, notes)
 - Bulk operations and admin tasks
@@ -103,12 +105,14 @@ The `service_role` key bypasses all RLS policies and is used for:
 ### Configuration & Content
 
 **site_settings** — Key/value JSON config
+
 - `key` (unique): Setting identifier (e.g., "nav", "hours", "social")
 - `value` (jsonb): JSON value for the setting
 - `is_public` (bool): Whether anonymous users can read this setting
 - RLS: Public reads `is_public = true` only
 
 **pages** — CMS-style page content
+
 - `slug` (unique): URL slug (e.g., "home", "about", "experiences")
 - `title`, `excerpt`, `content_md`, `content_json`: Page content in multiple formats
 - `seo_title`, `seo_description`, `og_image_url`: SEO metadata
@@ -119,6 +123,7 @@ The `service_role` key bypasses all RLS policies and is used for:
 ### Menu
 
 **menu_categories** — Menu category groupings
+
 - `slug` (unique): URL-friendly category name (e.g., "topraktan", "denizden")
 - `name`, `description`: Display name and description
 - `is_active`: Visibility flag
@@ -126,6 +131,7 @@ The `service_role` key bypasses all RLS policies and is used for:
 - RLS: Public reads `is_active = true` only
 
 **menu_items** — Menu item details
+
 - `category_id`: Foreign key to menu_categories
 - `name`, `description`, `price`, `currency`: Item details (prices in TRY)
 - `image_url`: Menu item image
@@ -139,6 +145,7 @@ The `service_role` key bypasses all RLS policies and is used for:
 ### Media & Assets
 
 **media_assets** — Image manifest (Wix CDN → local storage mapping)
+
 - `source_url`: Original Wix CDN URL
 - `storage_path`: Local file path in `public/images/imported/`
 - `alt`, `title`, `width`, `height`: Image metadata
@@ -149,6 +156,7 @@ The `service_role` key bypasses all RLS policies and is used for:
 ### Public Forms
 
 **reservation_requests** — Reservation form submissions
+
 - `name`, `email`, `phone`: Guest contact info
 - `party_size`, `requested_date`, `requested_time`: Reservation details
 - `message`: Optional special requests
@@ -157,6 +165,7 @@ The `service_role` key bypasses all RLS policies and is used for:
 - RLS: Public can INSERT with constraints; no SELECT/UPDATE/DELETE
 
 **contact_messages** — Contact form submissions
+
 - `name`, `email`, `phone`: Sender contact info
 - `subject`, `message`: Message content
 - `status`: 'new', 'read', 'replied', 'archived' (managed by staff)
@@ -166,6 +175,7 @@ The `service_role` key bypasses all RLS policies and is used for:
 ### Routing
 
 **redirects** — Legacy Wix slug → new slug mappings
+
 - `source_path`: Old Wix URL path (e.g., "/about-1")
 - `target_path`: New URL path (e.g., "/about")
 - `status_code`: HTTP redirect code (301, 302, 307, or 308)
@@ -176,16 +186,19 @@ The `service_role` key bypasses all RLS policies and is used for:
 ### Local Development
 
 1. Start local Supabase:
+
    ```bash
    supabase start
    ```
 
 2. Reset the database (applies all migrations and seeds):
+
    ```bash
    supabase db reset
    ```
 
 3. When schema changes, regenerate types:
+
    ```bash
    pnpm db:types
    ```
@@ -219,6 +232,7 @@ The `service_role` key bypasses all RLS policies and is used for:
 ---
 
 For more information, see:
+
 - **Project README**: `README.md`
 - **Migration notes**: `MIGRATION_NOTES.md`
 - **Remaining tasks**: `TODO_PANEL_EXPORTS.md`

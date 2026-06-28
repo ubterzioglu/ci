@@ -14,11 +14,11 @@ export function PageHeader({
   intro?: string;
 }) {
   return (
-    <header className="bg-marble pb-10 pt-28 md:pt-36">
+    <header className="bg-marble pt-28 pb-10 md:pt-36">
       <div className="container-editorial text-center">
         <SectionHeading eyebrow={eyebrow} title={title} as="h1" align="center" />
         {intro && (
-          <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-muted">{intro}</p>
+          <p className="text-muted mx-auto mt-5 max-w-2xl text-lg leading-relaxed">{intro}</p>
         )}
       </div>
     </header>

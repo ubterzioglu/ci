@@ -35,10 +35,7 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
     return (
       <div className="flex flex-col gap-1">
         {label && (
-          <label
-            htmlFor={id}
-            className="font-body text-sm font-medium text-charcoal"
-          >
+          <label htmlFor={id} className="font-body text-charcoal text-sm font-medium">
             {label}
           </label>
         )}
@@ -48,22 +45,17 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
             id={id}
             aria-invalid={error ? true : undefined}
             aria-describedby={error ? `${id}-error` : undefined}
-            className={cn(
-              fieldBase,
-              'pr-10',
-              error && 'border-wine',
-              className,
-            )}
+            className={cn(fieldBase, 'pr-10', error && 'border-wine', className)}
             {...rest}
           >
             {children}
           </select>
-          <span className="pointer-events-none absolute inset-y-0 right-3 flex items-center text-muted">
+          <span className="text-muted pointer-events-none absolute inset-y-0 right-3 flex items-center">
             <ChevronIcon />
           </span>
         </div>
         {error && (
-          <p id={`${id}-error`} className="font-body text-sm text-wine">
+          <p id={`${id}-error`} className="font-body text-wine text-sm">
             {error}
           </p>
         )}

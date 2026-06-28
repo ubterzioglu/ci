@@ -13,20 +13,13 @@ export function MenuItemCard({ item }: { item: MenuItem }) {
   return (
     <article className="py-5">
       <div className="flex items-baseline gap-3">
-        <h3 className="font-display text-xl text-charcoal">{item.name}</h3>
-        <span
-          aria-hidden="true"
-          className="mb-1 h-px flex-1 self-end bg-stone-soft"
-        />
-        {price && (
-          <span className="shrink-0 font-display text-lg text-olive-deep">{price}</span>
-        )}
+        <h3 className="font-display text-charcoal text-xl">{item.name}</h3>
+        <span aria-hidden="true" className="bg-stone-soft mb-1 h-px flex-1 self-end" />
+        {price && <span className="font-display text-olive-deep shrink-0 text-lg">{price}</span>}
       </div>
 
       {item.description && (
-        <p className="mt-1.5 max-w-prose text-sm leading-relaxed text-muted">
-          {item.description}
-        </p>
+        <p className="text-muted mt-1.5 max-w-prose text-sm leading-relaxed">{item.description}</p>
       )}
 
       {(item.tags.length > 0 || item.allergens.length > 0) && (
@@ -37,9 +30,7 @@ export function MenuItemCard({ item }: { item: MenuItem }) {
             </Badge>
           ))}
           {item.allergens.length > 0 && (
-            <span className="text-xs text-muted/80">
-              Alerjenler: {item.allergens.join(', ')}
-            </span>
+            <span className="text-muted/80 text-xs">Alerjenler: {item.allergens.join(', ')}</span>
           )}
         </div>
       )}

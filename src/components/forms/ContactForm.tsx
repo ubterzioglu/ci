@@ -18,9 +18,9 @@ export function ContactForm() {
       <div
         role="status"
         aria-live="polite"
-        className="rounded-md bg-olive/10 px-6 py-8 text-center"
+        className="bg-olive/10 rounded-md px-6 py-8 text-center"
       >
-        <h2 className="font-display text-2xl text-olive mb-2">Mesajınız gönderildi</h2>
+        <h2 className="font-display text-olive mb-2 text-2xl">Mesajınız gönderildi</h2>
         <p className="font-body text-charcoal">
           Mesajınız bize ulaştı. En kısa sürede yanıt vereceğiz.
         </p>
@@ -37,7 +37,7 @@ export function ContactForm() {
         <div
           role="alert"
           aria-live="assertive"
-          className="rounded-md border border-wine bg-wine/10 px-4 py-3 font-body text-sm text-wine"
+          className="border-wine bg-wine/10 font-body text-wine rounded-md border px-4 py-3 text-sm"
         >
           {state.error}
         </div>
@@ -80,12 +80,7 @@ export function ContactForm() {
         error={fieldErrors['phone']?.[0]}
       />
 
-      <Input
-        id="contact-subject"
-        name="subject"
-        label="Konu"
-        error={fieldErrors['subject']?.[0]}
-      />
+      <Input id="contact-subject" name="subject" label="Konu" error={fieldErrors['subject']?.[0]} />
 
       <Textarea
         id="contact-message"
@@ -99,13 +94,7 @@ export function ContactForm() {
         {isPending ? 'Gönderiliyor…' : ''}
       </div>
 
-      <Button
-        type="submit"
-        variant="solid"
-        size="lg"
-        disabled={isPending}
-        className="w-full"
-      >
+      <Button type="submit" variant="solid" size="lg" disabled={isPending} className="w-full">
         {isPending ? 'Gönderiliyor…' : 'Mesaj Gönder'}
       </Button>
     </form>

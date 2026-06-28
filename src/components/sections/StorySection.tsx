@@ -18,11 +18,7 @@ export function StorySection() {
   return (
     <section className="bg-marble py-section">
       <div className="container-editorial">
-        <SectionHeading
-          eyebrow="Hikâyemiz"
-          title={aboutContent.intro.heading}
-          align="center"
-        />
+        <SectionHeading eyebrow="Hikâyemiz" title={aboutContent.intro.heading} align="center" />
 
         <div className="mt-12 grid items-center gap-10 md:grid-cols-12">
           {portrait && (
@@ -41,19 +37,14 @@ export function StorySection() {
 
           <div className="md:col-span-7">
             {lead.map((paragraph, index) => (
-              <p
-                key={index}
-                className="mb-4 text-lg leading-relaxed text-charcoal/90 last:mb-0"
-              >
+              <p key={index} className="text-charcoal/90 mb-4 text-lg leading-relaxed last:mb-0">
                 {paragraph}
               </p>
             ))}
-            <p className="mt-6 font-display text-2xl text-olive">
-              {aboutContent.chef.name}
-            </p>
+            <p className="font-display text-olive mt-6 text-2xl">{aboutContent.chef.name}</p>
             <Link
               href="/about"
-              className="mt-6 inline-block text-sm tracking-wide text-terracotta underline-offset-4 transition hover:underline"
+              className="text-terracotta mt-6 inline-block text-sm tracking-wide underline-offset-4 transition hover:underline"
             >
               Hikâyenin tamamını okuyun →
             </Link>

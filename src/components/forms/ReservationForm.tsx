@@ -24,9 +24,9 @@ export function ReservationForm() {
       <div
         role="status"
         aria-live="polite"
-        className="rounded-md bg-olive/10 px-6 py-8 text-center"
+        className="bg-olive/10 rounded-md px-6 py-8 text-center"
       >
-        <h2 className="font-display text-2xl text-olive mb-2">Talebiniz alındı</h2>
+        <h2 className="font-display text-olive mb-2 text-2xl">Talebiniz alındı</h2>
         <p className="font-body text-charcoal">
           Rezervasyon talebinizi aldık. En kısa sürede sizinle iletişime geçeceğiz.
         </p>
@@ -43,7 +43,7 @@ export function ReservationForm() {
         <div
           role="alert"
           aria-live="assertive"
-          className="rounded-md border border-wine bg-wine/10 px-4 py-3 font-body text-sm text-wine"
+          className="border-wine bg-wine/10 font-body text-wine rounded-md border px-4 py-3 text-sm"
         >
           {state.error}
         </div>
@@ -99,7 +99,7 @@ export function ReservationForm() {
           </option>
         ))}
       </Select>
-      <p className="-mt-3 text-xs text-muted">
+      <p className="text-muted -mt-3 text-xs">
         12 kişiden büyük gruplar için lütfen telefonla iletişime geçin.
       </p>
 
@@ -134,13 +134,7 @@ export function ReservationForm() {
         {isPending ? 'Gönderiliyor…' : ''}
       </div>
 
-      <Button
-        type="submit"
-        variant="solid"
-        size="lg"
-        disabled={isPending}
-        className="w-full"
-      >
+      <Button type="submit" variant="solid" size="lg" disabled={isPending} className="w-full">
         {isPending ? 'Gönderiliyor…' : 'Rezervasyon Talep Et'}
       </Button>
     </form>

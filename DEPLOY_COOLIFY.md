@@ -40,16 +40,16 @@ your local `.env.local` (do NOT commit them). `NEXT_PUBLIC_*` vars are needed
 at **build time** too — mark them as "Build Variable" in Coolify so they are
 inlined into the client bundle.
 
-| Variable | Build? | Value (source) |
-| --- | --- | --- |
-| `NEXT_PUBLIC_SITE_URL` | ✅ | `https://notyetbro.club` (→ `https://www.cineocucina.com` later) |
-| `NEXT_PUBLIC_SUPABASE_URL` | ✅ | `https://wwzdqqtyeuphzdyneydr.supabase.co` |
-| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | ✅ | anon key from `.env.local` |
-| `SUPABASE_SERVICE_ROLE_KEY` | — | service_role key from `.env.local` (server only) |
-| `RESERVATION_NOTIFICATION_EMAIL` | — | `cineo.cucina@gmail.com` |
-| `CONTACT_NOTIFICATION_EMAIL` | — | `cineo.cucina@gmail.com` |
-| `RESEND_API_KEY` | — | _(optional — leave empty until email is set up)_ |
-| `DEEPL_API_KEY` | — | _(optional — only needed for `pnpm i18n:translate`, not at runtime)_ |
+| Variable                         | Build? | Value (source)                                                       |
+| -------------------------------- | ------ | -------------------------------------------------------------------- |
+| `NEXT_PUBLIC_SITE_URL`           | ✅     | `https://notyetbro.club` (→ `https://www.cineocucina.com` later)     |
+| `NEXT_PUBLIC_SUPABASE_URL`       | ✅     | `https://wwzdqqtyeuphzdyneydr.supabase.co`                           |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY`  | ✅     | anon key from `.env.local`                                           |
+| `SUPABASE_SERVICE_ROLE_KEY`      | —      | service_role key from `.env.local` (server only)                     |
+| `RESERVATION_NOTIFICATION_EMAIL` | —      | `cineo.cucina@gmail.com`                                             |
+| `CONTACT_NOTIFICATION_EMAIL`     | —      | `cineo.cucina@gmail.com`                                             |
+| `RESEND_API_KEY`                 | —      | _(optional — leave empty until email is set up)_                     |
+| `DEEPL_API_KEY`                  | —      | _(optional — only needed for `pnpm i18n:translate`, not at runtime)_ |
 
 > Do **not** set `SUPABASE_DB_URL`, `SUPABASE_SECRET_KEY`, or
 > `SUPABASE_ACCESS_TOKEN` on the running app — those are for local

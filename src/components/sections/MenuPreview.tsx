@@ -19,15 +19,13 @@ export function MenuPreview() {
             <Link
               key={teaser.key}
               href={teaser.href}
-              className="group flex flex-col rounded-lg border border-stone-soft bg-marble p-7 transition-colors hover:border-olive"
+              className="group border-stone-soft bg-marble hover:border-olive flex flex-col rounded-lg border p-7 transition-colors"
             >
-              <h3 className="font-display text-2xl text-charcoal transition-colors group-hover:text-olive">
+              <h3 className="font-display text-charcoal group-hover:text-olive text-2xl transition-colors">
                 {teaser.title}
               </h3>
-              <p className="mt-3 flex-1 text-sm leading-relaxed text-muted">
-                {teaser.description}
-              </p>
-              <span className="mt-5 text-sm tracking-wide text-terracotta">Sayfaya Git →</span>
+              <p className="text-muted mt-3 flex-1 text-sm leading-relaxed">{teaser.description}</p>
+              <span className="text-terracotta mt-5 text-sm tracking-wide">Sayfaya Git →</span>
             </Link>
           ))}
         </div>
@@ -35,7 +33,7 @@ export function MenuPreview() {
         <div className="mt-10 text-center">
           <Link
             href="/menu"
-            className="inline-block rounded-md border border-olive px-6 py-3 text-olive transition-colors hover:bg-olive hover:text-ivory"
+            className="border-olive text-olive hover:bg-olive hover:text-ivory inline-block rounded-md border px-6 py-3 transition-colors"
           >
             Tüm Menüyü Görüntüle
           </Link>

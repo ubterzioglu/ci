@@ -24,15 +24,11 @@ async function downloadFile(url: string, destPath: string): Promise<void> {
     throw new Error(`HTTP ${response.status} ${response.statusText}`);
   }
   const buffer = await response.arrayBuffer();
-  await import('node:fs/promises').then((fs) =>
-    fs.writeFile(destPath, Buffer.from(buffer))
-  );
+  await import('node:fs/promises').then((fs) => fs.writeFile(destPath, Buffer.from(buffer)));
 }
 
 async function main(): Promise<void> {
-  const downloadable = mediaAssets.filter(
-    (a) => a.sourceUrl && a.storagePath
-  );
+  const downloadable = mediaAssets.filter((a) => a.sourceUrl && a.storagePath);
 
   if (downloadable.length === 0) {
     console.log('No assets with sourceUrl + storagePath found — nothing to do.');
@@ -69,9 +65,7 @@ async function main(): Promise<void> {
     }
   }
 
-  console.log(
-    `\nSummary: ${downloaded} downloaded, ${skipped} skipped, ${failed} failed.`
-  );
+  console.log(`\nSummary: ${downloaded} downloaded, ${skipped} skipped, ${failed} failed.`);
 
   if (failed > 0 && failed === downloadable.length) {
     // All assets failed — signal a hard failure

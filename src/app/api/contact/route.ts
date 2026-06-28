@@ -35,10 +35,7 @@ export async function POST(request: Request) {
   });
 
   if (!result.ok && result.reason === 'error') {
-    return NextResponse.json(
-      { ok: false, error: 'Mesajınız kaydedilemedi.' },
-      { status: 500 },
-    );
+    return NextResponse.json({ ok: false, error: 'Mesajınız kaydedilemedi.' }, { status: 500 });
   }
 
   return NextResponse.json({ ok: true });

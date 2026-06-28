@@ -43,12 +43,7 @@ export function Button({
   children,
   ...rest
 }: ButtonProps) {
-  const classes = cn(
-    baseClasses,
-    variantClasses[variant],
-    sizeClasses[size],
-    className,
-  );
+  const classes = cn(baseClasses, variantClasses[variant], sizeClasses[size], className);
 
   if (rest.href !== undefined) {
     const { href, ...anchorRest } = rest as ButtonAsLink;

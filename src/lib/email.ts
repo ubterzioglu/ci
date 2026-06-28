@@ -8,9 +8,7 @@ interface SendNotificationEmailParams {
   text: string;
 }
 
-type EmailResult =
-  | { sent: true }
-  | { sent: false; skipped?: true; error?: unknown };
+type EmailResult = { sent: true } | { sent: false; skipped?: true; error?: unknown };
 
 export async function sendNotificationEmail(
   params: SendNotificationEmailParams,

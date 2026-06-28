@@ -42,7 +42,7 @@ export function MobileNav({ open, onClose }: MobileNavProps) {
         type="button"
         aria-label="Menüyü kapat"
         onClick={onClose}
-        className={`absolute inset-0 bg-charcoal/40 transition-opacity duration-300 ${
+        className={`bg-charcoal/40 absolute inset-0 transition-opacity duration-300 ${
           open ? 'opacity-100' : 'opacity-0'
         }`}
         tabIndex={open ? 0 : -1}
@@ -51,17 +51,17 @@ export function MobileNav({ open, onClose }: MobileNavProps) {
       {/* Panel */}
       <nav
         aria-label="Mobil menü"
-        className={`absolute right-0 top-0 flex h-full w-[82%] max-w-sm flex-col bg-marble shadow-xl transition-transform duration-300 ease-out ${
+        className={`bg-marble absolute top-0 right-0 flex h-full w-[82%] max-w-sm flex-col shadow-xl transition-transform duration-300 ease-out ${
           open ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
-        <div className="flex items-center justify-between border-b border-stone-soft px-6 py-5">
-          <span className="font-display text-xl text-charcoal">{siteConfig.name}</span>
+        <div className="border-stone-soft flex items-center justify-between border-b px-6 py-5">
+          <span className="font-display text-charcoal text-xl">{siteConfig.name}</span>
           <button
             type="button"
             onClick={onClose}
             aria-label="Menüyü kapat"
-            className="rounded-md p-2 text-charcoal transition-colors hover:bg-cream-deep"
+            className="text-charcoal hover:bg-cream-deep rounded-md p-2 transition-colors"
             tabIndex={open ? 0 : -1}
           >
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -82,7 +82,7 @@ export function MobileNav({ open, onClose }: MobileNavProps) {
                 href={item.href}
                 onClick={onClose}
                 tabIndex={open ? 0 : -1}
-                className="block rounded-md px-3 py-3 font-display text-2xl text-charcoal transition-colors hover:text-olive"
+                className="font-display text-charcoal hover:text-olive block rounded-md px-3 py-3 text-2xl transition-colors"
               >
                 {item.labelTr}
               </Link>
@@ -90,18 +90,18 @@ export function MobileNav({ open, onClose }: MobileNavProps) {
           ))}
         </ul>
 
-        <div className="mt-auto border-t border-stone-soft p-6">
+        <div className="border-stone-soft mt-auto border-t p-6">
           <Link
             href={PRIMARY_CTA.href}
             onClick={onClose}
             tabIndex={open ? 0 : -1}
-            className="block rounded-md bg-olive px-5 py-3 text-center text-ivory transition-colors hover:bg-olive-deep"
+            className="bg-olive text-ivory hover:bg-olive-deep block rounded-md px-5 py-3 text-center transition-colors"
           >
             {PRIMARY_CTA.labelTr}
           </Link>
           <a
             href={`tel:${siteConfig.contact.phoneE164}`}
-            className="mt-4 block text-center text-sm text-muted"
+            className="text-muted mt-4 block text-center text-sm"
             tabIndex={open ? 0 : -1}
           >
             {siteConfig.contact.phoneDisplay}

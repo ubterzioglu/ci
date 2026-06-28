@@ -10,22 +10,22 @@ export function ContactSection({ withHeading = true }: { withHeading?: boolean }
   const { contact, hours } = siteConfig;
 
   return (
-    <section id="contact" className="scroll-mt-24 bg-cream-deep py-section">
+    <section id="contact" className="bg-cream-deep py-section scroll-mt-24">
       <div className="container-editorial">
         {withHeading && (
           <SectionHeading eyebrow="Bize Ulaşın" title="İletişim & Konum" align="center" />
         )}
 
         <div className="mx-auto mt-12 grid max-w-3xl gap-8 sm:grid-cols-2">
-          <div className="rounded-lg border border-stone-soft bg-marble p-7">
-            <h3 className="font-display text-xl text-charcoal">İletişim</h3>
+          <div className="border-stone-soft bg-marble rounded-lg border p-7">
+            <h3 className="font-display text-charcoal text-xl">İletişim</h3>
             <dl className="mt-4 space-y-3 text-sm">
               <div className="flex flex-col">
                 <dt className="text-muted">Telefon</dt>
                 <dd>
                   <a
                     href={`tel:${contact.phoneE164}`}
-                    className="text-charcoal transition-colors hover:text-olive"
+                    className="text-charcoal hover:text-olive transition-colors"
                   >
                     {contact.phoneDisplay}
                   </a>
@@ -36,7 +36,7 @@ export function ContactSection({ withHeading = true }: { withHeading?: boolean }
                 <dd>
                   <a
                     href={`mailto:${contact.email}`}
-                    className="text-charcoal transition-colors hover:text-olive"
+                    className="text-charcoal hover:text-olive transition-colors"
                   >
                     {contact.email}
                   </a>
@@ -45,15 +45,15 @@ export function ContactSection({ withHeading = true }: { withHeading?: boolean }
             </dl>
           </div>
 
-          <div className="rounded-lg border border-stone-soft bg-marble p-7">
-            <h3 className="font-display text-xl text-charcoal">Konum</h3>
-            <p className="mt-4 text-sm leading-relaxed text-muted">
+          <div className="border-stone-soft bg-marble rounded-lg border p-7">
+            <h3 className="font-display text-charcoal text-xl">Konum</h3>
+            <p className="text-muted mt-4 text-sm leading-relaxed">
               {contact.region}.{' '}
               {contact.address ?? 'Tam adres ve yol tarifi için lütfen bizi arayın.'}
             </p>
 
             {hours ? (
-              <ul className="mt-4 space-y-1 text-sm text-charcoal">
+              <ul className="text-charcoal mt-4 space-y-1 text-sm">
                 {hours.map((row) => (
                   <li key={row.label} className="flex justify-between gap-4">
                     <span>{row.label}</span>
@@ -62,7 +62,7 @@ export function ContactSection({ withHeading = true }: { withHeading?: boolean }
                 ))}
               </ul>
             ) : (
-              <p className="mt-4 text-sm text-muted">
+              <p className="text-muted mt-4 text-sm">
                 Güncel çalışma saatlerimiz için bizimle iletişime geçebilirsiniz.
               </p>
             )}

@@ -20,13 +20,10 @@ import { siteConfig, mainNav } from '../src/lib/site-config.ts';
 config({ path: '.env.local' });
 
 const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-const serviceKey =
-  process.env.SUPABASE_SERVICE_ROLE_KEY ?? process.env.SUPABASE_SECRET_KEY;
+const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY ?? process.env.SUPABASE_SECRET_KEY;
 
 if (!url || !serviceKey) {
-  console.error(
-    '✗ Missing NEXT_PUBLIC_SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY in .env.local',
-  );
+  console.error('✗ Missing NEXT_PUBLIC_SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY in .env.local');
   process.exit(1);
 }
 
@@ -110,7 +107,11 @@ async function seedSettings() {
   const rows = [
     { key: 'contact', value: siteConfig.contact, is_public: true },
     { key: 'navigation', value: mainNav, is_public: true },
-    { key: 'brand', value: { name: siteConfig.name, hashtag: siteConfig.hashtag }, is_public: true },
+    {
+      key: 'brand',
+      value: { name: siteConfig.name, hashtag: siteConfig.hashtag },
+      is_public: true,
+    },
     { key: 'reservation_note', value: { text: siteConfig.reservationNote }, is_public: true },
   ];
   const { error } = await supabase.from('site_settings').upsert(rows, { onConflict: 'key' });
@@ -120,9 +121,7 @@ async function seedSettings() {
 
 async function seedRedirects() {
   const rows = [{ source_path: '/about-1', target_path: '/about', status_code: 301 }];
-  const { error } = await supabase
-    .from('redirects')
-    .upsert(rows, { onConflict: 'source_path' });
+  const { error } = await supabase.from('redirects').upsert(rows, { onConflict: 'source_path' });
   if (error) throw new Error(`redirects: ${error.message}`);
   console.log(`✓ redirects: ${rows.length}`);
 }

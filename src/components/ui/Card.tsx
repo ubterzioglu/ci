@@ -9,7 +9,7 @@ export function Card({ hover = false, className, children, ...rest }: CardProps)
   return (
     <div
       className={cn(
-        'bg-marble border border-stone-soft rounded-lg p-6',
+        'bg-marble border-stone-soft rounded-lg border p-6',
         hover && 'transition-shadow hover:shadow-md',
         className,
       )}

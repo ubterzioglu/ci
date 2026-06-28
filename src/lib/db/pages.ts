@@ -15,9 +15,7 @@ export async function getPage(slug: string): Promise<PageContent | null> {
   if (supabase) {
     const { data, error } = await supabase
       .from('pages')
-      .select(
-        'slug, title, excerpt, content_md, seo_title, seo_description, og_image_url',
-      )
+      .select('slug, title, excerpt, content_md, seo_title, seo_description, og_image_url')
       .eq('slug', slug)
       .eq('status', 'published')
       .maybeSingle();
@@ -43,10 +41,7 @@ export async function getPublishedSlugs(): Promise<string[]> {
   const supabase = await createSupabaseServerClient();
 
   if (supabase) {
-    const { data, error } = await supabase
-      .from('pages')
-      .select('slug')
-      .eq('status', 'published');
+    const { data, error } = await supabase.from('pages').select('slug').eq('status', 'published');
 
     if (!error && data && data.length > 0) {
       return data.map((row) => row.slug);

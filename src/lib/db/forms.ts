@@ -96,11 +96,7 @@ export async function saveContactMessage(input: ContactInput): Promise<PersistRe
 
   const admin = createSupabaseAdminClient();
   if (admin) {
-    const { data, error } = await admin
-      .from('contact_messages')
-      .insert(row)
-      .select('id')
-      .single();
+    const { data, error } = await admin.from('contact_messages').insert(row).select('id').single();
     if (error) return { ok: false, reason: 'error', detail: error.message };
     return { ok: true, id: data?.id ?? null };
   }

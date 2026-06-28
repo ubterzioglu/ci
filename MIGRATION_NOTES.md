@@ -67,6 +67,7 @@ The legacy Wix website data was exported to the `/ref` directory:
 **Decision**: Menu item allergen tags were inferred from ingredient lists in the source export.
 
 **Common inferred allergens**:
+
 - "Contains nuts" or similar phrasing → `nuts`
 - "Contains dairy" or "cheese" → `dairy`
 - "Contains gluten" or "bread" → `gluten`
@@ -79,22 +80,23 @@ The legacy Wix website data was exported to the `/ref` directory:
 
 ## Slug Mapping: Old Wix → New Next.js
 
-| Wix Slug | New Slug | Notes |
-|----------|----------|-------|
-| `/` | `/` | Home page |
-| `/menus` or `/menu` | `/menu` | Menu page |
-| `/about-1` | `/about` | About page (301 redirect) |
-| `/experiences` | `/experiences` | Experiences page (empty state) |
-| (footer only) | `/contact` | New contact page |
-| (footer only) | `/reservations` | New reservations page |
-| (footer only) | `/impressum` | Legal: Impressum (German) |
-| (footer only) | `/datenschutz` | Legal: Privacy Policy (German) |
+| Wix Slug            | New Slug        | Notes                          |
+| ------------------- | --------------- | ------------------------------ |
+| `/`                 | `/`             | Home page                      |
+| `/menus` or `/menu` | `/menu`         | Menu page                      |
+| `/about-1`          | `/about`        | About page (301 redirect)      |
+| `/experiences`      | `/experiences`  | Experiences page (empty state) |
+| (footer only)       | `/contact`      | New contact page               |
+| (footer only)       | `/reservations` | New reservations page          |
+| (footer only)       | `/impressum`    | Legal: Impressum (German)      |
+| (footer only)       | `/datenschutz`  | Legal: Privacy Policy (German) |
 
 ## Image Assets: Legacy Wix CDN
 
 **Status**: Wix CDN image URLs are temporarily allowed in `next.config.ts` for backward compatibility.
 
 **Localization process**:
+
 1. All Wix image URLs are catalogued in `ref/content/image-assets.json`
 2. Run `pnpm assets:download` to:
    - Download images from Wix CDN
@@ -148,6 +150,7 @@ The new site uses a Supabase PostgreSQL database with 8 tables:
 8. **redirects** — Legacy Wix slug → new slug mappings (301 redirects)
 
 All tables have Row-Level Security (RLS) enabled:
+
 - **Public read** (anon/authenticated): Published pages, active menu, public settings
 - **Public insert** only: Reservation requests and contact messages (forms)
 - **No public update/delete**: Content managed server-side with service_role key or Supabase dashboard

@@ -33,7 +33,7 @@ export function Header() {
       className={cn(
         'fixed inset-x-0 top-0 z-40 transition-all duration-300',
         solid
-          ? 'border-b border-stone-soft/70 bg-marble/95 backdrop-blur supports-[backdrop-filter]:bg-marble/80'
+          ? 'border-stone-soft/70 bg-marble/95 supports-[backdrop-filter]:bg-marble/80 border-b backdrop-blur'
           : 'bg-transparent',
       )}
     >
@@ -79,7 +79,7 @@ export function Header() {
               'hidden rounded-md px-4 py-2 text-sm transition-colors md:inline-block',
               solid
                 ? 'bg-olive text-ivory hover:bg-olive-deep'
-                : 'border border-ivory/70 text-ivory hover:bg-ivory hover:text-charcoal',
+                : 'border-ivory/70 text-ivory hover:bg-ivory hover:text-charcoal border',
             )}
           >
             {PRIMARY_CTA.labelTr}

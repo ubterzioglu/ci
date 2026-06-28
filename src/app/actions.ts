@@ -40,9 +40,7 @@ export async function submitReservation(
 
   if (!persistResult.ok) {
     if (persistResult.reason === 'not-configured') {
-      console.warn(
-        '[actions] Supabase is not configured — reservation not persisted.',
-      );
+      console.warn('[actions] Supabase is not configured — reservation not persisted.');
       return { ok: true };
     }
     return {
@@ -98,9 +96,7 @@ export async function submitContact(
 
   if (!persistResult.ok) {
     if (persistResult.reason === 'not-configured') {
-      console.warn(
-        '[actions] Supabase is not configured — contact message not persisted.',
-      );
+      console.warn('[actions] Supabase is not configured — contact message not persisted.');
       return { ok: true };
     }
     return {

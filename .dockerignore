@@ -1,0 +1,15 @@
+node_modules
+.next
+.git
+.env
+.env.*
+!.env.example
+npm-debug.log
+README.md
+MIGRATION_NOTES.md
+TODO_PANEL_EXPORTS.md
+ref
+.omc
+.vscode
+.idea
+coverage

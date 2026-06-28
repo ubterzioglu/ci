@@ -15,8 +15,12 @@ export const siteConfig = {
   description:
     'Kaş’ta doğal malzemeler, Akdeniz ve Anadolu’dan ilham alan zamansız mutfak diliyle Çi Neo Cucina.',
 
-  /** Public site URL — overridden by NEXT_PUBLIC_SITE_URL at runtime. */
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.cineocucina.com',
+  /**
+   * Public site URL — overridden by NEXT_PUBLIC_SITE_URL at runtime.
+   * Fallback is the TEMPORARY domain (notyetbro.club). Switch back to
+   * https://www.cineocucina.com when the primary domain goes live.
+   */
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? 'https://notyetbro.club',
 
   locale: 'tr_TR',
   defaultLocale: 'tr' as const,

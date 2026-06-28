@@ -23,33 +23,28 @@ export default function DatenschutzPage() {
       <PageHeader eyebrow="Yasal" title="Gizlilik Politikası" />
 
       <section className="bg-marble pb-section">
-        <div className="container-editorial mx-auto max-w-2xl space-y-6 text-charcoal/90">
+        <div className="container-editorial text-charcoal/90 mx-auto max-w-2xl space-y-6">
           <p>
             Bu sayfa hazırlanmaktadır. Resmi gizlilik politikamız en kısa sürede burada
             yayınlanacaktır. Bu süre zarfında, web sitemiz üzerinden topladığımız verileri
             şeffaflıkla özetliyoruz.
           </p>
 
-          <div className="rounded-lg border border-stone-soft bg-cream-deep/40 p-6">
-            <h2 className="font-display text-xl text-charcoal">Topladığımız bilgiler</h2>
-            <ul className="mt-3 list-inside list-disc space-y-1 text-sm text-muted">
-              <li>
-                Rezervasyon talebi: ad, e-posta/telefon, kişi sayısı, tarih, saat ve notunuz.
-              </li>
+          <div className="border-stone-soft bg-cream-deep/40 rounded-lg border p-6">
+            <h2 className="font-display text-charcoal text-xl">Topladığımız bilgiler</h2>
+            <ul className="text-muted mt-3 list-inside list-disc space-y-1 text-sm">
+              <li>Rezervasyon talebi: ad, e-posta/telefon, kişi sayısı, tarih, saat ve notunuz.</li>
               <li>İletişim formu: ad, e-posta/telefon, konu ve mesajınız.</li>
             </ul>
-            <p className="mt-4 text-sm text-muted">
+            <p className="text-muted mt-4 text-sm">
               Bu bilgileri yalnızca talebinizi yanıtlamak için kullanırız; üçüncü taraflarla
               pazarlama amacıyla paylaşmayız.
             </p>
           </div>
 
-          <p className="text-sm text-muted">
+          <p className="text-muted text-sm">
             Verilerinizle ilgili her türlü soru için{' '}
-            <a
-              href={`mailto:${siteConfig.contact.email}`}
-              className="text-olive hover:underline"
-            >
+            <a href={`mailto:${siteConfig.contact.email}`} className="text-olive hover:underline">
               {siteConfig.contact.email}
             </a>{' '}
             adresinden bize ulaşabilirsiniz.

@@ -38,7 +38,7 @@ export default function AboutPage() {
           <SectionHeading title={aboutContent.intro.heading} align="center" />
           <div className="mx-auto mt-10 max-w-2xl space-y-5">
             {aboutContent.intro.paragraphs.map((paragraph, index) => (
-              <p key={index} className="text-lg leading-relaxed text-charcoal/90">
+              <p key={index} className="text-charcoal/90 text-lg leading-relaxed">
                 {paragraph}
               </p>
             ))}
@@ -64,10 +64,10 @@ export default function AboutPage() {
           )}
           <div className="md:col-span-7">
             <p className="eyebrow">{aboutContent.chef.heading}</p>
-            <h2 className="mt-3 font-display text-4xl text-charcoal">{aboutContent.chef.name}</h2>
+            <h2 className="font-display text-charcoal mt-3 text-4xl">{aboutContent.chef.name}</h2>
             <div className="mt-6 space-y-4">
               {aboutContent.chef.paragraphs.map((paragraph, index) => (
-                <p key={index} className="leading-relaxed text-charcoal/85">
+                <p key={index} className="text-charcoal/85 leading-relaxed">
                   {paragraph}
                 </p>
               ))}
@@ -82,7 +82,7 @@ export default function AboutPage() {
           <p className="eyebrow text-terracotta">{aboutContent.vision.heading}</p>
           <div className="mt-6 space-y-5">
             {aboutContent.vision.paragraphs.map((paragraph, index) => (
-              <p key={index} className="text-lg leading-relaxed text-ivory/85">
+              <p key={index} className="text-ivory/85 text-lg leading-relaxed">
                 {paragraph}
               </p>
             ))}
@@ -104,10 +104,7 @@ export default function AboutPage() {
                 const image = resolveImage(photo.id);
                 if (!image) return null;
                 return (
-                  <div
-                    key={photo.id}
-                    className="relative aspect-square overflow-hidden rounded-lg"
-                  >
+                  <div key={photo.id} className="relative aspect-square overflow-hidden rounded-lg">
                     <Image
                       src={image.src}
                       alt={image.alt}
@@ -120,7 +117,7 @@ export default function AboutPage() {
               })}
             </div>
           )}
-          <ul className="mt-10 flex flex-wrap justify-center gap-x-8 gap-y-2 text-center font-display text-2xl text-olive">
+          <ul className="font-display text-olive mt-10 flex flex-wrap justify-center gap-x-8 gap-y-2 text-center text-2xl">
             {aboutContent.team.members.map((member) => (
               <li key={member}>{member}</li>
             ))}

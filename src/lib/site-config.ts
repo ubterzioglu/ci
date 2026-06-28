@@ -25,6 +25,13 @@ export const siteConfig = {
   locale: 'tr_TR',
   defaultLocale: 'tr' as const,
 
+  /**
+   * Default Open Graph / social-share image (absolute path under /public).
+   * Points at an existing imported brand photo until a purpose-built 1200×630
+   * og-default.jpg is produced. Single source of truth for SEO helpers.
+   */
+  ogDefaultImage: '/images/imported/home-hero-table.jpg',
+
   contact: {
     phoneDisplay: '+90 544 687 05 28',
     phoneE164: '+905446870528',

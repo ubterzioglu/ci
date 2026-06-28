@@ -2,8 +2,6 @@ import type { Metadata, Viewport } from 'next';
 import { Cormorant_Garamond, Inter } from 'next/font/google';
 
 import './globals.css';
-import { Header } from '@/components/layout/Header';
-import { Footer } from '@/components/layout/Footer';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { restaurantSchema, websiteSchema } from '@/lib/seo/schema';
 import { siteConfig } from '@/lib/site-config';
@@ -48,20 +46,16 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="tr" className={`${cormorant.variable} ${inter.variable}`}>
-      <body className="flex min-h-screen flex-col bg-marble text-charcoal antialiased">
+      <body className="bg-marble text-charcoal flex min-h-screen flex-col antialiased">
         <JsonLd data={restaurantSchema()} />
         <JsonLd data={websiteSchema()} />
-        <a
-          href="#main"
-          className="sr-only rounded-md bg-charcoal px-4 py-2 text-ivory focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50"
-        >
-          İçeriğe geç
-        </a>
-        <Header />
-        <main id="main" className="flex-1">
-          {children}
-        </main>
-        <Footer />
+        {/*
+          Site chrome (Header/Footer/<main>) lives in app/(site)/layout.tsx so
+          chrome-free routes — the at-table QR menu in app/(qr) — can opt out.
+          Only `not-found.tsx` renders directly under this root layout, so it
+          provides its own chrome.
+        */}
+        {children}
       </body>
     </html>
   );

@@ -32,11 +32,11 @@ export default function ReservationsPage() {
 
       <section className="bg-marble pb-section">
         <div className="container-editorial">
-          <div className="mx-auto max-w-2xl rounded-lg border border-stone-soft bg-cream-deep/40 p-6 md:p-10">
+          <div className="border-stone-soft bg-cream-deep/40 mx-auto max-w-2xl rounded-lg border p-6 md:p-10">
             <ReservationForm />
           </div>
 
-          <p className="mx-auto mt-8 max-w-2xl text-center text-sm text-muted">
+          <p className="text-muted mx-auto mt-8 max-w-2xl text-center text-sm">
             Büyük gruplar ve özel etkinlikler için{' '}
             <a
               href={`tel:${siteConfig.contact.phoneE164}`}

@@ -36,24 +36,24 @@ export default function ExperiencesPage() {
 
       <section className="bg-marble pb-section">
         <div className="container-editorial">
-          <div className="mx-auto max-w-2xl rounded-lg border border-stone-soft bg-cream-deep/40 p-8 text-center md:p-12">
-            <p className="font-display text-2xl text-charcoal">
+          <div className="border-stone-soft bg-cream-deep/40 mx-auto max-w-2xl rounded-lg border p-8 text-center md:p-12">
+            <p className="font-display text-charcoal text-2xl">
               Sizin için özel bir akşam tasarlayalım
             </p>
-            <p className="mx-auto mt-4 max-w-xl leading-relaxed text-muted">
-              Chef’s Table, özel menüler ve kapalı etkinlikler için ekibimizle iletişime
-              geçin. {siteConfig.reservationNote}
+            <p className="text-muted mx-auto mt-4 max-w-xl leading-relaxed">
+              Chef’s Table, özel menüler ve kapalı etkinlikler için ekibimizle iletişime geçin.{' '}
+              {siteConfig.reservationNote}
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-3">
               <Link
                 href="/contact"
-                className="rounded-md bg-olive px-6 py-3 text-ivory transition-colors hover:bg-olive-deep"
+                className="bg-olive text-ivory hover:bg-olive-deep rounded-md px-6 py-3 transition-colors"
               >
                 İletişime Geç
               </Link>
               <Link
                 href={PRIMARY_CTA.href}
-                className="rounded-md border border-olive px-6 py-3 text-olive transition-colors hover:bg-olive hover:text-ivory"
+                className="border-olive text-olive hover:bg-olive hover:text-ivory rounded-md border px-6 py-3 transition-colors"
               >
                 {PRIMARY_CTA.labelTr}
               </Link>

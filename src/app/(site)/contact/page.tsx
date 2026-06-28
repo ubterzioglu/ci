@@ -32,7 +32,7 @@ export default function ContactPage() {
 
       <section className="bg-marble pb-section">
         <div className="container-editorial">
-          <div className="mx-auto max-w-2xl rounded-lg border border-stone-soft bg-cream-deep/40 p-6 md:p-10">
+          <div className="border-stone-soft bg-cream-deep/40 mx-auto max-w-2xl rounded-lg border p-6 md:p-10">
             <ContactForm />
           </div>
         </div>

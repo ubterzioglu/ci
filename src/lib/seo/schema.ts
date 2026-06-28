@@ -29,7 +29,7 @@ export function restaurantSchema(): Record<string, unknown> {
       addressCountry: 'TR',
     },
     acceptsReservations: `${baseUrl}/reservations`,
-    image: `${baseUrl}/og-default.jpg`,
+    image: new URL(siteConfig.ogDefaultImage, baseUrl).toString(),
   };
 }
 
@@ -43,9 +43,7 @@ export function websiteSchema(): Record<string, unknown> {
   };
 }
 
-export function breadcrumbSchema(
-  items: { name: string; path: string }[],
-): Record<string, unknown> {
+export function breadcrumbSchema(items: { name: string; path: string }[]): Record<string, unknown> {
   return {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',

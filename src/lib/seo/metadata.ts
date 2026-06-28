@@ -27,7 +27,7 @@ export function buildMetadata({
   const fullTitle = title ? `${title} | ${siteConfig.name}` : siteConfig.name;
   const desc = description ?? siteConfig.description;
   const canonical = new URL(path, baseUrl).toString();
-  const image = ogImage ?? `${baseUrl}/og-default.jpg`;
+  const image = ogImage ?? new URL(siteConfig.ogDefaultImage, baseUrl).toString();
 
   return {
     title: fullTitle,

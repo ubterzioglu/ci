@@ -26,15 +26,15 @@ export default function ImpressumPage() {
 
       <section className="bg-marble pb-section">
         <div className="container-editorial mx-auto max-w-2xl">
-          <div className="space-y-6 text-charcoal/90">
+          <div className="text-charcoal/90 space-y-6">
             <p>
-              Bu sayfa hazırlanmaktadır. Aşağıda güncel iletişim bilgilerimizi
-              bulabilirsiniz; resmi künye bilgileri en kısa sürede eklenecektir.
+              Bu sayfa hazırlanmaktadır. Aşağıda güncel iletişim bilgilerimizi bulabilirsiniz; resmi
+              künye bilgileri en kısa sürede eklenecektir.
             </p>
 
-            <div className="rounded-lg border border-stone-soft bg-cream-deep/40 p-6">
-              <h2 className="font-display text-xl text-charcoal">{siteConfig.name}</h2>
-              <ul className="mt-3 space-y-1 text-sm text-muted">
+            <div className="border-stone-soft bg-cream-deep/40 rounded-lg border p-6">
+              <h2 className="font-display text-charcoal text-xl">{siteConfig.name}</h2>
+              <ul className="text-muted mt-3 space-y-1 text-sm">
                 <li>{contact.region}</li>
                 <li>
                   Telefon:{' '}
@@ -51,9 +51,9 @@ export default function ImpressumPage() {
               </ul>
             </div>
 
-            <p className="text-sm text-muted">
-              Resmi ticari unvan, vergi bilgileri ve sorumlu kişi bilgileri için lütfen
-              bizimle iletişime geçin.
+            <p className="text-muted text-sm">
+              Resmi ticari unvan, vergi bilgileri ve sorumlu kişi bilgileri için lütfen bizimle
+              iletişime geçin.
             </p>
           </div>
         </div>

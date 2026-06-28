@@ -3,10 +3,12 @@ import type { NextConfig } from 'next';
 /**
  * Next.js configuration for Çi Neo Cucina.
  *
- * - `remotePatterns` temporarily allows the legacy Wix CDN so the site renders
- *   while imported images are being migrated to `public/images/imported/`.
- *   Once `pnpm assets:download` has run and content references local paths,
- *   these remote patterns can be removed. See MIGRATION_NOTES.md.
+ * - All managed images now resolve to local files under
+ *   `public/images/imported/` (every media asset in src/content/media-data.ts
+ *   has a downloaded local copy — verified). The legacy Wix CDN remote patterns
+ *   were therefore removed. If a future asset is added without running
+ *   `pnpm assets:download`, re-add the host or download the file. See
+ *   MIGRATION_NOTES.md and src/lib/images.ts.
  * - `redirects()` preserves SEO equity from the old Wix slugs (e.g. /about-1).
  *   Database-backed redirects are additionally served via middleware.
  */
@@ -16,10 +18,6 @@ const nextConfig: NextConfig = {
   // Produces a minimal self-contained server for Docker/Coolify deployment.
   output: 'standalone',
   images: {
-    remotePatterns: [
-      { protocol: 'https', hostname: 'static.wixstatic.com' },
-      { protocol: 'https', hostname: 'static.parastorage.com' },
-    ],
     formats: ['image/avif', 'image/webp'],
   },
   async redirects() {

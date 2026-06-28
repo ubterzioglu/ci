@@ -78,6 +78,43 @@ export const homeContent = {
     heading: 'Chef’s Table',
     body: 'Özel etkinlikleriniz için lütfen iletişime geçiniz.',
   },
+  /**
+   * Premium "deneyim" showcase on the home page (ExperienceShowcase section).
+   *
+   * `icon` is a discriminator resolved to an inline SVG in the component (keeps
+   * this content file JSX-free).
+   *
+   * NOTE on facts: "Chef's Table" is brand-real (see `chefsTable` above) and
+   * links to /reservations. "Şarap Eşleştirme" and "Bahçe Akşamları" are
+   * NEW marketing copy — plausible but NOT confirmed brand facts. Replace with
+   * restaurant-verified text if/when available (see CLAUDE.md "don't fabricate
+   * facts" rule and TODO_PANEL_EXPORTS.md).
+   */
+  experiences: [
+    {
+      key: 'chefs-table',
+      icon: 'plate',
+      title: 'Chef’s Table',
+      description:
+        'Şefin sofrasında, mevsimin en taze malzemeleriyle kişiye özel bir menü deneyimi.',
+      href: '/reservations',
+    },
+    {
+      key: 'sarap-eslestirme',
+      icon: 'wine',
+      title: 'Şarap Eşleştirme',
+      description: 'Yerel üreticilerin seçkisinden, her tabağa eşlik eden özenli şarap önerileri.',
+      href: '/experiences',
+    },
+    {
+      key: 'bahce-aksamlari',
+      icon: 'olive',
+      title: 'Bahçe Akşamları',
+      description:
+        'Zeytin ağaçlarının altında, gün batımından gece yarısına uzanan dingin akşam yemekleri.',
+      href: '/experiences',
+    },
+  ],
 } as const;
 
 /** Page rows for the database seed (markdown rendered server-side). */

@@ -36,7 +36,7 @@ export default async function MenuPage() {
 
       <div className="bg-marble pb-section">
         <div className="container-editorial">
-          <p className="mx-auto mb-12 max-w-2xl rounded-md border border-stone-soft bg-cream-deep/60 px-5 py-3 text-center text-sm text-muted">
+          <p className="border-stone-soft bg-cream-deep/60 text-muted mx-auto mb-12 max-w-2xl rounded-md border px-5 py-3 text-center text-sm">
             {MENU_SERVICE_NOTE}
           </p>
 
@@ -49,12 +49,12 @@ export default async function MenuPage() {
           {/* Wine menu — item list not in source; elegant ask-the-team notice */}
           <section
             aria-labelledby="wine-heading"
-            className="mt-16 rounded-lg border border-wine/25 bg-wine/5 p-8 text-center"
+            className="border-wine/25 bg-wine/5 mt-16 rounded-lg border p-8 text-center"
           >
-            <h2 id="wine-heading" className="font-display text-3xl text-wine">
+            <h2 id="wine-heading" className="font-display text-wine text-3xl">
               Şarap Menüsü
             </h2>
-            <p className="mx-auto mt-3 max-w-xl text-sm leading-relaxed text-muted">
+            <p className="text-muted mx-auto mt-3 max-w-xl text-sm leading-relaxed">
               {WINE_MENU_NOTICE}
             </p>
           </section>

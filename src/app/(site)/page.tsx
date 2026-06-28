@@ -1,5 +1,6 @@
 import { Hero } from '@/components/sections/Hero';
 import { StorySection } from '@/components/sections/StorySection';
+import { ExperienceShowcase } from '@/components/sections/ExperienceShowcase';
 import { MenuPreview } from '@/components/sections/MenuPreview';
 import { ReservationCTA } from '@/components/sections/ReservationCTA';
 import { Gallery } from '@/components/sections/Gallery';
@@ -17,6 +18,7 @@ export default async function HomePage() {
       <JsonLd data={menuSchema(menu)} />
       <Hero />
       <StorySection />
+      <ExperienceShowcase />
       <MenuPreview />
       <ReservationCTA />
       <Gallery />

@@ -14,6 +14,67 @@ export type Json = string | number | boolean | null | { [key: string]: Json | un
 export interface Database {
   public: {
     Tables: {
+      admins: {
+        Row: {
+          id: string;
+          user_id: string | null;
+          email: string;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          user_id?: string | null;
+          email: string;
+          created_at?: string;
+        };
+        Update: Partial<Database['public']['Tables']['admins']['Insert']>;
+        Relationships: [];
+      };
+      revision_requests: {
+        Row: {
+          id: string;
+          requester: string;
+          body: string;
+          urgency: number;
+          status: string;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          requester: string;
+          body: string;
+          urgency?: number;
+          status?: string;
+          created_at?: string;
+        };
+        Update: Partial<Database['public']['Tables']['revision_requests']['Insert']>;
+        Relationships: [];
+      };
+      revision_comments: {
+        Row: {
+          id: string;
+          revision_id: string;
+          author: string;
+          body: string;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          revision_id: string;
+          author: string;
+          body: string;
+          created_at?: string;
+        };
+        Update: Partial<Database['public']['Tables']['revision_comments']['Insert']>;
+        Relationships: [
+          {
+            foreignKeyName: 'revision_comments_revision_id_fkey';
+            columns: ['revision_id'];
+            referencedRelation: 'revision_requests';
+            referencedColumns: ['id'];
+          },
+        ];
+      };
       site_settings: {
         Row: {
           id: string;
@@ -239,7 +300,12 @@ export interface Database {
       };
     };
     Views: Record<never, never>;
-    Functions: Record<never, never>;
+    Functions: {
+      is_admin: {
+        Args: Record<string, never>;
+        Returns: boolean;
+      };
+    };
     Enums: Record<never, never>;
     CompositeTypes: Record<never, never>;
   };

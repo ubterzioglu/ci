@@ -43,6 +43,16 @@ const NAV: NavItem[] = [
     ),
   },
   {
+    href: '/admin/menu',
+    label: 'Menü',
+    icon: (
+      <svg viewBox="0 0 20 20" fill="none" className={iconClass} aria-hidden="true">
+        <path d="M5 2.5v6M5 8.5v9M3 2.5v3a2 2 0 002 2M7 2.5v3a2 2 0 01-2 2" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M13.5 2.5c-1.4 0-2.5 1.6-2.5 3.6s1.1 3.4 2.5 3.4V2.5zM13.5 9.5v8" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    ),
+  },
+  {
     href: '/admin/revisions',
     label: 'Revizyonlar',
     icon: (

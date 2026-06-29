@@ -56,11 +56,14 @@ export function restaurantSchema(): Record<string, unknown> {
   if (contact.mapsUrl) schema.hasMap = contact.mapsUrl;
 
   // Opening hours — only when confirmed (omitted while config.hours is null).
+  // Uses schema.org DayOfWeek + opens/closes; an overnight close (e.g. 02:00)
+  // is valid here.
   if (hours && hours.length > 0) {
     schema.openingHoursSpecification = hours.map((h) => ({
       '@type': 'OpeningHoursSpecification',
-      dayOfWeek: h.label,
-      description: h.value,
+      dayOfWeek: h.days.map((d) => `https://schema.org/${d}`),
+      opens: h.opens,
+      closes: h.closes,
     }));
   }
 

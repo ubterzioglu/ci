@@ -53,12 +53,27 @@ export const siteConfig = {
   },
 
   /**
-   * Opening hours — NOT present in the public source. The "18:00 – 23:00"
-   * value below only appeared next to the (empty) wine menu, so it is shown
-   * as an indicative service window, not confirmed opening hours.
-   * TODO(panel-export): confirm real opening hours.
+   * Opening hours. `label`/`value` drive the human-readable display; `days`
+   * (schema.org DayOfWeek) + opens/closes drive the JSON-LD
+   * OpeningHoursSpecification. Service runs into the next day (closes 02:00),
+   * which schema.org handles fine. Closed Sunday.
    */
-  hours: null as { label: string; value: string }[] | null,
+  hours: [
+    {
+      label: 'Pazartesi – Cumartesi',
+      value: '17:00 – 02:00',
+      days: [
+        'Monday',
+        'Tuesday',
+        'Wednesday',
+        'Thursday',
+        'Friday',
+        'Saturday',
+      ] as const,
+      opens: '17:00',
+      closes: '02:00',
+    },
+  ] as { label: string; value: string; days: readonly string[]; opens: string; closes: string }[] | null,
 
   /** Social links — NOT present in the public source (only generic icons). */
   social: {

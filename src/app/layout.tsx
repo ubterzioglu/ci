@@ -27,8 +27,22 @@ export const metadata: Metadata = {
   },
   description: siteConfig.description,
   applicationName: siteConfig.name,
-  keywords: ['Çi Neo Cucina', 'Kaş restoran', 'Akdeniz mutfağı', 'fine dining', 'Simge Manacıoğlu'],
+  keywords: [
+    'Çi Neo Cucina',
+    'Kaş restoran',
+    'Kaş yemek',
+    'Akdeniz mutfağı',
+    'Anadolu mutfağı',
+    'fine dining Kaş',
+    'Antalya restoran',
+    'Simge Manacıoğlu',
+  ],
   authors: [{ name: siteConfig.name }],
+  creator: siteConfig.name,
+  publisher: siteConfig.name,
+  // Stop iOS Safari from auto-linking incidental numbers/addresses in the UI.
+  formatDetection: { telephone: false, address: false, email: false },
+  alternates: { canonical: '/' },
   openGraph: {
     type: 'website',
     siteName: siteConfig.name,

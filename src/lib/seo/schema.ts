@@ -12,7 +12,23 @@ import type { MenuCategory } from '@/lib/types';
 const baseUrl = siteConfig.url;
 
 export function restaurantSchema(): Record<string, unknown> {
-  return {
+  const { contact, geo, social, hours } = siteConfig;
+
+  // PostalAddress — streetAddress only when a real address is known.
+  const address: Record<string, unknown> = {
+    '@type': 'PostalAddress',
+    addressLocality: 'Kaş',
+    addressRegion: 'Antalya',
+    addressCountry: 'TR',
+  };
+  if (contact.address) address.streetAddress = contact.address;
+
+  // Social profiles for entity disambiguation (Google "sameAs").
+  const sameAs = [social.instagram, social.facebook].filter(
+    (v): v is string => typeof v === 'string' && v.length > 0,
+  );
+
+  const schema: Record<string, unknown> = {
     '@context': 'https://schema.org',
     '@type': 'Restaurant',
     name: siteConfig.name,
@@ -20,17 +36,37 @@ export function restaurantSchema(): Record<string, unknown> {
     url: baseUrl,
     servesCuisine: ['Mediterranean', 'Anatolian', 'Seafood'],
     priceRange: '₺₺₺',
-    telephone: siteConfig.contact.phoneE164,
-    email: siteConfig.contact.email,
-    address: {
-      '@type': 'PostalAddress',
-      addressLocality: 'Kaş',
-      addressRegion: 'Antalya',
-      addressCountry: 'TR',
-    },
+    currenciesAccepted: 'TRY',
+    telephone: contact.phoneE164,
+    email: contact.email,
+    address,
+    areaServed: { '@type': 'City', name: 'Kaş' },
     acceptsReservations: `${baseUrl}/reservations`,
     image: new URL(siteConfig.ogDefaultImage, baseUrl).toString(),
   };
+
+  // Geo coordinates + map link — only when confirmed.
+  if (geo.latitude !== null && geo.longitude !== null) {
+    schema.geo = {
+      '@type': 'GeoCoordinates',
+      latitude: geo.latitude,
+      longitude: geo.longitude,
+    };
+  }
+  if (contact.mapsUrl) schema.hasMap = contact.mapsUrl;
+
+  // Opening hours — only when confirmed (omitted while config.hours is null).
+  if (hours && hours.length > 0) {
+    schema.openingHoursSpecification = hours.map((h) => ({
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: h.label,
+      description: h.value,
+    }));
+  }
+
+  if (sameAs.length > 0) schema.sameAs = sameAs;
+
+  return schema;
 }
 
 export function websiteSchema(): Record<string, unknown> {

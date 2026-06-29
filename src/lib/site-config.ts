@@ -36,11 +36,20 @@ export const siteConfig = {
     phoneDisplay: '+90 544 687 05 28',
     phoneE164: '+905446870528',
     email: 'cineo.cucina@gmail.com',
-    // Region present in brand story; precise street address NOT in source.
     region: 'Kaş, Antalya',
-    // TODO(panel-export): exact street address + Google Maps link missing.
-    address: null as string | null,
-    mapsUrl: null as string | null,
+    // Confirmed via Google Maps business listing (Çi neo cucina by mezetaryen).
+    address: 'Andifli Mah., Uğur Mumcu Cad. No:23, 07580 Kaş/Antalya' as string | null,
+    mapsUrl: 'https://maps.app.goo.gl/ucWq9wqB8Xb3LZXv9' as string | null,
+  },
+
+  /**
+   * Geo coordinates for local SEO (Restaurant JSON-LD `geo` + `hasMap`).
+   * Taken from the Google Maps business pin (the `!3d…!4d…` segment of the
+   * place URL, not the `@…` camera centre).
+   */
+  geo: {
+    latitude: 36.202132 as number | null,
+    longitude: 29.6366394 as number | null,
   },
 
   /**

@@ -1,13 +1,13 @@
 import 'server-only';
 
-import { createSupabaseServerClient } from '@/lib/supabase/server';
+import { createSupabaseAdminClient } from '@/lib/supabase/admin';
 import { isReservationStatus, type AdminReservation, type ReservationStatus } from './reservation-types';
 
 /**
- * Admin data layer for reservation requests. Reads/updates go through the
- * RLS-enforced anon SSR client; the is_admin() policies added in migration 002
- * gate visibility and status updates to allow-listed admins. requireAdmin()
- * must be called by the page/action before using these.
+ * Admin data layer for reservation requests. The panel is gated by the shared
+ * admin password (requireAdmin() must be called by the page/action first), so
+ * these run through the service-role client which bypasses RLS — there is no
+ * Supabase user session to satisfy the is_admin() policies.
  *
  * Status constants + types live in ./reservation-types (no `server-only`) so
  * client components can share them; re-exported here for convenience.
@@ -21,7 +21,7 @@ export {
 
 /** All reservation requests, newest first. Empty array when not configured. */
 export async function listReservations(): Promise<AdminReservation[]> {
-  const supabase = await createSupabaseServerClient();
+  const supabase = createSupabaseAdminClient();
   if (!supabase) return [];
 
   const { data, error } = await supabase
@@ -52,7 +52,7 @@ export async function setReservationStatus(
   id: string,
   status: ReservationStatus,
 ): Promise<void> {
-  const supabase = await createSupabaseServerClient();
+  const supabase = createSupabaseAdminClient();
   if (!supabase) throw new Error('Supabase yapılandırılmamış.');
 
   const { error } = await supabase

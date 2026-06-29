@@ -1,33 +1,18 @@
 import { redirect } from 'next/navigation';
 
-import { isSupabaseConfigured } from '@/lib/supabase/env';
-import { getAdminUser } from '@/lib/auth/require-admin';
+import { isAdminAuthConfigured } from '@/lib/auth/admin-session';
+import { isAdmin } from '@/lib/auth/require-admin';
 import { LoginForm } from './LoginForm';
 
-const DENIED_MESSAGES: Record<string, string> = {
-  '1': 'Bu hesabın admin paneline erişim yetkisi yok.',
-  oauth: 'Google ile giriş tamamlanamadı. Lütfen tekrar deneyin.',
-  config: 'Supabase yapılandırılmamış.',
-};
-
 /**
- * Admin login. If Supabase is unconfigured, shows a clear notice instead of a
- * dead form. If an admin is already signed in, bounces straight to the panel.
- * A `?denied=` param (set by the OAuth callback or the sign-in action) surfaces
- * a rejection message.
+ * Admin login (password-only). If admin auth is unconfigured, shows a clear
+ * notice. If already signed in, bounces straight to the panel.
  */
-export default async function AdminLoginPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ denied?: string }>;
-}) {
-  const configured = isSupabaseConfigured();
-  const { denied } = await searchParams;
-  const deniedMessage = denied ? (DENIED_MESSAGES[denied] ?? DENIED_MESSAGES['1']) : null;
+export default async function AdminLoginPage() {
+  const configured = isAdminAuthConfigured();
 
-  if (configured) {
-    const admin = await getAdminUser();
-    if (admin) redirect('/admin');
+  if (configured && (await isAdmin())) {
+    redirect('/admin');
   }
 
   return (
@@ -49,22 +34,13 @@ export default async function AdminLoginPage({
 
           <div className="rule-olive my-7" aria-hidden="true" />
 
-          {deniedMessage && (
-            <div
-              role="alert"
-              className="mb-5 rounded-md border border-wine/30 bg-wine/5 px-4 py-3 font-body text-sm text-wine"
-            >
-              {deniedMessage}
-            </div>
-          )}
-
           {configured ? (
             <LoginForm />
           ) : (
             <p className="text-center font-body text-sm leading-7 text-muted">
-              Supabase yapılandırılmamış. Ortam değişkenlerini ekleyin
-              (<code className="font-mono text-xs">NEXT_PUBLIC_SUPABASE_URL</code> ve
-              <code className="font-mono text-xs"> NEXT_PUBLIC_SUPABASE_ANON_KEY</code>) ve sayfayı
+              Admin girişi yapılandırılmamış. Ortam değişkenlerini ekleyin
+              (<code className="font-mono text-xs">ADMIN_PASSWORD</code> ve
+              <code className="font-mono text-xs"> ADMIN_SESSION_SECRET</code>) ve sayfayı
               yenileyin.
             </p>
           )}

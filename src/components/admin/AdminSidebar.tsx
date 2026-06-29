@@ -68,13 +68,7 @@ function isActive(pathname: string, href: string): boolean {
   return pathname === href || pathname.startsWith(`${href}/`);
 }
 
-export function AdminSidebar({
-  userEmail,
-  className,
-}: {
-  userEmail?: string | null;
-  className?: string;
-}) {
+export function AdminSidebar({ className }: { className?: string }) {
   const pathname = usePathname();
 
   return (
@@ -123,11 +117,6 @@ export function AdminSidebar({
       </nav>
 
       <div className="mt-3 border-t border-stone/70 pt-3">
-        {userEmail && (
-          <div className="mb-2 truncate px-1 font-body text-[11px] font-medium text-muted">
-            {userEmail}
-          </div>
-        )}
         <form action={signOutAction}>
           <button
             type="submit"

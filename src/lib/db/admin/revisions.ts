@@ -1,6 +1,6 @@
 import 'server-only';
 
-import { createSupabaseServerClient } from '@/lib/supabase/server';
+import { createSupabaseAdminClient } from '@/lib/supabase/admin';
 import {
   isRevisionStatus,
   type RevisionRequest,
@@ -11,8 +11,9 @@ import {
 
 /**
  * Admin data layer for internal revision requests + their threaded comments.
- * RLS (migration 002) restricts all access to is_admin(); callers must run
- * requireAdmin() first. Functions throw on failure so actions can surface it.
+ * The panel is gated by the shared admin password (requireAdmin() must run
+ * first), so these use the service-role client which bypasses RLS — there is no
+ * Supabase user session. Functions throw on failure so actions can surface it.
  *
  * Status constants + types live in ./revision-types (no `server-only`) so
  * client components can share them; re-exported here for convenience.
@@ -29,7 +30,7 @@ export {
 /* --- Revision requests ----------------------------------------------------- */
 
 export async function listRevisions(): Promise<RevisionRequest[]> {
-  const supabase = await createSupabaseServerClient();
+  const supabase = createSupabaseAdminClient();
   if (!supabase) return [];
 
   const { data, error } = await supabase
@@ -50,7 +51,7 @@ export async function listRevisions(): Promise<RevisionRequest[]> {
 }
 
 export async function createRevision(input: CreateRevisionInput): Promise<void> {
-  const supabase = await createSupabaseServerClient();
+  const supabase = createSupabaseAdminClient();
   if (!supabase) throw new Error('Supabase yapılandırılmamış.');
 
   const { error } = await supabase.from('revision_requests').insert({
@@ -63,7 +64,7 @@ export async function createRevision(input: CreateRevisionInput): Promise<void> 
 }
 
 export async function setRevisionStatus(id: string, status: RevisionStatus): Promise<void> {
-  const supabase = await createSupabaseServerClient();
+  const supabase = createSupabaseAdminClient();
   if (!supabase) throw new Error('Supabase yapılandırılmamış.');
 
   const { error } = await supabase.from('revision_requests').update({ status }).eq('id', id);
@@ -71,7 +72,7 @@ export async function setRevisionStatus(id: string, status: RevisionStatus): Pro
 }
 
 export async function deleteRevision(id: string): Promise<void> {
-  const supabase = await createSupabaseServerClient();
+  const supabase = createSupabaseAdminClient();
   if (!supabase) throw new Error('Supabase yapılandırılmamış.');
 
   const { error } = await supabase.from('revision_requests').delete().eq('id', id);
@@ -82,7 +83,7 @@ export async function deleteRevision(id: string): Promise<void> {
 
 /** Fetches all comments for the given revision IDs, oldest first. */
 export async function listComments(revisionIds: string[]): Promise<RevisionComment[]> {
-  const supabase = await createSupabaseServerClient();
+  const supabase = createSupabaseAdminClient();
   if (!supabase || revisionIds.length === 0) return [];
 
   const { data, error } = await supabase
@@ -107,7 +108,7 @@ export async function addComment(
   author: string,
   body: string,
 ): Promise<RevisionComment> {
-  const supabase = await createSupabaseServerClient();
+  const supabase = createSupabaseAdminClient();
   if (!supabase) throw new Error('Supabase yapılandırılmamış.');
 
   const { data, error } = await supabase
@@ -128,7 +129,7 @@ export async function addComment(
 }
 
 export async function deleteComment(id: string): Promise<void> {
-  const supabase = await createSupabaseServerClient();
+  const supabase = createSupabaseAdminClient();
   if (!supabase) throw new Error('Supabase yapılandırılmamış.');
 
   const { error } = await supabase.from('revision_comments').delete().eq('id', id);

@@ -8,7 +8,7 @@ import { AdminSidebar } from '@/components/admin/AdminSidebar';
  * triggers the guard.
  */
 export default async function PanelLayout({ children }: { children: React.ReactNode }) {
-  const admin = await requireAdmin();
+  await requireAdmin();
 
   return (
     <div className="min-h-screen bg-marble">
@@ -16,7 +16,7 @@ export default async function PanelLayout({ children }: { children: React.ReactN
         <div className="grid gap-6 lg:grid-cols-[272px_minmax(0,1fr)]">
           <div className="hidden lg:block">
             <div className="sticky top-6 max-h-[calc(100vh-3rem)] overflow-y-auto pb-2">
-              <AdminSidebar userEmail={admin.email} />
+              <AdminSidebar />
             </div>
           </div>
 

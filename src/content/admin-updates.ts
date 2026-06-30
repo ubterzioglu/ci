@@ -12,6 +12,16 @@ export interface UpdateGroup {
 
 export const UPDATE_ENTRIES: UpdateGroup[] = [
   {
+    date: '30 Haziran 2026',
+    title: 'Footer (alt bilgi) yeniden düzenlendi',
+    items: [
+      'Tüm iletişim ve profil ikonları (telefon, e-posta, konum, Instagram, Tripadvisor, Wanderlog, Restaurant Guru) eşit boyutta tek satır halinde footer’ın üstünde ortalandı.',
+      'Restaurant Guru “Recommended 2026” büyük rozeti kaldırıldı; Restaurant Guru artık diğerleriyle aynı boyutta tek bir ikon olarak gösteriliyor.',
+      'Menü bağlantıları (Ana Sayfa, Menü, Hakkımızda, Deneyimler, Rezervasyon, İletişim) ikonların altında yan yana, aralarında dikey ayraçlarla dizildi.',
+      'İletişim bilgileri (telefon, e-posta, adres) ve çalışma saatleri tek satırda, aralarında dikey ayraçlarla birleştirildi.',
+    ],
+  },
+  {
     date: '29 Haziran 2026',
     title: 'Yönetim paneli (/admin) yayında',
     items: [

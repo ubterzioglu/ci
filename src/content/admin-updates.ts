@@ -13,6 +13,26 @@ export interface UpdateGroup {
 export const UPDATE_ENTRIES: UpdateGroup[] = [
   {
     date: '30 Haziran 2026',
+    title: 'Çok dilli site (Türkçe / İngilizce / Almanca)',
+    items: [
+      'Site Türkçe’nin yanında İngilizce ve Almanca dillerinde de yayında; her sayfanın dile özel adresi (örn. /en, /de) ve dil değiştirme menüsü eklendi.',
+      'Menü ve sayfa içerikleri çeviri dosyalarından besleniyor; aynı içerik üç dilde tek kaynaktan yönetiliyor.',
+      'Arama motorları için dile özel hreflang etiketleri eklendi, böylece her ziyaretçi doğru dildeki sayfaya yönlendiriliyor.',
+      'Sayfa içerikleri ortak gövde bileşenlerine taşındı; Türkçe ve diğer dillerdeki sayfalar artık aynı düzeni paylaşıyor (bakım kolaylığı).',
+    ],
+  },
+  {
+    date: '30 Haziran 2026',
+    title: 'Marka görselleri, paylaşım kartı ve galeri iyileştirmeleri',
+    items: [
+      'Sosyal medyada paylaşımlar için markaya özel paylaşım görseli (1200×630 “ciog.jpg”) eklendi; link paylaşıldığında düzgün önizleme çıkıyor.',
+      'Tarayıcı sekmesi simgesi (favicon) yenilendi.',
+      'Instagram, Tripadvisor, Wanderlog ve Restaurant Guru profilleri site ayarlarına eklendi (footer ikonlarını besliyor).',
+      'Galeri görselleri optimize edildi (WebP’ye dönüştürme script’i) ve yeni galeri fotoğrafları eklendi — daha hızlı yükleme.',
+    ],
+  },
+  {
+    date: '30 Haziran 2026',
     title: 'Footer (alt bilgi) yeniden düzenlendi',
     items: [
       'Tüm iletişim ve profil ikonları (telefon, e-posta, konum, Instagram, Tripadvisor, Wanderlog, Restaurant Guru) eşit boyutta tek satır halinde footer’ın üstünde ortalandı.',

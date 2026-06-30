@@ -48,16 +48,16 @@ export function ExperiencesPageBody({ locale }: ExperiencesPageBodyProps) {
               Chef’s Table, özel menüler ve kapalı etkinlikler için ekibimizle iletişime geçin.{' '}
               {siteConfig.reservationNote}
             </p>
-            <div className="mt-8 flex flex-wrap justify-center gap-3">
+            <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
               <Link
                 href={localePath('/contact', locale)}
-                className="bg-olive text-ivory hover:bg-olive-deep rounded-md px-6 py-3 transition-colors"
+                className="bg-olive text-ivory hover:bg-olive-deep inline-flex w-full min-w-[14rem] items-center justify-center rounded-lg px-8 py-3.5 text-sm font-medium tracking-wide shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md sm:w-auto"
               >
                 İletişime Geç
               </Link>
               <Link
                 href={localePath(PRIMARY_CTA.href, locale)}
-                className="border-olive text-olive hover:bg-olive hover:text-ivory rounded-md border px-6 py-3 transition-colors"
+                className="bg-olive text-ivory hover:bg-olive-deep inline-flex w-full min-w-[14rem] items-center justify-center rounded-lg px-8 py-3.5 text-sm font-medium tracking-wide shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md sm:w-auto"
               >
                 {dictionary.cta.reserve}
               </Link>

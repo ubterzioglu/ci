@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { MenuCategory } from '@/components/menu/MenuCategory';
 import { getMenu } from '@/lib/db/menu';
 import { MENU_SERVICE_NOTE, WINE_MENU_NOTICE } from '@/content/menu-data';
+import { aboutContent } from '@/content/pages-data';
 import { siteConfig } from '@/lib/site-config';
 
 /**
@@ -12,7 +13,12 @@ import { siteConfig } from '@/lib/site-config';
  * scroll, with a sticky category jump-nav.
  *
  * Reuses getMenu() (Supabase → local fallback) and the MenuCategory component
- * so it stays in sync with /menu. TR-only for v1. Read-only — no client JS.
+ * so it stays in sync with /menu, plus aboutContent for a condensed "about"
+ * block. TR-only for v1.
+ *
+ * Read-only and JS-free: the "about" section expands via a native
+ * <details>/<summary>, so the page ships zero client JavaScript while still
+ * letting a curious guest read the chef's story without leaving the table.
  */
 export const metadata: Metadata = {
   title: 'Menü',
@@ -21,13 +27,36 @@ export const metadata: Metadata = {
 export default async function QrMenuPage() {
   const menu = await getMenu();
 
+  // Condensed "about" copy, sourced verbatim from aboutContent (no fabrication).
+  const aboutIntro = aboutContent.intro.paragraphs.slice(0, 2);
+  const aboutMore = aboutContent.intro.paragraphs.slice(2);
+
   return (
     <div className="bg-marble text-charcoal min-h-screen">
-      {/* Compact brand header */}
-      <header className="bg-charcoal text-ivory px-5 pt-8 pb-6 text-center">
-        <p className="eyebrow">Menü</p>
-        <h1 className="font-display mt-2 text-3xl">{siteConfig.name}</h1>
-        <p className="text-ivory/70 mt-1 text-sm">{siteConfig.tagline}</p>
+      {/* Hero — warm, candle-lit charcoal. A pair of soft terracotta/olive
+          radial washes (color-mix, same technique as the admin login) give the
+          flat dark band depth without any image weight. */}
+      <header className="bg-charcoal text-ivory relative overflow-hidden px-5 pt-12 pb-10 text-center">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background:
+              'radial-gradient(circle at 20% 0%, color-mix(in srgb, var(--color-terracotta) 22%, transparent), transparent 42%), radial-gradient(circle at 84% 12%, color-mix(in srgb, var(--color-olive) 20%, transparent), transparent 40%)',
+          }}
+        />
+        <div className="fade-up relative">
+          <p className="eyebrow">Menü</p>
+          <h1 className="font-display text-ivory mt-3 text-4xl leading-none">{siteConfig.name}</h1>
+          <div className="rule-olive text-ivory/60 mt-4">
+            <span aria-hidden className="text-sm tracking-[0.3em]">
+              ❦
+            </span>
+          </div>
+          <p className="text-ivory/75 mx-auto mt-4 max-w-xs text-sm leading-relaxed">
+            {siteConfig.tagline}
+          </p>
+        </div>
       </header>
 
       {/* Sticky category jump-nav — anchor links, no client JS. */}
@@ -73,6 +102,75 @@ export default async function QrMenuPage() {
           <p className="text-muted mx-auto mt-2 max-w-sm text-sm leading-relaxed">
             {WINE_MENU_NOTICE}
           </p>
+        </section>
+
+        {/* About — condensed, with the chef's story behind a native, JS-free
+            <details> disclosure so it stays optional and the page stays light. */}
+        <section
+          aria-labelledby="qr-about-heading"
+          className="border-stone-soft bg-cream-deep/40 mt-12 rounded-lg border p-6"
+        >
+          <div className="text-center">
+            <p className="eyebrow">Hakkımızda</p>
+            <h2 id="qr-about-heading" className="font-display text-charcoal mt-2 text-2xl">
+              {aboutContent.intro.heading}
+            </h2>
+            <div className="rule-olive mt-4">
+              <span aria-hidden className="text-sm tracking-[0.3em]">
+                ❦
+              </span>
+            </div>
+          </div>
+
+          <div className="text-muted mt-5 space-y-3 text-sm leading-relaxed">
+            {aboutIntro.map((paragraph, i) => (
+              <p key={i}>{paragraph}</p>
+            ))}
+          </div>
+
+          <details className="group mt-4">
+            <summary className="text-olive-deep hover:text-olive marker:content-none flex cursor-pointer list-none items-center justify-center gap-1.5 text-sm font-medium transition-colors select-none">
+              <span className="group-open:hidden">Devamını oku</span>
+              <span className="hidden group-open:inline">Daha az göster</span>
+              <svg
+                aria-hidden
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={1.5}
+                className="size-4 transition-transform group-open:rotate-180"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="m6 9 6 6 6-6" />
+              </svg>
+            </summary>
+
+            <div className="text-muted mt-3 space-y-3 text-sm leading-relaxed">
+              {aboutMore.map((paragraph, i) => (
+                <p key={i}>{paragraph}</p>
+              ))}
+            </div>
+
+            {/* Vision */}
+            <div className="mt-6">
+              <h3 className="font-display text-charcoal text-lg">{aboutContent.vision.heading}</h3>
+              <div className="text-muted mt-2 space-y-3 text-sm leading-relaxed">
+                {aboutContent.vision.paragraphs.map((paragraph, i) => (
+                  <p key={i}>{paragraph}</p>
+                ))}
+              </div>
+            </div>
+
+            {/* Chef */}
+            <div className="mt-6">
+              <h3 className="font-display text-charcoal text-lg">{aboutContent.chef.heading}</h3>
+              <p className="text-terracotta mt-1 text-sm font-medium">{aboutContent.chef.name}</p>
+              <div className="text-muted mt-2 space-y-3 text-sm leading-relaxed">
+                {aboutContent.chef.paragraphs.map((paragraph, i) => (
+                  <p key={i}>{paragraph}</p>
+                ))}
+              </div>
+            </div>
+          </details>
         </section>
 
         <footer className="border-stone-soft text-muted mt-12 border-t pt-6 text-center text-sm">

@@ -50,6 +50,11 @@ export const metadata: Metadata = {
     siteName: siteConfig.name,
     locale: siteConfig.locale,
     url: siteConfig.url,
+    images: [{ url: siteConfig.ogDefaultImage, width: 1200, height: 630, alt: siteConfig.name }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    images: [siteConfig.ogDefaultImage],
   },
 };
 

@@ -27,10 +27,10 @@ export const siteConfig = {
 
   /**
    * Default Open Graph / social-share image (absolute path under /public).
-   * Points at an existing imported brand photo until a purpose-built 1200×630
-   * og-default.jpg is produced. Single source of truth for SEO helpers.
+   * Purpose-built 1200×630 brand card (ciog.jpg, marble background). Single
+   * source of truth for SEO helpers.
    */
-  ogDefaultImage: '/images/imported/home-hero-table.jpg',
+  ogDefaultImage: '/ciog.jpg',
 
   contact: {
     phoneDisplay: '+90 544 687 05 28',

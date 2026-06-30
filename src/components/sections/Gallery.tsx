@@ -6,8 +6,9 @@ import { resolveImage } from '@/lib/images';
 import { siteConfig } from '@/lib/site-config';
 
 /**
- * Editorial photo gallery (#CiNeoCucina). A simple masonry-ish grid of the
- * imported atmosphere photos. Decorative-but-meaningful: each image keeps its
+ * Editorial photo gallery (#CiNeoCucina). A uniform grid of the imported
+ * atmosphere photos — equal 4:3 cells so the layout stays tidy regardless of
+ * how many images are present. Decorative-but-meaningful: each image keeps its
  * descriptive alt text from the source manifest.
  */
 export function Gallery() {
@@ -20,15 +21,13 @@ export function Gallery() {
         <SectionHeading eyebrow={siteConfig.hashtag} title="Atmosfer" align="center" />
 
         <div className="mt-12 grid grid-cols-2 gap-3 md:grid-cols-3">
-          {items.map((item, index) => {
+          {items.map((item) => {
             const image = resolveImage(item.id);
             if (!image) return null;
             return (
               <div
                 key={item.id}
-                className={`relative overflow-hidden rounded-md ${
-                  index % 5 === 0 ? 'row-span-2 aspect-[3/4]' : 'aspect-[4/3]'
-                }`}
+                className="relative aspect-[4/3] overflow-hidden rounded-md"
               >
                 <Image
                   src={image.src}

@@ -134,7 +134,7 @@ export function FooterContactLinks({ className }: { className?: string }) {
   }
 
   return (
-    <ul className={`flex flex-wrap items-center gap-3 ${className ?? ''}`}>
+    <ul className={`flex flex-wrap items-center justify-center gap-3 ${className ?? ''}`}>
       {links.map((link) => (
         <li key={link.href}>
           <a

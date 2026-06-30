@@ -93,6 +93,16 @@ const NAV: NavItem[] = [
       </svg>
     ),
   },
+  {
+    href: '/admin/guide',
+    label: 'Kullanım Kılavuzu',
+    icon: (
+      <svg viewBox="0 0 20 20" fill="none" className={iconClass} aria-hidden="true">
+        <path d="M3.5 4.5A1.5 1.5 0 015 3h4.5v12.5H5a1.5 1.5 0 00-1.5 1.5V4.5z" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" />
+        <path d="M16.5 4.5A1.5 1.5 0 0015 3h-4.5v12.5H15a1.5 1.5 0 011.5 1.5V4.5z" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" />
+      </svg>
+    ),
+  },
 ];
 
 function isActive(pathname: string, href: string): boolean {

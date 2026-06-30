@@ -5,20 +5,55 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 import { MobileNav } from './MobileNav';
+import { LanguageSwitcher } from './LanguageSwitcher';
 import { mainNav, PRIMARY_CTA, siteConfig } from '@/lib/site-config';
+import { defaultLocale, type Locale } from '@/lib/i18n/config';
+import { getDictionary } from '@/lib/i18n/dictionaries';
+import { localePath } from '@/lib/i18n/paths';
 import { cn } from '@/lib/utils';
+
+interface HeaderProps {
+  locale?: Locale;
+}
+
+/** Map a nav href to its localized dictionary label. */
+function navLabel(dictionary: ReturnType<typeof getDictionary>, href: string): string {
+  switch (href) {
+    case '/':
+      return dictionary.nav.home;
+    case '/menu':
+      return dictionary.nav.menu;
+    case '/about':
+      return dictionary.nav.about;
+    case '/experiences':
+      return dictionary.nav.experiences;
+    case '/reservations':
+      return dictionary.nav.reservations;
+    case '/contact':
+      return dictionary.nav.contact;
+    default:
+      return href;
+  }
+}
 
 /**
  * Sticky site header. Transparent over the hero at the top of the home page,
  * then condenses to a solid marble bar on scroll. On other pages it starts
  * solid. Includes desktop nav, primary CTA, and the mobile menu trigger.
+ *
+ * Locale-aware: nav labels come from the dictionary and every internal link is
+ * built through `localePath` so EN/DE stay under their locale prefix while TR
+ * keeps bare URLs.
  */
-export function Header() {
+export function Header({ locale = defaultLocale }: HeaderProps) {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const isHome = pathname === '/';
+  const dictionary = getDictionary(locale);
+  const homeHref = localePath('/', locale);
+
+  const isHome = pathname === homeHref;
   const solid = scrolled || !isHome;
 
   useEffect(() => {
@@ -39,7 +74,7 @@ export function Header() {
     >
       <div className="container-editorial flex h-16 items-center justify-between md:h-20">
         <Link
-          href="/"
+          href={homeHref}
           className={cn(
             'font-display text-xl leading-none tracking-tight transition-colors md:text-2xl',
             solid ? 'text-charcoal' : 'text-ivory',
@@ -52,11 +87,12 @@ export function Header() {
         <nav aria-label="Ana menü" className="hidden md:block">
           <ul className="flex items-center gap-7">
             {mainNav.map((item) => {
-              const active = pathname === item.href;
+              const href = localePath(item.href, locale);
+              const active = pathname === href;
               return (
                 <li key={item.href}>
                   <Link
-                    href={item.href}
+                    href={href}
                     aria-current={active ? 'page' : undefined}
                     className={cn(
                       'text-sm tracking-wide transition-colors',
@@ -64,7 +100,7 @@ export function Header() {
                       active && (solid ? 'text-olive' : 'text-ivory'),
                     )}
                   >
-                    {item.labelTr}
+                    {navLabel(dictionary, item.href)}
                   </Link>
                 </li>
               );
@@ -73,8 +109,14 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-3">
+          <LanguageSwitcher
+            current={locale}
+            tone={solid ? 'dark' : 'light'}
+            className="hidden md:flex"
+          />
+
           <Link
-            href={PRIMARY_CTA.href}
+            href={localePath(PRIMARY_CTA.href, locale)}
             className={cn(
               'hidden rounded-md px-4 py-2 text-sm transition-colors md:inline-block',
               solid
@@ -82,7 +124,7 @@ export function Header() {
                 : 'border-ivory/70 text-ivory hover:bg-ivory hover:text-charcoal border',
             )}
           >
-            {PRIMARY_CTA.labelTr}
+            {dictionary.cta.reserve}
           </Link>
 
           {/* Mobile trigger */}
@@ -109,7 +151,7 @@ export function Header() {
         </div>
       </div>
 
-      <MobileNav open={menuOpen} onClose={() => setMenuOpen(false)} />
+      <MobileNav open={menuOpen} onClose={() => setMenuOpen(false)} locale={locale} />
     </header>
   );
 }

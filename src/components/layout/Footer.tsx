@@ -1,16 +1,49 @@
 import Link from 'next/link';
 
+import { RestaurantGuruBadge } from '@/components/layout/RestaurantGuruBadge';
 import { mainNav, footerLegalNav, siteConfig } from '@/lib/site-config';
+import { defaultLocale, type Locale } from '@/lib/i18n/config';
+import { getDictionary } from '@/lib/i18n/dictionaries';
+import { localePath } from '@/lib/i18n/paths';
 import { currentYear } from '@/lib/utils';
+
+interface FooterProps {
+  locale?: Locale;
+}
+
+/** Map a nav href to its localized dictionary label. */
+function navLabel(dictionary: ReturnType<typeof getDictionary>, href: string): string {
+  switch (href) {
+    case '/':
+      return dictionary.nav.home;
+    case '/menu':
+      return dictionary.nav.menu;
+    case '/about':
+      return dictionary.nav.about;
+    case '/experiences':
+      return dictionary.nav.experiences;
+    case '/reservations':
+      return dictionary.nav.reservations;
+    case '/contact':
+      return dictionary.nav.contact;
+    default:
+      return href;
+  }
+}
 
 /**
  * Site footer. Shows brand, contact, navigation, legal links and a current-year
  * copyright. Address / opening hours / social links render only when present
  * in the source data (they are not in the Wix export — see TODO_PANEL_EXPORTS).
  * No legacy Wix footer text.
+ *
+ * Locale-aware: main-nav labels come from the dictionary and main-nav links are
+ * built through `localePath`. The legal links (impressum/datenschutz) are
+ * TR-only shared pages with no [lang] mirror, so they stay unprefixed.
  */
-export function Footer() {
+export function Footer({ locale = defaultLocale }: FooterProps) {
   const { contact, social, hours } = siteConfig;
+  const dictionary = getDictionary(locale);
 
   return (
     <footer className="bg-charcoal text-ivory mt-auto">
@@ -23,6 +56,9 @@ export function Footer() {
               {siteConfig.tagline} {siteConfig.contact.region}.
             </p>
             <p className="text-terracotta mt-4 text-sm tracking-wide">{siteConfig.hashtag}</p>
+
+            {/* Restaurant Guru 2026 award */}
+            <RestaurantGuruBadge className="mt-6" />
           </div>
 
           {/* Navigation */}
@@ -34,10 +70,10 @@ export function Footer() {
               {mainNav.map((item) => (
                 <li key={item.href}>
                   <Link
-                    href={item.href}
+                    href={localePath(item.href, locale)}
                     className="text-ivory/80 hover:text-ivory text-sm transition-colors"
                   >
-                    {item.labelTr}
+                    {navLabel(dictionary, item.href)}
                   </Link>
                 </li>
               ))}

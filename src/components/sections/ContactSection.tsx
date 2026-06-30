@@ -1,13 +1,21 @@
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { siteConfig } from '@/lib/site-config';
+import { defaultLocale, type Locale } from '@/lib/i18n/config';
+import { getDictionary } from '@/lib/i18n/dictionaries';
+
+interface ContactSectionProps {
+  withHeading?: boolean;
+  locale?: Locale;
+}
 
 /**
  * Contact / location block. Renders the phone, email and region. The exact
  * street address, map and opening hours are not in the source data, so the
  * block invites guests to call for directions rather than showing placeholders.
  */
-export function ContactSection({ withHeading = true }: { withHeading?: boolean }) {
+export function ContactSection({ withHeading = true, locale = defaultLocale }: ContactSectionProps) {
   const { contact, hours } = siteConfig;
+  const dictionary = getDictionary(locale);
 
   return (
     <section id="contact" className="bg-cream-deep py-section scroll-mt-24">
@@ -21,7 +29,7 @@ export function ContactSection({ withHeading = true }: { withHeading?: boolean }
             <h3 className="font-display text-charcoal text-xl">İletişim</h3>
             <dl className="mt-4 space-y-3 text-sm">
               <div className="flex flex-col">
-                <dt className="text-muted">Telefon</dt>
+                <dt className="text-muted">{dictionary.common.phone}</dt>
                 <dd>
                   <a
                     href={`tel:${contact.phoneE164}`}
@@ -32,7 +40,7 @@ export function ContactSection({ withHeading = true }: { withHeading?: boolean }
                 </dd>
               </div>
               <div className="flex flex-col">
-                <dt className="text-muted">E-posta</dt>
+                <dt className="text-muted">{dictionary.common.email}</dt>
                 <dd>
                   <a
                     href={`mailto:${contact.email}`}

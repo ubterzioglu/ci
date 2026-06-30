@@ -1,0 +1,106 @@
+{
+  "categories": {
+    "topraktan": {
+      "name": "Aus der Erde",
+      "description": "Gerichte, die in der Saison aus Gemüse und Kräutern aus eigenem Anbau zubereitet werden."
+    },
+    "denizden": {
+      "name": "Vom Meer aus",
+      "description": "Gerichte, die mit Meeresfrüchten aus der Ägäis und dem Mittelmeer zubereitet werden."
+    },
+    "otlaktan": {
+      "name": "Von der Weide",
+      "description": "Hauptgerichte, bei denen Fleisch und Innereien sorgfältig zubereitet werden."
+    }
+  },
+  "items": {
+    "mezetaryen-meze-seckisi": {
+      "name": "Mezetaryen Meze-Auswahl",
+      "description": "Drei verschiedene saisonale „mezetaryen“-Vorspeisen."
+    },
+    "urla-enginar-confit": {
+      "name": "Urla-Artischocken-Confit",
+      "description": "Frisches Grünzeug, milchsauer vergorenes Obst und Memecik-Olivenöl."
+    },
+    "tuzlu-kavun": {
+      "name": "Salzige Melone",
+      "description": "Salziger Joghurt aus Antakya, Melonenscheiben, weiße Kichererbsen und Memecik-Olivenöl."
+    },
+    "uc-mantarli-taze-cavatelli": {
+      "name": "Frische Cavatelli mit drei Pilzsorten",
+      "description": "Steinpilze, Gelbpilze, Austernpilze und gereifter Mihaliç-Schafskäse."
+    },
+    "kereviz-sinitzel": {
+      "name": "Sellerie-Schnitzel",
+      "description": "In Scheiben geschnittener Sellerie, Hibeş und Löffelsalat."
+    },
+    "ci-salatasi": {
+      "name": "„Çi“-Salat",
+      "description": "Rucola, wilder Portulak, Yedikule-Salat, Obst der Saison, Çorum-Kargı-Käse, geröstete Walnüsse und Gurken-Vinaigrette."
+    },
+    "avokadolu-fume-somon-tartar": {
+      "name": "Tartar aus geräuchertem Lachs mit Avocado",
+      "description": "Mit Kapari-Früchten und Knuspergebäck."
+    },
+    "karisik-kabuklu-kasesi": {
+      "name": "Schale mit gemischten Nüssen",
+      "description": "Vongole, Kidoña, Schwarzmuscheln, Sülünez, Tarak; mit Tomaten- oder Weinsauce."
+    },
+    "ci-karides": {
+      "name": "„Çi“-Garnele",
+      "description": "Brot aus Afyon mit Sauerteig und Butter mit Botarga."
+    },
+    "izgara-baby-kalamar": {
+      "name": "Gegrillte Baby-Tintenfische",
+      "description": "Tomaten-Civesi und gereifter Mihaliç-Käse."
+    },
+    "aslan-baligi": {
+      "name": "Löwenfisch",
+      "description": "Beurre-blanc-Soße mit Basilikum und grünem Apfel."
+    },
+    "izgara-granyoz": {
+      "name": "Grill-Granyöz",
+      "description": "Buchweizensalat mit Gurken und Kapernsoße mit brauner Butter."
+    },
+    "karidesli-arpa-sehriye-risotto": {
+      "name": "Risotto mit Garnelen und Gerstengrieß",
+      "description": "Bisk und Ziegenkäse."
+    },
+    "deniz-mahsullu-makarna": {
+      "name": "Nudeln mit Meeresfrüchten",
+      "description": "San-Marzano-Tomatensauce, Garnelen, Tintenfisch, Muscheln, Vongole und Divle-Obruk-Käse."
+    },
+    "sakatat-pate": {
+      "name": "Innereien-Pastete",
+      "description": "Lammhirn, Lammgehirn, Hühnerleber und Hühnerherz."
+    },
+    "dana-yanak-ragu": {
+      "name": "Ragout aus Rinderbacken",
+      "description": "Mit Salsa-Salat."
+    },
+    "arnavut-cigeri": {
+      "name": "Albanische Leber",
+      "description": "Zwiebelsalat und handgerolltes, knuspriges Fladenbrot."
+    },
+    "izgara-kuzu-kokorec": {
+      "name": "Gegrilltes Lamm-Kokoreç",
+      "description": "Paprika aus Denizli, gesalzener Joghurt aus Antakya und Gurkensalat."
+    },
+    "kuzu-haslama": {
+      "name": "Lamm-Eintopf",
+      "description": "Mit Schwarzbier und Gemüse."
+    },
+    "izgara-kuzu-sirt": {
+      "name": "Lammrücken vom Grill",
+      "description": "Karamellisiertes Selleriepüree und Bohnen."
+    },
+    "izgara-dana-kontrfile-dilimleri": {
+      "name": "Rinderfilet-Scheiben vom Grill",
+      "description": "Kürbis-Polenta mit karamellisierter Zwiebelsauce."
+    }
+  },
+  "notes": {
+    "serviceNote": "Gerichte, die mit einem * gekennzeichnet sind, sind Hauptgerichte. Auf die Rechnung wird eine Servicegebühr von 10 % aufgeschlagen.",
+    "wineNotice": "Bitte wenden Sie sich an unser Team, wenn Sie mehr über unsere Weinauswahl erfahren möchten, die größtenteils aus Weinen lokaler Erzeuger besteht."
+  }
+}

@@ -3,19 +3,49 @@
 import { useEffect } from 'react';
 import Link from 'next/link';
 
+import { LanguageSwitcher } from './LanguageSwitcher';
 import { mainNav, PRIMARY_CTA, siteConfig } from '@/lib/site-config';
+import { defaultLocale, type Locale } from '@/lib/i18n/config';
+import { getDictionary } from '@/lib/i18n/dictionaries';
+import { localePath } from '@/lib/i18n/paths';
 
 interface MobileNavProps {
   open: boolean;
   onClose: () => void;
+  locale?: Locale;
+}
+
+/** Map a nav href to its localized dictionary label. */
+function navLabel(dictionary: ReturnType<typeof getDictionary>, href: string): string {
+  switch (href) {
+    case '/':
+      return dictionary.nav.home;
+    case '/menu':
+      return dictionary.nav.menu;
+    case '/about':
+      return dictionary.nav.about;
+    case '/experiences':
+      return dictionary.nav.experiences;
+    case '/reservations':
+      return dictionary.nav.reservations;
+    case '/contact':
+      return dictionary.nav.contact;
+    default:
+      return href;
+  }
 }
 
 /**
  * Full-screen mobile navigation drawer. Traps nothing heavyweight but does
  * lock body scroll, close on Escape, and expose proper ARIA. Keyboard users
  * can tab through links and the close button.
+ *
+ * Locale-aware: labels come from the dictionary and links are built through
+ * `localePath`.
  */
-export function MobileNav({ open, onClose }: MobileNavProps) {
+export function MobileNav({ open, onClose, locale = defaultLocale }: MobileNavProps) {
+  const dictionary = getDictionary(locale);
+
   useEffect(() => {
     if (!open) return;
 
@@ -79,25 +109,27 @@ export function MobileNav({ open, onClose }: MobileNavProps) {
           {mainNav.map((item) => (
             <li key={item.href}>
               <Link
-                href={item.href}
+                href={localePath(item.href, locale)}
                 onClick={onClose}
                 tabIndex={open ? 0 : -1}
                 className="font-display text-charcoal hover:text-olive block rounded-md px-3 py-3 text-2xl transition-colors"
               >
-                {item.labelTr}
+                {navLabel(dictionary, item.href)}
               </Link>
             </li>
           ))}
         </ul>
 
         <div className="border-stone-soft mt-auto border-t p-6">
+          <LanguageSwitcher current={locale} tone="dark" className="mb-5 justify-center text-sm" />
+
           <Link
-            href={PRIMARY_CTA.href}
+            href={localePath(PRIMARY_CTA.href, locale)}
             onClick={onClose}
             tabIndex={open ? 0 : -1}
             className="bg-olive text-ivory hover:bg-olive-deep block rounded-md px-5 py-3 text-center transition-colors"
           >
-            {PRIMARY_CTA.labelTr}
+            {dictionary.cta.reserve}
           </Link>
           <a
             href={`tel:${siteConfig.contact.phoneE164}`}

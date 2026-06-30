@@ -84,11 +84,13 @@ export const homeContent = {
    * `icon` is a discriminator resolved to an inline SVG in the component (keeps
    * this content file JSX-free).
    *
-   * NOTE on facts: "Chef's Table" is brand-real (see `chefsTable` above) and
-   * links to /reservations. "Şarap Eşleştirme" and "Bahçe Akşamları" are
-   * NEW marketing copy — plausible but NOT confirmed brand facts. Replace with
-   * restaurant-verified text if/when available (see CLAUDE.md "don't fabricate
-   * facts" rule and TODO_PANEL_EXPORTS.md).
+   * NOTE on facts: only "Chef's Table" is a confirmed brand fact (see
+   * `chefsTable` above and the /experiences page, which the live Wix site
+   * presents as "experiences by request"). Two earlier placeholder cards
+   * ("Şarap Eşleştirme", "Bahçe Akşamları") were removed because they were NOT
+   * verified brand facts (CLAUDE.md "don't fabricate facts"; confirmed against
+   * the 2026 site crawl, which lists no live experiences). Add cards back here
+   * only when the restaurant confirms a real, bookable experience.
    */
   experiences: [
     {
@@ -98,21 +100,6 @@ export const homeContent = {
       description:
         'Şefin sofrasında, mevsimin en taze malzemeleriyle kişiye özel bir menü deneyimi.',
       href: '/reservations',
-    },
-    {
-      key: 'sarap-eslestirme',
-      icon: 'wine',
-      title: 'Şarap Eşleştirme',
-      description: 'Yerel üreticilerin seçkisinden, her tabağa eşlik eden özenli şarap önerileri.',
-      href: '/experiences',
-    },
-    {
-      key: 'bahce-aksamlari',
-      icon: 'olive',
-      title: 'Bahçe Akşamları',
-      description:
-        'Zeytin ağaçlarının altında, gün batımından gece yarısına uzanan dingin akşam yemekleri.',
-      href: '/experiences',
     },
   ],
 } as const;

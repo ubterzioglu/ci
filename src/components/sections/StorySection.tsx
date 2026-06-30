@@ -2,8 +2,14 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import { SectionHeading } from '@/components/ui/SectionHeading';
-import { aboutContent } from '@/content/pages-data';
+import { getAboutContent } from '@/content/pages-i18n';
 import { resolveImage } from '@/lib/images';
+import { defaultLocale, type Locale } from '@/lib/i18n/config';
+import { localePath } from '@/lib/i18n/paths';
+
+interface StorySectionProps {
+  locale?: Locale;
+}
 
 /**
  * Home-page brand story / chef introduction. An asymmetric editorial split:
@@ -11,14 +17,15 @@ import { resolveImage } from '@/lib/images';
  * the full About page. Uses the real chef bio from the source (Simge
  * Manacıoğlu) — no invented facts.
  */
-export function StorySection() {
+export function StorySection({ locale = defaultLocale }: StorySectionProps) {
   const portrait = resolveImage('chef-simge');
-  const lead = aboutContent.intro.paragraphs.slice(0, 2);
+  const about = getAboutContent(locale);
+  const lead = about.intro.paragraphs.slice(0, 2);
 
   return (
     <section className="bg-marble py-section">
       <div className="container-editorial">
-        <SectionHeading eyebrow="Hikâyemiz" title={aboutContent.intro.heading} align="center" />
+        <SectionHeading eyebrow="Hikâyemiz" title={about.intro.heading} align="center" />
 
         <div className="mt-12 grid items-center gap-10 md:grid-cols-12">
           {portrait && (
@@ -41,9 +48,9 @@ export function StorySection() {
                 {paragraph}
               </p>
             ))}
-            <p className="font-display text-olive mt-6 text-2xl">{aboutContent.chef.name}</p>
+            <p className="font-display text-olive mt-6 text-2xl">{about.chef.name}</p>
             <Link
-              href="/about"
+              href={localePath('/about', locale)}
               className="text-terracotta mt-6 inline-block text-sm tracking-wide underline-offset-4 transition hover:underline"
             >
               Hikâyenin tamamını okuyun →

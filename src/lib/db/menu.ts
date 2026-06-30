@@ -1,16 +1,25 @@
 import 'server-only';
 
 import { createSupabaseServerClient } from '@/lib/supabase/server';
-import { menuCategories as localMenu } from '@/content/menu-data';
+import { getLocalMenu } from '@/content/menu-data';
+import { defaultLocale, type Locale } from '@/lib/i18n/config';
 import type { MenuCategory, MenuItem } from '@/lib/types';
 
 /**
- * Fetch the full menu (categories with nested active items).
+ * Fetch the full menu (categories with nested active items) for a locale.
  *
  * Tries Supabase first; falls back to local content when Supabase is not
- * configured or the query fails (so the site always renders a menu).
+ * configured or the query fails (so the site always renders a menu). The
+ * Supabase schema is currently single-language (Turkish source); until
+ * per-locale columns exist, a non-default locale uses the local translated
+ * content so the menu still renders in the requested language.
  */
-export async function getMenu(): Promise<MenuCategory[]> {
+export async function getMenu(locale: Locale = defaultLocale): Promise<MenuCategory[]> {
+  const localMenu = getLocalMenu(locale);
+
+  // DB holds Turkish source only; serve local translations for other locales.
+  if (locale !== defaultLocale) return localMenu;
+
   const supabase = await createSupabaseServerClient();
   if (!supabase) return localMenu;
 

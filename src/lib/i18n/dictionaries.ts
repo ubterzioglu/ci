@@ -1,16 +1,16 @@
 /**
  * i18n/dictionaries.ts — UI-string dictionaries for Çi Neo Cucina
  *
- * EN and DE entries are intentionally set to the Turkish source values for
- * now so the app is localization-ready without shipping wrong translations.
- *
- * TODO: translate via pnpm i18n:translate
- *   Once reviewed translations are available, replace the placeholder values
- *   below with the approved strings from src/lib/i18n/generated/.
+ * Turkish (`tr`) is the canonical source. EN/DE are built by deep-merging the
+ * generated overlays from `src/lib/i18n/generated/ui.{en,de}.json` (written by
+ * `pnpm i18n:translate`, DeepL) over the TR base, so any string not yet
+ * translated falls back to Turkish rather than shipping wrong or empty text.
  */
 
 import type { Locale } from './config';
 import { defaultLocale } from './config';
+import uiEn from './generated/ui.en.json';
+import uiDe from './generated/ui.de.json';
 
 // ---------------------------------------------------------------------------
 // Dictionary shape
@@ -38,62 +38,42 @@ export interface Dictionary {
 // Dictionaries
 // ---------------------------------------------------------------------------
 
+/** Canonical Turkish UI strings — the source for translation. */
+const tr: Dictionary = {
+  nav: {
+    home: 'Ana Sayfa',
+    menu: 'Menü',
+    about: 'Hakkımızda',
+    experiences: 'Deneyimler',
+    reservations: 'Rezervasyon',
+    contact: 'İletişim',
+  },
+  cta: {
+    reserve: 'Rezervasyon Talep Et',
+  },
+  common: {
+    phone: 'Telefon',
+    email: 'E-posta',
+  },
+};
+
+type DictionaryOverlay = {
+  [K in keyof Dictionary]?: Partial<Dictionary[K]>;
+};
+
+/** Build a locale dictionary by overlaying translated strings over TR. */
+function withOverlay(overlay: DictionaryOverlay): Dictionary {
+  return {
+    nav: { ...tr.nav, ...overlay.nav },
+    cta: { ...tr.cta, ...overlay.cta },
+    common: { ...tr.common, ...overlay.common },
+  };
+}
+
 export const dictionaries: Record<Locale, Dictionary> = {
-  tr: {
-    nav: {
-      home: 'Ana Sayfa',
-      menu: 'Menü',
-      about: 'Hakkımızda',
-      experiences: 'Deneyimler',
-      reservations: 'Rezervasyon',
-      contact: 'İletişim',
-    },
-    cta: {
-      reserve: 'Rezervasyon Talep Et',
-    },
-    common: {
-      phone: 'Telefon',
-      email: 'E-posta',
-    },
-  },
-
-  // TODO: translate via pnpm i18n:translate
-  en: {
-    nav: {
-      home: 'Ana Sayfa',
-      menu: 'Menü',
-      about: 'Hakkımızda',
-      experiences: 'Deneyimler',
-      reservations: 'Rezervasyon',
-      contact: 'İletişim',
-    },
-    cta: {
-      reserve: 'Rezervasyon Talep Et',
-    },
-    common: {
-      phone: 'Telefon',
-      email: 'E-posta',
-    },
-  },
-
-  // TODO: translate via pnpm i18n:translate
-  de: {
-    nav: {
-      home: 'Ana Sayfa',
-      menu: 'Menü',
-      about: 'Hakkımızda',
-      experiences: 'Deneyimler',
-      reservations: 'Rezervasyon',
-      contact: 'İletişim',
-    },
-    cta: {
-      reserve: 'Rezervasyon Talep Et',
-    },
-    common: {
-      phone: 'Telefon',
-      email: 'E-posta',
-    },
-  },
+  tr,
+  en: withOverlay(uiEn as DictionaryOverlay),
+  de: withOverlay(uiDe as DictionaryOverlay),
 };
 
 // ---------------------------------------------------------------------------

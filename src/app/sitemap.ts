@@ -1,9 +1,13 @@
 import type { MetadataRoute } from 'next';
 
+import { defaultLocale, locales } from '@/lib/i18n/config';
+import { localePath } from '@/lib/i18n/paths';
 import { siteConfig } from '@/lib/site-config';
 
 /**
- * Sitemap built from the known public routes. Legal pages are excluded
+ * Sitemap built from the known public routes, one entry per locale. Each entry
+ * carries `alternates.languages` (hreflang) listing every locale's URL so
+ * crawlers understand the tr/en/de relationship. Legal pages are excluded
  * (noindex). If the page set becomes fully database-driven, derive the list
  * from getPublishedSlugs() instead.
  *
@@ -27,14 +31,29 @@ const ROUTES: RouteConfig[] = [
   { path: '/contact', changeFrequency: 'monthly', priority: 0.6 },
 ];
 
+const base = siteConfig.url;
+const absolute = (path: string): string => new URL(path, base).toString();
+
+/** hreflang alternates for a route: one URL per locale + x-default (TR). */
+function languageAlternates(routePath: string): Record<string, string> {
+  const languages: Record<string, string> = {};
+  for (const locale of locales) {
+    languages[locale] = absolute(localePath(routePath, locale));
+  }
+  languages['x-default'] = absolute(localePath(routePath, defaultLocale));
+  return languages;
+}
+
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = siteConfig.url;
   const lastModified = new Date();
 
-  return ROUTES.map((route) => ({
-    url: new URL(route.path, base).toString(),
-    lastModified,
-    changeFrequency: route.changeFrequency,
-    priority: route.priority,
-  }));
+  return ROUTES.flatMap((route) =>
+    locales.map((locale) => ({
+      url: absolute(localePath(route.path, locale)),
+      lastModified,
+      changeFrequency: route.changeFrequency,
+      priority: route.priority,
+      alternates: { languages: languageAlternates(route.path) },
+    })),
+  );
 }

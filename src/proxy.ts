@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
 import { ADMIN_COOKIE } from '@/lib/auth/admin-session';
+import { defaultLocale, isLocale } from '@/lib/i18n/config';
 
 /**
  * Legacy-slug redirects.
@@ -47,7 +48,17 @@ export function proxy(request: NextRequest) {
     }
   }
 
-  return NextResponse.next();
+  // 3. Resolve the locale from the path's first segment ("unprefixed default":
+  //    `/` = tr, `/en/…`, `/de/…`) and expose it on the `x-locale` request
+  //    header so the root layout can render the correct <html lang> without a
+  //    [lang] segment of its own. No redirect — Turkish URLs stay bare.
+  const firstSegment = path.split('/')[1] ?? '';
+  const locale = isLocale(firstSegment) ? firstSegment : defaultLocale;
+
+  const requestHeaders = new Headers(request.headers);
+  requestHeaders.set('x-locale', locale);
+
+  return NextResponse.next({ request: { headers: requestHeaders } });
 }
 
 export const config = {

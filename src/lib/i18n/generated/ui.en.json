@@ -1,0 +1,17 @@
+{
+  "nav": {
+    "home": "Home Page",
+    "menu": "Menu",
+    "about": "About Us",
+    "experiences": "Experiences",
+    "reservations": "Reservation",
+    "contact": "Contact"
+  },
+  "cta": {
+    "reserve": "Request a Reservation"
+  },
+  "common": {
+    "phone": "Phone",
+    "email": "Email"
+  }
+}

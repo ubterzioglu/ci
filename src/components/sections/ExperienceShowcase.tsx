@@ -2,19 +2,32 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import { SectionHeading } from '@/components/ui/SectionHeading';
-import { homeContent } from '@/content/pages-data';
+import { getHomeContent } from '@/content/pages-i18n';
 import { resolveImage } from '@/lib/images';
+import { defaultLocale, type Locale } from '@/lib/i18n/config';
+import { localePath } from '@/lib/i18n/paths';
 
 /**
- * Premium "deneyim" showcase. Three frosted-glass cards float over the
- * night-garden photo, a more refined cousin of the MenuPreview teaser. Sits
- * between StorySection and MenuPreview on the home page.
+ * Premium "deneyim" showcase. Frosted-glass cards float over the night-garden
+ * photo, a more refined cousin of the MenuPreview teaser. Sits between
+ * StorySection and MenuPreview on the home page.
+ *
+ * The grid adapts to the number of confirmed experiences in
+ * `homeContent.experiences` (currently a single brand-real card, "Chef's
+ * Table"); a lone card is centred and width-capped rather than stranded in a
+ * three-column track.
  *
  * Server component, no client JS — hover/entrance effects are pure CSS and
  * `prefers-reduced-motion` is handled globally in globals.css.
  */
 
-type ExperienceIconName = (typeof homeContent.experiences)[number]['icon'];
+/**
+ * Supported experience icons. Declared explicitly (not derived from
+ * `homeContent.experiences`) so the icon set stays stable even when only one
+ * experience is currently published — the 'wine'/'olive' art is kept ready for
+ * experiences the restaurant may add back later.
+ */
+type ExperienceIconName = 'plate' | 'wine' | 'olive';
 
 /** Small hand-drawn-style line-art icons (warm gold stroke), decorative only. */
 function ExperienceIcon({ name }: { name: ExperienceIconName }) {
@@ -62,8 +75,18 @@ function ExperienceIcon({ name }: { name: ExperienceIconName }) {
   }
 }
 
-export function ExperienceShowcase() {
+interface ExperienceShowcaseProps {
+  locale?: Locale;
+}
+
+export function ExperienceShowcase({ locale = defaultLocale }: ExperienceShowcaseProps) {
   const background = resolveImage('restaurant-garden-night');
+  const experiences = getHomeContent(locale).experiences;
+  // A single card is centred and width-capped; multiple cards use a 3-col grid.
+  const gridClass =
+    experiences.length === 1
+      ? 'mx-auto mt-12 grid max-w-md gap-6'
+      : 'mt-12 grid gap-6 md:grid-cols-3';
 
   return (
     <section className="py-section relative isolate overflow-hidden">
@@ -86,11 +109,11 @@ export function ExperienceShowcase() {
       <div className="container-editorial">
         <SectionHeading eyebrow="Deneyim" title="Sofranın Ötesinde" align="center" tone="light" />
 
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
-          {homeContent.experiences.map((experience) => (
+        <div className={gridClass}>
+          {experiences.map((experience) => (
             <Link
               key={experience.key}
-              href={experience.href}
+              href={localePath(experience.href, locale)}
               className="group border-ivory/15 bg-ivory/8 hover:border-ivory/30 hover:bg-ivory/12 flex flex-col rounded-lg border p-7 backdrop-blur-md transition duration-300 hover:-translate-y-1"
             >
               <span className="text-[#d8a25e]">

@@ -1,4 +1,7 @@
+import type { Locale } from '@/lib/i18n/config';
+import { defaultLocale } from '@/lib/i18n/config';
 import type { MenuCategory } from '@/lib/types';
+import { menuNotesByLocale, menuTextByLocale } from './menu-i18n';
 
 /**
  * Local menu data — extracted verbatim from the Wix export
@@ -7,6 +10,11 @@ import type { MenuCategory } from '@/lib/types';
  * This is the development fallback used when Supabase is not configured, and
  * the source for the database seed (scripts/seed-supabase.ts). Prices are in
  * Turkish Lira (₺) as numeric major units.
+ *
+ * Turkish is the canonical source: `menuCategories` below holds the full
+ * structure (ids, prices, tags, allergens). EN/DE are applied as text-only
+ * overlays via `getLocalMenu(locale)` (see menu-i18n.ts) so non-text data is
+ * never duplicated across languages.
  *
  * NOTE: The wine menu ("Şarap Menüsü") exists on the source site but its item
  * list was not exported (panel-only). See TODO_PANEL_EXPORTS.md. The Menu page
@@ -302,3 +310,41 @@ export const menuCategories: MenuCategory[] = [
     ],
   },
 ];
+
+/**
+ * Menu for a given locale: the Turkish structure with the locale's text overlay
+ * applied. Non-text fields (price, tags, allergens, sortOrder) are always taken
+ * from the TR source. Missing translations fall back to the Turkish text.
+ */
+export function getLocalMenu(locale: Locale): MenuCategory[] {
+  if (locale === defaultLocale) return menuCategories;
+  const overlay = menuTextByLocale[locale];
+  if (!overlay) return menuCategories;
+
+  return menuCategories.map((category) => {
+    const catText = overlay.categories[category.id];
+    return {
+      ...category,
+      name: catText?.name ?? category.name,
+      description: catText?.description ?? category.description,
+      items: category.items.map((item) => {
+        const itemText = overlay.items[item.id];
+        return {
+          ...item,
+          name: itemText?.name ?? item.name,
+          description: itemText?.description ?? item.description,
+        };
+      }),
+    };
+  });
+}
+
+/** Localised service note (falls back to the Turkish original). */
+export function getMenuServiceNote(locale: Locale): string {
+  return menuNotesByLocale[locale]?.serviceNote ?? MENU_SERVICE_NOTE;
+}
+
+/** Localised wine-menu notice (falls back to the Turkish original). */
+export function getWineMenuNotice(locale: Locale): string {
+  return menuNotesByLocale[locale]?.wineNotice ?? WINE_MENU_NOTICE;
+}

@@ -1,8 +1,10 @@
 import type { Metadata, Viewport } from 'next';
 import { Cormorant_Garamond, Inter } from 'next/font/google';
+import { headers } from 'next/headers';
 
 import './globals.css';
 import { JsonLd } from '@/components/seo/JsonLd';
+import { defaultLocale, isLocale } from '@/lib/i18n/config';
 import { restaurantSchema, websiteSchema } from '@/lib/seo/schema';
 import { siteConfig } from '@/lib/site-config';
 
@@ -57,9 +59,15 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  // The locale is resolved by middleware from the path and exposed on the
+  // `x-locale` request header, so the root <html lang> is correct for every
+  // locale without a [lang] segment at this level.
+  const headerLocale = (await headers()).get('x-locale');
+  const lang = headerLocale && isLocale(headerLocale) ? headerLocale : defaultLocale;
+
   return (
-    <html lang="tr" className={`${cormorant.variable} ${inter.variable}`}>
+    <html lang={lang} className={`${cormorant.variable} ${inter.variable}`}>
       <body className="bg-marble text-charcoal flex min-h-screen flex-col antialiased">
         <JsonLd data={restaurantSchema()} />
         <JsonLd data={websiteSchema()} />

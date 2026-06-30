@@ -126,6 +126,31 @@ export const mediaAssets: (MediaAsset & { sourceUrl: string })[] = [
     title: 'Menü görseli',
     context: 'menu',
   },
+  // ---------------------------------------------------------------------------
+  // Confirmed restaurant photos from the 2026 Wix export, optimised into
+  // public/images/gallery/ via `pnpm gallery:optimize`. Their .webp files are
+  // committed; `sourceUrl` keeps the original Wix CDN reference for provenance.
+  // (The export also contained Wix demo/template stock — a cap, an Eames chair,
+  // jewellery — which was excluded as it is not restaurant content.)
+  // ---------------------------------------------------------------------------
+  {
+    id: 'gallery-fish-melon',
+    sourceUrl:
+      'https://static.wixstatic.com/media/31bec1_230ba5e11d1a41779314245669ed5885~mv2.jpg',
+    storagePath: '/images/gallery/gallery-fish-melon.webp',
+    alt: 'Mavi kenarlı balık tabağında kavun ve otlarla servis edilen taze balık, yanında beyaz şarap',
+    title: 'Mevsim tabağı',
+    context: 'gallery',
+  },
+  {
+    id: 'team-ci-sign',
+    sourceUrl:
+      'https://static.wixstatic.com/media/31bec1_ccd33b57e1eb4311ad4ed2341979896b~mv2.jpg',
+    storagePath: '/images/gallery/gallery-team-sign.webp',
+    alt: 'Çi Neo Cucina tabelasının önünde şef Simge Manacıoğlu ve ekip',
+    title: 'Çi Ailesi',
+    context: 'about',
+  },
 ];
 
 export function getMediaByContext(context: string) {

@@ -1,0 +1,97 @@
+{
+  "about": {
+    "title": "About Us",
+    "intro": {
+      "heading": "Where Serenity and Flavor Meet",
+      "paragraphs": [
+        "There is a sense of timelessness in every dish—a timelessness that carries the breeze of an olive grove, the coolness of a cobblestone street, and the humble phrases of an old recipe book…",
+        "Çi Neo Cucina draws inspiration from the simplest yet most profound flavors of the Mediterranean and Anatolia. We value the natural essence of our ingredients, the warmth of the table, and the serene joy of sharing. Each of our recipes carries a trace of the seasons, the sea, the earth, and human stories.",
+        "We are not a restaurant; we wanted to be the very embodiment of gathering around a table woven with the voices of nature and tradition.",
+        "That’s why Çi Neo Cucina is more than just a place to eat; every bite offers a timeless sense of friendship, and every sip brings a gentle Mediterranean breeze.",
+        "Welcome. Your seat is ready at our table."
+      ]
+    },
+    "vision": {
+      "heading": "Our Vision",
+      "paragraphs": [
+        "In the gastronomy of the future, we aim to create a culinary language that is free from noise—one that is meaningful, sustainable, and moving.",
+        "Çi Neo Cucina’s vision is to share with the world a culinary philosophy that spans from the local to the universal—one that does not imitate nature but is in harmony with it.",
+        "Our greatest dream is to evolve over time from simply being a restaurant into a philosophy, a way of life."
+      ]
+    },
+    "chef": {
+      "heading": "Let's Meet the Chef",
+      "paragraphs": [
+        "After graduating from the Department of Political Science and International Relations at Yeditepe University, Simge Manacıoğlu entered the corporate world. Although she earned her MBA during this time, she never felt like she truly belonged in that world.",
+        "At the age of 30, he set out to turn his dream of opening a winery—a dream he’d nurtured since his first trip to Kaş in 2003—into reality with the support of his wife and mother. His interest in gastronomy took a professional turn in 2014 with his training at the EKS Culinary Academy, which he completed as the top student in his class.",
+        "In 2016, she moved to Kaş and began working as a chef at Sumanu Winery, where she further honed her culinary skills. In 2018, he co-founded the restaurant Mezeteryan with his wife, Tolga Manacıoğlu, making history in Turkey by including lionfish on the menu and raising awareness about sustainability. For four years, she collaborated with major organizations such as UNDP, WWF, and the Mediterranean Conservation Society.",
+        "As of 2024, she continues to share her creative and sustainable approach to gastronomy through Çi Neo Cucina, which she named after her daughter Çağıl İda, who brings joy and inspiration to her life."
+      ]
+    },
+    "team": {
+      "heading": "Our Team",
+      "note": "The Çi Family, 2025"
+    }
+  },
+  "home": {
+    "hero": {
+      "subtitle": "Natural materials: a timeless kitchen aesthetic.",
+      "description": "A dining experience inspired by the Mediterranean and Anatolia, nestled between “Old” and “New” Kaş."
+    },
+    "menusTeaser": [
+      {
+        "title": "Main Menu",
+        "description": "Under three main headings: some innovative, some brand-new recipes."
+      },
+      {
+        "title": "Today's Special",
+        "description": "Please ask about our special seasonal dishes that delight our guests' palates."
+      },
+      {
+        "title": "Wine List",
+        "description": "Our diverse selection, consisting largely of local producers, offers a flavor to suit every palate."
+      }
+    ],
+    "chefsTable": {
+      "body": "Please contact us regarding your special events."
+    },
+    "experiences": [
+      {
+        "title": "Chef's Table",
+        "description": "At the chef’s table, enjoy a personalized dining experience featuring the season’s freshest ingredients."
+      }
+    ]
+  },
+  "seo": {
+    "home": {
+      "title": "Home Page",
+      "excerpt": "A dining experience inspired by the Mediterranean and Anatolia, nestled between “Old” and “New” Kaş.",
+      "seoTitle": "Home | Çi Neo Cucina",
+      "seoDescription": "Çi Neo Cucina in Kaş, featuring a timeless culinary style inspired by natural ingredients, the Mediterranean, and Anatolia."
+    },
+    "about": {
+      "title": "About Us",
+      "excerpt": "There is a sense of timelessness in every dish—a timelessness that carries the breeze of an olive grove, the coolness of a cobblestone street, and the humble sentences of an old recipe book…",
+      "seoTitle": "About Us | Çi Neo Cucina",
+      "seoDescription": "The story of Çi Neo Cucina, centered on tranquility, sustainability, local ingredients, and Mediterranean cuisine."
+    },
+    "menu": {
+      "title": "Menu",
+      "excerpt": "Delicacies from the land, the sea, and the pastures.",
+      "seoTitle": "Menu | Çi Neo Cucina",
+      "seoDescription": "Çi Neo Cucina’s main menu: flavors from the land, the sea, and the meadow; a selection of wines from local producers."
+    },
+    "reservations": {
+      "title": "Reservations",
+      "excerpt": "Tell us the details, and let’s try to find the best places for you.",
+      "seoTitle": "Reservations | Çi Neo Cucina",
+      "seoDescription": "Submit a reservation request at Çi Neo Cucina; please provide the number of guests, date, and time."
+    },
+    "experiences": {
+      "title": "Experiences",
+      "excerpt": "Contact us for special experiences and events.",
+      "seoTitle": "Experiences | Çi Neo Cucina",
+      "seoDescription": "Çi Neo Cucina experiences and announcements of special events."
+    }
+  }
+}

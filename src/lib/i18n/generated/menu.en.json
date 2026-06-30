@@ -1,0 +1,106 @@
+{
+  "categories": {
+    "topraktan": {
+      "name": "From the soil",
+      "description": "Dishes prepared with seasonal vegetables and herbs straight from the ground."
+    },
+    "denizden": {
+      "name": "From the sea",
+      "description": "Dishes prepared with seafood from the Aegean and Mediterranean Seas."
+    },
+    "otlaktan": {
+      "name": "From the meadow",
+      "description": "Main courses featuring meat and offal, carefully prepared."
+    }
+  },
+  "items": {
+    "mezetaryen-meze-seckisi": {
+      "name": "Mezetaryen Meze Selection",
+      "description": "Three types of seasonal “mezetaryen” appetizers."
+    },
+    "urla-enginar-confit": {
+      "name": "Urla Artichoke Confit",
+      "description": "Fresh greens, lacto-fermented fruit, and Memecik olive oil."
+    },
+    "tuzlu-kavun": {
+      "name": "Salty Melon",
+      "description": "Antakya salted yogurt, melon slices, white chickpeas, and Memecik olive oil."
+    },
+    "uc-mantarli-taze-cavatelli": {
+      "name": "Fresh Cavatelli with Three Types of Mushrooms",
+      "description": "Porcini, chanterelle, oyster mushrooms, and aged Mihaliç sheep’s milk cheese."
+    },
+    "kereviz-sinitzel": {
+      "name": "Celery Schnitzel",
+      "description": "Sliced celery, hibesh, and spoon salad."
+    },
+    "ci-salatasi": {
+      "name": "“Çi” Salad",
+      "description": "Arugula, wild purslane, Yedikule lettuce, seasonal fruit, Çorum Kargı tulum cheese, roasted walnuts, and cucumber vinaigrette."
+    },
+    "avokadolu-fume-somon-tartar": {
+      "name": "Avocado and Smoked Salmon Tartare",
+      "description": "With caper berries and crackers."
+    },
+    "karisik-kabuklu-kasesi": {
+      "name": "Assorted Nuts and Seeds Bowl",
+      "description": "Clams, cockles, black mussels, razor clams, and scallops; served with tomato or wine sauce."
+    },
+    "ci-karides": {
+      "name": "“Çi” Shrimp",
+      "description": "Afyon sourdough bread and butter with bottarga."
+    },
+    "izgara-baby-kalamar": {
+      "name": "Grilled Baby Squid",
+      "description": "Tomato paste and aged Mihaliç cheese."
+    },
+    "aslan-baligi": {
+      "name": "Lionfish",
+      "description": "Beurre blanc sauce with basil and green apples."
+    },
+    "izgara-granyoz": {
+      "name": "Grilled Granyöz",
+      "description": "Buckwheat salad with cucumber and caper sauce with brown butter."
+    },
+    "karidesli-arpa-sehriye-risotto": {
+      "name": "Shrimp and Barley Risotto",
+      "description": "Bisk and goat cheese."
+    },
+    "deniz-mahsullu-makarna": {
+      "name": "Pasta with Seafood",
+      "description": "San Marzano tomato sauce, shrimp, squid, mussels, vongole, and Divle Obruk cheese."
+    },
+    "sakatat-pate": {
+      "name": "Offal Pâté",
+      "description": "Lamb sweetbreads, lamb brain, chicken liver, and chicken heart."
+    },
+    "dana-yanak-ragu": {
+      "name": "Veal Cheek Ragu",
+      "description": "With salsa salad."
+    },
+    "arnavut-cigeri": {
+      "name": "Albanian Liver",
+      "description": "Onion salad and hand-rolled crispy phyllo bread."
+    },
+    "izgara-kuzu-kokorec": {
+      "name": "Grilled Lamb Kokoreç",
+      "description": "Denizli bell peppers, Antakya salted yogurt, and pickled cucumber salad."
+    },
+    "kuzu-haslama": {
+      "name": "Boiled Lamb",
+      "description": "With dark beer and vegetables."
+    },
+    "izgara-kuzu-sirt": {
+      "name": "Grilled Lamb Loin",
+      "description": "Caramelized celery purée and beans."
+    },
+    "izgara-dana-kontrfile-dilimleri": {
+      "name": "Grilled Beef Tenderloin Slices",
+      "description": "Zucchini polenta with caramelized onion sauce."
+    }
+  },
+  "notes": {
+    "serviceNote": "Items marked with an asterisk (*) are main course portions. A 10% service charge will be added to the bill.",
+    "wineNotice": "Please consult our team regarding our wine selection, which consists largely of wines from local producers."
+  }
+}

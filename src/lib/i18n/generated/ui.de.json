@@ -1,0 +1,17 @@
+{
+  "nav": {
+    "home": "Startseite",
+    "menu": "Menü",
+    "about": "Über uns",
+    "experiences": "Erfahrungen",
+    "reservations": "Reservierung",
+    "contact": "Kontakt"
+  },
+  "cta": {
+    "reserve": "Reservierung anfragen"
+  },
+  "common": {
+    "phone": "Telefon",
+    "email": "E-Mail"
+  }
+}

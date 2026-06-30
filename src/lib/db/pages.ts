@@ -2,14 +2,20 @@ import 'server-only';
 
 import { createSupabaseServerClient } from '@/lib/supabase/server';
 import { seedPages } from '@/content/pages-data';
+import { getLocalPage } from '@/content/pages-i18n';
+import { defaultLocale, type Locale } from '@/lib/i18n/config';
 import type { PageContent } from '@/lib/types';
 
 /**
- * Fetch a single published page by slug. Falls back to local seed content when
- * Supabase is unavailable. Used primarily for SEO metadata; the page bodies
- * themselves are rendered from typed content modules for richer layouts.
+ * Fetch a single published page by slug for a locale. Falls back to local seed
+ * content when Supabase is unavailable. Used primarily for SEO metadata; the
+ * page bodies themselves are rendered from typed content modules for richer
+ * layouts. The DB is Turkish-only, so non-default locales use the local
+ * translated seed content.
  */
-export async function getPage(slug: string): Promise<PageContent | null> {
+export async function getPage(slug: string, locale: Locale = defaultLocale): Promise<PageContent | null> {
+  if (locale !== defaultLocale) return getLocalPage(slug, locale);
+
   const supabase = await createSupabaseServerClient();
 
   if (supabase) {

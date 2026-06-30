@@ -75,10 +75,15 @@ export const siteConfig = {
     },
   ] as { label: string; value: string; days: readonly string[]; opens: string; closes: string }[] | null,
 
-  /** Social links — NOT present in the public source (only generic icons). */
+  /** Social + listing profiles. */
   social: {
-    instagram: null as string | null,
+    instagram: 'https://www.instagram.com/ci.neocucina/' as string | null,
     facebook: null as string | null,
+    tripadvisor:
+      'https://www.tripadvisor.com/Restaurant_Review-g297965-d14053304-Reviews-Ci_Neo_Cucina_By_Mezetaryen-Kas_Turkish_Mediterranean_Coast.html' as string | null,
+    wanderlog:
+      'https://wanderlog.com/de/place/details/2855653/%C3%A7i-neo-cucina-by-miskin' as string | null,
+    restaurantGuru: 'https://restaurantguru.com/Muskat-Meze-Bar-Kas' as string | null,
   },
 
   reservationNote: 'Özel etkinlikleriniz için lütfen iletişime geçiniz.',

@@ -61,6 +61,13 @@ yarn-error.log*
 # OMC (oh-my-claudecode) local tooling state ---------------------------------
 .omc/
 
+# Large raw media (host on CDN/storage, not in git) -------------------------
+# Hero/marketing source videos are hundreds of MB and exceed GitHub's 100 MB
+# limit. The hero uses an optimised image, not a video — keep these local only.
+*.mov
+*.MOV
+*.mp4
+
 # OS / editor cruft ----------------------------------------------------------
 .DS_Store
 Thumbs.db

@@ -1,5 +1,6 @@
 import Link from 'next/link';
 
+import { FooterContactLinks } from '@/components/layout/FooterContactLinks';
 import { RestaurantGuruBadge } from '@/components/layout/RestaurantGuruBadge';
 import { mainNav, footerLegalNav, siteConfig } from '@/lib/site-config';
 import { defaultLocale, type Locale } from '@/lib/i18n/config';
@@ -42,7 +43,7 @@ function navLabel(dictionary: ReturnType<typeof getDictionary>, href: string): s
  * TR-only shared pages with no [lang] mirror, so they stay unprefixed.
  */
 export function Footer({ locale = defaultLocale }: FooterProps) {
-  const { contact, social, hours } = siteConfig;
+  const { contact, hours } = siteConfig;
   const dictionary = getDictionary(locale);
 
   return (
@@ -56,6 +57,9 @@ export function Footer({ locale = defaultLocale }: FooterProps) {
               {siteConfig.tagline} {siteConfig.contact.region}.
             </p>
             <p className="text-terracotta mt-4 text-sm tracking-wide">{siteConfig.hashtag}</p>
+
+            {/* Contact + listing profiles, side by side as labelled icons */}
+            <FooterContactLinks className="mt-6" />
 
             {/* Restaurant Guru 2026 award */}
             <RestaurantGuruBadge className="mt-6" />
@@ -97,18 +101,6 @@ export function Footer({ locale = defaultLocale }: FooterProps) {
                 </a>
               </li>
               {contact.address && <li className="text-ivory/70">{contact.address}</li>}
-              {social.instagram && (
-                <li>
-                  <a
-                    href={social.instagram}
-                    className="hover:text-ivory transition-colors"
-                    rel="noopener noreferrer"
-                    target="_blank"
-                  >
-                    Instagram
-                  </a>
-                </li>
-              )}
             </ul>
 
             {hours && (

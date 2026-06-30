@@ -52,13 +52,13 @@ export function Hero({ locale = defaultLocale }: HeroProps) {
           <div className="mt-8 flex flex-wrap gap-3">
             <Link
               href={localePath(PRIMARY_CTA.href, locale)}
-              className="bg-olive text-ivory hover:bg-olive-deep rounded-md px-6 py-3 transition-colors"
+              className="border-ivory/30 bg-olive/30 text-ivory hover:bg-olive/45 hover:border-ivory/50 inline-flex min-w-[12rem] items-center justify-center rounded-md border px-6 py-3 shadow-lg backdrop-blur-md transition-colors"
             >
               {dictionary.cta.reserve}
             </Link>
             <Link
               href={localePath('/menu', locale)}
-              className="border-ivory/60 text-ivory hover:bg-ivory hover:text-charcoal rounded-md border px-6 py-3 transition-colors"
+              className="border-ivory/60 text-ivory hover:bg-ivory hover:text-charcoal inline-flex min-w-[12rem] items-center justify-center rounded-md border px-6 py-3 transition-colors"
             >
               {dictionary.nav.menu}
             </Link>

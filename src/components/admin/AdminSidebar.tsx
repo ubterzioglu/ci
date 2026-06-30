@@ -53,6 +53,28 @@ const NAV: NavItem[] = [
     ),
   },
   {
+    href: '/admin/gallery',
+    label: 'Galeri',
+    icon: (
+      <svg viewBox="0 0 20 20" fill="none" className={iconClass} aria-hidden="true">
+        <rect x="2.5" y="3.5" width="15" height="11" rx="1.6" stroke="currentColor" strokeWidth="1.4" />
+        <circle cx="7" cy="7.5" r="1.3" stroke="currentColor" strokeWidth="1.4" />
+        <path d="M3 13l4-3.5 3 2.5 3-3 4 4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    ),
+  },
+  {
+    href: '/admin/team',
+    label: 'Ekip',
+    icon: (
+      <svg viewBox="0 0 20 20" fill="none" className={iconClass} aria-hidden="true">
+        <circle cx="7.5" cy="7" r="2.6" stroke="currentColor" strokeWidth="1.4" />
+        <path d="M3 16c0-2.5 2-4.2 4.5-4.2S12 13.5 12 16" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+        <path d="M13 5.2a2.4 2.4 0 010 4.4M14.2 16c0-2.2-1.2-3.7-2.7-4.2" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+      </svg>
+    ),
+  },
+  {
     href: '/admin/revisions',
     label: 'Revizyonlar',
     icon: (

@@ -1,6 +1,6 @@
 import Image from 'next/image';
-import Link from 'next/link';
 
+import { Button } from '@/components/ui/Button';
 import { getHomeContent } from '@/content/pages-i18n';
 import { resolveImage } from '@/lib/images';
 import { PRIMARY_CTA, siteConfig } from '@/lib/site-config';
@@ -50,18 +50,22 @@ export function Hero({ locale = defaultLocale }: HeroProps) {
           <p className="text-ivory/70 mt-2 max-w-xl text-base">{home.hero.description}</p>
 
           <div className="mt-8 flex flex-wrap gap-3">
-            <Link
+            <Button
               href={localePath(PRIMARY_CTA.href, locale)}
-              className="border-ivory/30 bg-olive/30 text-ivory hover:bg-olive/45 hover:border-ivory/50 inline-flex min-w-[12rem] items-center justify-center rounded-md border px-6 py-3 shadow-lg backdrop-blur-md transition-colors"
+              variant="glass"
+              size="lg"
+              className="min-w-[12rem]"
             >
               {dictionary.cta.reserve}
-            </Link>
-            <Link
+            </Button>
+            <Button
               href={localePath('/menu', locale)}
-              className="border-ivory/60 text-ivory hover:bg-ivory hover:text-charcoal inline-flex min-w-[12rem] items-center justify-center rounded-md border px-6 py-3 transition-colors"
+              variant="glass-outline"
+              size="lg"
+              className="min-w-[12rem]"
             >
               {dictionary.nav.menu}
-            </Link>
+            </Button>
           </div>
         </div>
       </div>

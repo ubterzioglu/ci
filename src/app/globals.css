@@ -152,4 +152,194 @@
       transform: translateY(0);
     }
   }
+
+  /* =========================================================================
+     Premium button system
+     -------------------------------------------------------------------------
+     One shared physics for every CTA on the site. The button reads like warm,
+     polished stone catching candlelight: a soft top highlight (inset), an
+     olive-tinted shadow rather than a flat grey one, a gentle lift on hover,
+     and a slow sheen that glides across the face. The boldness lives in the
+     material, so the shapes around it stay quiet.
+     ========================================================================= */
+  .btn {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-family: var(--font-body);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    line-height: 1;
+    white-space: nowrap;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    user-select: none;
+    transition:
+      transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+      background-color 0.3s ease,
+      border-color 0.3s ease,
+      color 0.3s ease;
+  }
+
+  /* The sheen — a soft diagonal highlight parked off the left edge that sweeps
+     across the face on hover. Pure pseudo-element, no extra DOM. */
+  .btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(
+      105deg,
+      transparent 30%,
+      color-mix(in srgb, var(--color-ivory) 28%, transparent) 48%,
+      transparent 66%
+    );
+    transform: translateX(-120%);
+    transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    pointer-events: none;
+  }
+  .btn:hover::before {
+    transform: translateX(120%);
+  }
+
+  .btn:active {
+    transform: translateY(0) scale(0.985);
+  }
+
+  .btn:disabled,
+  .btn[aria-disabled='true'] {
+    opacity: 0.55;
+    cursor: not-allowed;
+    transform: none;
+  }
+  .btn:disabled::before,
+  .btn[aria-disabled='true']::before {
+    display: none;
+  }
+
+  /* Solid — the primary action. Olive gradient + inset top highlight + tinted
+     shadow give it dimension; hover lifts it and deepens the shadow. */
+  .btn-solid {
+    color: var(--color-ivory);
+    background-image: linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--color-olive) 92%, white) 0%,
+      var(--color-olive) 52%,
+      var(--color-olive-deep) 100%
+    );
+    box-shadow:
+      inset 0 1px 0 color-mix(in srgb, white 22%, transparent),
+      inset 0 -1px 0 color-mix(in srgb, black 18%, transparent),
+      0 1px 2px color-mix(in srgb, var(--color-olive-deep) 40%, transparent),
+      0 8px 20px -8px color-mix(in srgb, var(--color-olive-deep) 60%, transparent);
+  }
+  .btn-solid:hover {
+    transform: translateY(-2px);
+    background-image: linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--color-olive) 96%, white) 0%,
+      var(--color-olive) 50%,
+      var(--color-olive-deep) 100%
+    );
+    box-shadow:
+      inset 0 1px 0 color-mix(in srgb, white 28%, transparent),
+      inset 0 -1px 0 color-mix(in srgb, black 20%, transparent),
+      0 2px 4px color-mix(in srgb, var(--color-olive-deep) 40%, transparent),
+      0 16px 30px -10px color-mix(in srgb, var(--color-olive-deep) 70%, transparent);
+  }
+
+  /* Outline — secondary. Hairline border on the warm stone, fills with olive
+     on hover and lifts to match the solid. */
+  .btn-outline {
+    color: var(--color-olive);
+    background-color: color-mix(in srgb, var(--color-marble) 60%, transparent);
+    border: 1px solid color-mix(in srgb, var(--color-olive) 55%, var(--color-stone));
+    box-shadow: 0 1px 2px color-mix(in srgb, var(--color-charcoal) 8%, transparent);
+  }
+  .btn-outline:hover {
+    transform: translateY(-2px);
+    color: var(--color-ivory);
+    background-color: var(--color-olive);
+    border-color: var(--color-olive);
+    box-shadow: 0 14px 26px -12px color-mix(in srgb, var(--color-olive-deep) 65%, transparent);
+  }
+
+  /* Ghost — tertiary, for quiet links that still want the hover lift off. */
+  .btn-ghost {
+    color: var(--color-olive);
+    background-color: transparent;
+  }
+  .btn-ghost::before {
+    display: none;
+  }
+  .btn-ghost:hover {
+    background-color: color-mix(in srgb, var(--color-olive) 10%, transparent);
+  }
+
+  /* On dark sections (Hero, reservation band) the button sits on photography:
+     frosted glass with an ivory hairline, lifting and brightening on hover. */
+  .btn-glass {
+    color: var(--color-ivory);
+    background-color: color-mix(in srgb, var(--color-olive) 38%, transparent);
+    border: 1px solid color-mix(in srgb, var(--color-ivory) 30%, transparent);
+    backdrop-filter: blur(10px);
+    box-shadow:
+      inset 0 1px 0 color-mix(in srgb, white 18%, transparent),
+      0 10px 28px -12px color-mix(in srgb, var(--color-charcoal) 80%, transparent);
+  }
+  .btn-glass:hover {
+    transform: translateY(-2px);
+    background-color: color-mix(in srgb, var(--color-olive) 55%, transparent);
+    border-color: color-mix(in srgb, var(--color-ivory) 55%, transparent);
+    box-shadow:
+      inset 0 1px 0 color-mix(in srgb, white 24%, transparent),
+      0 18px 34px -12px color-mix(in srgb, var(--color-charcoal) 85%, transparent);
+  }
+
+  /* Glass-outline — the quieter dark-section button (ivory hairline, fills on
+     hover). Pairs with .btn-glass the way .btn-outline pairs with .btn-solid. */
+  .btn-glass-outline {
+    color: var(--color-ivory);
+    background-color: transparent;
+    border: 1px solid color-mix(in srgb, var(--color-ivory) 55%, transparent);
+    backdrop-filter: blur(6px);
+  }
+  .btn-glass-outline:hover {
+    transform: translateY(-2px);
+    color: var(--color-charcoal);
+    background-color: var(--color-ivory);
+    border-color: var(--color-ivory);
+  }
+
+  /* Size scale — shared by all variants. */
+  .btn-sm {
+    padding: 0.5rem 0.9rem;
+    font-size: 0.8125rem;
+  }
+  .btn-md {
+    padding: 0.7rem 1.4rem;
+    font-size: 0.9375rem;
+  }
+  .btn-lg {
+    padding: 0.9rem 1.9rem;
+    font-size: 1rem;
+    letter-spacing: 0.03em;
+  }
+
+  /* Reduced motion: keep the state changes, drop the movement + sheen. The
+     global reduce block already zeroes transition/animation duration; this
+     also neutralises the lift transform and hides the sweep so nothing slides. */
+  @media (prefers-reduced-motion: reduce) {
+    .btn:hover {
+      transform: none;
+    }
+    .btn::before {
+      display: none;
+    }
+  }
 }

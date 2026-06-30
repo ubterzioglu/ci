@@ -37,7 +37,7 @@ export function ReservationForm() {
   const fieldErrors = state && !state.ok ? (state.fieldErrors ?? {}) : {};
 
   return (
-    <form action={formAction} noValidate className="flex flex-col gap-5">
+    <form action={formAction} noValidate className="flex flex-col gap-4">
       {/* Top-level error alert */}
       {state && !state.ok && (
         <div
@@ -59,74 +59,82 @@ export function ReservationForm() {
         autoComplete="off"
       />
 
-      <Input
-        id="res-name"
-        name="name"
-        label="Ad Soyad"
-        required
-        autoComplete="name"
-        error={fieldErrors['name']?.[0]}
-      />
+      {/* Paired short fields share a row on sm+ to keep the form above the fold */}
+      <div className="grid gap-4 sm:grid-cols-2">
+        <Input
+          id="res-name"
+          name="name"
+          label="Ad Soyad"
+          required
+          autoComplete="name"
+          error={fieldErrors['name']?.[0]}
+        />
 
-      <Input
-        id="res-email"
-        name="email"
-        type="email"
-        label="E-posta"
-        autoComplete="email"
-        error={fieldErrors['email']?.[0]}
-      />
+        <Input
+          id="res-email"
+          name="email"
+          type="email"
+          label="E-posta"
+          autoComplete="email"
+          error={fieldErrors['email']?.[0]}
+        />
 
-      <Input
-        id="res-phone"
-        name="phone"
-        type="tel"
-        label="Telefon"
-        autoComplete="tel"
-        error={fieldErrors['phone']?.[0]}
-      />
+        <Input
+          id="res-phone"
+          name="phone"
+          type="tel"
+          label="Telefon"
+          autoComplete="tel"
+          error={fieldErrors['phone']?.[0]}
+        />
 
-      <Select
-        id="res-partySize"
-        name="partySize"
-        label="Kişi Sayısı"
-        defaultValue="2"
-        error={fieldErrors['partySize']?.[0]}
-      >
-        {Array.from({ length: 12 }, (_, i) => i + 1).map((n) => (
-          <option key={n} value={n}>
-            {n}
-          </option>
-        ))}
-      </Select>
-      <p className="text-muted -mt-3 text-xs">
+        <Select
+          id="res-partySize"
+          name="partySize"
+          label="Kişi Sayısı"
+          defaultValue="2"
+          error={fieldErrors['partySize']?.[0]}
+        >
+          {Array.from({ length: 12 }, (_, i) => i + 1).map((n) => (
+            <option key={n} value={n}>
+              {n}
+            </option>
+          ))}
+        </Select>
+      </div>
+
+      <p className="text-muted -mt-2 text-xs">
         12 kişiden büyük gruplar için lütfen telefonla iletişime geçin.
       </p>
 
-      <Input
-        id="res-requestedDate"
-        name="requestedDate"
-        type="date"
-        label="Tarih"
-        required
-        min={todayISO}
-        error={fieldErrors['requestedDate']?.[0]}
-      />
+      <div className="grid gap-4 sm:grid-cols-2">
+        <Input
+          id="res-requestedDate"
+          name="requestedDate"
+          type="date"
+          label="Tarih"
+          required
+          min={todayISO}
+          error={fieldErrors['requestedDate']?.[0]}
+        />
 
-      <Input
-        id="res-requestedTime"
-        name="requestedTime"
-        type="time"
-        label="Saat"
-        required
-        error={fieldErrors['requestedTime']?.[0]}
-      />
+        <Input
+          id="res-requestedTime"
+          name="requestedTime"
+          type="time"
+          label="Saat"
+          required
+          error={fieldErrors['requestedTime']?.[0]}
+        />
+      </div>
 
       <Textarea
         id="res-message"
         name="message"
         label="Notunuz (isteğe bağlı)"
         placeholder="Özel istek, alerji bilgisi vb."
+        rows={2}
+        className="min-h-0"
         error={fieldErrors['message']?.[0]}
       />
 
@@ -134,7 +142,7 @@ export function ReservationForm() {
         {isPending ? 'Gönderiliyor…' : ''}
       </div>
 
-      <Button type="submit" variant="solid" size="lg" disabled={isPending} className="w-full">
+      <Button type="submit" variant="solid" size="md" disabled={isPending} className="w-full">
         {isPending ? 'Gönderiliyor…' : 'Rezervasyon Talep Et'}
       </Button>
     </form>

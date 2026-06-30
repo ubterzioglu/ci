@@ -2,23 +2,27 @@ import type React from 'react';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
 
-type Variant = 'solid' | 'outline' | 'ghost';
+// Variants map to the premium `.btn-*` system defined in globals.css.
+// `solid` / `outline` / `ghost` sit on light surfaces; `glass` / `glass-outline`
+// sit on dark photographic sections (Hero, reservation band).
+type Variant = 'solid' | 'outline' | 'ghost' | 'glass' | 'glass-outline';
 type Size = 'sm' | 'md' | 'lg';
 
 const variantClasses: Record<Variant, string> = {
-  solid: 'bg-olive text-ivory hover:bg-olive-deep',
-  outline: 'border border-olive text-olive hover:bg-olive hover:text-ivory',
-  ghost: 'text-olive hover:underline',
+  solid: 'btn-solid',
+  outline: 'btn-outline',
+  ghost: 'btn-ghost',
+  glass: 'btn-glass',
+  'glass-outline': 'btn-glass-outline',
 };
 
 const sizeClasses: Record<Size, string> = {
-  sm: 'px-3 py-1.5 text-sm',
-  md: 'px-5 py-2.5 text-base',
-  lg: 'px-7 py-3.5 text-lg',
+  sm: 'btn-sm',
+  md: 'btn-md',
+  lg: 'btn-lg',
 };
 
-const baseClasses =
-  'inline-flex items-center justify-center font-body font-medium rounded-md transition-colors focus-visible:outline-none cursor-pointer select-none';
+const baseClasses = 'btn';
 
 // Props when rendering as a <button>
 type ButtonAsButton = {

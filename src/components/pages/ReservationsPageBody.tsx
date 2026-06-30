@@ -37,11 +37,11 @@ export function ReservationsPageBody({ locale }: ReservationsPageBodyProps) {
 
       <section className="bg-marble pb-section">
         <div className="container-editorial">
-          <div className="border-stone-soft bg-cream-deep/40 mx-auto max-w-2xl rounded-lg border p-6 md:p-10">
+          <div className="border-stone-soft bg-cream-deep/40 mx-auto max-w-2xl rounded-lg border p-6 md:p-8">
             <ReservationForm />
           </div>
 
-          <p className="text-muted mx-auto mt-8 max-w-2xl text-center text-sm">
+          <p className="text-muted mx-auto mt-6 max-w-2xl text-center text-sm">
             Büyük gruplar ve özel etkinlikler için{' '}
             <a
               href={`tel:${siteConfig.contact.phoneE164}`}

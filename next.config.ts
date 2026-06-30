@@ -19,6 +19,16 @@ const nextConfig: NextConfig = {
   output: 'standalone',
   images: {
     formats: ['image/avif', 'image/webp'],
+    // Gallery photos uploaded via /admin/gallery are served from Supabase
+    // Storage's public bucket (https://<project-ref>.supabase.co/storage/...).
+    // Allow any Supabase project host so this survives a project/ref change.
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '*.supabase.co',
+        pathname: '/storage/v1/object/public/**',
+      },
+    ],
   },
   async redirects() {
     return [

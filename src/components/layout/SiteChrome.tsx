@@ -2,6 +2,7 @@ import type { ReactNode } from 'react';
 
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
+import { ScrollToTop } from '@/components/layout/ScrollToTop';
 import type { Locale } from '@/lib/i18n/config';
 
 interface SiteChromeProps {
@@ -31,6 +32,7 @@ export function SiteChrome({ locale, children }: SiteChromeProps) {
         {children}
       </main>
       <Footer locale={locale} />
+      <ScrollToTop />
     </>
   );
 }

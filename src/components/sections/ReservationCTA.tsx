@@ -1,6 +1,6 @@
 import Image from 'next/image';
-import Link from 'next/link';
 
+import { Button } from '@/components/ui/Button';
 import { getHomeContent } from '@/content/pages-i18n';
 import { resolveImage } from '@/lib/images';
 import { PRIMARY_CTA, siteConfig } from '@/lib/site-config';
@@ -42,16 +42,10 @@ export function ReservationCTA({ locale = defaultLocale }: ReservationCTAProps) 
         <p className="text-ivory/75 mx-auto mt-5 max-w-xl">{chefsTable.body}</p>
 
         <div className="mt-8 flex flex-wrap justify-center gap-3">
-          <Link
-            href={localePath(PRIMARY_CTA.href, locale)}
-            className="bg-olive text-ivory hover:bg-olive-deep rounded-md px-6 py-3 transition-colors"
-          >
+          <Button href={localePath(PRIMARY_CTA.href, locale)} variant="glass" size="lg">
             {dictionary.cta.reserve}
-          </Link>
-          <a
-            href={`tel:${siteConfig.contact.phoneE164}`}
-            className="border-ivory/50 text-ivory hover:bg-ivory hover:text-charcoal rounded-md border px-6 py-3 transition-colors"
-          >
+          </Button>
+          <a href={`tel:${siteConfig.contact.phoneE164}`} className="btn btn-glass-outline btn-lg">
             {siteConfig.contact.phoneDisplay}
           </a>
         </div>

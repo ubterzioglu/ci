@@ -1,5 +1,6 @@
 import Link from 'next/link';
 
+import { Button } from '@/components/ui/Button';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { getHomeContent } from '@/content/pages-i18n';
 import { defaultLocale, type Locale } from '@/lib/i18n/config';
@@ -39,12 +40,9 @@ export function MenuPreview({ locale = defaultLocale }: MenuPreviewProps) {
         </div>
 
         <div className="mt-10 text-center">
-          <Link
-            href={localePath('/menu', locale)}
-            className="border-olive text-olive hover:bg-olive hover:text-ivory inline-block rounded-md border px-6 py-3 transition-colors"
-          >
+          <Button href={localePath('/menu', locale)} variant="outline" size="lg">
             Tüm Menüyü Görüntüle
-          </Link>
+          </Button>
         </div>
       </div>
     </section>

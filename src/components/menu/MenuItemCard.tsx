@@ -3,19 +3,20 @@ import type { MenuItem } from '@/lib/types';
 import { formatPrice } from '@/lib/utils';
 
 /**
- * A single menu item: name + leader dots + price on one line (editorial menu
- * style), description beneath, dietary tags as small badges. Allergens are
- * shown subtly so guests can scan them without clutter.
+ * A single menu item: name on the left, price (terracotta, ₺-prefixed) on the
+ * right, description beneath, dietary tags as small badges. Allergens are shown
+ * subtly so guests can scan them without clutter.
  */
 export function MenuItemCard({ item }: { item: MenuItem }) {
   const price = formatPrice(item.price, item.currency);
 
   return (
     <article className="py-5">
-      <div className="flex items-baseline gap-3">
+      <div className="flex items-baseline justify-between gap-4">
         <h3 className="font-display text-charcoal text-xl">{item.name}</h3>
-        <span aria-hidden="true" className="bg-stone-soft mb-1 h-px flex-1 self-end" />
-        {price && <span className="font-display text-olive-deep shrink-0 text-lg">{price}</span>}
+        {price && (
+          <span className="font-display text-terracotta shrink-0 text-lg font-medium">{price}</span>
+        )}
       </div>
 
       {item.description && (

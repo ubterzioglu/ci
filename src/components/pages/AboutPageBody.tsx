@@ -4,8 +4,8 @@ import { PageHeader } from '@/components/layout/PageHeader';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { getAboutContent } from '@/content/pages-i18n';
-import { getMediaByContext } from '@/content/media-data';
 import { resolveImage } from '@/lib/images';
+import { getTeamPhotos } from '@/lib/db/team-photos';
 import { breadcrumbSchema } from '@/lib/seo/schema';
 import type { Locale } from '@/lib/i18n/config';
 import { getDictionary } from '@/lib/i18n/dictionaries';
@@ -20,11 +20,11 @@ interface AboutPageBodyProps {
  * locale-correct about content; breadcrumb labels come from the dictionary and
  * breadcrumb paths are locale-prefixed.
  */
-export function AboutPageBody({ locale }: AboutPageBodyProps) {
+export async function AboutPageBody({ locale }: AboutPageBodyProps) {
   const aboutContent = getAboutContent(locale);
   const dictionary = getDictionary(locale);
   const portrait = resolveImage('chef-simge');
-  const teamPhotos = getMediaByContext('about');
+  const teamPhotos = await getTeamPhotos();
 
   return (
     <>
@@ -104,29 +104,37 @@ export function AboutPageBody({ locale }: AboutPageBodyProps) {
             align="center"
           />
           {teamPhotos.length > 0 && (
-            <div className="mt-12 grid grid-cols-2 gap-4 md:grid-cols-4">
-              {teamPhotos.map((photo) => {
-                const image = resolveImage(photo.id);
-                if (!image) return null;
-                return (
-                  <div key={photo.id} className="relative aspect-square overflow-hidden rounded-lg">
+            <div className="mx-auto mt-12 grid max-w-3xl grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2">
+              {teamPhotos.map((photo) => (
+                <figure key={photo.id}>
+                  <div className="relative aspect-square overflow-hidden rounded-lg">
                     <Image
-                      src={image.src}
-                      alt={image.alt}
+                      src={photo.url}
+                      alt={photo.alt}
                       fill
-                      sizes="(min-width: 768px) 25vw, 50vw"
+                      sizes="(min-width: 640px) 50vw, 100vw"
                       className="object-cover"
                     />
                   </div>
-                );
-              })}
+                  {photo.caption && (
+                    <figcaption className="font-display text-olive mt-3 text-xl">
+                      {photo.caption}
+                    </figcaption>
+                  )}
+                </figure>
+              ))}
             </div>
           )}
-          <ul className="font-display text-olive mt-10 flex flex-wrap justify-center gap-x-8 gap-y-2 text-center text-2xl">
-            {aboutContent.team.members.map((member) => (
-              <li key={member}>{member}</li>
-            ))}
-          </ul>
+
+          {/* Member names — shown when the photos carry no captions of their own
+              (e.g. the static fallback), so the team is always credited. */}
+          {!teamPhotos.some((photo) => photo.caption) && (
+            <ul className="font-display text-olive mt-10 flex flex-wrap justify-center gap-x-8 gap-y-2 text-center text-2xl">
+              {aboutContent.team.members.map((member) => (
+                <li key={member}>{member}</li>
+              ))}
+            </ul>
+          )}
         </div>
       </section>
     </>

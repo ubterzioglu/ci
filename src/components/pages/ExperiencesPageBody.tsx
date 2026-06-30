@@ -1,5 +1,4 @@
-import Link from 'next/link';
-
+import { Button } from '@/components/ui/Button';
 import { PageHeader } from '@/components/layout/PageHeader';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { breadcrumbSchema } from '@/lib/seo/schema';
@@ -49,18 +48,22 @@ export function ExperiencesPageBody({ locale }: ExperiencesPageBodyProps) {
               {siteConfig.reservationNote}
             </p>
             <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-              <Link
-                href={localePath('/contact', locale)}
-                className="bg-olive text-ivory hover:bg-olive-deep inline-flex w-full min-w-[14rem] items-center justify-center rounded-lg px-8 py-3.5 text-sm font-medium tracking-wide shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md sm:w-auto"
-              >
-                İletişime Geç
-              </Link>
-              <Link
+              <Button
                 href={localePath(PRIMARY_CTA.href, locale)}
-                className="bg-olive text-ivory hover:bg-olive-deep inline-flex w-full min-w-[14rem] items-center justify-center rounded-lg px-8 py-3.5 text-sm font-medium tracking-wide shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md sm:w-auto"
+                variant="solid"
+                size="lg"
+                className="w-full min-w-[14rem] sm:w-auto"
               >
                 {dictionary.cta.reserve}
-              </Link>
+              </Button>
+              <Button
+                href={localePath('/contact', locale)}
+                variant="outline"
+                size="lg"
+                className="w-full min-w-[14rem] sm:w-auto"
+              >
+                İletişime Geç
+              </Button>
             </div>
           </div>
         </div>

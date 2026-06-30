@@ -203,10 +203,12 @@ export interface Database {
           storage_path: string | null;
           alt: string | null;
           title: string | null;
+          caption: string | null;
           width: number | null;
           height: number | null;
           mime_type: string | null;
           context: string | null;
+          sort_order: number;
           created_at: string;
         };
         Insert: {
@@ -215,10 +217,12 @@ export interface Database {
           storage_path?: string | null;
           alt?: string | null;
           title?: string | null;
+          caption?: string | null;
           width?: number | null;
           height?: number | null;
           mime_type?: string | null;
           context?: string | null;
+          sort_order?: number;
           created_at?: string;
         };
         Update: Partial<Database['public']['Tables']['media_assets']['Insert']>;

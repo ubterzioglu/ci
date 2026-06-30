@@ -4,6 +4,7 @@ import { ExperienceShowcase } from '@/components/sections/ExperienceShowcase';
 import { MenuPreview } from '@/components/sections/MenuPreview';
 import { ReservationCTA } from '@/components/sections/ReservationCTA';
 import { Gallery } from '@/components/sections/Gallery';
+import { ChefIntro } from '@/components/sections/ChefIntro';
 import { ContactSection } from '@/components/sections/ContactSection';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { getMenu } from '@/lib/db/menu';
@@ -33,6 +34,7 @@ export async function HomePageBody({ locale }: HomePageBodyProps) {
       <MenuPreview locale={locale} />
       <ReservationCTA locale={locale} />
       <Gallery />
+      <ChefIntro locale={locale} />
       <ContactSection locale={locale} />
     </>
   );

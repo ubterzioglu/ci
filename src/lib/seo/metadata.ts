@@ -19,6 +19,27 @@ const OG_LOCALE: Record<Locale, string> = {
   de: 'de_DE',
 };
 
+export function buildGeoMetadata(): NonNullable<Metadata['other']> {
+  const { contact, geo } = siteConfig;
+
+  if (geo.latitude === null || geo.longitude === null) {
+    return {};
+  }
+
+  const latitude = String(geo.latitude);
+  const longitude = String(geo.longitude);
+  const placeName = `${contact.locality}, ${contact.administrativeArea}, ${contact.countryName}`;
+
+  return {
+    'geo.region': `${contact.countryCode}-${contact.administrativeAreaCode}`,
+    'geo.placename': placeName,
+    'geo.position': `${latitude};${longitude}`,
+    ICBM: `${latitude}, ${longitude}`,
+    'place:location:latitude': latitude,
+    'place:location:longitude': longitude,
+  };
+}
+
 interface BuildMetadataInput {
   title?: string;
   description?: string;

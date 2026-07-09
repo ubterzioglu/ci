@@ -4,33 +4,43 @@ import type { MenuCategory } from '@/lib/types';
 /**
  * JSON-LD structured data builders. Each returns a plain object that is
  * embedded via a <script type="application/ld+json"> tag.
- *
- * Facts that are not present in the source (street address, opening hours)
- * are intentionally omitted rather than fabricated. See TODO_PANEL_EXPORTS.md.
  */
 
 const baseUrl = siteConfig.url;
 
 export function restaurantSchema(): Record<string, unknown> {
   const { contact, geo, social, hours } = siteConfig;
+  const mapsUrl =
+    geo.latitude !== null && geo.longitude !== null
+      ? `https://www.google.com/maps/search/?api=1&query=${geo.latitude},${geo.longitude}`
+      : contact.mapsUrl;
 
   // PostalAddress — streetAddress only when a real address is known.
   const address: Record<string, unknown> = {
     '@type': 'PostalAddress',
-    addressLocality: 'Kaş',
-    addressRegion: 'Antalya',
-    addressCountry: 'TR',
+    addressLocality: contact.locality,
+    addressRegion: contact.administrativeArea,
+    postalCode: contact.postalCode,
+    addressCountry: contact.countryCode,
   };
   if (contact.address) address.streetAddress = contact.address;
 
-  // Social profiles for entity disambiguation (Google "sameAs").
-  const sameAs = [social.instagram, social.facebook].filter(
+  // Social/listing profiles for entity disambiguation (Google "sameAs").
+  const sameAs = [
+    social.instagram,
+    social.facebook,
+    social.tripadvisor,
+    social.wanderlog,
+    social.restaurantGuru,
+    mapsUrl,
+  ].filter(
     (v): v is string => typeof v === 'string' && v.length > 0,
   );
 
   const schema: Record<string, unknown> = {
     '@context': 'https://schema.org',
     '@type': 'Restaurant',
+    '@id': `${baseUrl}#restaurant`,
     name: siteConfig.name,
     description: siteConfig.description,
     url: baseUrl,
@@ -40,7 +50,7 @@ export function restaurantSchema(): Record<string, unknown> {
     telephone: contact.phoneE164,
     email: contact.email,
     address,
-    areaServed: { '@type': 'City', name: 'Kaş' },
+    areaServed: { '@type': 'City', name: contact.locality },
     acceptsReservations: `${baseUrl}/reservations`,
     image: new URL(siteConfig.ogDefaultImage, baseUrl).toString(),
   };
@@ -53,7 +63,7 @@ export function restaurantSchema(): Record<string, unknown> {
       longitude: geo.longitude,
     };
   }
-  if (contact.mapsUrl) schema.hasMap = contact.mapsUrl;
+  if (mapsUrl) schema.hasMap = mapsUrl;
 
   // Opening hours — only when confirmed (omitted while config.hours is null).
   // Uses schema.org DayOfWeek + opens/closes; an overnight close (e.g. 02:00)

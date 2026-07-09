@@ -5,6 +5,7 @@ import { headers } from 'next/headers';
 import './globals.css';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { defaultLocale, isLocale } from '@/lib/i18n/config';
+import { buildGeoMetadata } from '@/lib/seo/metadata';
 import { restaurantSchema, websiteSchema } from '@/lib/seo/schema';
 import { siteConfig } from '@/lib/site-config';
 
@@ -42,9 +43,11 @@ export const metadata: Metadata = {
   authors: [{ name: siteConfig.name }],
   creator: siteConfig.name,
   publisher: siteConfig.name,
+  category: 'restaurant',
   // Stop iOS Safari from auto-linking incidental numbers/addresses in the UI.
   formatDetection: { telephone: false, address: false, email: false },
   alternates: { canonical: '/' },
+  other: buildGeoMetadata(),
   openGraph: {
     type: 'website',
     siteName: siteConfig.name,

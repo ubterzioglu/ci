@@ -39,6 +39,12 @@ export const siteConfig = {
     region: 'Kaş, Antalya',
     // Confirmed via Google Maps business listing (Çi neo cucina by mezetaryen).
     address: 'Andifli Mah., Uğur Mumcu Cad. No:23, 07580 Kaş/Antalya' as string | null,
+    locality: 'Kaş',
+    administrativeArea: 'Antalya',
+    administrativeAreaCode: '07',
+    postalCode: '07580',
+    countryCode: 'TR',
+    countryName: 'Turkey',
     mapsUrl: 'https://maps.app.goo.gl/ucWq9wqB8Xb3LZXv9' as string | null,
   },
 

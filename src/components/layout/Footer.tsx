@@ -130,6 +130,15 @@ export function Footer({ locale = defaultLocale }: FooterProps) {
                 </Link>
               </li>
             ))}
+            <li>
+              <a
+                href="https://ufuksoynakliyat.com.tr/tuzla-evden-eve-nakliyat"
+                rel="dofollow"
+                className="hover:text-ivory transition-colors"
+              >
+                Tuzla Evden Eve Nakliyat
+              </a>
+            </li>
           </ul>
         </div>
       </div>

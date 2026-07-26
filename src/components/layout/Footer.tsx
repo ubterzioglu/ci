@@ -139,6 +139,26 @@ export function Footer({ locale = defaultLocale }: FooterProps) {
                 Tuzla Evden Eve Nakliyat
               </a>
             </li>
+            <li>
+              <a
+                href="https://tekhurdametal.com/hurda-demir-fiyatlari/"
+                rel="dofollow"
+                className="hover:text-ivory transition-colors"
+              >
+                Demir Hurda Fiyatları
+              </a>{' '}
+              Tek Hurda Metal
+            </li>
+            <li>
+              <a
+                href="https://lionerotik.com/urunler/fetis-urunleri"
+                rel="dofollow"
+                className="hover:text-ivory transition-colors"
+              >
+                Antalya Sex Shop
+              </a>{' '}
+              Lion Erotik
+            </li>
           </ul>
         </div>
       </div>

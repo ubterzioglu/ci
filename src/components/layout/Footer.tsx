@@ -133,8 +133,36 @@ export function Footer({ locale = defaultLocale }: FooterProps) {
           </ul>
         </div>
         <div className="text-ivory/45 mt-4 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-center text-[10px]">
-          <span><a href="https://ufuksoynakliyat.com.tr/tuzla-evden-eve-nakliyat" rel="dofollow" className="hover:text-ivory transition-colors">Tuzla Evden Eve Nakliyat</a> Firması Ufuksoy Nakliyat A.Ş</span>
-          <span><a href="https://tekhurdametal.com/hurda-fiyatlari/" rel="dofollow" className="hover:text-ivory transition-colors">Hurda Fiyatları</a> Tek Hurda Metal</span>
+          <span>
+            <a
+              href="https://ufuksoynakliyat.com.tr/tuzla-evden-eve-nakliyat"
+              rel="dofollow"
+              className="hover:text-ivory transition-colors"
+            >
+              Tuzla Evden Eve Nakliyat
+            </a>{' '}
+            Firması Ufuksoy Nakliyat A.Ş
+          </span>
+          <span>
+            <a
+              href="https://tekhurdametal.com/hurda-fiyatlari/"
+              rel="dofollow"
+              className="hover:text-ivory transition-colors"
+            >
+              Hurda Fiyatları
+            </a>{' '}
+            Tek Hurda Metal
+          </span>
+          <span>
+            <a
+              href="https://lionerotik.com/urunler/fetis-urunleri"
+              rel="dofollow"
+              className="hover:text-ivory transition-colors"
+            >
+              Antalya Sex Shop
+            </a>{' '}
+            Lion Erotik
+          </span>
         </div>
       </div>
     </footer>

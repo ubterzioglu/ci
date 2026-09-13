@@ -65,7 +65,7 @@ export function LanguageSwitcher({
               aria-current={active ? 'true' : undefined}
               title={localeNames[locale]}
               className={cn(
-                'px-1.5 uppercase tracking-wide transition-colors',
+                'inline-flex min-h-8 min-w-8 items-center justify-center px-2 py-2 uppercase tracking-wide transition-colors',
                 tone === 'light'
                   ? 'text-ivory/80 hover:text-ivory'
                   : 'text-muted hover:text-charcoal',

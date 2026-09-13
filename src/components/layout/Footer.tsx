@@ -40,7 +40,7 @@ function navLabel(dictionary: ReturnType<typeof getDictionary>, href: string): s
  * year + legal links.
  *
  * Address / opening hours render only when present in the source data (they are
- * not in the Wix export — see TODO_PANEL_EXPORTS). No legacy Wix footer text.
+ * not in the Wix export — see docs/panel-exports-todo). No legacy Wix footer text.
  *
  * Locale-aware: main-nav labels come from the dictionary and links are built
  * through `localePath`. The legal links (impressum/datenschutz) are TR-only
@@ -132,12 +132,12 @@ export function Footer({ locale = defaultLocale }: FooterProps) {
             ))}
           </ul>
         </div>
-        <div className="text-ivory/45 mt-4 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-center text-[10px]">
+        <div className="text-ivory/45 mt-4 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-center text-xs">
           <span>
             <a
               href="https://ufuksoynakliyat.com.tr/tuzla-evden-eve-nakliyat"
               rel="dofollow"
-              className="hover:text-ivory transition-colors"
+              className="hover:text-ivory inline-block py-1.5 transition-colors"
             >
               Tuzla Evden Eve Nakliyat
             </a>{' '}
@@ -147,7 +147,7 @@ export function Footer({ locale = defaultLocale }: FooterProps) {
             <a
               href="https://tekhurdametal.com/hurda-fiyatlari/"
               rel="dofollow"
-              className="hover:text-ivory transition-colors"
+              className="hover:text-ivory inline-block py-1.5 transition-colors"
             >
               Hurda Fiyatları
             </a>{' '}
@@ -157,7 +157,7 @@ export function Footer({ locale = defaultLocale }: FooterProps) {
             <a
               href="https://lionerotik.com/urunler/fetis-urunleri"
               rel="dofollow"
-              className="hover:text-ivory transition-colors"
+              className="hover:text-ivory inline-block py-1.5 transition-colors"
             >
               Antalya Sex Shop
             </a>{' '}

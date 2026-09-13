@@ -64,95 +64,105 @@ export function Header({ locale = defaultLocale }: HeaderProps) {
   }, []);
 
   return (
-    <header
-      className={cn(
-        'fixed inset-x-0 top-0 z-40 transition-all duration-300',
-        solid
-          ? 'border-stone-soft/70 bg-marble/95 supports-[backdrop-filter]:bg-marble/80 border-b backdrop-blur'
-          : 'bg-transparent',
-      )}
-    >
-      <div className="container-editorial flex h-16 items-center justify-between md:h-20">
-        <Link
-          href={homeHref}
-          className={cn(
-            'font-display text-xl leading-none tracking-tight transition-colors md:text-2xl',
-            solid ? 'text-charcoal' : 'text-ivory',
-          )}
-        >
-          {siteConfig.name}
-        </Link>
-
-        {/* Desktop nav */}
-        <nav aria-label="Ana menü" className="hidden md:block">
-          <ul className="flex items-center gap-7">
-            {mainNav.map((item) => {
-              const href = localePath(item.href, locale);
-              const active = pathname === href;
-              return (
-                <li key={item.href}>
-                  <Link
-                    href={href}
-                    aria-current={active ? 'page' : undefined}
-                    className={cn(
-                      'text-sm tracking-wide transition-colors',
-                      solid ? 'text-charcoal hover:text-olive' : 'text-ivory/90 hover:text-ivory',
-                      active && (solid ? 'text-olive' : 'text-ivory'),
-                    )}
-                  >
-                    {navLabel(dictionary, item.href)}
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
-        </nav>
-
-        <div className="flex items-center gap-3">
-          <LanguageSwitcher
-            current={locale}
-            tone={solid ? 'dark' : 'light'}
-            className="hidden md:flex"
-          />
-
+    <>
+      <header
+        className={cn(
+          'fixed inset-x-0 top-0 z-40 transition-all duration-300',
+          solid
+            ? 'border-stone-soft/70 bg-marble/95 supports-[backdrop-filter]:bg-marble/80 border-b backdrop-blur'
+            : 'bg-transparent',
+        )}
+      >
+        <div className="container-editorial flex h-16 items-center justify-between md:h-20">
           <Link
-            href={localePath(PRIMARY_CTA.href, locale)}
+            href={homeHref}
             className={cn(
-              'hidden rounded-md px-4 py-2 text-sm transition-colors md:inline-block',
-              solid
-                ? 'bg-olive text-ivory hover:bg-olive-deep'
-                : 'border-ivory/70 text-ivory hover:bg-ivory hover:text-charcoal border',
+              'font-display text-xl leading-none tracking-tight transition-colors md:text-2xl',
+              solid ? 'text-charcoal' : 'text-ivory',
             )}
           >
-            {dictionary.cta.reserve}
+            {siteConfig.name}
           </Link>
 
-          {/* Mobile trigger */}
-          <button
-            type="button"
-            onClick={() => setMenuOpen(true)}
-            aria-label="Menüyü aç"
-            aria-expanded={menuOpen}
-            aria-controls="mobile-nav"
-            className={cn(
-              'rounded-md p-2 transition-colors md:hidden',
-              solid ? 'text-charcoal hover:bg-cream-deep' : 'text-ivory hover:bg-ivory/10',
-            )}
-          >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path
-                d="M4 7h16M4 12h16M4 17h16"
-                stroke="currentColor"
-                strokeWidth="1.6"
-                strokeLinecap="round"
-              />
-            </svg>
-          </button>
-        </div>
-      </div>
+          {/* Desktop nav */}
+          <nav aria-label="Ana menü" className="hidden md:block">
+            <ul className="flex items-center gap-7">
+              {mainNav.map((item) => {
+                const href = localePath(item.href, locale);
+                const active = pathname === href;
+                return (
+                  <li key={item.href}>
+                    <Link
+                      href={href}
+                      aria-current={active ? 'page' : undefined}
+                      className={cn(
+                        'text-sm tracking-wide transition-colors',
+                        solid ? 'text-charcoal hover:text-olive' : 'text-ivory/90 hover:text-ivory',
+                        active && (solid ? 'text-olive' : 'text-ivory'),
+                      )}
+                    >
+                      {navLabel(dictionary, item.href)}
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+          </nav>
 
+          <div className="flex items-center gap-3">
+            <LanguageSwitcher
+              current={locale}
+              tone={solid ? 'dark' : 'light'}
+              className="hidden md:flex"
+            />
+
+            <Link
+              href={localePath(PRIMARY_CTA.href, locale)}
+              className={cn(
+                'hidden rounded-md px-4 py-2 text-sm transition-colors md:inline-block',
+                solid
+                  ? 'bg-olive text-ivory hover:bg-olive-deep'
+                  : 'border-ivory/70 text-ivory hover:bg-ivory hover:text-charcoal border',
+              )}
+            >
+              {dictionary.cta.reserve}
+            </Link>
+
+            {/* Mobile trigger */}
+            <button
+              type="button"
+              onClick={() => setMenuOpen(true)}
+              aria-label="Menüyü aç"
+              aria-expanded={menuOpen}
+              aria-controls="mobile-nav"
+              className={cn(
+                'rounded-md p-2 transition-colors md:hidden',
+                solid ? 'text-charcoal hover:bg-cream-deep' : 'text-ivory hover:bg-ivory/10',
+              )}
+            >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path
+                  d="M4 7h16M4 12h16M4 17h16"
+                  stroke="currentColor"
+                  strokeWidth="1.6"
+                  strokeLinecap="round"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      {/*
+        Rendered as a sibling of <header>, not a child: <header> gets Tailwind's
+        `backdrop-blur` (backdrop-filter) whenever `solid` is true, and per the CSS
+        spec a `backdrop-filter` ancestor establishes a new containing block for
+        `position: fixed` descendants. Nesting this fixed-position drawer inside
+        <header> made it resolve `inset-0`/`h-full` against the ~64px header bar
+        instead of the viewport, collapsing the whole overlay into that sliver.
+      */}
       <MobileNav open={menuOpen} onClose={() => setMenuOpen(false)} locale={locale} />
-    </header>
+    </>
   );
 }
 

@@ -4,7 +4,7 @@
 -- Tables: site_settings, pages, menu_categories, menu_items, media_assets,
 --         reservation_requests, contact_messages, redirects
 --
--- Security model (see supabase/README + MIGRATION_NOTES.md):
+-- Security model (see supabase/README + docs/migration-notes.md):
 --   * RLS is enabled on every table.
 --   * Public (anon) READ is allowed only for published / active content.
 --   * Public (anon) INSERT is allowed only for reservation_requests and

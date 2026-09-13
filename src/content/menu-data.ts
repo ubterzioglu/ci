@@ -17,7 +17,7 @@ import { menuNotesByLocale, menuTextByLocale } from './menu-i18n';
  * never duplicated across languages.
  *
  * NOTE: The wine menu ("Şarap Menüsü") exists on the source site but its item
- * list was not exported (panel-only). See TODO_PANEL_EXPORTS.md. The Menu page
+ * list was not exported (panel-only). See docs/panel-exports-todo.md. The Menu page
  * shows a tasteful "ask our team" notice instead of an empty section.
  */
 

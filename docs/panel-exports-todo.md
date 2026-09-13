@@ -140,7 +140,7 @@ Once items above are gathered, submit to the development team with:
 
 **Timeline**: Please provide all "Required for Launch" items at least 1 week before intended launch date. "Improves UX" and optional items can follow in a post-launch update.
 
-**Questions?** Contact the development team or refer to `MIGRATION_NOTES.md` for context on migration decisions.
+**Questions?** Contact the development team or refer to `migration-notes.md` for context on migration decisions.
 
 ---
 

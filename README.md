@@ -167,22 +167,24 @@ supabase/
 public/
 └── images/
     └── imported/                 # Localized Wix images (populated by pnpm assets:download)
+
+docs/
+├── deployment-coolify.md         # Coolify / Docker deployment guide
+├── migration-notes.md            # Wix -> Next.js migration decisions
+├── panel-exports-todo.md         # Data still owed by the restaurant
+├── qr-menu.md                    # QR table menu (/qr) status and notes
+└── handovers/                    # Historical session handover notes
+
+ref/                              # Raw Wix export - content source of truth
 ```
 
 ## Deployment
 
 ### Coolify (Primary)
 
-Coolify supports automatic Next.js deployments without custom Dockerfile or Nixpacks configuration:
-
-1. Connect your Git repository to Coolify
-2. Configure deployment:
-   - **Build command**: `pnpm build`
-   - **Start command**: `pnpm start`
-   - **Node version**: 20 or higher
-   - **Port**: 3000
-3. Set all environment variables from `.env.example` in Coolify's environment configuration UI
-4. Deploy
+Coolify builds the repository's `Dockerfile` (Next.js standalone output) on every
+push to `main`. Full walkthrough - build pack, environment variables, domain and
+post-deploy checks - lives in **[docs/deployment-coolify.md](docs/deployment-coolify.md)**.
 
 ### Vercel (Alternative)
 
@@ -206,7 +208,12 @@ This requires `DEEPL_API_KEY` to be set in `.env.local`.
 
 ## Content Migration from Wix
 
-This project was migrated from a Wix website. Exported content, decisions made during migration, and remaining tasks are documented in `MIGRATION_NOTES.md`.
+This project was migrated from a Wix website. Exported content, decisions made during migration, and remaining tasks are documented in `docs/migration-notes.md`.
+
+## Documentation
+
+All project documentation lives in [`docs/`](docs/) - see [docs/README.md](docs/README.md)
+for the index.
 
 ## Support
 

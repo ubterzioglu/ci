@@ -9,11 +9,11 @@
 The legacy Wix website data was exported to the `/ref` directory:
 
 - **Pages markdown** (`ref/content/pages/`): Converted HTML/text from public pages
-- **Menu data** (`ref/content/menu-items.csv`): Menu items with categories
-- **Navigation** (`ref/content/navigation.json`): Site navigation structure
-- **Contact info** (`ref/content/contact.json`): Phone, email, region
-- **SEO metadata** (`ref/content/seo.json`): Page titles and descriptions for each route
-- **Image assets** (`ref/content/image-assets.json`): Manifest of Wix CDN image URLs
+- **Menu data** (`ref/content/data/menu.csv`): Menu items with categories
+- **Navigation** (`ref/content/data/navigation.json`): Site navigation structure
+- **Contact info** (`ref/content/data/contact.json`): Phone, email, region
+- **SEO metadata** (`ref/content/data/seo.json`): Page titles and descriptions for each route
+- **Image assets** (`ref/content/assets/image-assets.json`): Manifest of Wix CDN image URLs
 - **Audit notes** (`ref/audit/fix-list.md`): Issues identified in the source
 
 ## Migration Decisions & Assumptions
@@ -76,7 +76,7 @@ The legacy Wix website data was exported to the `/ref` directory:
 
 **CRITICAL**: These are inferred from available source data and have **NOT been confirmed by the restaurant**. The restaurant must review and correct all allergen tags before the site goes live.
 
-**Confirmation required**: See `TODO_PANEL_EXPORTS.md` item: "Confirm inferred allergen tags."
+**Confirmation required**: See `panel-exports-todo.md` item: "Confirm inferred allergen tags."
 
 ## Slug Mapping: Old Wix → New Next.js
 
@@ -97,18 +97,18 @@ The legacy Wix website data was exported to the `/ref` directory:
 
 **Localization process**:
 
-1. All Wix image URLs are catalogued in `ref/content/image-assets.json`
+1. All Wix image URLs are catalogued in `ref/content/assets/image-assets.json`
 2. Run `pnpm assets:download` to:
    - Download images from Wix CDN
    - Store them locally under `public/images/imported/`
    - Update references in the database (media_assets table)
 3. Remove the Wix CDN domain from `next.config.ts` once all images are localized
 
-**Recommended**: Complete image localization before going live (see `TODO_PANEL_EXPORTS.md`).
+**Recommended**: Complete image localization before going live (see `panel-exports-todo.md`).
 
 ## What's Still Missing (Panel Exports)
 
-The following data was not present in the public Wix website export and must be provided by the restaurant. See `TODO_PANEL_EXPORTS.md` for the complete checklist.
+The following data was not present in the public Wix website export and must be provided by the restaurant. See `panel-exports-todo.md` for the complete checklist.
 
 ### High Priority (Required for Launch)
 
@@ -160,7 +160,7 @@ See `supabase/README.md` for detailed security model and seeding instructions.
 ## Next Steps
 
 1. **Review and approve allergen tags**: Use the `/menu` page to verify allergen information
-2. **Provide missing panel data**: Submit items from `TODO_PANEL_EXPORTS.md` to the development team
+2. **Provide missing panel data**: Submit items from `panel-exports-todo.md` to the development team
 3. **Finalize legal pages**: Draft or approve German translations for `/impressum` and `/datenschutz`
 4. **Test forms**: Verify reservation and contact forms work as expected
 5. **Approve translations**: Review auto-generated EN/DE translations (if enabled via DeepL)
@@ -172,5 +172,5 @@ See `supabase/README.md` for detailed security model and seeding instructions.
 - **Brand facts**: `src/lib/site-config.ts`
 - **Database schema**: `supabase/migrations/001_initial_schema.sql`
 - **Supabase setup**: `supabase/README.md`
-- **Remaining tasks**: `TODO_PANEL_EXPORTS.md`
+- **Remaining tasks**: `panel-exports-todo.md`
 - **Original Wix export**: `ref/` directory

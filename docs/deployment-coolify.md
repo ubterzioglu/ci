@@ -67,7 +67,7 @@ psql "$SUPABASE_DB_URL" -f supabase/migrations/001_initial_schema.sql
 pnpm db:seed
 ```
 
-See [`supabase/README.md`](./supabase/README.md) for details.
+See [`supabase/README.md`](../supabase/README.md) for details.
 
 ## 5. Deploy
 

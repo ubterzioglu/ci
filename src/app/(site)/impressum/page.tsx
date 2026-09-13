@@ -15,7 +15,7 @@ export const metadata: Metadata = buildMetadata({
  * Legal imprint placeholder. The source site did not include legal text, so we
  * show the known contact details and a clear note that full legal information
  * is being prepared. Replace with the official text when provided.
- * TODO(panel-export): add official Impressum / company details (see TODO_PANEL_EXPORTS.md).
+ * TODO(panel-export): add official Impressum / company details (see docs/panel-exports-todo.md).
  */
 export default function ImpressumPage() {
   const { contact } = siteConfig;

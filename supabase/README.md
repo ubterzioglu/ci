@@ -234,6 +234,6 @@ The `service_role` key bypasses all RLS policies and is used for:
 For more information, see:
 
 - **Project README**: `README.md`
-- **Migration notes**: `MIGRATION_NOTES.md`
-- **Remaining tasks**: `TODO_PANEL_EXPORTS.md`
+- **Migration notes**: `docs/migration-notes.md`
+- **Remaining tasks**: `docs/panel-exports-todo.md`
 - **Supabase docs**: https://supabase.com/docs

@@ -15,7 +15,7 @@ export const metadata: Metadata = buildMetadata({
  * Privacy policy placeholder. No legal text was present in the source export.
  * We describe the data we actually collect (reservation + contact form fields)
  * in plain language and flag that the formal policy is being prepared.
- * TODO(panel-export): add the official privacy / KVKK / GDPR text (see TODO_PANEL_EXPORTS.md).
+ * TODO(panel-export): add the official privacy / KVKK / GDPR text (see docs/panel-exports-todo.md).
  */
 export default function DatenschutzPage() {
   return (

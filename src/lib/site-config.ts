@@ -4,7 +4,7 @@
  * Single source of truth for brand facts, contact details, and navigation.
  * All values are sourced from the Wix export package (see /ref). Items that
  * are NOT present in the source are marked `null` and tracked in
- * TODO_PANEL_EXPORTS.md — do not fabricate them.
+ * docs/panel-exports-todo.md — do not fabricate them.
  */
 
 export const siteConfig = {

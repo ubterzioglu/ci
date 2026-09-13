@@ -8,7 +8,7 @@ import type { NextConfig } from 'next';
  *   has a downloaded local copy — verified). The legacy Wix CDN remote patterns
  *   were therefore removed. If a future asset is added without running
  *   `pnpm assets:download`, re-add the host or download the file. See
- *   MIGRATION_NOTES.md and src/lib/images.ts.
+ *   docs/migration-notes.md and src/lib/images.ts.
  * - `redirects()` preserves SEO equity from the old Wix slugs (e.g. /about-1).
  *   Database-backed redirects are additionally served via middleware.
  */

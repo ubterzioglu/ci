@@ -38,7 +38,7 @@ QR menü route'u `f8cb135` commit'iyle eklendi ve şu an çalışır durumda.
 1. **Fiziksel QR kod görseli repoda YOK.** `/qr` adresine yönlendiren bir PNG/SVG üretilmemiş.
    Kodda hiçbir QR-üretim bağımlılığı (`qrcode` vb.) yok. Masalara basılacak görseli ayrıca
    oluşturmak gerekiyor (bkz. Bölüm 4).
-2. **Domain.** Site şu an geçici `notyetbro.club` üzerinde. QR kodunu **canlı domaine
+2. **Domain.** Site `https://www.cineocucina.com` üzerinde yayında. QR kodunu **canlı domaine
    (`cineocucina.com`) geçtikten sonra** üret — yoksa basılı kodlar yanlış adresi gösterir.
 3. **Menü düzenleme arayüzü henüz yok.** Menü ya Supabase'den (manuel SQL / Supabase Studio) ya da
    local dosyadan değişiyor. Admin panelinden düzenleme = yeni iş (bkz. Bölüm 3).

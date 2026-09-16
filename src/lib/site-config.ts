@@ -17,10 +17,15 @@ export const siteConfig = {
 
   /**
    * Public site URL — overridden by NEXT_PUBLIC_SITE_URL at runtime.
-   * Fallback is the TEMPORARY domain (notyetbro.club). Switch back to
-   * https://www.cineocucina.com when the primary domain goes live.
+   *
+   * The fallback is the live domain, so canonical URLs, Open Graph tags and the
+   * sitemap stay correct even if the variable is missing. It used to point at
+   * the temporary notyetbro.club, which would now publish wrong canonicals.
+   *
+   * Keep the `www.` — it must match the domain configured in Coolify, or the
+   * canonical tag and the served host disagree.
    */
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? 'https://notyetbro.club',
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.cineocucina.com',
 
   locale: 'tr_TR',
   defaultLocale: 'tr' as const,

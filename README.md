@@ -112,9 +112,9 @@ Open http://localhost:3000 in your browser.
 | `DEEPL_API_KEY`                  | DeepL API key for generating EN/DE/RU translations from Turkish source                        | No       |
 | `ZOHO_SMTP_HOST`                 | Zoho SMTP host (`smtp.zoho.eu` for EU accounts, else `smtp.zoho.com`)                          | No       |
 | `ZOHO_SMTP_PORT`                 | Zoho SMTP port (465 implicit TLS, 587 STARTTLS). Defaults to 465                               | No       |
-| `ZOHO_SMTP_USER`                 | Zoho mailbox mail is sent from, e.g. `info@cineocucina.com`                                   | No       |
+| `ZOHO_SMTP_USER`                 | Zoho **account login** address — not necessarily the sending address                          | No       |
 | `ZOHO_SMTP_PASSWORD`             | Zoho **app-specific** password (the account password is rejected by SMTP)                     | No       |
-| `MAIL_FROM`                      | Sender shown to recipients; defaults to `ZOHO_SMTP_USER`                                      | No       |
+| `MAIL_FROM`                      | Sender shown to recipients; must be an address the Zoho account may send as                   | No       |
 | `RESERVATION_NOTIFICATION_EMAIL` | Where new reservation requests are announced                                         | No       |
 | `CONTACT_NOTIFICATION_EMAIL`     | Where contact form messages are announced                                             | No       |
 

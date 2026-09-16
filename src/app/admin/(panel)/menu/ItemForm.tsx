@@ -1,6 +1,8 @@
 'use client';
 
 import { cn } from '@/lib/utils';
+import type { MenuTranslations } from '@/lib/db/admin/menu-types';
+import { LocalizedField, TranslateAllFields } from './LocalizedFields';
 import {
   DIETARY_FLAGS,
   DIETARY_FLAG_LABELS,
@@ -43,6 +45,8 @@ export interface ItemFormValue {
   allergens: string;
   dietaryFlags: DietaryFlag[];
   isActive: boolean;
+  /** Per-locale name/description overrides; Turkish stays in `name`/`description`. */
+  translations: MenuTranslations;
 }
 
 export function emptyItemForm(): ItemFormValue {
@@ -54,6 +58,7 @@ export function emptyItemForm(): ItemFormValue {
     allergens: '',
     dietaryFlags: [],
     isActive: true,
+    translations: {},
   };
 }
 
@@ -68,6 +73,7 @@ export function itemToForm(item: AdminMenuItem): ItemFormValue {
       (DIETARY_FLAGS as readonly string[]).includes(f),
     ),
     isActive: item.isActive,
+    translations: item.translations,
   };
 }
 
@@ -84,6 +90,7 @@ export function formToInput(form: ItemFormValue, categoryId: string): ItemInput 
     allergens: toList(form.allergens),
     dietaryFlags: form.dietaryFlags,
     isActive: form.isActive,
+    translations: form.translations,
   };
 }
 
@@ -128,37 +135,45 @@ export function ItemForm({
       }}
       className="border-stone bg-marble space-y-3 rounded-md border p-4"
     >
-      <div className="grid gap-3 sm:grid-cols-[1fr_140px]">
-        <div>
-          <label className={labelCls}>Ürün adı</label>
-          <input
-            value={value.name}
-            onChange={(e) => set('name', e.target.value)}
-            required
-            placeholder="örn: Urla Enginar Confit"
-            className={inputCls}
-          />
-        </div>
-        <div>
-          <label className={labelCls}>Fiyat (₺)</label>
-          <input
-            value={value.price}
-            onChange={(e) => set('price', e.target.value)}
-            inputMode="decimal"
-            placeholder="boş = sor"
-            className={inputCls}
-          />
-        </div>
-      </div>
+      <TranslateAllFields
+        name={value.name}
+        description={value.description}
+        translations={value.translations}
+        onTranslationsChange={(t) => set('translations', t)}
+        busy={submitting}
+      />
 
-      <div>
-        <label className={labelCls}>Açıklama</label>
-        <textarea
-          value={value.description}
-          onChange={(e) => set('description', e.target.value)}
-          rows={2}
-          placeholder="Kısa açıklama"
-          className={cn(inputCls, 'resize-y')}
+      <LocalizedField
+        label="Ürün adı"
+        field="name"
+        base={value.name}
+        onBaseChange={(v) => set('name', v)}
+        translations={value.translations}
+        onTranslationsChange={(t) => set('translations', t)}
+        placeholder="örn: Urla Enginar Confit"
+        busy={submitting}
+      />
+
+      <LocalizedField
+        label="Açıklama"
+        field="description"
+        base={value.description}
+        onBaseChange={(v) => set('description', v)}
+        translations={value.translations}
+        onTranslationsChange={(t) => set('translations', t)}
+        placeholder="Kısa açıklama"
+        multiline
+        busy={submitting}
+      />
+
+      <div className="max-w-[180px]">
+        <label className={labelCls}>Fiyat (₺)</label>
+        <input
+          value={value.price}
+          onChange={(e) => set('price', e.target.value)}
+          inputMode="decimal"
+          placeholder="boş = sor"
+          className={inputCls}
         />
       </div>
 

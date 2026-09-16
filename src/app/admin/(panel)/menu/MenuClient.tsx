@@ -12,7 +12,9 @@ import {
   type AdminMenuCategory,
   type AdminMenuItem,
   type CategoryInput,
+  type MenuTranslations,
 } from '@/lib/db/admin/menu-types';
+import { LocalizedField, TranslateAllFields } from './LocalizedFields';
 import {
   ItemForm,
   emptyItemForm,
@@ -237,6 +239,7 @@ function CategoryBlock({
     slug: category.slug,
     description: category.description ?? '',
     isActive: category.isActive,
+    translations: category.translations,
   });
   const [busy, setBusy] = useState(false);
 
@@ -280,6 +283,7 @@ function CategoryBlock({
         ...category,
         name: catForm.name,
         slug: catForm.slug,
+        translations: catForm.translations,
         description,
         isActive: catForm.isActive,
       });
@@ -355,31 +359,41 @@ function CategoryBlock({
     >
       {editingCat && (
         <div className="border-stone bg-cream-deep/30 space-y-3 rounded-md border p-4">
-          <div className="grid gap-3 sm:grid-cols-2">
-            <div>
-              <label className={labelCls}>Kategori adı</label>
-              <input
-                value={catForm.name}
-                onChange={(e) => setCatForm({ ...catForm, name: e.target.value })}
-                className={inputCls}
-              />
-            </div>
-            <div>
-              <label className={labelCls}>Slug (URL)</label>
-              <input
-                value={catForm.slug}
-                onChange={(e) => setCatForm({ ...catForm, slug: e.target.value })}
-                className={inputCls}
-              />
-            </div>
-          </div>
-          <div>
-            <label className={labelCls}>Açıklama</label>
-            <textarea
-              value={catForm.description ?? ''}
-              onChange={(e) => setCatForm({ ...catForm, description: e.target.value })}
-              rows={2}
-              className={cn(inputCls, 'resize-y')}
+          <TranslateAllFields
+            name={catForm.name}
+            description={catForm.description ?? ''}
+            translations={catForm.translations}
+            onTranslationsChange={(t) => setCatForm({ ...catForm, translations: t })}
+            busy={busy}
+          />
+
+          <LocalizedField
+            label="Kategori adı"
+            field="name"
+            base={catForm.name}
+            onBaseChange={(v) => setCatForm({ ...catForm, name: v })}
+            translations={catForm.translations}
+            onTranslationsChange={(t) => setCatForm({ ...catForm, translations: t })}
+            busy={busy}
+          />
+
+          <LocalizedField
+            label="Açıklama"
+            field="description"
+            base={catForm.description ?? ''}
+            onBaseChange={(v) => setCatForm({ ...catForm, description: v })}
+            translations={catForm.translations}
+            onTranslationsChange={(t) => setCatForm({ ...catForm, translations: t })}
+            multiline
+            busy={busy}
+          />
+
+          <div className="max-w-sm">
+            <label className={labelCls}>Slug (URL)</label>
+            <input
+              value={catForm.slug}
+              onChange={(e) => setCatForm({ ...catForm, slug: e.target.value })}
+              className={inputCls}
             />
           </div>
           <label className="font-body text-charcoal flex cursor-pointer items-center gap-2 text-sm">
@@ -452,6 +466,7 @@ function NewCategoryForm({ onCreated }: { onCreated: (c: AdminMenuCategory) => v
   const toast = useToast();
   const [name, setName] = useState('');
   const [slug, setSlug] = useState('');
+  const [translations, setTranslations] = useState<MenuTranslations>({});
   const [description, setDescription] = useState('');
   const [busy, setBusy] = useState(false);
 
@@ -478,6 +493,7 @@ function NewCategoryForm({ onCreated }: { onCreated: (c: AdminMenuCategory) => v
       slug: (slugTouched ? slug : slugify(name)).trim(),
       description: description.trim() || null,
       isActive: true,
+      translations,
     });
     setBusy(false);
     if (result.ok && result.data) {
@@ -485,6 +501,7 @@ function NewCategoryForm({ onCreated }: { onCreated: (c: AdminMenuCategory) => v
       setName('');
       setSlug('');
       setDescription('');
+      setTranslations({});
       setSlugTouched(false);
       toast.success('Kategori eklendi.');
     } else if (!result.ok) {
@@ -494,37 +511,46 @@ function NewCategoryForm({ onCreated }: { onCreated: (c: AdminMenuCategory) => v
 
   return (
     <form onSubmit={handleSubmit} className="space-y-3">
-      <div className="grid gap-3 sm:grid-cols-2">
-        <div>
-          <label className={labelCls}>Kategori adı</label>
-          <input
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
-            placeholder="örn: Tatlılar"
-            className={inputCls}
-          />
-        </div>
-        <div>
-          <label className={labelCls}>Slug (URL)</label>
-          <input
-            value={slugTouched ? slug : slugify(name)}
-            onChange={(e) => {
-              setSlugTouched(true);
-              setSlug(e.target.value);
-            }}
-            placeholder="tatlilar"
-            className={inputCls}
-          />
-        </div>
-      </div>
-      <div>
-        <label className={labelCls}>Açıklama (opsiyonel)</label>
-        <textarea
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          rows={2}
-          className={cn(inputCls, 'resize-y')}
+      <TranslateAllFields
+        name={name}
+        description={description}
+        translations={translations}
+        onTranslationsChange={setTranslations}
+        busy={busy}
+      />
+
+      <LocalizedField
+        label="Kategori adı"
+        field="name"
+        base={name}
+        onBaseChange={setName}
+        translations={translations}
+        onTranslationsChange={setTranslations}
+        placeholder="örn: Tatlılar"
+        busy={busy}
+      />
+
+      <LocalizedField
+        label="Açıklama (opsiyonel)"
+        field="description"
+        base={description}
+        onBaseChange={setDescription}
+        translations={translations}
+        onTranslationsChange={setTranslations}
+        multiline
+        busy={busy}
+      />
+
+      <div className="max-w-sm">
+        <label className={labelCls}>Slug (URL)</label>
+        <input
+          value={slugTouched ? slug : slugify(name)}
+          onChange={(e) => {
+            setSlugTouched(true);
+            setSlug(e.target.value);
+          }}
+          placeholder="tatlilar"
+          className={inputCls}
         />
       </div>
       <button

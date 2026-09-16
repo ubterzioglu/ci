@@ -17,7 +17,9 @@ import {
   type AdminMenuCategory,
   type AdminMenuItem,
 } from '@/lib/db/admin/menu';
-import { DIETARY_FLAGS } from '@/lib/db/admin/menu-types';
+import { DIETARY_FLAGS, type MenuTranslations } from '@/lib/db/admin/menu-types';
+import { translatableLocales, type TranslatableLocale } from '@/lib/i18n/config';
+import { translateFromTurkish, TranslationError } from '@/lib/i18n/translate';
 import type { ActionResult } from '@/lib/types';
 
 /**
@@ -27,6 +29,26 @@ import type { ActionResult } from '@/lib/types';
  */
 
 const idSchema = z.string().uuid('Geçersiz kayıt.');
+
+/**
+ * Per-locale name/description overrides. Every locale is optional and every
+ * field within one may be blank — a blank falls back to the Turkish source at
+ * read time, so a half-translated row is valid on purpose.
+ *
+ * Keyed off `translatableLocales`, so adding a language to the site is accepted
+ * here without touching this schema. Unknown keys are rejected rather than
+ * stored, which keeps junk out of the jsonb column.
+ */
+const translationEntrySchema = z.object({
+  name: z.string().trim().max(120).nullish(),
+  description: z.string().trim().max(2000).nullish(),
+});
+
+// partialRecord, not record: an enum-keyed z.record demands every locale, but a
+// row translated into only some languages is the normal case here.
+const translationsSchema: z.ZodType<MenuTranslations> = z
+  .partialRecord(z.enum(translatableLocales), translationEntrySchema)
+  .default({});
 
 /** Revalidate every surface a menu change is visible on. */
 function revalidateMenu(): void {
@@ -47,6 +69,7 @@ const categorySchema = z.object({
     .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, 'Slug sadece küçük harf, rakam ve tire içerebilir.'),
   description: z.string().trim().max(2000).nullable(),
   isActive: z.boolean(),
+  translations: translationsSchema,
 });
 
 export async function createCategoryAction(
@@ -114,6 +137,7 @@ const itemSchema = z.object({
   allergens: z.array(z.string().trim().min(1).max(60)).max(30),
   dietaryFlags: z.array(z.enum(DIETARY_FLAGS)).max(DIETARY_FLAGS.length),
   isActive: z.boolean(),
+  translations: translationsSchema,
 });
 
 export async function createItemAction(input: unknown): Promise<ActionResult<AdminMenuItem>> {
@@ -183,7 +207,9 @@ export async function deleteItemAction(id: string): Promise<ActionResult> {
 
 /* --- Reordering ------------------------------------------------------------ */
 
-const reorderSchema = z.array(z.object({ id: idSchema, sortOrder: z.number().int().min(0) })).max(500);
+const reorderSchema = z
+  .array(z.object({ id: idSchema, sortOrder: z.number().int().min(0) }))
+  .max(500);
 
 export async function reorderItemsAction(updates: unknown): Promise<ActionResult> {
   await requireAdmin();
@@ -223,4 +249,67 @@ function firstError(error: z.ZodError): string {
 
 function message(error: unknown, fallback: string): string {
   return error instanceof Error && error.message ? error.message : fallback;
+}
+
+/* --- Translation ----------------------------------------------------------- */
+
+const translateSchema = z.object({
+  name: z.string().trim().max(2000),
+  description: z.string().trim().max(4000),
+});
+
+/** What the panel gets back: the Turkish input rendered in every other locale. */
+export type TranslatedFields = Record<TranslatableLocale, { name: string; description: string }>;
+
+/**
+ * Translate a menu row's Turkish name + description into every other locale.
+ *
+ * Powers both the per-field "TR'den çevir" buttons and the "Türkçeden Tümünü
+ * Çevir" button. Pure — it returns the translations and writes nothing, so the
+ * restaurant can review and edit them before saving the row.
+ *
+ * Blank inputs stay blank rather than being sent to DeepL, which keeps an
+ * item with no description from burning quota on an empty string.
+ */
+export async function translateMenuFieldsAction(
+  input: unknown,
+): Promise<ActionResult<TranslatedFields>> {
+  await requireAdmin();
+
+  const parsed = translateSchema.safeParse(input);
+  if (!parsed.success) return { ok: false, error: firstError(parsed.error) };
+
+  const { name, description } = parsed.data;
+  if (!name && !description) {
+    return { ok: false, error: 'Çevrilecek Türkçe metin yok. Önce TR alanlarını doldurun.' };
+  }
+
+  // One request per locale, each carrying only the non-empty fields.
+  const fields = (
+    [
+      ['name', name],
+      ['description', description],
+    ] as const
+  ).filter(([, value]) => value.length > 0);
+
+  try {
+    const perLocale = await Promise.all(
+      translatableLocales.map(async (locale) => {
+        const translated = await translateFromTurkish(
+          fields.map(([, value]) => value),
+          locale,
+        );
+        const result = { name: '', description: '' };
+        fields.forEach(([key], index) => {
+          result[key] = translated[index] ?? '';
+        });
+        return [locale, result] as const;
+      }),
+    );
+
+    return { ok: true, data: Object.fromEntries(perLocale) as TranslatedFields };
+  } catch (error) {
+    if (error instanceof TranslationError) return { ok: false, error: error.message };
+    return { ok: false, error: message(error, 'Çeviri yapılamadı.') };
+  }
 }

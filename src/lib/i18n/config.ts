@@ -15,7 +15,18 @@ export const locales = ['tr', 'en', 'de', 'ru'] as const;
 
 export type Locale = (typeof locales)[number];
 
-export const defaultLocale: Locale = 'tr';
+export const defaultLocale = 'tr' as const satisfies Locale;
+
+/**
+ * Locales that carry a translation of the Turkish source, i.e. every locale but
+ * the default. Admin editors and the translate action iterate this so adding a
+ * language to `locales` reaches them without further changes.
+ */
+export type TranslatableLocale = Exclude<Locale, typeof defaultLocale>;
+
+export const translatableLocales = locales.filter(
+  (locale): locale is TranslatableLocale => locale !== defaultLocale,
+);
 
 /** Human-readable display names for the locale switcher. */
 export const localeNames: Record<Locale, string> = {

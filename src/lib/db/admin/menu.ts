@@ -1,6 +1,7 @@
 import 'server-only';
 
 import { createSupabaseAdminClient } from '@/lib/supabase/admin';
+import { asMenuTranslations } from './menu-types';
 import type {
   AdminMenuCategory,
   AdminMenuItem,
@@ -31,6 +32,8 @@ export type {
   AdminMenuItem,
   CategoryInput,
   ItemInput,
+  MenuTranslation,
+  MenuTranslations,
   SortOrderUpdate,
 } from './menu-types';
 
@@ -52,14 +55,14 @@ export async function listAdminMenu(): Promise<AdminMenuCategory[]> {
 
   const { data: categories, error: catError } = await supabase
     .from('menu_categories')
-    .select('id, name, slug, description, sort_order, is_active')
+    .select('id, name, slug, description, translations, sort_order, is_active')
     .order('sort_order', { ascending: true });
   if (catError) throw new Error(catError.message);
 
   const { data: items, error: itemError } = await supabase
     .from('menu_items')
     .select(
-      'id, category_id, name, description, price, currency, tags, allergens, dietary_flags, sort_order, is_active',
+      'id, category_id, name, description, price, currency, tags, allergens, dietary_flags, translations, sort_order, is_active',
     )
     .order('sort_order', { ascending: true });
   if (itemError) throw new Error(itemError.message);
@@ -79,6 +82,7 @@ export async function listAdminMenu(): Promise<AdminMenuCategory[]> {
       dietaryFlags: row.dietary_flags ?? [],
       sortOrder: row.sort_order,
       isActive: row.is_active,
+      translations: asMenuTranslations(row.translations),
     };
     const bucket = itemsByCategory.get(row.category_id) ?? [];
     bucket.push(mapped);
@@ -92,6 +96,7 @@ export async function listAdminMenu(): Promise<AdminMenuCategory[]> {
     description: c.description,
     sortOrder: c.sort_order,
     isActive: c.is_active,
+    translations: asMenuTranslations(c.translations),
     items: itemsByCategory.get(c.id) ?? [],
   }));
 }
@@ -111,9 +116,10 @@ export async function createCategory(input: CategoryInput): Promise<AdminMenuCat
       slug: input.slug,
       description: input.description,
       is_active: input.isActive,
+      translations: input.translations,
       sort_order: nextSort,
     })
-    .select('id, name, slug, description, sort_order, is_active')
+    .select('id, name, slug, description, translations, sort_order, is_active')
     .single();
   if (error || !data) throw new Error(error?.message ?? 'Kategori eklenemedi.');
 
@@ -124,6 +130,7 @@ export async function createCategory(input: CategoryInput): Promise<AdminMenuCat
     description: data.description,
     sortOrder: data.sort_order,
     isActive: data.is_active,
+    translations: asMenuTranslations(data.translations),
     items: [],
   };
 }
@@ -137,6 +144,7 @@ export async function updateCategory(id: string, input: CategoryInput): Promise<
       slug: input.slug,
       description: input.description,
       is_active: input.isActive,
+      translations: input.translations,
     })
     .eq('id', id);
   if (error) throw new Error(error.message);
@@ -182,10 +190,11 @@ export async function createItem(input: ItemInput): Promise<AdminMenuItem> {
       allergens: input.allergens,
       dietary_flags: input.dietaryFlags,
       is_active: input.isActive,
+      translations: input.translations,
       sort_order: nextSort,
     })
     .select(
-      'id, category_id, name, description, price, currency, tags, allergens, dietary_flags, sort_order, is_active',
+      'id, category_id, name, description, price, currency, tags, allergens, dietary_flags, translations, sort_order, is_active',
     )
     .single();
   if (error || !data) throw new Error(error?.message ?? 'Ürün eklenemedi.');
@@ -202,6 +211,7 @@ export async function createItem(input: ItemInput): Promise<AdminMenuItem> {
     dietaryFlags: data.dietary_flags ?? [],
     sortOrder: data.sort_order,
     isActive: data.is_active,
+    translations: asMenuTranslations(data.translations),
   };
 }
 
@@ -219,6 +229,7 @@ export async function updateItem(id: string, input: ItemInput): Promise<void> {
       allergens: input.allergens,
       dietary_flags: input.dietaryFlags,
       is_active: input.isActive,
+      translations: input.translations,
     })
     .eq('id', id);
   if (error) throw new Error(error.message);

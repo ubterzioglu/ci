@@ -135,6 +135,7 @@ export interface Database {
           name: string;
           slug: string;
           description: string | null;
+          translations: Json;
           sort_order: number;
           is_active: boolean;
           created_at: string;
@@ -145,6 +146,7 @@ export interface Database {
           name: string;
           slug: string;
           description?: string | null;
+          translations?: Json;
           sort_order?: number;
           is_active?: boolean;
           created_at?: string;
@@ -165,6 +167,7 @@ export interface Database {
           tags: string[];
           allergens: string[];
           dietary_flags: string[];
+          translations: Json;
           sort_order: number;
           is_active: boolean;
           created_at: string;
@@ -181,6 +184,7 @@ export interface Database {
           tags?: string[];
           allergens?: string[];
           dietary_flags?: string[];
+          translations?: Json;
           sort_order?: number;
           is_active?: boolean;
           created_at?: string;

@@ -51,7 +51,7 @@ inlined into the client bundle.
 | `CONTACT_NOTIFICATION_EMAIL`     | —      | `info@cineocucina.com`                                               |
 | `ZOHO_SMTP_HOST`                 | —      | `smtp.zoho.eu` (EU account — `.com` fails auth)                      |
 | `ZOHO_SMTP_PORT`                 | —      | `465`                                                                |
-| `ZOHO_SMTP_USER`                 | —      | Zoho **account login** address, not the sending address              |
+| `ZOHO_SMTP_USER`                 | —      | Zoho mailbox that owns `MAIL_FROM` (alias ≠ mailbox)                 |
 | `ZOHO_SMTP_PASSWORD`             | —      | Zoho app password from `.env.local`                                  |
 | `MAIL_FROM`                      | —      | `Çi Neo Cucina <info@cineocucina.com>` (must be an allowed sender)   |
 | `DEEPL_API_KEY`                  | —      | _(optional — only needed for `pnpm i18n:translate`, not at runtime)_ |

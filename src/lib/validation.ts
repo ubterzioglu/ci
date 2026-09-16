@@ -1,5 +1,7 @@
 import { z } from 'zod';
 
+import { findSlotProblem, RESERVATION_MAX_PARTY } from '@/lib/reservation-rules';
+
 /**
  * Zod schemas for the public forms. Shared between the client (RHF / native)
  * and the server actions so validation rules live in one place.
@@ -30,7 +32,10 @@ export const reservationSchema = z
       .number()
       .int('Kişi sayısı tam sayı olmalı.')
       .min(1, 'En az 1 kişi.')
-      .max(50, 'En fazla 50 kişi. Daha büyük gruplar için bizimle iletişime geçin.'),
+      .max(
+        RESERVATION_MAX_PARTY,
+        `${RESERVATION_MAX_PARTY + 1} kişi ve üzeri gruplar için lütfen bizimle iletişime geçin.`,
+      ),
     requestedDate: z.string().min(1, 'Lütfen bir tarih seçin.'),
     requestedTime: z.string().min(1, 'Lütfen bir saat seçin.'),
     message: z.string().trim().max(2000).optional().or(z.literal('')),
@@ -40,6 +45,14 @@ export const reservationSchema = z
   .refine((data) => data.email || data.phone, {
     message: 'Size ulaşabilmemiz için e-posta veya telefon girin.',
     path: ['email'],
+  })
+  // Opening hours, lead time and the Sunday closure are checked here rather
+  // than only in the form: the form is a convenience, this is the rule.
+  .superRefine((data, ctx) => {
+    const problem = findSlotProblem(data.requestedDate, data.requestedTime);
+    if (problem) {
+      ctx.addIssue({ code: 'custom', path: [problem.field], message: problem.message });
+    }
   });
 
 export const contactSchema = z.object({

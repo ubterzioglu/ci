@@ -1,12 +1,53 @@
 'use client';
 
-import { useActionState } from 'react';
+import { useActionState, useState } from 'react';
 import { submitReservation } from '@/app/actions';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
 import { Textarea } from '@/components/ui/Textarea';
 import { Select } from '@/components/ui/Select';
 import type { ActionResult } from '@/lib/types';
+import { siteConfig } from '@/lib/site-config';
+import {
+  bookableTimes,
+  earliestBookableDate,
+  findSlotProblem,
+  isClosedDay,
+  RESERVATION_MAX_PARTY,
+  RESERVATION_RULE_LINES,
+} from '@/lib/reservation-rules';
+
+/** Sentinel for the "6 or more" choice — not a real party size. */
+const LARGE_PARTY_VALUE = 'large';
+
+/** Phone + WhatsApp, shown wherever the form hands the guest off to us. */
+function ContactHandoff({ title, body }: { title: string; body: string }) {
+  const { contact } = siteConfig;
+  const whatsapp = contact.phoneE164.replace(/[^\d]/g, '');
+
+  return (
+    <div className="border-terracotta/40 bg-terracotta/5 rounded-md border px-5 py-5">
+      <p className="font-display text-charcoal text-xl">{title}</p>
+      <p className="font-body text-muted mt-1.5 text-sm leading-relaxed">{body}</p>
+      <div className="mt-3 flex flex-wrap gap-2">
+        <a
+          href={`tel:${contact.phoneE164}`}
+          className="bg-olive hover:bg-olive-deep text-ivory font-body rounded-md px-4 py-2 text-sm font-semibold transition-colors"
+        >
+          {contact.phoneDisplay}
+        </a>
+        <a
+          href={`https://wa.me/${whatsapp}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="border-olive/40 text-olive hover:bg-olive hover:text-ivory font-body rounded-md border px-4 py-2 text-sm font-semibold transition-colors"
+        >
+          WhatsApp
+        </a>
+      </div>
+    </div>
+  );
+}
 
 export function ReservationForm() {
   const [state, formAction, isPending] = useActionState<ActionResult | null, FormData>(
@@ -14,10 +55,22 @@ export function ReservationForm() {
     null,
   );
 
-  // Computed per render in the user's local timezone (Intl 'en-CA' yields
-  // YYYY-MM-DD). Avoids the UTC drift and stale-tab issues of a module-scope
-  // toISOString() value, so `min` always reflects "today" for the visitor.
-  const todayISO = new Date().toLocaleDateString('en-CA');
+  // Earliest selectable day, in the restaurant's own timezone rather than the
+  // visitor's — someone booking from another country must not be offered a day
+  // that has already passed in Kaş.
+  const todayISO = earliestBookableDate();
+  const times = bookableTimes();
+
+  // Party size and date drive two "we cannot take this online" states. They are
+  // checked again on the server; here they just stop a guest filling in a form
+  // that was never going to be accepted.
+  const [partySize, setPartySize] = useState('2');
+  const [date, setDate] = useState('');
+  const [time, setTime] = useState('');
+
+  const isLargeParty = partySize === LARGE_PARTY_VALUE;
+  const slotProblem = date && time ? findSlotProblem(date, time) : null;
+  const sundayPicked = date ? isClosedDay(date) : false;
 
   if (state?.ok) {
     return (
@@ -92,20 +145,25 @@ export function ReservationForm() {
           id="res-partySize"
           name="partySize"
           label="Kişi Sayısı"
-          defaultValue="2"
+          value={partySize}
+          onChange={(e) => setPartySize(e.target.value)}
           error={fieldErrors['partySize']?.[0]}
         >
-          {Array.from({ length: 12 }, (_, i) => i + 1).map((n) => (
+          {Array.from({ length: RESERVATION_MAX_PARTY }, (_, i) => i + 1).map((n) => (
             <option key={n} value={n}>
               {n}
             </option>
           ))}
+          <option value={LARGE_PARTY_VALUE}>{RESERVATION_MAX_PARTY + 1}+</option>
         </Select>
       </div>
 
-      <p className="text-muted -mt-2 text-xs">
-        12 kişiden büyük gruplar için lütfen telefonla iletişime geçin.
-      </p>
+      {isLargeParty && (
+        <ContactHandoff
+          title="Kalabalık gruplar için sizi arayalım"
+          body={`${RESERVATION_MAX_PARTY + 1} kişi ve üzeri gruplarda masa düzenini birlikte planlamamız gerekiyor. Lütfen bizimle iletişime geçin.`}
+        />
+      )}
 
       <div className="grid gap-4 sm:grid-cols-2">
         <Input
@@ -115,18 +173,35 @@ export function ReservationForm() {
           label="Tarih"
           required
           min={todayISO}
+          value={date}
+          onChange={(e) => setDate(e.target.value)}
           error={fieldErrors['requestedDate']?.[0]}
         />
 
-        <Input
+        <Select
           id="res-requestedTime"
           name="requestedTime"
-          type="time"
           label="Saat"
           required
-          error={fieldErrors['requestedTime']?.[0]}
-        />
+          value={time}
+          onChange={(e) => setTime(e.target.value)}
+          error={fieldErrors['requestedTime']?.[0] ?? slotProblem?.message}
+        >
+          <option value="">Saat seçin</option>
+          {times.map((t) => (
+            <option key={t} value={t}>
+              {t}
+            </option>
+          ))}
+        </Select>
       </div>
+
+      {sundayPicked && (
+        <ContactHandoff
+          title="Pazar günleri kapalıyız"
+          body="Özel günlerde duruma göre açıyoruz. Pazar için bir planınız varsa lütfen bizi arayın."
+        />
+      )}
 
       <Textarea
         id="res-message"
@@ -142,9 +217,23 @@ export function ReservationForm() {
         {isPending ? 'Gönderiliyor…' : ''}
       </div>
 
-      <Button type="submit" variant="solid" size="md" disabled={isPending} className="w-full">
+      <Button
+        type="submit"
+        variant="solid"
+        size="md"
+        // Blocked states hand the guest to the phone instead; leaving the
+        // button live would only produce a rejection they cannot act on.
+        disabled={isPending || isLargeParty || sundayPicked}
+        className="w-full"
+      >
         {isPending ? 'Gönderiliyor…' : 'Rezervasyon Talep Et'}
       </Button>
+
+      <ul className="text-muted font-body mt-1 space-y-1 text-xs leading-relaxed">
+        {RESERVATION_RULE_LINES.map((line) => (
+          <li key={line}>· {line}</li>
+        ))}
+      </ul>
     </form>
   );
 }

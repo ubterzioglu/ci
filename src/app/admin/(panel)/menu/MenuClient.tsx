@@ -13,6 +13,7 @@ import {
   type AdminMenuItem,
   type CategoryInput,
   type MenuTranslations,
+  type MenuKind,
 } from '@/lib/db/admin/menu-types';
 import { LocalizedField, TranslateAllFields } from './LocalizedFields';
 import {
@@ -240,6 +241,7 @@ function CategoryBlock({
     description: category.description ?? '',
     isActive: category.isActive,
     translations: category.translations,
+    kind: category.kind,
   });
   const [busy, setBusy] = useState(false);
 
@@ -462,7 +464,13 @@ function CategoryBlock({
 
 /* --- New category form ----------------------------------------------------- */
 
-function NewCategoryForm({ onCreated }: { onCreated: (c: AdminMenuCategory) => void }) {
+function NewCategoryForm({
+  kind,
+  onCreated,
+}: {
+  kind: MenuKind;
+  onCreated: (c: AdminMenuCategory) => void;
+}) {
   const toast = useToast();
   const [name, setName] = useState('');
   const [slug, setSlug] = useState('');
@@ -494,6 +502,7 @@ function NewCategoryForm({ onCreated }: { onCreated: (c: AdminMenuCategory) => v
       description: description.trim() || null,
       isActive: true,
       translations,
+      kind,
     });
     setBusy(false);
     if (result.ok && result.data) {
@@ -566,7 +575,14 @@ function NewCategoryForm({ onCreated }: { onCreated: (c: AdminMenuCategory) => v
 
 /* --- Main client ----------------------------------------------------------- */
 
-export function MenuClient({ initialCategories }: { initialCategories: AdminMenuCategory[] }) {
+export function MenuClient({
+  initialCategories,
+  kind,
+}: {
+  initialCategories: AdminMenuCategory[];
+  /** Which menu this panel edits — new categories are created into it. */
+  kind: MenuKind;
+}) {
   const toast = useToast();
   const [categories, setCategories] = useState(initialCategories);
 
@@ -589,7 +605,7 @@ export function MenuClient({ initialCategories }: { initialCategories: AdminMenu
         title="Yeni kategori ekle"
         description="Menü kategorileri (örn. Topraktan, Denizden). Ürünler bir kategoriye bağlıdır."
       >
-        <NewCategoryForm onCreated={(c) => setCategories((prev) => [...prev, c])} />
+        <NewCategoryForm kind={kind} onCreated={(c) => setCategories((prev) => [...prev, c])} />
       </AdminCollapsible>
 
       {categories.length === 0 ? (

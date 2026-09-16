@@ -18,7 +18,9 @@ interface MenuPageBodyProps {
  * from the dictionary and breadcrumb paths are locale-prefixed.
  */
 export async function MenuPageBody({ locale }: MenuPageBodyProps) {
-  const menu = await getMenu(locale);
+  // Both menus in one round trip; the wine list is empty until the restaurant
+  // adds one, and the tab falls back to the "ask our team" notice.
+  const [menu, wineMenu] = await Promise.all([getMenu(locale, 'food'), getMenu(locale, 'wine')]);
   const dictionary = getDictionary(locale);
 
   return (
@@ -41,6 +43,7 @@ export async function MenuPageBody({ locale }: MenuPageBodyProps) {
         <div className="container-editorial max-w-4xl">
           <MenuTabs
             categories={menu}
+            wineCategories={wineMenu}
             serviceNote={getMenuServiceNote(locale)}
             wineNotice={getWineMenuNotice(locale)}
           />

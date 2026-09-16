@@ -13,7 +13,10 @@ import type { PageContent } from '@/lib/types';
  * layouts. The DB is Turkish-only, so non-default locales use the local
  * translated seed content.
  */
-export async function getPage(slug: string, locale: Locale = defaultLocale): Promise<PageContent | null> {
+export async function getPage(
+  slug: string,
+  locale: Locale = defaultLocale,
+): Promise<PageContent | null> {
   if (locale !== defaultLocale) return getLocalPage(slug, locale);
 
   const supabase = await createSupabaseServerClient();

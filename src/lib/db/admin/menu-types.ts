@@ -83,6 +83,20 @@ export function asMenuTranslations(value: unknown): MenuTranslations {
   return result;
 }
 
+/**
+ * Which menu a category belongs to. The wine list is the same shape as the food
+ * menu, so it reuses this whole stack rather than a parallel set of tables.
+ */
+export const MENU_KINDS = ['food', 'wine'] as const;
+export type MenuKind = (typeof MENU_KINDS)[number];
+export const DEFAULT_MENU_KIND: MenuKind = 'food';
+
+/** Turkish labels for the two menus, used by the panel and the public tabs. */
+export const MENU_KIND_LABELS: Record<MenuKind, string> = {
+  food: 'Ana Menü',
+  wine: 'Şarap Menüsü',
+};
+
 /** Dietary flags stored on menu_items.dietary_flags. */
 export const DIETARY_FLAGS = ['vegan', 'vegetarian'] as const;
 export type DietaryFlag = (typeof DIETARY_FLAGS)[number];
@@ -135,6 +149,7 @@ export interface AdminMenuCategory {
   sortOrder: number;
   isActive: boolean;
   translations: MenuTranslations;
+  kind: MenuKind;
   items: AdminMenuItem[];
 }
 
@@ -146,6 +161,7 @@ export interface CategoryInput {
   description: string | null;
   isActive: boolean;
   translations: MenuTranslations;
+  kind: MenuKind;
 }
 
 export interface ItemInput {

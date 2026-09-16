@@ -136,6 +136,7 @@ export interface Database {
           slug: string;
           description: string | null;
           translations: Json;
+          kind: string;
           sort_order: number;
           is_active: boolean;
           created_at: string;
@@ -147,6 +148,7 @@ export interface Database {
           slug: string;
           description?: string | null;
           translations?: Json;
+          kind?: string;
           sort_order?: number;
           is_active?: boolean;
           created_at?: string;

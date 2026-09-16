@@ -9,6 +9,8 @@ type Tab = 'food' | 'wine';
 
 interface MenuTabsProps {
   categories: MenuCategory[];
+  /** Wine list; empty until the restaurant adds one in /admin/wine. */
+  wineCategories: MenuCategory[];
   serviceNote: string;
   wineNotice: string;
 }
@@ -19,9 +21,10 @@ interface MenuTabsProps {
  * underline, the inactive one charcoal. The food tab shows the service note plus
  * the collapsible category accordion (all categories start closed). The wine tab
  * has no exported item data (panel-only on the source site), so it shows a
- * tasteful "ask our team" notice instead.
+ * tasteful "ask our team" notice instead — which is still what happens while the
+ * wine list is empty.
  */
-export function MenuTabs({ categories, serviceNote, wineNotice }: MenuTabsProps) {
+export function MenuTabs({ categories, wineCategories, serviceNote, wineNotice }: MenuTabsProps) {
   const [tab, setTab] = useState<Tab>('food');
 
   const tabClass = (active: boolean) =>
@@ -71,18 +74,27 @@ export function MenuTabs({ categories, serviceNote, wineNotice }: MenuTabsProps)
         </div>
       )}
 
-      {/* Wine panel — no item data; elegant ask-the-team notice */}
-      {tab === 'wine' && (
-        <div
-          id="panel-wine"
-          role="tabpanel"
-          aria-labelledby="tab-wine"
-          className="fade-up border-wine/25 bg-wine/5 mt-10 rounded-lg border p-8 text-center"
-        >
-          <h2 className="font-display text-wine text-3xl">Şarap Menüsü</h2>
-          <p className="text-muted mx-auto mt-3 max-w-xl text-sm leading-relaxed">{wineNotice}</p>
-        </div>
-      )}
+      {/* Wine panel — the list once there is one, the notice until then. */}
+      {tab === 'wine' &&
+        (wineCategories.length > 0 ? (
+          <div id="panel-wine" role="tabpanel" aria-labelledby="tab-wine" className="fade-up mt-10">
+            <div>
+              {wineCategories.map((category) => (
+                <MenuAccordionCategory key={category.id} category={category} />
+              ))}
+            </div>
+          </div>
+        ) : (
+          <div
+            id="panel-wine"
+            role="tabpanel"
+            aria-labelledby="tab-wine"
+            className="fade-up border-wine/25 bg-wine/5 mt-10 rounded-lg border p-8 text-center"
+          >
+            <h2 className="font-display text-wine text-3xl">Şarap Menüsü</h2>
+            <p className="text-muted mx-auto mt-3 max-w-xl text-sm leading-relaxed">{wineNotice}</p>
+          </div>
+        ))}
     </div>
   );
 }

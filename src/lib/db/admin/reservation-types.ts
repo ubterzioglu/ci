@@ -4,12 +4,7 @@
  * actual data-access functions live in reservations.ts (server-only).
  */
 
-export const RESERVATION_STATUSES = [
-  'new',
-  'confirmed',
-  'declined',
-  'cancelled',
-] as const;
+export const RESERVATION_STATUSES = ['new', 'confirmed', 'declined', 'cancelled'] as const;
 
 export type ReservationStatus = (typeof RESERVATION_STATUSES)[number];
 

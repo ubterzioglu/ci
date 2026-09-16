@@ -12,7 +12,7 @@ export default async function MenuAdminPage() {
   let loadError: string | null = null;
 
   try {
-    categories = await listAdminMenu();
+    categories = await listAdminMenu('food');
   } catch (error) {
     loadError =
       error instanceof Error && error.message
@@ -24,14 +24,14 @@ export default async function MenuAdminPage() {
     <>
       <AdminPageHeader
         eyebrow="İçerik"
-        title="Menü"
-        description="Ürünleri ve kategorileri düzenleyin. Değişiklikler hem /menu sayfasına hem de masa QR menüsüne (/qr) yansır."
+        title="Ana Menü"
+        description="Yemek kategorilerini ve ürünlerini düzenleyin. Değişiklikler hem /menu sayfasına hem de masa QR menüsüne (/qr) yansır. Şarap listesi ayrı bölümdedir."
       />
 
       {loadError ? (
         <AdminEmptyState title="Menü yüklenemedi" description={loadError} />
       ) : (
-        <MenuClient initialCategories={categories} />
+        <MenuClient initialCategories={categories} kind="food" />
       )}
     </>
   );

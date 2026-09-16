@@ -17,7 +17,7 @@ import {
   type AdminMenuCategory,
   type AdminMenuItem,
 } from '@/lib/db/admin/menu';
-import { DIETARY_FLAGS, type MenuTranslations } from '@/lib/db/admin/menu-types';
+import { DIETARY_FLAGS, MENU_KINDS, type MenuTranslations } from '@/lib/db/admin/menu-types';
 import { translatableLocales, type TranslatableLocale } from '@/lib/i18n/config';
 import { translateFromTurkish, TranslationError } from '@/lib/i18n/translate';
 import type { ActionResult } from '@/lib/types';
@@ -70,6 +70,9 @@ const categorySchema = z.object({
   description: z.string().trim().max(2000).nullable(),
   isActive: z.boolean(),
   translations: translationsSchema,
+  // Which menu the category belongs to; the panel sends it, so a wine category
+  // can never be created into the food menu by accident.
+  kind: z.enum(MENU_KINDS),
 });
 
 export async function createCategoryAction(

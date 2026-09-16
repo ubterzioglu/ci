@@ -25,10 +25,42 @@ const NAV: NavItem[] = [
     label: 'Panel',
     icon: (
       <svg viewBox="0 0 20 20" fill="none" className={iconClass} aria-hidden="true">
-        <rect x="2.5" y="2.5" width="6" height="6" rx="1.2" stroke="currentColor" strokeWidth="1.4" />
-        <rect x="11.5" y="2.5" width="6" height="6" rx="1.2" stroke="currentColor" strokeWidth="1.4" />
-        <rect x="2.5" y="11.5" width="6" height="6" rx="1.2" stroke="currentColor" strokeWidth="1.4" />
-        <rect x="11.5" y="11.5" width="6" height="6" rx="1.2" stroke="currentColor" strokeWidth="1.4" />
+        <rect
+          x="2.5"
+          y="2.5"
+          width="6"
+          height="6"
+          rx="1.2"
+          stroke="currentColor"
+          strokeWidth="1.4"
+        />
+        <rect
+          x="11.5"
+          y="2.5"
+          width="6"
+          height="6"
+          rx="1.2"
+          stroke="currentColor"
+          strokeWidth="1.4"
+        />
+        <rect
+          x="2.5"
+          y="11.5"
+          width="6"
+          height="6"
+          rx="1.2"
+          stroke="currentColor"
+          strokeWidth="1.4"
+        />
+        <rect
+          x="11.5"
+          y="11.5"
+          width="6"
+          height="6"
+          rx="1.2"
+          stroke="currentColor"
+          strokeWidth="1.4"
+        />
       </svg>
     ),
   },
@@ -38,17 +70,49 @@ const NAV: NavItem[] = [
     icon: (
       <svg viewBox="0 0 20 20" fill="none" className={iconClass} aria-hidden="true">
         <rect x="3" y="4" width="14" height="13" rx="2" stroke="currentColor" strokeWidth="1.4" />
-        <path d="M3 8h14M7 2.5v3M13 2.5v3" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+        <path
+          d="M3 8h14M7 2.5v3M13 2.5v3"
+          stroke="currentColor"
+          strokeWidth="1.4"
+          strokeLinecap="round"
+        />
       </svg>
     ),
   },
   {
     href: '/admin/menu',
-    label: 'Menü',
+    label: 'Ana Menü',
     icon: (
       <svg viewBox="0 0 20 20" fill="none" className={iconClass} aria-hidden="true">
-        <path d="M5 2.5v6M5 8.5v9M3 2.5v3a2 2 0 002 2M7 2.5v3a2 2 0 01-2 2" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
-        <path d="M13.5 2.5c-1.4 0-2.5 1.6-2.5 3.6s1.1 3.4 2.5 3.4V2.5zM13.5 9.5v8" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+        <path
+          d="M5 2.5v6M5 8.5v9M3 2.5v3a2 2 0 002 2M7 2.5v3a2 2 0 01-2 2"
+          stroke="currentColor"
+          strokeWidth="1.4"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M13.5 2.5c-1.4 0-2.5 1.6-2.5 3.6s1.1 3.4 2.5 3.4V2.5zM13.5 9.5v8"
+          stroke="currentColor"
+          strokeWidth="1.4"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    ),
+  },
+  {
+    href: '/admin/wine',
+    label: 'Şarap Menüsü',
+    icon: (
+      <svg viewBox="0 0 20 20" fill="none" className={iconClass} aria-hidden="true">
+        <path
+          d="M6.5 2.5h7l-.6 5.2a2.9 2.9 0 01-2.9 2.6 2.9 2.9 0 01-2.9-2.6L6.5 2.5zM10 10.3v5.2M7.5 17.5h5"
+          stroke="currentColor"
+          strokeWidth="1.4"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
       </svg>
     ),
   },
@@ -57,9 +121,23 @@ const NAV: NavItem[] = [
     label: 'Ana Sayfa Görselleri',
     icon: (
       <svg viewBox="0 0 20 20" fill="none" className={iconClass} aria-hidden="true">
-        <rect x="2.5" y="3.5" width="15" height="11" rx="1.6" stroke="currentColor" strokeWidth="1.4" />
+        <rect
+          x="2.5"
+          y="3.5"
+          width="15"
+          height="11"
+          rx="1.6"
+          stroke="currentColor"
+          strokeWidth="1.4"
+        />
         <circle cx="7" cy="7.5" r="1.3" stroke="currentColor" strokeWidth="1.4" />
-        <path d="M3 13l4-3.5 3 2.5 3-3 4 4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+        <path
+          d="M3 13l4-3.5 3 2.5 3-3 4 4"
+          stroke="currentColor"
+          strokeWidth="1.4"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
       </svg>
     ),
   },
@@ -69,8 +147,18 @@ const NAV: NavItem[] = [
     icon: (
       <svg viewBox="0 0 20 20" fill="none" className={iconClass} aria-hidden="true">
         <circle cx="7.5" cy="7" r="2.6" stroke="currentColor" strokeWidth="1.4" />
-        <path d="M3 16c0-2.5 2-4.2 4.5-4.2S12 13.5 12 16" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
-        <path d="M13 5.2a2.4 2.4 0 010 4.4M14.2 16c0-2.2-1.2-3.7-2.7-4.2" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+        <path
+          d="M3 16c0-2.5 2-4.2 4.5-4.2S12 13.5 12 16"
+          stroke="currentColor"
+          strokeWidth="1.4"
+          strokeLinecap="round"
+        />
+        <path
+          d="M13 5.2a2.4 2.4 0 010 4.4M14.2 16c0-2.2-1.2-3.7-2.7-4.2"
+          stroke="currentColor"
+          strokeWidth="1.4"
+          strokeLinecap="round"
+        />
       </svg>
     ),
   },
@@ -79,8 +167,18 @@ const NAV: NavItem[] = [
     label: 'Revizyonlar',
     icon: (
       <svg viewBox="0 0 20 20" fill="none" className={iconClass} aria-hidden="true">
-        <path d="M4 14.5V16h1.5l8-8L12 6.5l-8 8z" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" />
-        <path d="M12.5 6l1.5 1.5 1.2-1.2a1 1 0 000-1.4l-.1-.1a1 1 0 00-1.4 0L12.5 6z" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" />
+        <path
+          d="M4 14.5V16h1.5l8-8L12 6.5l-8 8z"
+          stroke="currentColor"
+          strokeWidth="1.4"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M12.5 6l1.5 1.5 1.2-1.2a1 1 0 000-1.4l-.1-.1a1 1 0 00-1.4 0L12.5 6z"
+          stroke="currentColor"
+          strokeWidth="1.4"
+          strokeLinejoin="round"
+        />
       </svg>
     ),
   },
@@ -89,7 +187,12 @@ const NAV: NavItem[] = [
     label: 'Güncellemeler',
     icon: (
       <svg viewBox="0 0 20 20" fill="none" className={iconClass} aria-hidden="true">
-        <path d="M10 2.5l1.9 3.9 4.3.6-3.1 3 .7 4.3L10 12.9 6.3 14.3l.7-4.3-3.1-3 4.3-.6L10 2.5z" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" />
+        <path
+          d="M10 2.5l1.9 3.9 4.3.6-3.1 3 .7 4.3L10 12.9 6.3 14.3l.7-4.3-3.1-3 4.3-.6L10 2.5z"
+          stroke="currentColor"
+          strokeWidth="1.4"
+          strokeLinejoin="round"
+        />
       </svg>
     ),
   },
@@ -98,8 +201,18 @@ const NAV: NavItem[] = [
     label: 'Kullanım Kılavuzu',
     icon: (
       <svg viewBox="0 0 20 20" fill="none" className={iconClass} aria-hidden="true">
-        <path d="M3.5 4.5A1.5 1.5 0 015 3h4.5v12.5H5a1.5 1.5 0 00-1.5 1.5V4.5z" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" />
-        <path d="M16.5 4.5A1.5 1.5 0 0015 3h-4.5v12.5H15a1.5 1.5 0 011.5 1.5V4.5z" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" />
+        <path
+          d="M3.5 4.5A1.5 1.5 0 015 3h4.5v12.5H5a1.5 1.5 0 00-1.5 1.5V4.5z"
+          stroke="currentColor"
+          strokeWidth="1.4"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M16.5 4.5A1.5 1.5 0 0015 3h-4.5v12.5H15a1.5 1.5 0 011.5 1.5V4.5z"
+          stroke="currentColor"
+          strokeWidth="1.4"
+          strokeLinejoin="round"
+        />
       </svg>
     ),
   },
@@ -116,12 +229,12 @@ export function AdminSidebar({ className }: { className?: string }) {
   return (
     <aside
       className={cn(
-        'flex h-full flex-col rounded-lg border border-stone bg-marble/95 p-3 shadow-[0_20px_60px_rgba(35,33,28,0.08)]',
+        'border-stone bg-marble/95 flex h-full flex-col rounded-lg border p-3 shadow-[0_20px_60px_rgba(35,33,28,0.08)]',
         className,
       )}
     >
-      <div className="flex flex-col items-center border-b border-stone/70 px-1.5 pb-4 pt-2 text-center">
-        <div className="font-display text-2xl leading-none text-charcoal">Çi Neo Cucina</div>
+      <div className="border-stone/70 flex flex-col items-center border-b px-1.5 pt-2 pb-4 text-center">
+        <div className="font-display text-charcoal text-2xl leading-none">Çi Neo Cucina</div>
         <div className="eyebrow mt-2">Yönetim Paneli</div>
       </div>
 
@@ -150,7 +263,7 @@ export function AdminSidebar({ className }: { className?: string }) {
               >
                 {item.icon}
               </span>
-              <span className="min-w-0 flex-1 font-body text-[13px] font-semibold">
+              <span className="font-body min-w-0 flex-1 text-[13px] font-semibold">
                 {item.label}
               </span>
             </Link>
@@ -158,15 +271,26 @@ export function AdminSidebar({ className }: { className?: string }) {
         })}
       </nav>
 
-      <div className="mt-3 border-t border-stone/70 pt-3">
+      <div className="border-stone/70 mt-3 border-t pt-3">
         <form action={signOutAction}>
           <button
             type="submit"
-            className="inline-flex w-full items-center justify-center gap-1.5 rounded-md bg-charcoal px-3 py-2 font-body text-[12px] font-semibold text-ivory transition-colors hover:bg-charcoal-soft"
+            className="bg-charcoal font-body text-ivory hover:bg-charcoal-soft inline-flex w-full items-center justify-center gap-1.5 rounded-md px-3 py-2 text-[12px] font-semibold transition-colors"
           >
             <svg viewBox="0 0 20 20" fill="none" className="h-3.5 w-3.5" aria-hidden="true">
-              <path d="M8 6V4.5A1.5 1.5 0 019.5 3h5A1.5 1.5 0 0116 4.5v11a1.5 1.5 0 01-1.5 1.5h-5A1.5 1.5 0 018 15.5V14" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
-              <path d="M3.5 10h8M9 7l3 3-3 3" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+              <path
+                d="M8 6V4.5A1.5 1.5 0 019.5 3h5A1.5 1.5 0 0116 4.5v11a1.5 1.5 0 01-1.5 1.5h-5A1.5 1.5 0 018 15.5V14"
+                stroke="currentColor"
+                strokeWidth="1.4"
+                strokeLinecap="round"
+              />
+              <path
+                d="M3.5 10h8M9 7l3 3-3 3"
+                stroke="currentColor"
+                strokeWidth="1.4"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
             </svg>
             Çıkış Yap
           </button>

@@ -1,7 +1,14 @@
 import 'server-only';
 
 import { createSupabaseAdminClient } from '@/lib/supabase/admin';
-import { asMenuTranslations } from './menu-types';
+import { asMenuTranslations, DEFAULT_MENU_KIND, MENU_KINDS, type MenuKind } from './menu-types';
+
+/** Narrow the free-text `kind` column; anything unexpected reads as food. */
+function asMenuKind(value: unknown): MenuKind {
+  return (MENU_KINDS as readonly string[]).includes(String(value))
+    ? (value as MenuKind)
+    : DEFAULT_MENU_KIND;
+}
 import type {
   AdminMenuCategory,
   AdminMenuItem,
@@ -28,6 +35,7 @@ import type {
  */
 
 export type {
+  MenuKind,
   AdminMenuCategory,
   AdminMenuItem,
   CategoryInput,
@@ -50,12 +58,15 @@ function client() {
  * both ordered by sort_order. Items with no category are dropped from this view
  * (the panel always assigns a category on create).
  */
-export async function listAdminMenu(): Promise<AdminMenuCategory[]> {
+export async function listAdminMenu(
+  kind: MenuKind = DEFAULT_MENU_KIND,
+): Promise<AdminMenuCategory[]> {
   const supabase = client();
 
   const { data: categories, error: catError } = await supabase
     .from('menu_categories')
-    .select('id, name, slug, description, translations, sort_order, is_active')
+    .select('id, name, slug, description, translations, kind, sort_order, is_active')
+    .eq('kind', kind)
     .order('sort_order', { ascending: true });
   if (catError) throw new Error(catError.message);
 
@@ -97,6 +108,7 @@ export async function listAdminMenu(): Promise<AdminMenuCategory[]> {
     sortOrder: c.sort_order,
     isActive: c.is_active,
     translations: asMenuTranslations(c.translations),
+    kind: asMenuKind(c.kind),
     items: itemsByCategory.get(c.id) ?? [],
   }));
 }
@@ -117,9 +129,10 @@ export async function createCategory(input: CategoryInput): Promise<AdminMenuCat
       description: input.description,
       is_active: input.isActive,
       translations: input.translations,
+      kind: input.kind,
       sort_order: nextSort,
     })
-    .select('id, name, slug, description, translations, sort_order, is_active')
+    .select('id, name, slug, description, translations, kind, sort_order, is_active')
     .single();
   if (error || !data) throw new Error(error?.message ?? 'Kategori eklenemedi.');
 
@@ -131,6 +144,7 @@ export async function createCategory(input: CategoryInput): Promise<AdminMenuCat
     sortOrder: data.sort_order,
     isActive: data.is_active,
     translations: asMenuTranslations(data.translations),
+    kind: asMenuKind(data.kind),
     items: [],
   };
 }
@@ -145,6 +159,7 @@ export async function updateCategory(id: string, input: CategoryInput): Promise<
       description: input.description,
       is_active: input.isActive,
       translations: input.translations,
+      kind: input.kind,
     })
     .eq('id', id);
   if (error) throw new Error(error.message);

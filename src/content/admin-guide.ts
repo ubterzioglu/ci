@@ -70,14 +70,14 @@ export const GUIDE_SECTIONS: GuideSection[] = [
     tips: ['Yeni talepler en üstte görünür; düzenli olarak kontrol edin.'],
   },
   {
-    title: 'Menü',
+    title: 'Ana Menü',
     summary: 'Kategoriler ve yemekler — ekleme, düzenleme, sıralama.',
     body: [
-      'Sitedeki menü buradan yönetilir. Önce kategoriler (ör. Başlangıçlar, ' +
+      'Sitedeki yemek menüsü buradan yönetilir. Önce kategoriler (ör. Başlangıçlar, ' +
         'Ana Yemekler), sonra her kategorinin altındaki yemekler düzenlenir.',
     ],
     steps: [
-      'Sol menüden “Menü” bölümüne girin.',
+      'Sol menüden “Ana Menü” bölümüne girin.',
       'Yeni kategori eklemek için kategori formunu kullanın; ad ve sıra verin.',
       'Bir kategoriye yemek eklemek için yemek formunu doldurun: ad, açıklama, fiyat.',
       'Var olan bir kaydı düzenlemek için üzerindeki düzenle seçeneğini kullanın.',
@@ -86,6 +86,27 @@ export const GUIDE_SECTIONS: GuideSection[] = [
     tips: [
       'Fiyatları güncel tutun; değişiklik anında sitedeki menüye yansır.',
       'Bir yemeği geçici olarak gizlemek için pasif yapın, silmek zorunda değilsiniz.',
+    ],
+  },
+  {
+    title: 'Şarap Menüsü',
+    summary: 'Şarap listesini kategori ve şaraplarla yönetme.',
+    body: [
+      'Şarap listesi ana menüden ayrı bir bölümdedir ama aynı şekilde çalışır: önce ' +
+        'kategori (örn. Beyaz, Kırmızı, Rosé), sonra o kategoriye şarapları eklersiniz.',
+      'Siz şarap eklemeden önce sitedeki “Şarap Menüsü” sekmesinde “ekibimize danışın” ' +
+        'notu görünür. İlk şarabı eklediğinizde not kalkar, liste görünmeye başlar.',
+    ],
+    steps: [
+      'Sol menüden “Şarap Menüsü” bölümüne girin.',
+      'Önce bir kategori ekleyin (örn. “Beyaz Şaraplar”).',
+      'Kategoriye şarapları ekleyin: ad, açıklama ve fiyat.',
+      'Dört dilde de görünmesi için “Türkçeden Tümünü Çevir” butonunu kullanın.',
+      'Çeviriler makine çevirisidir — kaydetmeden önce gözden geçirin.',
+    ],
+    tips: [
+      'Bir şarabı geçici olarak listeden çıkarmak için gizleyin, silmeniz gerekmez.',
+      'Fiyatı boş bırakırsanız sitede fiyat yerine “sorunuz” görünür.',
     ],
   },
   {

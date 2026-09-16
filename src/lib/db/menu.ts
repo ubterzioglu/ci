@@ -2,7 +2,12 @@ import 'server-only';
 
 import { createSupabaseServerClient } from '@/lib/supabase/server';
 import { getLocalMenu } from '@/content/menu-data';
-import { asMenuTranslations, localiseMenuText } from '@/lib/db/admin/menu-types';
+import {
+  asMenuTranslations,
+  localiseMenuText,
+  DEFAULT_MENU_KIND,
+  type MenuKind,
+} from '@/lib/db/admin/menu-types';
 import { defaultLocale, type Locale } from '@/lib/i18n/config';
 import type { MenuCategory, MenuItem } from '@/lib/types';
 
@@ -22,8 +27,14 @@ import type { MenuCategory, MenuItem } from '@/lib/types';
  * which meant nothing the restaurant did in /admin/menu — a new dish, a price
  * change — ever reached the EN/DE/RU menus.
  */
-export async function getMenu(locale: Locale = defaultLocale): Promise<MenuCategory[]> {
-  const localMenu = getLocalMenu(locale);
+export async function getMenu(
+  locale: Locale = defaultLocale,
+  kind: MenuKind = DEFAULT_MENU_KIND,
+): Promise<MenuCategory[]> {
+  // The static fallback only ever held the food menu; a wine list exists purely
+  // in the database, so an empty result there means an empty wine tab, not a
+  // reason to fall back.
+  const localMenu = kind === DEFAULT_MENU_KIND ? getLocalMenu(locale) : [];
 
   const supabase = await createSupabaseServerClient();
   if (!supabase) return localMenu;
@@ -31,6 +42,7 @@ export async function getMenu(locale: Locale = defaultLocale): Promise<MenuCateg
   const { data: categories, error: catError } = await supabase
     .from('menu_categories')
     .select('id, name, slug, description, translations, sort_order')
+    .eq('kind', kind)
     .eq('is_active', true)
     .order('sort_order', { ascending: true });
 

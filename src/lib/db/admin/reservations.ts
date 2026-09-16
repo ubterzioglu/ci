@@ -1,7 +1,11 @@
 import 'server-only';
 
 import { createSupabaseAdminClient } from '@/lib/supabase/admin';
-import { isReservationStatus, type AdminReservation, type ReservationStatus } from './reservation-types';
+import {
+  isReservationStatus,
+  type AdminReservation,
+  type ReservationStatus,
+} from './reservation-types';
 
 /**
  * Admin data layer for reservation requests. The panel is gated by the shared
@@ -47,18 +51,55 @@ export async function listReservations(): Promise<AdminReservation[]> {
   }));
 }
 
-/** Updates a reservation's status. Throws on failure so the action can surface it. */
+/** The row as it now stands, plus the status it held before the update. */
+export interface ReservationStatusChange {
+  reservation: AdminReservation;
+  previousStatus: ReservationStatus;
+}
+
+/**
+ * Updates a reservation's status and reports what changed.
+ *
+ * The caller needs both halves: the row (to email the guest) and the previous
+ * status (to tell a genuine new→confirmed transition from re-confirming an
+ * already-confirmed booking, which must not send a second mail).
+ *
+ * Throws on failure so the action can surface it.
+ */
 export async function setReservationStatus(
   id: string,
   status: ReservationStatus,
-): Promise<void> {
+): Promise<ReservationStatusChange> {
   const supabase = createSupabaseAdminClient();
   if (!supabase) throw new Error('Supabase yapılandırılmamış.');
 
-  const { error } = await supabase
+  const { data: before, error: readError } = await supabase
     .from('reservation_requests')
-    .update({ status })
-    .eq('id', id);
+    .select(
+      'id, name, email, phone, party_size, requested_date, requested_time, message, status, created_at',
+    )
+    .eq('id', id)
+    .maybeSingle();
 
+  if (readError) throw new Error(readError.message);
+  if (!before) throw new Error('Rezervasyon bulunamadı.');
+
+  const { error } = await supabase.from('reservation_requests').update({ status }).eq('id', id);
   if (error) throw new Error(error.message);
+
+  return {
+    previousStatus: isReservationStatus(before.status) ? before.status : 'new',
+    reservation: {
+      id: before.id,
+      name: before.name,
+      email: before.email,
+      phone: before.phone,
+      partySize: before.party_size,
+      requestedDate: before.requested_date,
+      requestedTime: before.requested_time,
+      message: before.message,
+      status,
+      createdAt: before.created_at,
+    },
+  };
 }

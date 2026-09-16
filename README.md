@@ -110,9 +110,13 @@ Open http://localhost:3000 in your browser.
 | `SUPABASE_ACCESS_TOKEN`          | Supabase CLI access token (used by seed and type generation scripts)                          | No       |
 | `SUPABASE_DB_URL`                | Direct Postgres connection string (used by seed script)                                       | No       |
 | `DEEPL_API_KEY`                  | DeepL API key for generating EN/DE/RU translations from Turkish source                        | No       |
-| `RESEND_API_KEY`                 | Resend email provider API key for form notifications (if empty, forms only store submissions) | No       |
-| `RESERVATION_NOTIFICATION_EMAIL` | Email address to receive reservation form submissions                                         | No       |
-| `CONTACT_NOTIFICATION_EMAIL`     | Email address to receive contact form submissions                                             | No       |
+| `ZOHO_SMTP_HOST`                 | Zoho SMTP host (`smtp.zoho.eu` for EU accounts, else `smtp.zoho.com`)                          | No       |
+| `ZOHO_SMTP_PORT`                 | Zoho SMTP port (465 implicit TLS, 587 STARTTLS). Defaults to 465                               | No       |
+| `ZOHO_SMTP_USER`                 | Zoho mailbox mail is sent from, e.g. `info@cineocucina.com`                                   | No       |
+| `ZOHO_SMTP_PASSWORD`             | Zoho **app-specific** password (the account password is rejected by SMTP)                     | No       |
+| `MAIL_FROM`                      | Sender shown to recipients; defaults to `ZOHO_SMTP_USER`                                      | No       |
+| `RESERVATION_NOTIFICATION_EMAIL` | Where new reservation requests are announced                                         | No       |
+| `CONTACT_NOTIFICATION_EMAIL`     | Where contact form messages are announced                                             | No       |
 
 ## Available Scripts
 

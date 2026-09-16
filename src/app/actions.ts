@@ -51,13 +51,33 @@ export async function submitReservation(
 
   const notificationEmail = process.env.RESERVATION_NOTIFICATION_EMAIL;
   if (notificationEmail) {
+    const { name, email, phone, partySize, requestedDate, requestedTime, message } = result.data;
+
+    // The guest's own contact details belong in the body: without them the
+    // restaurant has to open the admin panel just to phone someone back.
+    const lines = [
+      'Yeni bir rezervasyon talebi alındı.',
+      '',
+      `Ad: ${name}`,
+      `Tarih: ${requestedDate}`,
+      `Saat: ${requestedTime}`,
+      `Kişi: ${partySize}`,
+      `E-posta: ${email || '—'}`,
+      `Telefon: ${phone || '—'}`,
+      `Not: ${message || '—'}`,
+      '',
+      'Talebi onaylamak için: /admin/reservations',
+    ];
+
+    // Fire-and-forget on the public form: the reservation is already saved and
+    // the guest must not see an error just because the notification failed.
     await sendNotificationEmail({
       to: notificationEmail,
-      subject: 'Yeni Rezervasyon Talebi — Çi Neo Cucina',
-      text: `Yeni bir rezervasyon talebi alındı.\n\nAd: ${result.data.name}\nTarih: ${result.data.requestedDate}\nSaat: ${result.data.requestedTime}\nKişi: ${result.data.partySize}`,
-    }).catch(() => {
-      // Fire-and-forget: ignore email failures.
-    });
+      subject: `Yeni Rezervasyon — ${name}, ${requestedDate} ${requestedTime}`,
+      text: lines.join('\n'),
+      // Lets the restaurant hit Reply and reach the guest directly.
+      ...(email ? { replyTo: email } : {}),
+    }).catch(() => {});
   }
 
   return { ok: true };
@@ -107,13 +127,22 @@ export async function submitContact(
 
   const notificationEmail = process.env.CONTACT_NOTIFICATION_EMAIL;
   if (notificationEmail) {
+    const { name, email, phone, subject, message } = result.data;
     await sendNotificationEmail({
       to: notificationEmail,
-      subject: 'Yeni İletişim Mesajı — Çi Neo Cucina',
-      text: `Yeni bir iletişim mesajı alındı.\n\nAd: ${result.data.name}\nKonu: ${result.data.subject ?? '—'}\nMesaj: ${result.data.message}`,
-    }).catch(() => {
-      // Fire-and-forget: ignore email failures.
-    });
+      subject: `Yeni İletişim Mesajı — ${name}`,
+      text: [
+        'Yeni bir iletişim mesajı alındı.',
+        '',
+        `Ad: ${name}`,
+        `E-posta: ${email || '—'}`,
+        `Telefon: ${phone || '—'}`,
+        `Konu: ${subject ?? '—'}`,
+        '',
+        message,
+      ].join('\n'),
+      ...(email ? { replyTo: email } : {}),
+    }).catch(() => {});
   }
 
   return { ok: true };

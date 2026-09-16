@@ -9,11 +9,11 @@
  *
  * Turkish is the source of truth. This script reads the TR content
  * (menu-data.ts, pages-data.ts, dictionaries.ts), translates the translatable
- * strings TR→EN and TR→DE via DeepL, and writes overlay files consumed by the
+ * strings TR→EN, TR→DE and TR→RU via DeepL, and writes overlay files consumed by the
  * app:
- *   src/lib/i18n/generated/menu.{en,de}.json
- *   src/lib/i18n/generated/pages.{en,de}.json
- *   src/lib/i18n/generated/ui.{en,de}.json
+ *   src/lib/i18n/generated/menu.{en,de,ru}.json
+ *   src/lib/i18n/generated/pages.{en,de,ru}.json
+ *   src/lib/i18n/generated/ui.{en,de,ru}.json
  *
  * IDEMPOTENT: by default it only translates strings not already present in the
  * existing generated file (so human-reviewed corrections are never clobbered).
@@ -38,10 +38,11 @@ config({ path: '.env.local' });
 const FORCE = process.argv.includes('--force');
 const GEN_DIR = join(process.cwd(), 'src', 'lib', 'i18n', 'generated');
 
-type DeepLTarget = 'EN' | 'DE';
+type DeepLTarget = 'EN' | 'DE' | 'RU';
 const TARGETS: { lang: DeepLTarget; locale: string }[] = [
   { lang: 'EN', locale: 'en' },
   { lang: 'DE', locale: 'de' },
+  { lang: 'RU', locale: 'ru' },
 ];
 
 interface DeepLResponse {
@@ -159,11 +160,13 @@ function buildMenuOverlay(t: T) {
   for (const cat of menuCategories) {
     const name = dot(t, `menu.cat.${cat.id}.name`);
     const description = dot(t, `menu.cat.${cat.id}.description`);
-    if (name || description) categories[cat.id] = { ...(name && { name }), ...(description && { description }) };
+    if (name || description)
+      categories[cat.id] = { ...(name && { name }), ...(description && { description }) };
     for (const item of cat.items) {
       const iname = dot(t, `menu.item.${item.id}.name`);
       const idesc = dot(t, `menu.item.${item.id}.description`);
-      if (iname || idesc) items[item.id] = { ...(iname && { name: iname }), ...(idesc && { description: idesc }) };
+      if (iname || idesc)
+        items[item.id] = { ...(iname && { name: iname }), ...(idesc && { description: idesc }) };
     }
   }
   const serviceNote = dot(t, 'menu.note.service');

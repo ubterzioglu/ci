@@ -9,7 +9,7 @@ Modern restaurant website for Çi Neo Cucina, a Mediterranean and Anatolian chef
 - **Forms**: Server Actions + Zod validation
 - **Package Manager**: pnpm 10.28.1
 - **Deployment**: Coolify (primary) or Vercel-compatible
-- **Internationalization**: Turkish (default); English and German via DeepL API
+- **Internationalization**: Turkish (default); English, German and Russian via DeepL API
 
 ## Features
 
@@ -19,7 +19,7 @@ Modern restaurant website for Çi Neo Cucina, a Mediterranean and Anatolian chef
 - Type-safe forms using Server Actions and Zod validation
 - Responsive design with Tailwind CSS v4
 - Row-level security for public content visibility
-- Multi-language support (TR, EN, DE) via DeepL integration
+- Multi-language support (TR, EN, DE, RU) via DeepL integration
 - 301 redirects from the legacy site's slugs
 
 ## Prerequisites
@@ -109,26 +109,26 @@ Open http://localhost:3000 in your browser.
 | `SUPABASE_SECRET_KEY`            | Alternative server-side secret key (optional)                                                 | No       |
 | `SUPABASE_ACCESS_TOKEN`          | Supabase CLI access token (used by seed and type generation scripts)                          | No       |
 | `SUPABASE_DB_URL`                | Direct Postgres connection string (used by seed script)                                       | No       |
-| `DEEPL_API_KEY`                  | DeepL API key for generating EN/DE translations from Turkish source                           | No       |
+| `DEEPL_API_KEY`                  | DeepL API key for generating EN/DE/RU translations from Turkish source                        | No       |
 | `RESEND_API_KEY`                 | Resend email provider API key for form notifications (if empty, forms only store submissions) | No       |
 | `RESERVATION_NOTIFICATION_EMAIL` | Email address to receive reservation form submissions                                         | No       |
 | `CONTACT_NOTIFICATION_EMAIL`     | Email address to receive contact form submissions                                             | No       |
 
 ## Available Scripts
 
-| Script                 | Purpose                                                                   |
-| ---------------------- | ------------------------------------------------------------------------- |
-| `pnpm dev`             | Start Next.js development server on port 3000                             |
-| `pnpm build`           | Build production bundle                                                   |
-| `pnpm start`           | Start production server                                                   |
-| `pnpm lint`            | Run ESLint on source files                                                |
-| `pnpm typecheck`       | Run TypeScript type checker                                               |
-| `pnpm format`          | Format all code with Prettier                                             |
-| `pnpm format:check`    | Check code formatting without changes                                     |
-| `pnpm db:types`        | Generate TypeScript types from Supabase schema                            |
-| `pnpm db:seed`         | Seed the database with initial content from `scripts/seed-supabase.ts`    |
-| `pnpm db:reset`        | (Local Supabase only) Reset database and re-apply migrations              |
-| `pnpm i18n:translate`  | Generate EN/DE translations from Turkish source via DeepL                 |
+| Script                | Purpose                                                                |
+| --------------------- | ---------------------------------------------------------------------- |
+| `pnpm dev`            | Start Next.js development server on port 3000                          |
+| `pnpm build`          | Build production bundle                                                |
+| `pnpm start`          | Start production server                                                |
+| `pnpm lint`           | Run ESLint on source files                                             |
+| `pnpm typecheck`      | Run TypeScript type checker                                            |
+| `pnpm format`         | Format all code with Prettier                                          |
+| `pnpm format:check`   | Check code formatting without changes                                  |
+| `pnpm db:types`       | Generate TypeScript types from Supabase schema                         |
+| `pnpm db:seed`        | Seed the database with initial content from `scripts/seed-supabase.ts` |
+| `pnpm db:reset`       | (Local Supabase only) Reset database and re-apply migrations           |
+| `pnpm i18n:translate` | Generate EN/DE/RU translations from Turkish source via DeepL           |
 
 ## Project Structure
 

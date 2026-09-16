@@ -1,16 +1,17 @@
 /**
  * i18n/config.ts — Localization configuration for Çi Neo Cucina
  *
- * Standalone module — does NOT import from src/lib/types.ts to keep the
- * i18n layer decoupled from the domain model layer. Locale types are
- * intentionally re-declared here; keep them in sync if types.ts changes.
+ * This is the single source of truth for the site's locales. Adding one here
+ * makes TypeScript flag every per-locale map that still needs an entry (the
+ * dictionaries, the menu/page overlays, the OG locale map), and the language
+ * switcher, sitemap and /[lang] route params all derive from `locales`.
  *
  * This is a localization-ready, TR-first setup. Full next-intl or similar
  * middleware integration can be layered on top of this config without
  * breaking changes.
  */
 
-export const locales = ['tr', 'en', 'de'] as const;
+export const locales = ['tr', 'en', 'de', 'ru'] as const;
 
 export type Locale = (typeof locales)[number];
 
@@ -21,6 +22,7 @@ export const localeNames: Record<Locale, string> = {
   tr: 'Türkçe',
   en: 'English',
   de: 'Deutsch',
+  ru: 'Русский',
 };
 
 /**

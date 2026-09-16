@@ -2,7 +2,7 @@
  * i18n/dictionaries.ts — UI-string dictionaries for Çi Neo Cucina
  *
  * Turkish (`tr`) is the canonical source. EN/DE are built by deep-merging the
- * generated overlays from `src/lib/i18n/generated/ui.{en,de}.json` (written by
+ * generated overlays from `src/lib/i18n/generated/ui.{en,de,ru}.json` (written by
  * `pnpm i18n:translate`, DeepL) over the TR base, so any string not yet
  * translated falls back to Turkish rather than shipping wrong or empty text.
  */
@@ -11,6 +11,7 @@ import type { Locale } from './config';
 import { defaultLocale } from './config';
 import uiEn from './generated/ui.en.json';
 import uiDe from './generated/ui.de.json';
+import uiRu from './generated/ui.ru.json';
 
 // ---------------------------------------------------------------------------
 // Dictionary shape
@@ -74,6 +75,7 @@ export const dictionaries: Record<Locale, Dictionary> = {
   tr,
   en: withOverlay(uiEn as DictionaryOverlay),
   de: withOverlay(uiDe as DictionaryOverlay),
+  ru: withOverlay(uiRu as DictionaryOverlay),
 };
 
 // ---------------------------------------------------------------------------

@@ -1,11 +1,11 @@
 import { notFound } from 'next/navigation';
 
 import { SiteChrome } from '@/components/layout/SiteChrome';
-import { defaultLocale, isLocale } from '@/lib/i18n/config';
+import { defaultLocale, isLocale, locales } from '@/lib/i18n/config';
 
 /**
- * Layout for the locale-prefixed public site (EN/DE). Mirrors the unprefixed TR
- * layout (`(site)/layout.tsx`) but threads the active locale into the shared
+ * Layout for the locale-prefixed public site. Mirrors the unprefixed TR layout
+ * (`(site)/layout.tsx`) but threads the active locale into the shared
  * SiteChrome.
  *
  * Routing strategy is "unprefixed default": Turkish keeps bare URLs, so the
@@ -13,7 +13,8 @@ import { defaultLocale, isLocale } from '@/lib/i18n/config';
  * invalid prefix) 404s here rather than duplicating the TR pages.
  */
 export function generateStaticParams(): { lang: string }[] {
-  return [{ lang: 'en' }, { lang: 'de' }];
+  // Derived from `locales` so adding a language needs no change here.
+  return locales.filter((locale) => locale !== defaultLocale).map((lang) => ({ lang }));
 }
 
 export default async function LangLayout({

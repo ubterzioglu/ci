@@ -4,6 +4,7 @@ import type { PageContent } from '@/lib/types';
 import { aboutContent, homeContent, seedPages } from './pages-data';
 import pagesEn from '@/lib/i18n/generated/pages.en.json';
 import pagesDe from '@/lib/i18n/generated/pages.de.json';
+import pagesRu from '@/lib/i18n/generated/pages.ru.json';
 
 /**
  * Page content translations (overlay model).
@@ -41,17 +42,20 @@ interface PagesLocaleFile {
 
 const en = pagesEn as PagesLocaleFile;
 const de = pagesDe as PagesLocaleFile;
+const ru = pagesRu as PagesLocaleFile;
 
 export const aboutTextByLocale: Record<Locale, DeepPartial<AboutContent>> = {
   tr: {},
   en: en.about ?? {},
   de: de.about ?? {},
+  ru: ru.about ?? {},
 };
 
 export const homeTextByLocale: Record<Locale, DeepPartial<HomeContent>> = {
   tr: {},
   en: en.home ?? {},
   de: de.home ?? {},
+  ru: ru.home ?? {},
 };
 
 /**
@@ -99,12 +103,15 @@ export function getHomeContent(locale: Locale): HomeContent {
  * `seedPages` (TR) supplies slug/contentMd/ogImageUrl. Filled by the
  * translation pipeline; empty entries fall back to Turkish.
  */
-type PageMetaOverlay = Partial<Pick<PageContent, 'title' | 'excerpt' | 'seoTitle' | 'seoDescription'>>;
+type PageMetaOverlay = Partial<
+  Pick<PageContent, 'title' | 'excerpt' | 'seoTitle' | 'seoDescription'>
+>;
 
 export const seedPagesByLocale: Record<Locale, Record<string, PageMetaOverlay>> = {
   tr: {},
   en: en.seo ?? {},
   de: de.seo ?? {},
+  ru: ru.seo ?? {},
 };
 
 /** A single page's content for a locale (TR seed + locale overlay). */

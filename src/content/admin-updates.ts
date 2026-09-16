@@ -12,6 +12,16 @@ export interface UpdateGroup {
 
 export const UPDATE_ENTRIES: UpdateGroup[] = [
   {
+    date: '16 Eylül 2026',
+    title: 'Rusça dil seçeneği ve menüdeki servis bedeli notu',
+    items: [
+      'Siteye Rusça eklendi: dil menüsünde “Русский” seçeneği ve /ru adresleri yayında. Menü, sayfa içerikleri ve gezinme yazıları Rusçaya çevrildi.',
+      'Arama motorlarına Rusça sayfalar da bildiriliyor (site haritası ve hreflang etiketleri güncellendi).',
+      'Menüdeki “Hesaba %10 servis bedeli eklenecektir” ibaresi kaldırıldı; artık servis bedeli alınmıyor. Yıldızlı (*) ürünlerin ana yemek porsiyonu olduğu notu duruyor.',
+      'Bu değişiklik dört dilde birden yapıldı — Türkçe, İngilizce, Almanca ve Rusça menülerde servis bedeli yazısı görünmüyor.',
+    ],
+  },
+  {
     date: '30 Haziran 2026',
     title: 'Çok dilli site (Türkçe / İngilizce / Almanca)',
     items: [

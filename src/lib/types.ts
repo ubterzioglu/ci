@@ -6,10 +6,9 @@
  * the local content fallback and the database can satisfy the same interface.
  */
 
-export type Locale = 'tr' | 'en' | 'de';
-
-export const LOCALES: readonly Locale[] = ['tr', 'en', 'de'] as const;
-export const DEFAULT_LOCALE: Locale = 'tr';
+// The locale list lives once, in @/lib/i18n/config — every consumer imports it
+// from there. A second copy used to sit here and had to be kept in sync by
+// hand; it was unused and is gone rather than left to drift.
 
 export interface MenuItem {
   id: string;

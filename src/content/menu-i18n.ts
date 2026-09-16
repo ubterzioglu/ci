@@ -1,6 +1,7 @@
 import type { Locale } from '@/lib/i18n/config';
 import menuEn from '@/lib/i18n/generated/menu.en.json';
 import menuDe from '@/lib/i18n/generated/menu.de.json';
+import menuRu from '@/lib/i18n/generated/menu.ru.json';
 
 /**
  * Menu text translations (overlay model).
@@ -13,7 +14,7 @@ import menuDe from '@/lib/i18n/generated/menu.de.json';
  * prices and dietary data are never duplicated and can never drift between
  * languages.
  *
- * EN/DE values are produced by `pnpm i18n:translate` (DeepL) and MUST be
+ * EN/DE/RU values are produced by `pnpm i18n:translate` (DeepL) and MUST be
  * reviewed by a native speaker before publishing — restaurant terminology
  * (dish names, regional ingredients) often needs human correction. Any id left
  * out of an overlay falls back to the Turkish text.
@@ -41,6 +42,7 @@ interface MenuLocaleFile {
 
 const en = menuEn as MenuLocaleFile;
 const de = menuDe as MenuLocaleFile;
+const ru = menuRu as MenuLocaleFile;
 
 /**
  * Per-locale overlays. `tr` is intentionally empty (it is the source).
@@ -52,10 +54,12 @@ export const menuTextByLocale: Record<Locale, MenuTextOverlay> = {
   tr: { categories: {}, items: {} },
   en: { categories: en.categories ?? {}, items: en.items ?? {} },
   de: { categories: de.categories ?? {}, items: de.items ?? {} },
+  ru: { categories: ru.categories ?? {}, items: ru.items ?? {} },
 };
 
 export const menuNotesByLocale: Record<Locale, MenuNotesOverlay> = {
   tr: {},
   en: en.notes ?? {},
   de: de.notes ?? {},
+  ru: ru.notes ?? {},
 };

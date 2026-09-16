@@ -21,8 +21,11 @@ import { menuNotesByLocale, menuTextByLocale } from './menu-i18n';
  * shows a tasteful "ask our team" notice instead of an empty section.
  */
 
-export const MENU_SERVICE_NOTE =
-  'Sonunda * olan ürünler ana yemek porsiyonundadır. Hesaba %10 servis bedeli eklenecektir.';
+/**
+ * Menu footnote. The restaurant no longer charges a service fee, so the old
+ * "%10 servis bedeli" sentence was removed — only the portion note remains.
+ */
+export const MENU_SERVICE_NOTE = 'Sonunda * olan ürünler ana yemek porsiyonundadır.';
 
 export const WINE_MENU_NOTICE =
   'Büyük oranda yerel üreticilerden oluşan şarap seçkimiz için lütfen ekibimize danışın.';

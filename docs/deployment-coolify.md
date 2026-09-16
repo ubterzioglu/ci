@@ -47,8 +47,8 @@ inlined into the client bundle.
 | `NEXT_PUBLIC_SUPABASE_URL`       | ✅     | `https://wwzdqqtyeuphzdyneydr.supabase.co`                           |
 | `NEXT_PUBLIC_SUPABASE_ANON_KEY`  | ✅     | anon key from `.env.local`                                           |
 | `SUPABASE_SERVICE_ROLE_KEY`      | —      | service_role key from `.env.local` (server only)                     |
-| `RESERVATION_NOTIFICATION_EMAIL` | —      | `info@cineocucina.com`                                               |
-| `CONTACT_NOTIFICATION_EMAIL`     | —      | `info@cineocucina.com`                                               |
+| `RESERVATION_NOTIFICATION_EMAIL` | —      | `info@cineocucina.com, cineo.cucina@gmail.com` (comma-separated)     |
+| `CONTACT_NOTIFICATION_EMAIL`     | —      | `info@cineocucina.com, cineo.cucina@gmail.com` (comma-separated)     |
 | `ZOHO_SMTP_HOST`                 | —      | `smtp.zoho.eu` (EU account — `.com` fails auth)                      |
 | `ZOHO_SMTP_PORT`                 | —      | `465`                                                                |
 | `ZOHO_SMTP_USER`                 | —      | Zoho mailbox that owns `MAIL_FROM` (alias ≠ mailbox)                 |

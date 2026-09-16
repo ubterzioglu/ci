@@ -15,6 +15,11 @@ import type { Transporter } from 'nodemailer';
  */
 
 export interface SendNotificationEmailParams {
+  /**
+   * One address, or several separated by commas — the notification addresses
+   * come straight from environment variables, and a restaurant may well want a
+   * form to reach both the business mailbox and someone's personal one.
+   */
   to: string;
   subject: string;
   text: string;
@@ -109,7 +114,7 @@ export async function sendNotificationEmail(
     const transporter = await getTransporter(settings);
     await transporter.sendMail({
       from: settings.from,
-      to: params.to,
+      to: splitRecipients(params.to),
       subject: params.subject,
       text: params.text,
       ...(params.replyTo ? { replyTo: params.replyTo } : {}),
@@ -120,6 +125,19 @@ export async function sendNotificationEmail(
     console.error('[email] send failed:', detail);
     return { sent: false, error: detail };
   }
+}
+
+/**
+ * Split a recipient setting into addresses.
+ *
+ * Tolerates the shapes a human types into an env var: spaces around commas, a
+ * trailing comma, or a single address with no comma at all.
+ */
+export function splitRecipients(value: string): string[] {
+  return value
+    .split(',')
+    .map((address) => address.trim())
+    .filter(Boolean);
 }
 
 /** Is outgoing mail configured at all? Lets the admin UI explain itself. */

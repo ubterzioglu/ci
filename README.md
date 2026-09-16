@@ -100,23 +100,23 @@ Open http://localhost:3000 in your browser.
 
 ## Environment Variables
 
-| Variable                         | Purpose                                                                                       | Required |
-| -------------------------------- | --------------------------------------------------------------------------------------------- | -------- |
-| `NEXT_PUBLIC_SITE_URL`           | Canonical site URL (no trailing slash); used for Open Graph and sitemap                       | Yes      |
-| `NEXT_PUBLIC_SUPABASE_URL`       | Supabase project URL (e.g., `https://<project-ref>.supabase.co`)                              | Yes      |
-| `NEXT_PUBLIC_SUPABASE_ANON_KEY`  | Anon/publishable key for browser access                                                       | Yes      |
-| `SUPABASE_SERVICE_ROLE_KEY`      | Service role key for server-side operations (never expose in browser)                         | Yes      |
-| `SUPABASE_SECRET_KEY`            | Alternative server-side secret key (optional)                                                 | No       |
-| `SUPABASE_ACCESS_TOKEN`          | Supabase CLI access token (used by seed and type generation scripts)                          | No       |
-| `SUPABASE_DB_URL`                | Direct Postgres connection string (used by seed script)                                       | No       |
-| `DEEPL_API_KEY`                  | DeepL API key for generating EN/DE/RU translations from Turkish source                        | No       |
-| `ZOHO_SMTP_HOST`                 | Zoho SMTP host (`smtp.zoho.eu` for EU accounts, else `smtp.zoho.com`)                          | No       |
-| `ZOHO_SMTP_PORT`                 | Zoho SMTP port (465 implicit TLS, 587 STARTTLS). Defaults to 465                               | No       |
-| `ZOHO_SMTP_USER`                 | Zoho mailbox that owns `MAIL_FROM` (an alias can only be sent from its own mailbox)            | No       |
-| `ZOHO_SMTP_PASSWORD`             | Zoho **app-specific** password (the account password is rejected by SMTP)                     | No       |
-| `MAIL_FROM`                      | Sender shown to recipients; must be an address the Zoho account may send as                   | No       |
-| `RESERVATION_NOTIFICATION_EMAIL` | Where new reservation requests are announced                                         | No       |
-| `CONTACT_NOTIFICATION_EMAIL`     | Where contact form messages are announced                                             | No       |
+| Variable                         | Purpose                                                                             | Required |
+| -------------------------------- | ----------------------------------------------------------------------------------- | -------- |
+| `NEXT_PUBLIC_SITE_URL`           | Canonical site URL (no trailing slash); used for Open Graph and sitemap             | Yes      |
+| `NEXT_PUBLIC_SUPABASE_URL`       | Supabase project URL (e.g., `https://<project-ref>.supabase.co`)                    | Yes      |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY`  | Anon/publishable key for browser access                                             | Yes      |
+| `SUPABASE_SERVICE_ROLE_KEY`      | Service role key for server-side operations (never expose in browser)               | Yes      |
+| `SUPABASE_SECRET_KEY`            | Alternative server-side secret key (optional)                                       | No       |
+| `SUPABASE_ACCESS_TOKEN`          | Supabase CLI access token (used by seed and type generation scripts)                | No       |
+| `SUPABASE_DB_URL`                | Direct Postgres connection string (used by seed script)                             | No       |
+| `DEEPL_API_KEY`                  | DeepL API key for generating EN/DE/RU translations from Turkish source              | No       |
+| `ZOHO_SMTP_HOST`                 | Zoho SMTP host (`smtp.zoho.eu` for EU accounts, else `smtp.zoho.com`)               | No       |
+| `ZOHO_SMTP_PORT`                 | Zoho SMTP port (465 implicit TLS, 587 STARTTLS). Defaults to 465                    | No       |
+| `ZOHO_SMTP_USER`                 | Zoho mailbox that owns `MAIL_FROM` (an alias can only be sent from its own mailbox) | No       |
+| `ZOHO_SMTP_PASSWORD`             | Zoho **app-specific** password (the account password is rejected by SMTP)           | No       |
+| `MAIL_FROM`                      | Sender shown to recipients; must be an address the Zoho account may send as         | No       |
+| `RESERVATION_NOTIFICATION_EMAIL` | Where new reservation requests are announced (comma-separated for several)          | No       |
+| `CONTACT_NOTIFICATION_EMAIL`     | Where contact form messages are announced (comma-separated for several)             | No       |
 
 ## Available Scripts
 

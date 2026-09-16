@@ -8,13 +8,13 @@
 
 The legacy Wix website data was exported to the `/ref` directory:
 
-- **Pages markdown** (`ref/content/pages/`): Converted HTML/text from public pages
-- **Menu data** (`ref/content/data/menu.csv`): Menu items with categories
-- **Navigation** (`ref/content/data/navigation.json`): Site navigation structure
-- **Contact info** (`ref/content/data/contact.json`): Phone, email, region
-- **SEO metadata** (`ref/content/data/seo.json`): Page titles and descriptions for each route
-- **Image assets** (`ref/content/assets/image-assets.json`): Manifest of Wix CDN image URLs
-- **Audit notes** (`ref/audit/fix-list.md`): Issues identified in the source
+- **Pages markdown** (`docs/ref/content/pages/`): Converted HTML/text from public pages
+- **Menu data** (`docs/ref/content/data/menu.csv`): Menu items with categories
+- **Navigation** (`docs/ref/content/data/navigation.json`): Site navigation structure
+- **Contact info** (`docs/ref/content/data/contact.json`): Phone, email, region
+- **SEO metadata** (`docs/ref/content/data/seo.json`): Page titles and descriptions for each route
+- **Image assets** (`docs/ref/content/assets/image-assets.json`): Manifest of Wix CDN image URLs
+- **Audit notes** (`docs/ref/audit/fix-list.md`): Issues identified in the source
 
 ## Migration Decisions & Assumptions
 
@@ -97,7 +97,7 @@ The legacy Wix website data was exported to the `/ref` directory:
 
 **Localization process**:
 
-1. All Wix image URLs are catalogued in `ref/content/assets/image-assets.json`
+1. All Wix image URLs are catalogued in `docs/ref/content/assets/image-assets.json`
 2. Run `pnpm assets:download` to:
    - Download images from Wix CDN
    - Store them locally under `public/images/imported/`
@@ -173,4 +173,4 @@ See `supabase/README.md` for detailed security model and seeding instructions.
 - **Database schema**: `supabase/migrations/001_initial_schema.sql`
 - **Supabase setup**: `supabase/README.md`
 - **Remaining tasks**: `panel-exports-todo.md`
-- **Original Wix export**: `ref/` directory
+- **Original Wix export**: `docs/ref/` directory

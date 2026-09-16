@@ -1,7 +1,7 @@
 import type { MediaAsset } from '@/lib/types';
 
 /**
- * Image manifest — from the Wix export (ref/content/assets/image-assets.json).
+ * Image manifest — from the Wix export (docs/ref/content/assets/image-assets.json).
  *
  * `sourceUrl` points at the legacy Wix CDN (allowed temporarily in
  * next.config.ts). `storagePath` is the local path under /public once

@@ -168,15 +168,18 @@ public/
 └── images/
     └── imported/                 # Localized Wix images (populated by pnpm assets:download)
 
-docs/
+docs/                             # Everything not built or shipped
 ├── deployment-coolify.md         # Coolify / Docker deployment guide
 ├── migration-notes.md            # Wix -> Next.js migration decisions
 ├── panel-exports-todo.md         # Data still owed by the restaurant
 ├── qr-menu.md                    # QR table menu (/qr) status and notes
-└── handovers/                    # Historical session handover notes
-
-ref/                              # Raw Wix export - content source of truth
+├── handovers/                    # Historical session handover notes
+└── ref/                          # Raw Wix export the site was rebuilt from
 ```
+
+Nothing in `docs/` is read at build or run time — the Wix content was copied
+into `src/content/` during the migration, so `docs/ref/` is kept only as the
+record of what the original site said.
 
 ## Deployment
 

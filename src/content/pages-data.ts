@@ -1,7 +1,7 @@
 import type { PageContent } from '@/lib/types';
 
 /**
- * Local page content — extracted from the Wix export (ref/content/pages/*.md),
+ * Local page content — extracted from the Wix export (docs/ref/content/pages/*.md),
  * cleaned for spacing, capitalisation and obvious template artifacts.
  *
  * Used as the development fallback when Supabase is not configured, and as the

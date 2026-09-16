@@ -5,7 +5,7 @@ import { menuNotesByLocale, menuTextByLocale } from './menu-i18n';
 
 /**
  * Local menu data — extracted verbatim from the Wix export
- * (ref/content/data/menu.json), cleaned only for spacing/typos.
+ * (docs/ref/content/data/menu.json), cleaned only for spacing/typos.
  *
  * This is the development fallback used when Supabase is not configured, and
  * the source for the database seed (scripts/seed-supabase.ts). Prices are in

@@ -1,7 +1,8 @@
 # Documentation — Çi Neo Cucina
 
-Project documentation index. Application code lives in [`src/`](../src/); the raw
-Wix export (content source of truth) lives in [`ref/`](../ref/).
+Project documentation index. Nothing in this directory is read at build or run
+time — application code lives in [`src/`](../src/), and `docs/` holds only what
+supports the work: guides, decision records and archived source material.
 
 ## Operations
 
@@ -16,6 +17,12 @@ Wix export (content source of truth) lives in [`ref/`](../ref/).
 | [migration-notes.md](migration-notes.md) | Wix → Next.js migration: what was exported, decisions made, what is incomplete |
 | [panel-exports-todo.md](panel-exports-todo.md) | Checklist of data the restaurant still owes before launch (address, hours, legal texts, wine list) |
 | [qr-menu.md](qr-menu.md) | QR table menu (`/qr`) — current status and admin panel integration notes |
+
+## Archive
+
+| Location | What it holds |
+|---|---|
+| [ref/](ref/) | The Wix content export the site was rebuilt from — pages, menu, SEO and image manifest. The site has since left Wix and this content now lives in `src/content/`; kept as the record of what the original said. |
 
 ## Handovers
 

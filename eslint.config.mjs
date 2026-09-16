@@ -11,6 +11,9 @@ const eslintConfig = [
       'next-env.d.ts',
       'scripts/**',
       'src/lib/supabase/database.types.ts',
+      // Nested git worktrees are full copies of the repo — linting them
+      // reports errors from work that is not in this checkout.
+      '.kilo/**',
     ],
   },
   ...nextCoreWebVitals,

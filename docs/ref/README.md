@@ -1,5 +1,12 @@
 # Çi Neo Cucina — Wix Content Export Pack
 
+> **Arşiv — site artık Wix'te değil.** Bu paket sitenin yeniden inşasında
+> kullanıldı ve işi bitti: içerik `src/content/` altına taşındı, görseller
+> `public/images/imported/` altında. Hiçbir build veya çalışma zamanı kodu
+> buradan okumaz. Orijinal Wix sitesinin ne dediğinin kaydı olarak duruyor —
+> aşağıdaki "hızlı kullanım" adımları tarihsel, tekrar çalıştırılmamalı.
+> Geçiş sırasında alınan kararlar için [../migration-notes.md](../migration-notes.md).
+
 Kaynak site: https://www.cineocucina.com/
 
 Bu paket, public Wix sitesinden çıkarılan içeriklerin AI ile yeni site üretimine uygun hale getirilmiş halidir.

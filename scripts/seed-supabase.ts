@@ -13,6 +13,8 @@ import { createClient } from '@supabase/supabase-js';
 import { config } from 'dotenv';
 
 import { menuCategories } from '../src/content/menu-data.ts';
+import { menuTextByLocale } from '../src/content/menu-i18n.ts';
+import { translatableLocales } from '../src/lib/i18n/config.ts';
 import { seedPages } from '../src/content/pages-data.ts';
 import { mediaAssets } from '../src/content/media-data.ts';
 import { siteConfig, mainNav } from '../src/lib/site-config.ts';
@@ -48,6 +50,30 @@ async function seedPagesTable() {
   console.log(`✓ pages: ${rows.length}`);
 }
 
+/**
+ * Collect a row's translations from the generated overlays into the shape the
+ * `translations` jsonb column expects.
+ *
+ * The overlays (src/lib/i18n/generated/menu.*.json, written by
+ * `pnpm i18n:translate`) are keyed by the same content ids the uuids are
+ * derived from, so they line up exactly. Seeding them matters: getMenu() reads
+ * the database for every locale now, so a row with an empty `translations`
+ * renders Turkish everywhere — these overlays are where the existing EN/DE/RU
+ * menu text lives.
+ */
+function overlayTranslations(kind: 'categories' | 'items', id: string) {
+  const translations: Record<string, { name?: string; description?: string }> = {};
+  for (const locale of translatableLocales) {
+    const entry = menuTextByLocale[locale][kind][id];
+    if (!entry) continue;
+    const value: { name?: string; description?: string } = {};
+    if (entry.name?.trim()) value.name = entry.name;
+    if (entry.description?.trim()) value.description = entry.description;
+    if (value.name || value.description) translations[locale] = value;
+  }
+  return translations;
+}
+
 async function seedMenu() {
   // The local content uses human-readable slugs as ids; the database columns
   // are uuid, so derive stable uuids from those slugs (referential integrity
@@ -59,6 +85,7 @@ async function seedMenu() {
     description: category.description,
     sort_order: category.sortOrder,
     is_active: true,
+    translations: overlayTranslations('categories', category.id),
   }));
   const { error: catError } = await supabase
     .from('menu_categories')
@@ -80,6 +107,7 @@ async function seedMenu() {
       dietary_flags: item.dietaryFlags,
       sort_order: item.sortOrder,
       is_active: true,
+      translations: overlayTranslations('items', item.id),
     })),
   );
   const { error: itemError } = await supabase

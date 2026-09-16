@@ -128,15 +128,13 @@ async function main(): Promise<void> {
     // Resolve the local file from the original /public path. When --force is
     // used on an already-migrated row, fall back to deriving the public path
     // from the bucket key so re-uploads still find the source file.
-    const publicRel = row.storage_path.startsWith('/')
-      ? row.storage_path.replace(/^\//, '')
-      : null;
+    const publicRel = row.storage_path.startsWith('/') ? row.storage_path.replace(/^\//, '') : null;
     const localPath = publicRel ? join(PUBLIC_DIR, publicRel) : null;
 
     if (!localPath || !existsSync(localPath)) {
       console.error(
         `✗ ${label}: local file not found (${row.storage_path}). ` +
-          'Run `pnpm assets:download` / `pnpm gallery:optimize` first.',
+          'The image is missing from /public — commit it first.',
       );
       failed++;
       continue;

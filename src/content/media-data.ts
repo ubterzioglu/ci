@@ -1,18 +1,17 @@
 import type { MediaAsset } from '@/lib/types';
 
 /**
- * Image manifest — from the Wix export (docs/ref/content/assets/image-assets.json).
+ * Image manifest. Every asset is a committed local file under /public — the
+ * site has no external image dependency. `storagePath` is that path; resolve
+ * it through `resolveImage()` in src/lib/images.ts.
  *
- * `sourceUrl` points at the legacy Wix CDN (allowed temporarily in
- * next.config.ts). `storagePath` is the local path under /public once
- * `pnpm assets:download` has run; until then the components fall back to
- * `sourceUrl`. See helpers in src/lib/images.ts.
+ * Originally extracted from the Wix export; the remote CDN URLs were dropped
+ * when the site left Wix. docs/ref/content/assets/image-assets.json keeps them
+ * as the historical record.
  */
-export const mediaAssets: (MediaAsset & { sourceUrl: string })[] = [
+export const mediaAssets: MediaAsset[] = [
   {
     id: 'home-hero-table',
-    sourceUrl:
-      'https://static.wixstatic.com/media/31bec1_400e50c345c04e429e6ada169aced9f8~mv2.jpg/v1/fill/w_980,h_653,al_c,q_85,enc_avif,quality_auto/31bec1_400e50c345c04e429e6ada169aced9f8~mv2.jpg',
     storagePath: '/images/imported/home-hero-table.jpg',
     alt: 'Şarap ve tabaklarla hazırlanmış bir masa',
     title: 'Çi Neo Cucina masası',
@@ -20,8 +19,6 @@ export const mediaAssets: (MediaAsset & { sourceUrl: string })[] = [
   },
   {
     id: 'chef-simge',
-    sourceUrl:
-      'https://static.wixstatic.com/media/31bec1_30b1a2a8cb2742cab41f5fcc831a8c25~mv2.jpg/v1/fill/w_437,h_690,al_c,q_80,enc_avif,quality_auto/ER0A1854.jpg',
     storagePath: '/images/imported/chef-simge.jpg',
     alt: 'Şef Simge Manacıoğlu portresi',
     title: 'Simge Manacıoğlu',
@@ -29,8 +26,6 @@ export const mediaAssets: (MediaAsset & { sourceUrl: string })[] = [
   },
   {
     id: 'restaurant-garden-night',
-    sourceUrl:
-      'https://static.wixstatic.com/media/31bec1_6f7ba707746440f084c5b7d1f3205765~mv2.jpg/v1/fill/w_980,h_622,al_c,q_85,enc_avif,quality_auto/31bec1_6f7ba707746440f084c5b7d1f3205765~mv2.jpg',
     storagePath: '/images/imported/restaurant-garden-night.jpg',
     alt: 'Zeytin ağaçları arasında akşam restoran bahçesi',
     title: 'Restoran bahçesi',
@@ -38,8 +33,6 @@ export const mediaAssets: (MediaAsset & { sourceUrl: string })[] = [
   },
   {
     id: 'flowers-pergola',
-    sourceUrl:
-      'https://static.wixstatic.com/media/11062b_4e53927ddddf4c0ea62e0b87954e44dcf000.jpg/v1/fill/w_980,h_551,al_c,q_85,enc_avif,quality_auto/11062b_4e53927ddddf4c0ea62e0b87954e44dcf000.jpg',
     storagePath: '/images/imported/flowers-pergola.jpg',
     alt: 'Çiçekli pergola',
     title: 'Pergola',
@@ -47,8 +40,6 @@ export const mediaAssets: (MediaAsset & { sourceUrl: string })[] = [
   },
   {
     id: 'gallery-sandwich',
-    sourceUrl:
-      'https://static.wixstatic.com/media/31bec1_c368507c7c094332b65ed022da116afe~mv2.jpg/v1/fill/w_363,h_272,q_90,enc_avif,quality_auto/31bec1_c368507c7c094332b65ed022da116afe~mv2.jpg',
     storagePath: '/images/imported/gallery-sandwich.jpg',
     alt: 'Sandviç ve içecek',
     title: 'Tabak detayı',
@@ -56,8 +47,6 @@ export const mediaAssets: (MediaAsset & { sourceUrl: string })[] = [
   },
   {
     id: 'gallery-slice-wine',
-    sourceUrl:
-      'https://static.wixstatic.com/media/31bec1_5706fefa718e4788afe01788b12c4cbf~mv2.jpg/v1/fill/w_362,h_272,q_90,enc_avif,quality_auto/31bec1_5706fefa718e4788afe01788b12c4cbf~mv2.jpg',
     storagePath: '/images/imported/gallery-slice-wine.jpg',
     alt: 'Masada bir dilim ve şarap',
     title: 'Şarap ve tabak',
@@ -65,8 +54,6 @@ export const mediaAssets: (MediaAsset & { sourceUrl: string })[] = [
   },
   {
     id: 'gallery-pasta',
-    sourceUrl:
-      'https://static.wixstatic.com/media/31bec1_ac479a0a234249f18ba1b3c4636de6a4~mv2.jpg/v1/fill/w_363,h_272,q_90,enc_avif,quality_auto/31bec1_ac479a0a234249f18ba1b3c4636de6a4~mv2.jpg',
     storagePath: '/images/imported/gallery-pasta.jpg',
     alt: 'Makarna ve beyaz şarap',
     title: 'Makarna',
@@ -74,8 +61,6 @@ export const mediaAssets: (MediaAsset & { sourceUrl: string })[] = [
   },
   {
     id: 'gallery-wine-close',
-    sourceUrl:
-      'https://static.wixstatic.com/media/31bec1_38e07d62976b4effbd3b1d98477364b3~mv2.jpg/v1/fill/w_362,h_272,q_90,enc_avif,quality_auto/31bec1_38e07d62976b4effbd3b1d98477364b3~mv2.jpg',
     storagePath: '/images/imported/gallery-wine-close.jpg',
     alt: 'Şarap kadehi yakın plan',
     title: 'Şarap kadehi',
@@ -83,8 +68,6 @@ export const mediaAssets: (MediaAsset & { sourceUrl: string })[] = [
   },
   {
     id: 'about-flowers',
-    sourceUrl:
-      'https://static.wixstatic.com/media/41f5e28a864c47548d5d6bc306d4299e.jpg/v1/fill/w_674,h_383,al_c,q_80,enc_avif,quality_auto/41f5e28a864c47548d5d6bc306d4299e.jpg',
     storagePath: '/images/imported/about-flowers.jpg',
     alt: 'Sarı ve beyaz çiçekler',
     title: 'Çiçekler',
@@ -92,8 +75,6 @@ export const mediaAssets: (MediaAsset & { sourceUrl: string })[] = [
   },
   {
     id: 'team-simge-lisa',
-    sourceUrl:
-      'https://static.wixstatic.com/media/31bec1_8bb3956154944482af4f23aa76442d17~mv2.jpg/v1/fill/w_443,h_431,al_c,q_80,enc_avif,quality_auto/ER0A1914.jpg',
     storagePath: '/images/imported/team-simge-lisa.jpg',
     alt: 'Simge Manacıoğlu ve Lisa Rose',
     title: 'Ekip',
@@ -101,8 +82,6 @@ export const mediaAssets: (MediaAsset & { sourceUrl: string })[] = [
   },
   {
     id: 'kitchen-team',
-    sourceUrl:
-      'https://static.wixstatic.com/media/31bec1_8bf12c4e60a74a7fa3bd3c88627ae46c~mv2.jpg/v1/fill/w_443,h_431,al_c,q_80,enc_avif,quality_auto/ER0A1776.jpg',
     storagePath: '/images/imported/kitchen-team.jpg',
     alt: 'Mutfak ekibi',
     title: 'Mutfak ekibi',
@@ -110,8 +89,6 @@ export const mediaAssets: (MediaAsset & { sourceUrl: string })[] = [
   },
   {
     id: 'ci-family-2025',
-    sourceUrl:
-      'https://static.wixstatic.com/media/31bec1_95444c27fb3d4ab897652886a4c93074~mv2.jpg/v1/fill/w_443,h_431,al_c,q_80,enc_avif,quality_auto/ER0A1801.jpg',
     storagePath: '/images/imported/ci-family-2025.jpg',
     alt: '2025 Çi Ailesi',
     title: 'Çi Ailesi',
@@ -119,8 +96,6 @@ export const mediaAssets: (MediaAsset & { sourceUrl: string })[] = [
   },
   {
     id: 'menu-dilimleme-et',
-    sourceUrl:
-      'https://static.wixstatic.com/media/11062b_c9f95ce7e79f4921b2af2d505d108281~mv2.jpg/v1/fill/w_714,h_476,al_c,q_80,enc_avif,quality_auto/11062b_c9f95ce7e79f4921b2af2d505d108281~mv2.jpg',
     storagePath: '/images/imported/menu-meat.jpg',
     alt: 'Dilimlenmiş et tabağı',
     title: 'Menü görseli',
@@ -128,15 +103,13 @@ export const mediaAssets: (MediaAsset & { sourceUrl: string })[] = [
   },
   // ---------------------------------------------------------------------------
   // Confirmed restaurant photos from the 2026 Wix export, optimised into
-  // public/images/gallery/ via `pnpm gallery:optimize`. Their .webp files are
-  // committed; `sourceUrl` keeps the original Wix CDN reference for provenance.
+  // public/images/gallery/ as .webp. Those files are
+  // committed.
   // (The export also contained Wix demo/template stock — a cap, an Eames chair,
   // jewellery — which was excluded as it is not restaurant content.)
   // ---------------------------------------------------------------------------
   {
     id: 'gallery-fish-melon',
-    sourceUrl:
-      'https://static.wixstatic.com/media/31bec1_230ba5e11d1a41779314245669ed5885~mv2.jpg',
     storagePath: '/images/gallery/gallery-fish-melon.webp',
     alt: 'Mavi kenarlı balık tabağında kavun ve otlarla servis edilen taze balık, yanında beyaz şarap',
     title: 'Mevsim tabağı',
@@ -144,8 +117,6 @@ export const mediaAssets: (MediaAsset & { sourceUrl: string })[] = [
   },
   {
     id: 'team-ci-sign',
-    sourceUrl:
-      'https://static.wixstatic.com/media/31bec1_ccd33b57e1eb4311ad4ed2341979896b~mv2.jpg',
     storagePath: '/images/gallery/gallery-team-sign.webp',
     alt: 'Çi Neo Cucina tabelasının önünde şef Simge Manacıoğlu ve ekip',
     title: 'Çi Ailesi',

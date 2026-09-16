@@ -92,7 +92,8 @@ async function seedMenu() {
 async function seedMedia() {
   const rows = mediaAssets.map((asset) => ({
     id: deterministicUuid(asset.id),
-    source_url: asset.sourceUrl,
+    // The site serves committed local files; no remote source remains.
+    source_url: null,
     storage_path: asset.storagePath,
     alt: asset.alt,
     title: asset.title,

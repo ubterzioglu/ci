@@ -47,7 +47,7 @@ coverage/
 # Raw Wix export (NEVER commit) ----------------------------------------------
 # Contains customer/order/member data (Members/*, Stores/Orders) and large raw
 # images. Curated content lives in src/content/; gallery images are optimised
-# into public/images/gallery/ via scripts/optimize-gallery.ts.
+# into public/images/gallery/ as committed .webp files.
 wix/
 wix-export/
 

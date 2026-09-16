@@ -93,18 +93,16 @@ The legacy Wix website data was exported to the `/ref` directory:
 
 ## Image Assets: Legacy Wix CDN
 
-**Status**: Wix CDN image URLs are temporarily allowed in `next.config.ts` for backward compatibility.
+**Status**: Done — the site no longer depends on Wix in any form.
 
-**Localization process**:
+Every image was downloaded and committed under `public/images/imported/`, the
+Wix CDN host was removed from `next.config.ts`, and the remote URLs were dropped
+from `src/content/media-data.ts`. `resolveImage()` (src/lib/images.ts) now
+returns null for a missing file instead of falling back to a remote host, and
+the one-off download/optimise scripts were deleted.
 
-1. All Wix image URLs are catalogued in `docs/ref/content/assets/image-assets.json`
-2. Run `pnpm assets:download` to:
-   - Download images from Wix CDN
-   - Store them locally under `public/images/imported/`
-   - Update references in the database (media_assets table)
-3. Remove the Wix CDN domain from `next.config.ts` once all images are localized
-
-**Recommended**: Complete image localization before going live (see `panel-exports-todo.md`).
+The original CDN URLs remain catalogued in
+`docs/ref/content/assets/image-assets.json` as the historical record.
 
 ## What's Still Missing (Panel Exports)
 

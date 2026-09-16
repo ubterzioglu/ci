@@ -46,7 +46,6 @@ export interface PageContent {
 
 export interface MediaAsset {
   id: string;
-  sourceUrl: string | null;
   storagePath: string | null;
   alt: string | null;
   title: string | null;

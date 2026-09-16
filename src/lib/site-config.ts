@@ -2,7 +2,7 @@
  * Çi Neo Cucina — central site configuration.
  *
  * Single source of truth for brand facts, contact details, and navigation.
- * All values are sourced from the Wix export package (see /ref). Items that
+ * All values are sourced from the archived Wix export (see docs/ref/). Items that
  * are NOT present in the source are marked `null` and tracked in
  * docs/panel-exports-todo.md — do not fabricate them.
  */
@@ -68,27 +68,25 @@ export const siteConfig = {
     {
       label: 'Pazartesi – Cumartesi',
       value: '17:00 – 02:00',
-      days: [
-        'Monday',
-        'Tuesday',
-        'Wednesday',
-        'Thursday',
-        'Friday',
-        'Saturday',
-      ] as const,
+      days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'] as const,
       opens: '17:00',
       closes: '02:00',
     },
-  ] as { label: string; value: string; days: readonly string[]; opens: string; closes: string }[] | null,
+  ] as
+    | { label: string; value: string; days: readonly string[]; opens: string; closes: string }[]
+    | null,
 
   /** Social + listing profiles. */
   social: {
     instagram: 'https://www.instagram.com/ci.neocucina/' as string | null,
     facebook: null as string | null,
     tripadvisor:
-      'https://www.tripadvisor.com/Restaurant_Review-g297965-d14053304-Reviews-Ci_Neo_Cucina_By_Mezetaryen-Kas_Turkish_Mediterranean_Coast.html' as string | null,
-    wanderlog:
-      'https://wanderlog.com/de/place/details/2855653/%C3%A7i-neo-cucina-by-miskin' as string | null,
+      'https://www.tripadvisor.com/Restaurant_Review-g297965-d14053304-Reviews-Ci_Neo_Cucina_By_Mezetaryen-Kas_Turkish_Mediterranean_Coast.html' as
+        | string
+        | null,
+    wanderlog: 'https://wanderlog.com/de/place/details/2855653/%C3%A7i-neo-cucina-by-miskin' as
+      | string
+      | null,
     restaurantGuru: 'https://restaurantguru.com/Muskat-Meze-Bar-Kas' as string | null,
   },
 

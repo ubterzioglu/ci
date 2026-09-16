@@ -20,8 +20,7 @@ Modern restaurant website for Çi Neo Cucina, a Mediterranean and Anatolian chef
 - Responsive design with Tailwind CSS v4
 - Row-level security for public content visibility
 - Multi-language support (TR, EN, DE) via DeepL integration
-- Asset import pipeline for legacy Wix image migration
-- 301 redirects from legacy Wix slugs
+- 301 redirects from the legacy site's slugs
 
 ## Prerequisites
 
@@ -129,7 +128,6 @@ Open http://localhost:3000 in your browser.
 | `pnpm db:types`        | Generate TypeScript types from Supabase schema                            |
 | `pnpm db:seed`         | Seed the database with initial content from `scripts/seed-supabase.ts`    |
 | `pnpm db:reset`        | (Local Supabase only) Reset database and re-apply migrations              |
-| `pnpm assets:download` | Download legacy Wix images and store locally in `public/images/imported/` |
 | `pnpm i18n:translate`  | Generate EN/DE translations from Turkish source via DeepL                 |
 
 ## Project Structure
@@ -156,7 +154,6 @@ src/
 
 scripts/
 ├── seed-supabase.ts              # Populate database with initial content
-├── download-assets.ts            # Download legacy Wix images
 └── translate-content.ts          # Generate translations via DeepL
 
 supabase/
@@ -166,7 +163,7 @@ supabase/
 
 public/
 └── images/
-    └── imported/                 # Localized Wix images (populated by pnpm assets:download)
+    └── imported/                 # Site photography (committed; no external host)
 
 docs/                             # Everything not built or shipped
 ├── deployment-coolify.md         # Coolify / Docker deployment guide

@@ -26,8 +26,6 @@
     "db:types": "supabase gen types typescript --local > src/lib/supabase/database.types.ts",
     "db:seed": "tsx scripts/seed-supabase.ts",
     "db:reset": "supabase db reset",
-    "assets:download": "tsx scripts/download-assets.ts",
-    "gallery:optimize": "tsx scripts/optimize-gallery.ts",
     "i18n:translate": "tsx scripts/translate-content.ts"
   },
   "dependencies": {

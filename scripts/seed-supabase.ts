@@ -15,6 +15,7 @@ import { config } from 'dotenv';
 import { menuCategories } from '../src/content/menu-data.ts';
 import { menuTextByLocale } from '../src/content/menu-i18n.ts';
 import { translatableLocales } from '../src/lib/i18n/config.ts';
+import { deterministicUuid } from '../src/lib/deterministic-id.ts';
 import { seedPages } from '../src/content/pages-data.ts';
 import { mediaAssets } from '../src/content/media-data.ts';
 import { siteConfig, mainNav } from '../src/lib/site-config.ts';
@@ -153,22 +154,6 @@ async function seedRedirects() {
   const { error } = await supabase.from('redirects').upsert(rows, { onConflict: 'source_path' });
   if (error) throw new Error(`redirects: ${error.message}`);
   console.log(`✓ redirects: ${rows.length}`);
-}
-
-/** Stable UUIDv5-ish derivation from a string (deterministic seed ids). */
-function deterministicUuid(input: string): string {
-  let h = 0;
-  for (let i = 0; i < input.length; i++) {
-    h = (Math.imul(31, h) + input.charCodeAt(i)) | 0;
-  }
-  const hex = (Math.abs(h).toString(16) + '0'.repeat(32)).slice(0, 32);
-  return [
-    hex.slice(0, 8),
-    hex.slice(8, 12),
-    '5' + hex.slice(13, 16),
-    '8' + hex.slice(17, 20),
-    hex.slice(20, 32),
-  ].join('-');
 }
 
 async function main() {

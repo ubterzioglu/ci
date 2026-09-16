@@ -89,35 +89,47 @@ export const GUIDE_SECTIONS: GuideSection[] = [
     ],
   },
   {
-    title: 'Galeri (Atmosfer)',
-    summary: 'Ana sayfadaki fotoğrafları yükleme, başlık verme, sıralama.',
+    title: 'Ana Sayfa Görselleri',
+    summary: 'Ana sayfadaki “Atmosfer” galerisi ve sabit görseller.',
     body: [
-      'Ana sayfadaki “Atmosfer” bölümünde görünen fotoğraflar buradan yönetilir. ' +
-        'Yüklenen görseller güvenli depolamaya kaydedilir.',
+      'Görsel bölümleri, fotoğrafın türüne göre değil sitedeki SAYFAYA göre ayrılmıştır. ' +
+        'Bu bölümdeki her şey ana sayfada görünür.',
+      'İki kısım vardır: “Sayfa Görselleri” sayfanın sabit görselleridir (en üstteki büyük ' +
+        'görsel, rezervasyon bölümünün arka planı) ve her biri değiştirilir — eklenmez. ' +
+        '“Galeri Fotoğrafları” ise sayfanın alt kısmındaki “Atmosfer” bölümüdür; buraya ' +
+        'istediğiniz kadar fotoğraf ekleyebilirsiniz.',
     ],
     steps: [
-      'Sol menüden “Galeri” bölümüne girin.',
-      'Yükleme alanından bir fotoğraf seçin (JPG, PNG, WebP veya AVIF; en çok 8 MB).',
+      'Sol menüden “Ana Sayfa Görselleri” bölümüne girin.',
+      'Sabit bir görseli değiştirmek için ilgili kartta yeni dosyayı seçip “Görseli Değiştir” deyin.',
+      'Galeriye eklemek için yükleme alanından fotoğraf seçin (JPG, PNG, WebP veya AVIF; en çok 8 MB).',
       'Görsele bir alternatif metin (alt) yazın — erişilebilirlik ve SEO için önemli.',
       'İsterseniz sol alta görünecek kısa bir başlık (en çok 40 karakter) ekleyin.',
-      'Fotoğrafların görünme sırasını sürükleyerek/sıralayarak ayarlayın.',
+      'Fotoğrafların görünme sırasını sıralama oklarıyla ayarlayın.',
     ],
     tips: [
+      'Her kartın altında o görselin sitede tam olarak nerede çıktığı yazar — değiştirmeden önce okuyun.',
+      'En üstteki büyük görsel aynı zamanda “Deneyim” bölümünün arka planıdır; değiştirince ikisi birden değişir.',
+      'Hiç dokunmadığınız sabit görsellerde “Kurulum görseli” etiketi görünür.',
       'Yatay (geniş) ve net fotoğraflar grid düzeninde en iyi görünür.',
-      'Bir fotoğrafı sildiğinizde hem kayıt hem de dosya kalıcı olarak silinir.',
+      'Bir galeri fotoğrafını sildiğinizde hem kayıt hem de dosya kalıcı olarak silinir.',
     ],
   },
   {
-    title: 'Ekip',
-    summary: 'Hakkımızda sayfasındaki ekip fotoğraflarını yönetme.',
+    title: 'Hakkımızda Görselleri',
+    summary: 'Hakkımızda sayfasındaki ekip fotoğrafları ve şef portresi.',
     body: [
-      'Hakkımızda sayfasında görünen ekip/mutfak fotoğrafları buradan yönetilir. ' +
-        'Çalışma mantığı Galeri ile aynıdır; yalnızca gösterildikleri yer farklıdır.',
+      'Hakkımızda sayfasında görünen her şey buradadır: “Ekibimiz” bölümündeki fotoğraflar ' +
+        've şef portresi. Çalışma mantığı Ana Sayfa Görselleri ile aynıdır.',
     ],
     steps: [
-      'Sol menüden “Ekip” bölümüne girin.',
-      'Yeni fotoğraf yükleyin ve alternatif metnini yazın.',
+      'Sol menüden “Hakkımızda Görselleri” bölümüne girin.',
+      'Şef portresini değiştirmek için kartta yeni dosyayı seçip “Görseli Değiştir” deyin.',
+      '“Ekibimiz” bölümüne fotoğraf eklemek için yükleme alanını kullanın ve alternatif metnini yazın.',
       'Sıralamayı ayarlayarak fotoğrafların düzenini belirleyin.',
+    ],
+    tips: [
+      'Şef portresi ana sayfadaki şef ve hikâye bölümlerinde de kullanılır; değiştirince orada da değişir.',
     ],
   },
   {

@@ -52,11 +52,12 @@ export async function getGalleryPhotos(): Promise<GalleryPhoto[]> {
   }
 
   // Fallback: the local hardcoded manifest (no captions there).
-  return getMediaByContext(GALLERY_CONTEXT)
-    .map((item): GalleryPhoto | null => {
-      const image = resolveImage(item.id);
+  const fallback = await Promise.all(
+    getMediaByContext(GALLERY_CONTEXT).map(async (item): Promise<GalleryPhoto | null> => {
+      const image = await resolveImage(item.id);
       if (!image) return null;
       return { id: item.id, src: image.src, alt: image.alt, caption: null };
-    })
-    .filter((photo): photo is GalleryPhoto => photo !== null);
+    }),
+  );
+  return fallback.filter((photo): photo is GalleryPhoto => photo !== null);
 }

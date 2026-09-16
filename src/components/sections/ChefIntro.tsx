@@ -24,9 +24,9 @@ function websiteLabel(url: string): string {
  * Distinct from StorySection ("Hikâyemiz"), which shows only the opening two
  * paragraphs as a teaser into /about. This section presents the whole bio.
  */
-export function ChefIntro({ locale = defaultLocale }: ChefIntroProps) {
+export async function ChefIntro({ locale = defaultLocale }: ChefIntroProps) {
   const { chef } = getAboutContent(locale);
-  const portrait = resolveImage('chef-simge');
+  const portrait = await resolveImage('chef-simge');
   const { contact, url } = siteConfig;
 
   return (
@@ -63,16 +63,16 @@ export function ChefIntro({ locale = defaultLocale }: ChefIntroProps) {
               <span>Tel: </span>
               <a
                 href={`tel:${contact.phoneE164}`}
-                className="text-olive transition-colors hover:text-olive-deep"
+                className="text-olive hover:text-olive-deep transition-colors"
               >
                 {contact.phoneDisplay}
               </a>
-              <span className="mx-2 text-stone">|</span>
+              <span className="text-stone mx-2">|</span>
               <a
                 href={url}
                 target="_blank"
                 rel="noreferrer"
-                className="transition-colors hover:text-olive"
+                className="hover:text-olive transition-colors"
               >
                 {websiteLabel(url)}
               </a>

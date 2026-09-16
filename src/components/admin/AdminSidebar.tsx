@@ -54,7 +54,7 @@ const NAV: NavItem[] = [
   },
   {
     href: '/admin/gallery',
-    label: 'Galeri',
+    label: 'Ana Sayfa Görselleri',
     icon: (
       <svg viewBox="0 0 20 20" fill="none" className={iconClass} aria-hidden="true">
         <rect x="2.5" y="3.5" width="15" height="11" rx="1.6" stroke="currentColor" strokeWidth="1.4" />
@@ -65,7 +65,7 @@ const NAV: NavItem[] = [
   },
   {
     href: '/admin/team',
-    label: 'Ekip',
+    label: 'Hakkımızda Görselleri',
     icon: (
       <svg viewBox="0 0 20 20" fill="none" className={iconClass} aria-hidden="true">
         <circle cx="7.5" cy="7" r="2.6" stroke="currentColor" strokeWidth="1.4" />

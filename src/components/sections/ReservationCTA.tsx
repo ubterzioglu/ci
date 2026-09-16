@@ -17,8 +17,8 @@ interface ReservationCTAProps {
  * "Chef's Table — özel etkinlikleriniz için iletişime geçiniz" message and the
  * primary reservation CTA.
  */
-export function ReservationCTA({ locale = defaultLocale }: ReservationCTAProps) {
-  const image = resolveImage('home-hero-table');
+export async function ReservationCTA({ locale = defaultLocale }: ReservationCTAProps) {
+  const image = await resolveImage('home-hero-table');
   const chefsTable = getHomeContent(locale).chefsTable;
   const dictionary = getDictionary(locale);
 

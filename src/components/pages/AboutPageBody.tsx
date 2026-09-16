@@ -23,7 +23,7 @@ interface AboutPageBodyProps {
 export async function AboutPageBody({ locale }: AboutPageBodyProps) {
   const aboutContent = getAboutContent(locale);
   const dictionary = getDictionary(locale);
-  const portrait = resolveImage('chef-simge');
+  const portrait = await resolveImage('chef-simge');
   const teamPhotos = await getTeamPhotos();
 
   return (

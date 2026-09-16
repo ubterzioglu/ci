@@ -17,8 +17,8 @@ interface StorySectionProps {
  * the full About page. Uses the real chef bio from the source (Simge
  * Manacıoğlu) — no invented facts.
  */
-export function StorySection({ locale = defaultLocale }: StorySectionProps) {
-  const portrait = resolveImage('chef-simge');
+export async function StorySection({ locale = defaultLocale }: StorySectionProps) {
+  const portrait = await resolveImage('chef-simge');
   const about = getAboutContent(locale);
   const lead = about.intro.paragraphs.slice(0, 2);
 

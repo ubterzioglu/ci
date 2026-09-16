@@ -79,8 +79,8 @@ interface ExperienceShowcaseProps {
   locale?: Locale;
 }
 
-export function ExperienceShowcase({ locale = defaultLocale }: ExperienceShowcaseProps) {
-  const background = resolveImage('restaurant-garden-night');
+export async function ExperienceShowcase({ locale = defaultLocale }: ExperienceShowcaseProps) {
+  const background = await resolveImage('restaurant-garden-night');
   const experiences = getHomeContent(locale).experiences;
   // A single card is centred and width-capped; multiple cards use a 3-col grid.
   const gridClass =

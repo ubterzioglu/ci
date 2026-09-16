@@ -51,11 +51,12 @@ export async function getTeamPhotos(): Promise<TeamPhoto[]> {
   }
 
   // Static fallback: the bundled about-context manifest entries.
-  return getMediaByContext(ABOUT_CONTEXT)
-    .map((asset): TeamPhoto | null => {
-      const image = resolveImage(asset.id);
+  const fallback = await Promise.all(
+    getMediaByContext(ABOUT_CONTEXT).map(async (asset): Promise<TeamPhoto | null> => {
+      const image = await resolveImage(asset.id);
       if (!image) return null;
       return { id: asset.id, url: image.src, alt: image.alt, caption: null };
-    })
-    .filter((photo): photo is TeamPhoto => photo !== null);
+    }),
+  );
+  return fallback.filter((photo): photo is TeamPhoto => photo !== null);
 }

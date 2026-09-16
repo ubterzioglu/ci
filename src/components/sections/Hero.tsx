@@ -17,8 +17,8 @@ interface HeroProps {
  * restaurant's world — the olive-grove garden at dusk — with the name set in
  * the display serif. Quiet, atmospheric, with a clear reservation CTA.
  */
-export function Hero({ locale = defaultLocale }: HeroProps) {
-  const image = resolveImage('restaurant-garden-night');
+export async function Hero({ locale = defaultLocale }: HeroProps) {
+  const image = await resolveImage('restaurant-garden-night');
   const home = getHomeContent(locale);
   const dictionary = getDictionary(locale);
 

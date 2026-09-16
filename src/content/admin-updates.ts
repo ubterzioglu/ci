@@ -13,12 +13,62 @@ export interface UpdateGroup {
 export const UPDATE_ENTRIES: UpdateGroup[] = [
   {
     date: '16 Eylül 2026',
-    title: 'Rusça dil seçeneği ve menüdeki servis bedeli notu',
+    title: 'Rezervasyon kuralları siteye işlendi',
+    items: [
+      'Rezervasyon saatleri 18:00 – 22:00 arasına alındı. Misafir artık serbest saat yazamıyor; yarım saat aralıklarla hazır saatlerden seçiyor.',
+      'Rezervasyonlar en az 2 saat önceden alınıyor. Servis sırasında son dakika gelen ve gözden kaçabilecek talepler böylece engelleniyor.',
+      '6 kişi ve üzeri gruplarda form kapanıyor; yerine telefon ve WhatsApp bağlantısı çıkıyor. Masa düzenini birlikte planlayabilmeniz için.',
+      'Pazar günleri seçilemiyor; seçilirse “Pazar kapalıyız, özel günler için arayın” mesajı ve iletişim bilgileri görünüyor.',
+      'Bu kurallar iletişim sayfasında da, çalışma saatlerinin hemen yanında yazıyor.',
+      'Kurallar sunucu tarafında da denetleniyor — formu atlatarak uygun olmayan bir saate rezervasyon yapılamıyor.',
+    ],
+  },
+  {
+    date: '16 Eylül 2026',
+    title: 'Rezervasyon e-postaları devreye alındı',
+    items: [
+      'Yeni bir rezervasyon talebi geldiğinde bildirim maili gidiyor. Mailde misafirin adı, tarihi, saati, kişi sayısı, e-postası, telefonu ve notu yer alıyor — geri dönmek için panele girmeniz gerekmiyor.',
+      'Maildeki “Yanıtla” düğmesi doğrudan misafire gidiyor.',
+      'Bir rezervasyonu “Onayla” dediğinizde misafire otomatik bilgilendirme maili gidiyor (tarih, saat, kişi sayısı ve iletişim bilgileriniz).',
+      'Bildirimler hem info@cineocucina.com hem cineo.cucina@gmail.com adresine düşüyor.',
+      'Misafirin e-posta adresi yoksa ya da mail gönderilemezse panel bunu açıkça söylüyor — “gitti” sanıp beklemiyorsunuz. Böyle bir durumda rezervasyon yine onaylanmış oluyor.',
+      'Aynı rezervasyonu tekrar onaylamak misafire ikinci bir mail göndermiyor.',
+      'Sitedeki iletişim adresi info@cineocucina.com olarak güncellendi (alt bilgi, künye ve gizlilik sayfası).',
+    ],
+  },
+  {
+    date: '16 Eylül 2026',
+    title: 'Şarap menüsü panelden yönetilebiliyor',
+    items: [
+      'Sol menüye “Şarap Menüsü” bölümü eklendi. Ana menüyle aynı şekilde çalışıyor: önce kategori (örn. Beyaz, Kırmızı, Rosé), sonra şaraplar.',
+      'Şaraplar da dört dilde girilebiliyor ve “Türkçeden Tümünü Çevir” butonu burada da çalışıyor.',
+      'Siz şarap eklemeden önce sitede eski “ekibimize danışın” notu görünmeye devam ediyor; ilk şarabı eklediğinizde not kalkıp liste görünüyor.',
+      'Mevcut yemek menüsü bundan etkilenmedi; iki liste tamamen ayrı yönetiliyor.',
+    ],
+  },
+  {
+    date: '16 Eylül 2026',
+    title: 'Menü artık dört dilde panelden yönetiliyor',
     items: [
       'Siteye Rusça eklendi: dil menüsünde “Русский” seçeneği ve /ru adresleri yayında. Menü, sayfa içerikleri ve gezinme yazıları Rusçaya çevrildi.',
+      'ÖNEMLİ DÜZELTME: Panelden eklediğiniz veya değiştirdiğiniz menü verileri İngilizce, Almanca ve Rusça menülerde görünmüyordu — o diller eski sabit listeyi gösteriyordu. Artık dört dil de panelden besleniyor.',
+      'Menüde her ürün adı ve açıklaması için dört ayrı dil kutusu var. Boş bıraktığınız dil Türkçe metni kullanıyor, yani yarım bıraksanız da menü eksiksiz görünüyor.',
+      'Her alanın yanında “TR’den çevir”, satır başında da “Türkçeden Tümünü Çevir” butonu var. Çeviri kaydetmede otomatik yapılmıyor; kutuları doldurup size gösteriyor, siz onaylayıp kaydediyorsunuz.',
+      'Çeviriler makine çevirisidir — özellikle yemek adlarını kaydetmeden önce gözden geçirin.',
+      'Menüdeki “Hesaba %10 servis bedeli eklenecektir” ibaresi kaldırıldı; artık servis bedeli alınmıyor. Yıldızlı (*) ürünlerin ana yemek porsiyonu olduğu notu duruyor. Dört dilde birden kaldırıldı.',
       'Arama motorlarına Rusça sayfalar da bildiriliyor (site haritası ve hreflang etiketleri güncellendi).',
-      'Menüdeki “Hesaba %10 servis bedeli eklenecektir” ibaresi kaldırıldı; artık servis bedeli alınmıyor. Yıldızlı (*) ürünlerin ana yemek porsiyonu olduğu notu duruyor.',
-      'Bu değişiklik dört dilde birden yapıldı — Türkçe, İngilizce, Almanca ve Rusça menülerde servis bedeli yazısı görünmüyor.',
+    ],
+  },
+  {
+    date: '16 Eylül 2026',
+    title: 'Fotoğraf bölümleri sadeleşti, sabit görseller açıldı',
+    items: [
+      'Fotoğraf bölümleri artık fotoğrafın türüne göre değil, SAYFAYA göre ayrılıyor: “Ana Sayfa Görselleri” ve “Hakkımızda Görselleri”. Hangisinin nereye gittiği karışmıyor.',
+      'Her bölümün başında o sayfaya giden bir önizleme bağlantısı, her fotoğraf kartının altında da o görselin sitede tam olarak nerede çıktığı yazıyor.',
+      'Daha önce hiç değiştirilemeyen sabit görseller artık panelden değiştirilebiliyor: ana sayfanın en üstündeki büyük görsel, rezervasyon bölümünün arka planı ve şef portresi.',
+      'Bazı görseller birden fazla yerde kullanılıyor (üstteki büyük görsel “Deneyim” bölümünün de arka planı; şef portresi ana sayfada da var). Kartlarda bu yazıyor, değiştirince ikisi birden değişiyor.',
+      'Hiç dokunmadığınız bir görselde “Kurulum görseli” etiketi görünüyor, böylece neyin değiştirildiği belli oluyor.',
+      'Kullanım kılavuzu (sol menüdeki “Kullanım Kılavuzu”) bütün bu yeni bölümlere göre güncellendi.',
     ],
   },
   {
@@ -64,7 +114,8 @@ export const UPDATE_ENTRIES: UpdateGroup[] = [
 ];
 
 export const UPDATE_PENDING: string[] = [
-  'Sayfa içerikleri ve menü yönetimi (panelden düzenleme) — sonraki faz.',
-  'Medya ve site ayarları yönetimi — sonraki faz.',
-  'Şifre sıfırlama e-postaları için özel SMTP kurulumu (markalı, Türkçe şablon).',
+  'Rusça çevirilerin anadili Rusça biri tarafından gözden geçirilmesi — özellikle yemek adları.',
+  'Şarap listesinin panelden girilmesi (sistem hazır, içerik bekleniyor).',
+  'Sayfa metinlerinin (Hakkımızda, Deneyimler vb.) panelden düzenlenebilmesi — sonraki faz.',
+  'Yönetim paneli şifresinin daha güçlü bir şifreyle değiştirilmesi.',
 ];

@@ -40,7 +40,7 @@ export const siteConfig = {
   contact: {
     phoneDisplay: '+90 544 687 05 28',
     phoneE164: '+905446870528',
-    email: 'info@cineocucina.com',
+    email: 'cineo.cucina@gmail.com',
     region: 'Kaş, Antalya',
     // Confirmed via Google Maps business listing (Çi neo cucina by mezetaryen).
     address: 'Andifli Mah., Uğur Mumcu Cad. No:23, 07580 Kaş/Antalya' as string | null,

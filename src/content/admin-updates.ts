@@ -12,6 +12,14 @@ export interface UpdateGroup {
 
 export const UPDATE_ENTRIES: UpdateGroup[] = [
   {
+    date: '17 Eylül 2026',
+    title: 'Sitedeki iletişim adresi gmail adresine döndü',
+    items: [
+      'Alt bilgi, iletişim bölümü, künye ve gizlilik sayfasında görünen e-posta adresi cineo.cucina@gmail.com olarak değiştirildi.',
+      'Bildirim ve gönderim ayarları (Zoho) olduğu gibi kaldı; sadece sitede yazan adres değişti.',
+    ],
+  },
+  {
     date: '16 Eylül 2026',
     title: 'Rezervasyon kuralları siteye işlendi',
     items: [

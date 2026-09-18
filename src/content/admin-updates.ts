@@ -12,6 +12,16 @@ export interface UpdateGroup {
 
 export const UPDATE_ENTRIES: UpdateGroup[] = [
   {
+    date: '18 Eylül 2026',
+    title: 'Onay maillerinin kopyası gmail adresine düşüyor',
+    items: [
+      'Misafire “Onayla” dediğinizde giden rezervasyon onay mailinin birebir bir kopyası artık cineo.cucina@gmail.com adresine de geliyor. Misafire ne yazıldığını görmek için panele girmeniz gerekmiyor.',
+      'Kopya gizli gönderiliyor (BCC): misafir bu adresi görmüyor ve “Tümünü yanıtla” dediğinde oraya yazamıyor.',
+      'Kopyanın gideceği adres sunucu ayarından değiştirilebiliyor; birden fazla adres de yazılabiliyor. Boş bırakılırsa kopya gönderilmiyor.',
+      'Zoho gönderim ayarları (hesap, şifre, gönderen adresi) değişmedi.',
+    ],
+  },
+  {
     date: '17 Eylül 2026',
     title: 'Sitedeki iletişim adresi gmail adresine döndü',
     items: [

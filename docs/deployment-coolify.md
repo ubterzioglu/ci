@@ -54,6 +54,7 @@ inlined into the client bundle.
 | `ZOHO_SMTP_USER`                 | —      | Zoho mailbox that owns `MAIL_FROM` (alias ≠ mailbox)                 |
 | `ZOHO_SMTP_PASSWORD`             | —      | Zoho app password from `.env.local`                                  |
 | `MAIL_FROM`                      | —      | `Çi Neo Cucina <info@cineocucina.com>` (must be an allowed sender)   |
+| `GUEST_MAIL_BCC`                 | —      | `cineo.cucina@gmail.com` — blind copy of the guest's confirmation    |
 | `DEEPL_API_KEY`                  | —      | _(optional — only needed for `pnpm i18n:translate`, not at runtime)_ |
 
 > Do **not** set `SUPABASE_DB_URL`, `SUPABASE_SECRET_KEY`, or

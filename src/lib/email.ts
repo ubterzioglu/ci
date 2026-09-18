@@ -29,6 +29,15 @@ export interface SendNotificationEmailParams {
    * of the message body.
    */
   replyTo?: string;
+  /**
+   * Blind copy, so the restaurant keeps its own record of what a guest was
+   * told. Blind on purpose: the guest must not see an internal address, and
+   * must not be able to reply to it by hitting "Reply all".
+   *
+   * Accepts several comma-separated addresses, like `to`. Empty or unset
+   * means no copy.
+   */
+  bcc?: string;
 }
 
 /**
@@ -115,6 +124,7 @@ export async function sendNotificationEmail(
     await transporter.sendMail({
       from: settings.from,
       to: splitRecipients(params.to),
+      ...(params.bcc ? { bcc: splitRecipients(params.bcc) } : {}),
       subject: params.subject,
       text: params.text,
       ...(params.replyTo ? { replyTo: params.replyTo } : {}),

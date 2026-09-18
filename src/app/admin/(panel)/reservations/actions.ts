@@ -83,7 +83,13 @@ async function notifyGuestIfNewlyConfirmed(change: {
   if (!reservation.email) return { kind: 'no-email' };
 
   const body = buildReservationConfirmation(reservation);
-  const result = await sendNotificationEmail({ to: reservation.email, ...body });
+  const result = await sendNotificationEmail({
+    to: reservation.email,
+    // A copy of the guest's confirmation, for the restaurant's own records.
+    // Unset in development, and on any deployment that does not want one.
+    bcc: process.env.GUEST_MAIL_BCC,
+    ...body,
+  });
 
   if (result.sent) return { kind: 'sent', to: reservation.email };
   if (result.skipped) return { kind: 'not-configured' };

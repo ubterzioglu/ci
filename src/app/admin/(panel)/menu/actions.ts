@@ -53,6 +53,7 @@ const translationsSchema: z.ZodType<MenuTranslations> = z
 /** Revalidate every surface a menu change is visible on. */
 function revalidateMenu(): void {
   revalidatePath('/admin/menu');
+  revalidatePath('/admin/wine');
   revalidatePath('/menu');
   revalidatePath('/qr');
 }
@@ -135,6 +136,8 @@ const itemSchema = z.object({
   name: z.string().trim().min(1, 'Ürün adı gerekli.').max(200),
   description: z.string().trim().max(2000).nullable(),
   price: z.number().min(0, 'Fiyat negatif olamaz.').max(1_000_000).nullable(),
+  glassPrice: z.number().min(0, 'Kadeh fiyatı negatif olamaz.').max(1_000_000).nullable(),
+  isCoravin: z.boolean(),
   currency: z.string().trim().min(1).max(8),
   tags: z.array(z.string().trim().min(1).max(60)).max(20),
   allergens: z.array(z.string().trim().min(1).max(60)).max(30),

@@ -88,10 +88,16 @@
       "seoDescription": "Erstellen Sie eine Reservierungsanfrage bei Çi Neo Cucina; geben Sie die Anzahl der Personen sowie Datum und Uhrzeit an."
     },
     "experiences": {
-      "title": "Erfahrungen",
+      "title": "Erlebnisse",
       "excerpt": "Kontaktieren Sie uns für besondere Erlebnisse und Veranstaltungen.",
-      "seoTitle": "Erfahrungen | Çi Neo Cucina",
-      "seoDescription": "Erfahrungen mit Çi Neo Cucina und Ankündigungen zu besonderen Veranstaltungen."
+      "seoTitle": "Erlebnisse | Çi Neo Cucina",
+      "seoDescription": "Erlebnisse bei Çi Neo Cucina und Ankündigungen zu besonderen Veranstaltungen."
+    },
+    "contact": {
+      "title": "Kontakt",
+      "excerpt": "Kontaktieren Sie uns für Reservierungen, private Veranstaltungen und Fragen.",
+      "seoTitle": "Kontakt | Çi Neo Cucina",
+      "seoDescription": "Kontaktieren Sie Çi Neo Cucina für Reservierungen, private Veranstaltungen und Fragen."
     }
   }
 }

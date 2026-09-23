@@ -3,6 +3,8 @@
 import { useId, useState } from 'react';
 
 import { MenuItemCard } from './MenuItemCard';
+import { WineMenuItemCard } from './WineMenuItemCard';
+import type { WinePriceLabels } from '@/content/wine-menu-data';
 import type { MenuCategory as MenuCategoryType } from '@/lib/types';
 
 /**
@@ -15,7 +17,17 @@ import type { MenuCategory as MenuCategoryType } from '@/lib/types';
  * is a real <button> with aria-expanded/aria-controls for keyboard + screen
  * reader support.
  */
-export function MenuAccordionCategory({ category }: { category: MenuCategoryType }) {
+export function MenuAccordionCategory({
+  category,
+  variant = 'food',
+  winePriceLabels,
+  allergensLabel,
+}: {
+  category: MenuCategoryType;
+  variant?: 'food' | 'wine';
+  winePriceLabels?: WinePriceLabels;
+  allergensLabel?: string;
+}) {
   const [open, setOpen] = useState(false);
   const panelId = useId();
 
@@ -55,9 +67,13 @@ export function MenuAccordionCategory({ category }: { category: MenuCategoryType
             <p className="text-muted mt-4 max-w-prose text-sm">{category.description}</p>
           )}
           <div className="divide-stone-soft divide-y">
-            {category.items.map((item) => (
-              <MenuItemCard key={item.id} item={item} />
-            ))}
+            {category.items.map((item) =>
+              variant === 'wine' ? (
+                <WineMenuItemCard key={item.id} item={item} labels={winePriceLabels} />
+              ) : (
+                <MenuItemCard key={item.id} item={item} allergensLabel={allergensLabel} />
+              ),
+            )}
           </div>
         </div>
       )}

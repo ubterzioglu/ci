@@ -94,19 +94,19 @@ export const GUIDE_SECTIONS: GuideSection[] = [
     body: [
       'Şarap listesi ana menüden ayrı bir bölümdedir ama aynı şekilde çalışır: önce ' +
         'kategori (örn. Beyaz, Kırmızı, Rosé), sonra o kategoriye şarapları eklersiniz.',
-      'Siz şarap eklemeden önce sitedeki “Şarap Menüsü” sekmesinde “ekibimize danışın” ' +
-        'notu görünür. İlk şarabı eklediğinizde not kalkar, liste görünmeye başlar.',
+      'Basılı menüdeki şaraplar sisteme toplu olarak eklenmiştir. Buradan kadeh ve şişe ' +
+        'fiyatlarını ayrı ayrı güncelleyebilir, Coravin ile servis edilenleri işaretleyebilirsiniz.',
     ],
     steps: [
       'Sol menüden “Şarap Menüsü” bölümüne girin.',
       'Önce bir kategori ekleyin (örn. “Beyaz Şaraplar”).',
-      'Kategoriye şarapları ekleyin: ad, açıklama ve fiyat.',
+      'Kategoriye şarapları ekleyin: ad, açıklama, kadeh fiyatı ve şişe fiyatı.',
       'Dört dilde de görünmesi için “Türkçeden Tümünü Çevir” butonunu kullanın.',
       'Çeviriler makine çevirisidir — kaydetmeden önce gözden geçirin.',
     ],
     tips: [
       'Bir şarabı geçici olarak listeden çıkarmak için gizleyin, silmeniz gerekmez.',
-      'Fiyatı boş bırakırsanız sitede fiyat yerine “sorunuz” görünür.',
+      'Kadeh veya şişe seçeneği yoksa ilgili fiyat alanını boş bırakın.',
     ],
   },
   {

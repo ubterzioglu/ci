@@ -6,6 +6,7 @@ import { getHomeContent } from '@/content/pages-i18n';
 import { resolveImage } from '@/lib/images';
 import { defaultLocale, type Locale } from '@/lib/i18n/config';
 import { localePath } from '@/lib/i18n/paths';
+import { getDictionary } from '@/lib/i18n/dictionaries';
 
 /**
  * Premium "deneyim" showcase. Frosted-glass cards float over the night-garden
@@ -82,6 +83,7 @@ interface ExperienceShowcaseProps {
 export async function ExperienceShowcase({ locale = defaultLocale }: ExperienceShowcaseProps) {
   const background = await resolveImage('restaurant-garden-night');
   const experiences = getHomeContent(locale).experiences;
+  const dictionary = getDictionary(locale);
   // A single card is centred and width-capped; multiple cards use a 3-col grid.
   const gridClass =
     experiences.length === 1
@@ -107,7 +109,12 @@ export async function ExperienceShowcase({ locale = defaultLocale }: ExperienceS
       />
 
       <div className="container-editorial">
-        <SectionHeading eyebrow="Deneyim" title="Sofranın Ötesinde" align="center" tone="light" />
+        <SectionHeading
+          eyebrow={dictionary.home.experienceEyebrow}
+          title={dictionary.home.experienceTitle}
+          align="center"
+          tone="light"
+        />
 
         <div className={gridClass}>
           {experiences.map((experience) => (
@@ -129,7 +136,9 @@ export async function ExperienceShowcase({ locale = defaultLocale }: ExperienceS
               <p className="text-ivory/75 mt-3 flex-1 text-sm leading-relaxed">
                 {experience.description}
               </p>
-              <span className="mt-5 text-sm tracking-wide text-[#d8a25e]">Deneyimi Keşfet →</span>
+              <span className="mt-5 text-sm tracking-wide text-[#d8a25e]">
+                {dictionary.home.discoverExperience}
+              </span>
             </Link>
           ))}
         </div>

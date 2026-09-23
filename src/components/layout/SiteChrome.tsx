@@ -4,6 +4,7 @@ import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { ScrollToTop } from '@/components/layout/ScrollToTop';
 import type { Locale } from '@/lib/i18n/config';
+import { getDictionary } from '@/lib/i18n/dictionaries';
 
 interface SiteChromeProps {
   locale: Locale;
@@ -19,20 +20,21 @@ interface SiteChromeProps {
  * built for the active language.
  */
 export function SiteChrome({ locale, children }: SiteChromeProps) {
+  const dictionary = getDictionary(locale);
   return (
     <>
       <a
         href="#main"
         className="bg-charcoal text-ivory sr-only rounded-md px-4 py-2 focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50"
       >
-        İçeriğe geç
+        {dictionary.a11y.skipToContent}
       </a>
       <Header locale={locale} />
       <main id="main" className="flex-1">
         {children}
       </main>
       <Footer locale={locale} />
-      <ScrollToTop />
+      <ScrollToTop locale={locale} />
     </>
   );
 }

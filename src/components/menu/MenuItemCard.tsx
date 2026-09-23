@@ -7,7 +7,13 @@ import { formatPrice } from '@/lib/utils';
  * right, description beneath, dietary tags as small badges. Allergens are shown
  * subtly so guests can scan them without clutter.
  */
-export function MenuItemCard({ item }: { item: MenuItem }) {
+export function MenuItemCard({
+  item,
+  allergensLabel = 'Alerjenler',
+}: {
+  item: MenuItem;
+  allergensLabel?: string;
+}) {
   const price = formatPrice(item.price, item.currency);
 
   return (
@@ -31,7 +37,9 @@ export function MenuItemCard({ item }: { item: MenuItem }) {
             </Badge>
           ))}
           {item.allergens.length > 0 && (
-            <span className="text-muted/80 text-xs">Alerjenler: {item.allergens.join(', ')}</span>
+            <span className="text-muted/80 text-xs">
+              {allergensLabel}: {item.allergens.join(', ')}
+            </span>
           )}
         </div>
       )}

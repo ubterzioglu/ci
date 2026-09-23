@@ -1,5 +1,8 @@
 import type { MediaAsset } from '@/lib/types';
 
+/** A distinct group photo keeps the mobile story and chef sections from repeating one portrait. */
+export const HOME_STORY_IMAGE_ID = 'team-simge-lisa';
+
 /**
  * Image manifest. Every asset is a committed local file under /public — the
  * site has no external image dependency. `storagePath` is that path; resolve

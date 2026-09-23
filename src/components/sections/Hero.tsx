@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { Button } from '@/components/ui/Button';
 import { getHomeContent } from '@/content/pages-i18n';
 import { resolveImage } from '@/lib/images';
-import { PRIMARY_CTA, siteConfig } from '@/lib/site-config';
+import { PRIMARY_CTA } from '@/lib/site-config';
 import { defaultLocale, type Locale } from '@/lib/i18n/config';
 import { getDictionary } from '@/lib/i18n/dictionaries';
 import { localePath } from '@/lib/i18n/paths';
@@ -42,8 +42,7 @@ export async function Hero({ locale = defaultLocale }: HeroProps) {
 
       <div className="container-editorial relative z-10 pt-32 pb-16 md:pb-24">
         <div className="fade-up max-w-2xl">
-          <p className="eyebrow text-terracotta/90">{siteConfig.contact.region}</p>
-          <h1 className="font-display text-ivory mt-4 text-5xl leading-[1.05] md:text-7xl">
+          <h1 className="font-display text-ivory text-5xl leading-[1.05] md:text-7xl">
             {home.hero.title}
           </h1>
           <p className="text-ivory/85 mt-5 max-w-xl text-lg md:text-xl">{home.hero.subtitle}</p>

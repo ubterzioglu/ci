@@ -30,26 +30,26 @@ export function ReservationsPageBody({ locale }: ReservationsPageBodyProps) {
       />
 
       <PageHeader
-        eyebrow="Masanızı Ayırtın"
-        title="Rezervasyon Talep Edin"
-        intro="Ayrıntıları paylaşın; sizin için en uygun yeri bulmaya çalışalım. Talebinizi aldıktan sonra en kısa sürede sizinle iletişime geçeceğiz."
+        eyebrow={dictionary.pages.reservations.eyebrow}
+        title={dictionary.pages.reservations.title}
+        intro={dictionary.pages.reservations.intro}
       />
 
       <section className="bg-marble pb-section">
         <div className="container-editorial">
           <div className="border-stone-soft bg-cream-deep/40 mx-auto max-w-2xl rounded-lg border p-6 md:p-8">
-            <ReservationForm />
+            <ReservationForm locale={locale} />
           </div>
 
           <p className="text-muted mx-auto mt-6 max-w-2xl text-center text-sm">
-            Büyük gruplar ve özel etkinlikler için{' '}
+            {dictionary.pages.reservations.largeGroupsPrefix}{' '}
             <a
               href={`tel:${siteConfig.contact.phoneE164}`}
               className="text-olive underline-offset-4 hover:underline"
             >
               {siteConfig.contact.phoneDisplay}
             </a>{' '}
-            numarasından bize ulaşabilirsiniz.
+            {dictionary.pages.reservations.largeGroupsSuffix}
           </p>
         </div>
       </section>

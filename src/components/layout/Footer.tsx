@@ -79,7 +79,7 @@ export function Footer({ locale = defaultLocale }: FooterProps) {
           {/* Brand */}
           <p className="font-display text-2xl">{siteConfig.name}</p>
           <p className="text-ivory/70 mt-3 max-w-sm text-sm leading-relaxed">
-            {siteConfig.tagline} {siteConfig.contact.region}.
+            {dictionary.footer.tagline}
           </p>
           <p className="text-terracotta mt-4 text-sm tracking-wide">{siteConfig.hashtag}</p>
 
@@ -87,7 +87,7 @@ export function Footer({ locale = defaultLocale }: FooterProps) {
           <FooterContactLinks className="mt-8" />
 
           {/* Main navigation — inline with vertical dividers */}
-          <nav aria-label="Alt menü" className="mt-10 w-full">
+          <nav aria-label={dictionary.a11y.footerNavigation} className="mt-10 w-full">
             <ul className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm">
               {mainNav.map((item, index) => (
                 <li key={item.href} className="flex items-center">
@@ -120,13 +120,15 @@ export function Footer({ locale = defaultLocale }: FooterProps) {
 
         <div className="border-ivory/10 text-ivory/60 mt-12 flex flex-col gap-4 border-t pt-6 text-sm md:flex-row md:items-center md:justify-between">
           <p>
-            © {currentYear()} {siteConfig.name}. Tüm hakları saklıdır.
+            © {currentYear()} {siteConfig.name}. {dictionary.footer.rights}
           </p>
           <ul className="flex gap-6">
             {footerLegalNav.map((item) => (
               <li key={item.href}>
                 <Link href={item.href} className="hover:text-ivory transition-colors">
-                  {item.labelTr}
+                  {item.href === '/impressum'
+                    ? dictionary.footer.impressum
+                    : dictionary.footer.privacy}
                 </Link>
               </li>
             ))}

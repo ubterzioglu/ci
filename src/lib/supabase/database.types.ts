@@ -164,6 +164,8 @@ export interface Database {
           name: string;
           description: string | null;
           price: number | null;
+          glass_price: number | null;
+          is_coravin: boolean;
           currency: string;
           image_url: string | null;
           tags: string[];
@@ -181,6 +183,8 @@ export interface Database {
           name: string;
           description?: string | null;
           price?: number | null;
+          glass_price?: number | null;
+          is_coravin?: boolean;
           currency?: string;
           image_url?: string | null;
           tags?: string[];

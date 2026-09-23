@@ -39,8 +39,8 @@ This checklist tracks all data that must be provided by the restaurant to comple
 
 ### Wine / Drinks Menu
 
-- [ ] Provide complete wine and drinks menu (the Wix site had "Şarap Menüsü" header but no items)
-- [ ] Include: wine name, region/country, price in TRY, description (optional)
+- [x] Complete wine menu transcribed from `IMG-20260916-WA0012.jpg` (51 entries)
+- [x] Include wine name, grape/region, glass and bottle prices in TRY, plus Coravin service
 - **Why needed**: Menu completeness, guest experience, upselling
 
 ### Social Media Links
@@ -127,7 +127,7 @@ Once items above are gathered, submit to the development team with:
 - [ ] Opening hours (text)
 - [ ] Allergen corrections (CSV or annotated menu item list)
 - [ ] High-resolution images (ZIP or cloud link)
-- [ ] Wine menu (CSV or JSON)
+- [x] Wine menu (provided as a photographed printed menu and transcribed into structured data)
 - [ ] Social media URLs (plain text)
 - [ ] Resend API key (if email notifications desired)
 - [ ] German legal text: Impressum (plain text or .md)

@@ -14,8 +14,10 @@ import {
   findSlotProblem,
   isClosedDay,
   RESERVATION_MAX_PARTY,
-  RESERVATION_RULE_LINES,
+  getReservationRuleLines,
 } from '@/lib/reservation-rules';
+import { defaultLocale, type Locale } from '@/lib/i18n/config';
+import { getDictionary } from '@/lib/i18n/dictionaries';
 
 /** Sentinel for the "6 or more" choice — not a real party size. */
 const LARGE_PARTY_VALUE = 'large';
@@ -49,7 +51,10 @@ function ContactHandoff({ title, body }: { title: string; body: string }) {
   );
 }
 
-export function ReservationForm() {
+export function ReservationForm({ locale = defaultLocale }: { locale?: Locale }) {
+  const dictionary = getDictionary(locale);
+  const copy = dictionary.forms.reservation;
+  const reservationRules = getReservationRuleLines(locale);
   const [state, formAction, isPending] = useActionState<ActionResult | null, FormData>(
     submitReservation,
     null,
@@ -69,7 +74,7 @@ export function ReservationForm() {
   const [time, setTime] = useState('');
 
   const isLargeParty = partySize === LARGE_PARTY_VALUE;
-  const slotProblem = date && time ? findSlotProblem(date, time) : null;
+  const slotProblem = date && time ? findSlotProblem(date, time, new Date(), locale) : null;
   const sundayPicked = date ? isClosedDay(date) : false;
 
   if (state?.ok) {
@@ -79,10 +84,8 @@ export function ReservationForm() {
         aria-live="polite"
         className="bg-olive/10 rounded-md px-6 py-8 text-center"
       >
-        <h2 className="font-display text-olive mb-2 text-2xl">Talebiniz alındı</h2>
-        <p className="font-body text-charcoal">
-          Rezervasyon talebinizi aldık. En kısa sürede sizinle iletişime geçeceğiz.
-        </p>
+        <h2 className="font-display text-olive mb-2 text-2xl">{copy.successTitle}</h2>
+        <p className="font-body text-charcoal">{copy.successBody}</p>
       </div>
     );
   }
@@ -111,13 +114,14 @@ export function ReservationForm() {
         tabIndex={-1}
         autoComplete="off"
       />
+      <input type="hidden" name="locale" value={locale} />
 
       {/* Paired short fields share a row on sm+ to keep the form above the fold */}
       <div className="grid gap-4 sm:grid-cols-2">
         <Input
           id="res-name"
           name="name"
-          label="Ad Soyad"
+          label={copy.fullName}
           required
           autoComplete="name"
           error={fieldErrors['name']?.[0]}
@@ -127,7 +131,7 @@ export function ReservationForm() {
           id="res-email"
           name="email"
           type="email"
-          label="E-posta"
+          label={dictionary.common.email}
           autoComplete="email"
           error={fieldErrors['email']?.[0]}
         />
@@ -136,7 +140,7 @@ export function ReservationForm() {
           id="res-phone"
           name="phone"
           type="tel"
-          label="Telefon"
+          label={dictionary.common.phone}
           autoComplete="tel"
           error={fieldErrors['phone']?.[0]}
         />
@@ -144,7 +148,7 @@ export function ReservationForm() {
         <Select
           id="res-partySize"
           name="partySize"
-          label="Kişi Sayısı"
+          label={copy.partySize}
           value={partySize}
           onChange={(e) => setPartySize(e.target.value)}
           error={fieldErrors['partySize']?.[0]}
@@ -160,8 +164,8 @@ export function ReservationForm() {
 
       {isLargeParty && (
         <ContactHandoff
-          title="Kalabalık gruplar için sizi arayalım"
-          body={`${RESERVATION_MAX_PARTY + 1} kişi ve üzeri gruplarda masa düzenini birlikte planlamamız gerekiyor. Lütfen bizimle iletişime geçin.`}
+          title={copy.largePartyTitle}
+          body={copy.largePartyBody.replace('{count}', String(RESERVATION_MAX_PARTY + 1))}
         />
       )}
 
@@ -170,7 +174,7 @@ export function ReservationForm() {
           id="res-requestedDate"
           name="requestedDate"
           type="date"
-          label="Tarih"
+          label={copy.date}
           required
           min={todayISO}
           value={date}
@@ -181,13 +185,13 @@ export function ReservationForm() {
         <Select
           id="res-requestedTime"
           name="requestedTime"
-          label="Saat"
+          label={copy.time}
           required
           value={time}
           onChange={(e) => setTime(e.target.value)}
           error={fieldErrors['requestedTime']?.[0] ?? slotProblem?.message}
         >
-          <option value="">Saat seçin</option>
+          <option value="">{copy.selectTime}</option>
           {times.map((t) => (
             <option key={t} value={t}>
               {t}
@@ -198,23 +202,23 @@ export function ReservationForm() {
 
       {sundayPicked && (
         <ContactHandoff
-          title="Pazar günleri kapalıyız"
-          body="Özel günlerde duruma göre açıyoruz. Pazar için bir planınız varsa lütfen bizi arayın."
+          title={copy.sundayTitle}
+          body={copy.sundayBody}
         />
       )}
 
       <Textarea
         id="res-message"
         name="message"
-        label="Notunuz (isteğe bağlı)"
-        placeholder="Özel istek, alerji bilgisi vb."
+        label={copy.noteLabel}
+        placeholder={copy.notePlaceholder}
         rows={2}
         className="min-h-0"
         error={fieldErrors['message']?.[0]}
       />
 
       <div aria-live="polite" aria-atomic="true" className="sr-only">
-        {isPending ? 'Gönderiliyor…' : ''}
+        {isPending ? copy.pending : ''}
       </div>
 
       <Button
@@ -226,11 +230,11 @@ export function ReservationForm() {
         disabled={isPending || isLargeParty || sundayPicked}
         className="w-full"
       >
-        {isPending ? 'Gönderiliyor…' : 'Rezervasyon Talep Et'}
+        {isPending ? copy.pending : copy.submit}
       </Button>
 
       <ul className="text-muted font-body mt-1 space-y-1 text-xs leading-relaxed">
-        {RESERVATION_RULE_LINES.map((line) => (
+        {reservationRules.map((line) => (
           <li key={line}>· {line}</li>
         ))}
       </ul>

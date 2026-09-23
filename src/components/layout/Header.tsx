@@ -85,7 +85,7 @@ export function Header({ locale = defaultLocale }: HeaderProps) {
           </Link>
 
           {/* Desktop nav */}
-          <nav aria-label="Ana menü" className="hidden md:block">
+          <nav aria-label={dictionary.a11y.mainNavigation} className="hidden md:block">
             <ul className="flex items-center gap-7">
               {mainNav.map((item) => {
                 const href = localePath(item.href, locale);
@@ -132,7 +132,7 @@ export function Header({ locale = defaultLocale }: HeaderProps) {
             <button
               type="button"
               onClick={() => setMenuOpen(true)}
-              aria-label="Menüyü aç"
+              aria-label={dictionary.a11y.openMenu}
               aria-expanded={menuOpen}
               aria-controls="mobile-nav"
               className={cn(

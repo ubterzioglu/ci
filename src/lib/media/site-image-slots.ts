@@ -44,7 +44,7 @@ export const SITE_IMAGE_SLOTS: readonly SiteImageSlot[] = [
     id: 'chef-simge',
     page: 'about',
     label: 'Şef portresi',
-    appearsOn: 'Hakkımızda sayfasında ve ana sayfadaki şef/hikâye bölümlerinde',
+    appearsOn: 'Hakkımızda sayfasında ve ana sayfadaki "Şefle Tanışalım" bölümünde',
     aspectClassName: 'aspect-[3/4]',
   },
 ] as const;

@@ -1,6 +1,8 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { defaultLocale, type Locale } from '@/lib/i18n/config';
+import { getDictionary } from '@/lib/i18n/dictionaries';
 
 /**
  * Floating "back to top" control, pinned bottom-right across the public site
@@ -26,7 +28,8 @@ const RING_CIRCUMFERENCE = 2 * Math.PI * RING_RADIUS;
 // Reveal once the page is scrolled past this fraction of its scrollable height.
 const REVEAL_THRESHOLD = 0.25;
 
-export function ScrollToTop() {
+export function ScrollToTop({ locale = defaultLocale }: { locale?: Locale }) {
+  const dictionary = getDictionary(locale);
   const [visible, setVisible] = useState(false);
   const [progress, setProgress] = useState(0); // 0..1 of page scrolled
 
@@ -70,7 +73,7 @@ export function ScrollToTop() {
     <button
       type="button"
       onClick={scrollToTop}
-      aria-label="Başa dön"
+      aria-label={dictionary.a11y.backToTop}
       tabIndex={visible ? 0 : -1}
       className={`group fixed right-5 bottom-5 z-40 grid h-14 w-14 place-items-center rounded-full transition-all duration-300 ease-out md:right-6 md:bottom-6 ${
         visible

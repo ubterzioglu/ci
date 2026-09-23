@@ -76,7 +76,7 @@ export const homeContent = {
   ],
   chefsTable: {
     heading: 'Chef’s Table',
-    body: 'Özel etkinlikleriniz için lütfen iletişime geçiniz.',
+    body: 'Chef’s Table, özel menüler ve kapalı etkinlikler için ekibimizle iletişime geçin.',
   },
   /**
    * Premium "deneyim" showcase on the home page (ExperienceShowcase section).
@@ -153,6 +153,16 @@ export const seedPages: PageContent[] = [
     contentMd: null,
     seoTitle: 'Deneyimler | Çi Neo Cucina',
     seoDescription: 'Çi Neo Cucina deneyimleri ve özel etkinlik duyuruları.',
+    ogImageUrl: null,
+  },
+  {
+    slug: 'contact',
+    title: 'İletişim',
+    excerpt: 'Rezervasyon, özel etkinlik ve sorularınız için bize ulaşın.',
+    contentMd: null,
+    seoTitle: 'İletişim | Çi Neo Cucina',
+    seoDescription:
+      'Çi Neo Cucina ile iletişime geçin: rezervasyon, özel etkinlik ve sorularınız için bize ulaşın.',
     ogImageUrl: null,
   },
 ];

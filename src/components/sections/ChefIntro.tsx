@@ -4,6 +4,7 @@ import { getAboutContent } from '@/content/pages-i18n';
 import { resolveImage } from '@/lib/images';
 import { siteConfig } from '@/lib/site-config';
 import { defaultLocale, type Locale } from '@/lib/i18n/config';
+import { getDictionary } from '@/lib/i18n/dictionaries';
 
 interface ChefIntroProps {
   locale?: Locale;
@@ -26,6 +27,7 @@ function websiteLabel(url: string): string {
  */
 export async function ChefIntro({ locale = defaultLocale }: ChefIntroProps) {
   const { chef } = getAboutContent(locale);
+  const dictionary = getDictionary(locale);
   const portrait = await resolveImage('chef-simge');
   const { contact, url } = siteConfig;
 
@@ -60,7 +62,7 @@ export async function ChefIntro({ locale = defaultLocale }: ChefIntroProps) {
             </div>
 
             <p className="text-muted mt-8 text-sm">
-              <span>Tel: </span>
+              <span>{dictionary.common.phone}: </span>
               <a
                 href={`tel:${contact.phoneE164}`}
                 className="text-olive hover:text-olive-deep transition-colors"

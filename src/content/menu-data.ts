@@ -1,7 +1,7 @@
 import type { Locale } from '@/lib/i18n/config';
 import { defaultLocale } from '@/lib/i18n/config';
 import type { MenuCategory } from '@/lib/types';
-import { menuNotesByLocale, menuTextByLocale } from './menu-i18n';
+import { localiseMenuTaxonomy, menuNotesByLocale, menuTextByLocale } from './menu-i18n';
 
 /**
  * Local menu data — extracted verbatim from the Wix export
@@ -16,9 +16,8 @@ import { menuNotesByLocale, menuTextByLocale } from './menu-i18n';
  * overlays via `getLocalMenu(locale)` (see menu-i18n.ts) so non-text data is
  * never duplicated across languages.
  *
- * NOTE: The wine menu ("Şarap Menüsü") exists on the source site but its item
- * list was not exported (panel-only). See docs/panel-exports-todo.md. The Menu page
- * shows a tasteful "ask our team" notice instead of an empty section.
+ * The wine list is maintained separately in wine-menu-data.ts because it has
+ * glass/bottle pricing and Coravin metadata that food items do not need.
  */
 
 /**
@@ -336,6 +335,8 @@ export function getLocalMenu(locale: Locale): MenuCategory[] {
           ...item,
           name: itemText?.name ?? item.name,
           description: itemText?.description ?? item.description,
+          tags: item.tags.map((tag) => localiseMenuTaxonomy(tag, locale)),
+          allergens: item.allergens.map((allergen) => localiseMenuTaxonomy(allergen, locale)),
         };
       }),
     };

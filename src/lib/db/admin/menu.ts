@@ -73,7 +73,7 @@ export async function listAdminMenu(
   const { data: items, error: itemError } = await supabase
     .from('menu_items')
     .select(
-      'id, category_id, name, description, price, currency, tags, allergens, dietary_flags, translations, sort_order, is_active',
+      'id, category_id, name, description, price, glass_price, is_coravin, currency, tags, allergens, dietary_flags, translations, sort_order, is_active',
     )
     .order('sort_order', { ascending: true });
   if (itemError) throw new Error(itemError.message);
@@ -87,6 +87,8 @@ export async function listAdminMenu(
       name: row.name,
       description: row.description,
       price: row.price,
+      glassPrice: row.glass_price,
+      isCoravin: row.is_coravin,
       currency: row.currency,
       tags: row.tags ?? [],
       allergens: row.allergens ?? [],
@@ -200,6 +202,8 @@ export async function createItem(input: ItemInput): Promise<AdminMenuItem> {
       name: input.name,
       description: input.description,
       price: input.price,
+      glass_price: input.glassPrice,
+      is_coravin: input.isCoravin,
       currency: input.currency,
       tags: input.tags,
       allergens: input.allergens,
@@ -209,7 +213,7 @@ export async function createItem(input: ItemInput): Promise<AdminMenuItem> {
       sort_order: nextSort,
     })
     .select(
-      'id, category_id, name, description, price, currency, tags, allergens, dietary_flags, translations, sort_order, is_active',
+      'id, category_id, name, description, price, glass_price, is_coravin, currency, tags, allergens, dietary_flags, translations, sort_order, is_active',
     )
     .single();
   if (error || !data) throw new Error(error?.message ?? 'Ürün eklenemedi.');
@@ -220,6 +224,8 @@ export async function createItem(input: ItemInput): Promise<AdminMenuItem> {
     name: data.name,
     description: data.description,
     price: data.price,
+    glassPrice: data.glass_price,
+    isCoravin: data.is_coravin,
     currency: data.currency,
     tags: data.tags ?? [],
     allergens: data.allergens ?? [],
@@ -239,6 +245,8 @@ export async function updateItem(id: string, input: ItemInput): Promise<void> {
       name: input.name,
       description: input.description,
       price: input.price,
+      glass_price: input.glassPrice,
+      is_coravin: input.isCoravin,
       currency: input.currency,
       tags: input.tags,
       allergens: input.allergens,

@@ -63,3 +63,35 @@ export const menuNotesByLocale: Record<Locale, MenuNotesOverlay> = {
   de: de.notes ?? {},
   ru: ru.notes ?? {},
 };
+
+const menuTaxonomyByLocale: Record<Locale, Record<string, string>> = {
+  tr: {},
+  en: {
+    Vejetaryen: 'Vegetarian',
+    süt: 'dairy',
+    balık: 'fish',
+    'kabuklu deniz ürünü': 'shellfish',
+    yumuşakça: 'molluscs',
+    'sert kabuklu yemiş': 'tree nuts',
+  },
+  de: {
+    Vejetaryen: 'Vegetarisch',
+    süt: 'Milch',
+    balık: 'Fisch',
+    'kabuklu deniz ürünü': 'Krustentiere',
+    yumuşakça: 'Weichtiere',
+    'sert kabuklu yemiş': 'Schalenfrüchte',
+  },
+  ru: {
+    Vejetaryen: 'Вегетарианское',
+    süt: 'молочные продукты',
+    balık: 'рыба',
+    'kabuklu deniz ürünü': 'ракообразные',
+    yumuşakça: 'моллюски',
+    'sert kabuklu yemiş': 'орехи',
+  },
+};
+
+export function localiseMenuTaxonomy(value: string, locale: Locale): string {
+  return menuTaxonomyByLocale[locale][value] ?? value;
+}

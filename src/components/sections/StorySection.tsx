@@ -3,9 +3,11 @@ import Link from 'next/link';
 
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { getAboutContent } from '@/content/pages-i18n';
+import { HOME_STORY_IMAGE_ID } from '@/content/media-data';
 import { resolveImage } from '@/lib/images';
 import { defaultLocale, type Locale } from '@/lib/i18n/config';
 import { localePath } from '@/lib/i18n/paths';
+import { getDictionary } from '@/lib/i18n/dictionaries';
 
 interface StorySectionProps {
   locale?: Locale;
@@ -18,22 +20,27 @@ interface StorySectionProps {
  * Manacıoğlu) — no invented facts.
  */
 export async function StorySection({ locale = defaultLocale }: StorySectionProps) {
-  const portrait = await resolveImage('chef-simge');
+  const storyImage = await resolveImage(HOME_STORY_IMAGE_ID);
   const about = getAboutContent(locale);
+  const dictionary = getDictionary(locale);
   const lead = about.intro.paragraphs.slice(0, 2);
 
   return (
     <section className="bg-marble py-section">
       <div className="container-editorial">
-        <SectionHeading eyebrow="Hikâyemiz" title={about.intro.heading} align="center" />
+        <SectionHeading
+          eyebrow={dictionary.home.storyEyebrow}
+          title={about.intro.heading}
+          align="center"
+        />
 
         <div className="mt-12 grid items-center gap-10 md:grid-cols-12">
-          {portrait && (
+          {storyImage && (
             <div className="md:col-span-5">
               <div className="relative aspect-[4/5] overflow-hidden rounded-lg">
                 <Image
-                  src={portrait.src}
-                  alt={portrait.alt}
+                  src={storyImage.src}
+                  alt={storyImage.alt}
                   fill
                   sizes="(min-width: 768px) 40vw, 100vw"
                   className="object-cover"
@@ -53,7 +60,7 @@ export async function StorySection({ locale = defaultLocale }: StorySectionProps
               href={localePath('/about', locale)}
               className="text-terracotta mt-6 inline-block text-sm tracking-wide underline-offset-4 transition hover:underline"
             >
-              Hikâyenin tamamını okuyun →
+              {dictionary.home.readFullStory}
             </Link>
           </div>
         </div>

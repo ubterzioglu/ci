@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import { HomePageBody } from '@/components/pages/HomePageBody';
 import { defaultLocale, isLocale } from '@/lib/i18n/config';
 import { buildMetadata } from '@/lib/seo/metadata';
+import { getLocalPage } from '@/content/pages-i18n';
 
 export async function generateMetadata({
   params,
@@ -12,6 +13,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { lang } = await params;
   const locale = isLocale(lang) && lang !== defaultLocale ? lang : defaultLocale;
+  const page = getLocalPage('home', locale);
 
   return buildMetadata({
     // Homepage uses the brand name as-is (no "| Çi Neo Cucina" suffix). Pass the
@@ -19,6 +21,7 @@ export async function generateMetadata({
     // and hreflang alternates.
     path: '/',
     locale,
+    description: page?.seoDescription ?? page?.excerpt ?? undefined,
   });
 }
 

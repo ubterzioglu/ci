@@ -37,7 +37,7 @@ export async function ReservationCTA({ locale = defaultLocale }: ReservationCTAP
       <div className="container-editorial relative z-10 text-center">
         <p className="eyebrow text-terracotta">{chefsTable.heading}</p>
         <h2 className="font-display text-ivory mx-auto mt-4 max-w-2xl text-3xl md:text-5xl">
-          Masamızda yeriniz hazır
+          {dictionary.home.reservationTitle}
         </h2>
         <p className="text-ivory/75 mx-auto mt-5 max-w-xl">{chefsTable.body}</p>
 

@@ -11,6 +11,7 @@ import {
   type AdminMenuItem,
   type DietaryFlag,
   type ItemInput,
+  type MenuKind,
 } from '@/lib/db/admin/menu-types';
 
 /**
@@ -41,6 +42,8 @@ export interface ItemFormValue {
   name: string;
   description: string;
   price: string; // text in the form; parsed on submit
+  glassPrice: string;
+  isCoravin: boolean;
   tags: string;
   allergens: string;
   dietaryFlags: DietaryFlag[];
@@ -54,6 +57,8 @@ export function emptyItemForm(): ItemFormValue {
     name: '',
     description: '',
     price: '',
+    glassPrice: '',
+    isCoravin: false,
     tags: '',
     allergens: '',
     dietaryFlags: [],
@@ -67,6 +72,8 @@ export function itemToForm(item: AdminMenuItem): ItemFormValue {
     name: item.name,
     description: item.description ?? '',
     price: item.price === null ? '' : String(item.price),
+    glassPrice: item.glassPrice === null ? '' : String(item.glassPrice),
+    isCoravin: item.isCoravin,
     tags: fromList(item.tags),
     allergens: fromList(item.allergens),
     dietaryFlags: item.dietaryFlags.filter((f): f is DietaryFlag =>
@@ -80,11 +87,14 @@ export function itemToForm(item: AdminMenuItem): ItemFormValue {
 /** Build the ItemInput payload from a form value + category. Null price when blank. */
 export function formToInput(form: ItemFormValue, categoryId: string): ItemInput {
   const priceTrimmed = form.price.trim();
+  const glassPriceTrimmed = form.glassPrice.trim();
   return {
     categoryId,
     name: form.name.trim(),
     description: form.description.trim() || null,
     price: priceTrimmed === '' ? null : Number(priceTrimmed),
+    glassPrice: glassPriceTrimmed === '' ? null : Number(glassPriceTrimmed),
+    isCoravin: form.isCoravin,
     currency: DEFAULT_CURRENCY,
     tags: toList(form.tags),
     allergens: toList(form.allergens),
@@ -101,6 +111,7 @@ export function ItemForm({
   onCancel,
   submitting,
   submitLabel,
+  kind,
 }: {
   value: ItemFormValue;
   onChange: (v: ItemFormValue) => void;
@@ -108,6 +119,7 @@ export function ItemForm({
   onCancel: () => void;
   submitting: boolean;
   submitLabel: string;
+  kind: MenuKind;
 }) {
   const set = <K extends keyof ItemFormValue>(key: K, v: ItemFormValue[K]) =>
     onChange({ ...value, [key]: v });
@@ -166,16 +178,43 @@ export function ItemForm({
         busy={submitting}
       />
 
-      <div className="max-w-[180px]">
-        <label className={labelCls}>Fiyat (₺)</label>
-        <input
-          value={value.price}
-          onChange={(e) => set('price', e.target.value)}
-          inputMode="decimal"
-          placeholder="boş = sor"
-          className={inputCls}
-        />
+      <div className="grid max-w-sm gap-3 sm:grid-cols-2">
+        {kind === 'wine' && (
+          <div>
+            <label className={labelCls}>Kadeh fiyatı (₺)</label>
+            <input
+              value={value.glassPrice}
+              onChange={(e) => set('glassPrice', e.target.value)}
+              inputMode="decimal"
+              placeholder="boş = yok"
+              className={inputCls}
+            />
+          </div>
+        )}
+        <div>
+          <label className={labelCls}>{kind === 'wine' ? 'Şişe fiyatı (₺)' : 'Fiyat (₺)'}</label>
+          <input
+            value={value.price}
+            onChange={(e) => set('price', e.target.value)}
+            inputMode="decimal"
+            placeholder="boş = yok"
+            className={inputCls}
+          />
+        </div>
       </div>
+
+      {kind === 'wine' && (
+        <label className="font-body text-charcoal flex cursor-pointer items-center gap-2 text-sm">
+          <input
+            type="checkbox"
+            checked={value.isCoravin}
+            onChange={(e) => set('isCoravin', e.target.checked)}
+            disabled={!value.glassPrice.trim()}
+            className="accent-wine h-4 w-4"
+          />
+          Kadeh servisi Coravin ile yapılır
+        </label>
+      )}
 
       <div className="grid gap-3 sm:grid-cols-2">
         <div>

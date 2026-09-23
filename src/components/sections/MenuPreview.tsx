@@ -5,6 +5,7 @@ import { SectionHeading } from '@/components/ui/SectionHeading';
 import { getHomeContent } from '@/content/pages-i18n';
 import { defaultLocale, type Locale } from '@/lib/i18n/config';
 import { localePath } from '@/lib/i18n/paths';
+import { getDictionary } from '@/lib/i18n/dictionaries';
 
 interface MenuPreviewProps {
   locale?: Locale;
@@ -17,11 +18,16 @@ interface MenuPreviewProps {
  */
 export function MenuPreview({ locale = defaultLocale }: MenuPreviewProps) {
   const menusTeaser = getHomeContent(locale).menusTeaser;
+  const dictionary = getDictionary(locale);
 
   return (
     <section className="bg-cream-deep py-section">
       <div className="container-editorial">
-        <SectionHeading eyebrow="Soframız" title="Menümüzden Bir Tat" align="center" />
+        <SectionHeading
+          eyebrow={dictionary.home.menuEyebrow}
+          title={dictionary.home.menuTitle}
+          align="center"
+        />
 
         <div className="mt-12 grid gap-6 md:grid-cols-3">
           {menusTeaser.map((teaser) => (
@@ -34,14 +40,16 @@ export function MenuPreview({ locale = defaultLocale }: MenuPreviewProps) {
                 {teaser.title}
               </h3>
               <p className="text-muted mt-3 flex-1 text-sm leading-relaxed">{teaser.description}</p>
-              <span className="text-terracotta mt-5 text-sm tracking-wide">Sayfaya Git →</span>
+              <span className="text-terracotta mt-5 text-sm tracking-wide">
+                {dictionary.home.goToPage}
+              </span>
             </Link>
           ))}
         </div>
 
         <div className="mt-10 text-center">
           <Button href={localePath('/menu', locale)} variant="outline" size="lg">
-            Tüm Menüyü Görüntüle
+            {dictionary.home.viewFullMenu}
           </Button>
         </div>
       </div>

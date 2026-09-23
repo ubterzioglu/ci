@@ -1,8 +1,10 @@
 import type { Metadata } from 'next';
 
 import { MenuCategory } from '@/components/menu/MenuCategory';
+import { WineMenuItemCard } from '@/components/menu/WineMenuItemCard';
 import { getMenu } from '@/lib/db/menu';
-import { MENU_SERVICE_NOTE, WINE_MENU_NOTICE } from '@/content/menu-data';
+import { MENU_SERVICE_NOTE } from '@/content/menu-data';
+import { getWinePriceLabels } from '@/content/wine-menu-data';
 import { aboutContent } from '@/content/pages-data';
 import { siteConfig } from '@/lib/site-config';
 
@@ -25,7 +27,7 @@ export const metadata: Metadata = {
 };
 
 export default async function QrMenuPage() {
-  const menu = await getMenu();
+  const [menu, wineMenu] = await Promise.all([getMenu('tr', 'food'), getMenu('tr', 'wine')]);
 
   // Condensed "about" copy, sourced verbatim from aboutContent (no fabrication).
   const aboutIntro = aboutContent.intro.paragraphs.slice(0, 2);
@@ -91,17 +93,31 @@ export default async function QrMenuPage() {
           ))}
         </div>
 
-        {/* Wine menu — item list not in source; elegant ask-the-team notice. */}
+        {/* Wine menu — transcribed from the restaurant's printed list. */}
         <section
           aria-labelledby="qr-wine-heading"
-          className="border-wine/25 bg-wine/5 mt-12 rounded-lg border p-6 text-center"
+          className="border-wine/25 bg-wine/5 mt-12 rounded-lg border p-6"
         >
-          <h2 id="qr-wine-heading" className="font-display text-wine text-2xl">
+          <h2 id="qr-wine-heading" className="font-display text-wine text-center text-3xl">
             Şarap Menüsü
           </h2>
-          <p className="text-muted mx-auto mt-2 max-w-sm text-sm leading-relaxed">
-            {WINE_MENU_NOTICE}
-          </p>
+          <div className="mt-7 space-y-9">
+            {wineMenu.map((category) => (
+              <section key={category.id} aria-labelledby={`cat-${category.slug}`}>
+                <h3
+                  id={`cat-${category.slug}`}
+                  className="font-display text-terracotta border-stone-soft border-b pb-2 text-2xl"
+                >
+                  {category.name}
+                </h3>
+                <div className="divide-stone-soft divide-y">
+                  {category.items.map((item) => (
+                    <WineMenuItemCard key={item.id} item={item} labels={getWinePriceLabels('tr')} />
+                  ))}
+                </div>
+              </section>
+            ))}
+          </div>
         </section>
 
         {/* About — condensed, with the chef's story behind a native, JS-free
@@ -129,7 +145,7 @@ export default async function QrMenuPage() {
           </div>
 
           <details className="group mt-4">
-            <summary className="text-olive-deep hover:text-olive marker:content-none flex cursor-pointer list-none items-center justify-center gap-1.5 text-sm font-medium transition-colors select-none">
+            <summary className="text-olive-deep hover:text-olive flex cursor-pointer list-none items-center justify-center gap-1.5 text-sm font-medium transition-colors select-none marker:content-none">
               <span className="group-open:hidden">Devamını oku</span>
               <span className="hidden group-open:inline">Daha az göster</span>
               <svg

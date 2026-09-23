@@ -33,7 +33,7 @@ export async function HomePageBody({ locale }: HomePageBodyProps) {
       <ExperienceShowcase locale={locale} />
       <MenuPreview locale={locale} />
       <ReservationCTA locale={locale} />
-      <Gallery />
+      <Gallery locale={locale} />
       <ChefIntro locale={locale} />
       <ContactSection locale={locale} />
     </>

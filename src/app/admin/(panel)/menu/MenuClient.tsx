@@ -41,6 +41,7 @@ import {
 
 function ItemRow({
   item,
+  kind,
   isFirst,
   isLast,
   onEdited,
@@ -48,6 +49,7 @@ function ItemRow({
   onMoved,
 }: {
   item: AdminMenuItem;
+  kind: MenuKind;
   isFirst: boolean;
   isLast: boolean;
   onEdited: (next: AdminMenuItem) => void;
@@ -61,6 +63,7 @@ function ItemRow({
   const [busy, setBusy] = useState(false);
 
   const price = formatPrice(item.price, item.currency);
+  const glassPrice = formatPrice(item.glassPrice, item.currency);
 
   const handleSave = async () => {
     if (!item.categoryId) return;
@@ -121,6 +124,7 @@ function ItemRow({
           }}
           submitting={busy}
           submitLabel="Kaydet"
+          kind={kind}
         />
       </li>
     );
@@ -158,8 +162,17 @@ function ItemRow({
       <div className="min-w-0 flex-1">
         <div className="flex flex-wrap items-baseline gap-2">
           <span className="font-display text-charcoal text-base">{item.name}</span>
+          {glassPrice && (
+            <span className="font-body text-wine text-sm font-semibold">
+              Kadeh {glassPrice}
+              {item.isCoravin ? ' · Coravin' : ''}
+            </span>
+          )}
           {price && (
-            <span className="font-body text-olive-deep text-sm font-semibold">{price}</span>
+            <span className="font-body text-olive-deep text-sm font-semibold">
+              {kind === 'wine' ? 'Şişe ' : ''}
+              {price}
+            </span>
           )}
           {!item.isActive && <StatusPill tone="neutral">Gizli</StatusPill>}
         </div>
@@ -426,6 +439,7 @@ function CategoryBlock({
             <ItemRow
               key={item.id}
               item={item}
+              kind={category.kind}
               isFirst={i === 0}
               isLast={i === items.length - 1}
               onEdited={(next) => setItems(items.map((it) => (it.id === next.id ? next : it)))}
@@ -447,6 +461,7 @@ function CategoryBlock({
           }}
           submitting={busy}
           submitLabel="Ürünü ekle"
+          kind={category.kind}
         />
       ) : (
         <button

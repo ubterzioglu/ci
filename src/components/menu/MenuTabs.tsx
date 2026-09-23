@@ -3,16 +3,20 @@
 import { useState } from 'react';
 
 import { MenuAccordionCategory } from './MenuAccordionCategory';
+import type { WinePriceLabels } from '@/content/wine-menu-data';
 import type { MenuCategory } from '@/lib/types';
 
 type Tab = 'food' | 'wine';
 
 interface MenuTabsProps {
   categories: MenuCategory[];
-  /** Wine list; empty until the restaurant adds one in /admin/wine. */
+  /** Wine list from Supabase or the photographed local fallback. */
   wineCategories: MenuCategory[];
   serviceNote: string;
   wineNotice: string;
+  winePriceLabels: WinePriceLabels;
+  tabLabels: { aria: string; food: string; wine: string };
+  allergensLabel: string;
 }
 
 /**
@@ -20,11 +24,18 @@ interface MenuTabsProps {
  * matching the reference design — the active tab is terracotta with a terracotta
  * underline, the inactive one charcoal. The food tab shows the service note plus
  * the collapsible category accordion (all categories start closed). The wine tab
- * has no exported item data (panel-only on the source site), so it shows a
- * tasteful "ask our team" notice instead — which is still what happens while the
- * wine list is empty.
+ * renders the separate glass/bottle price layout and only falls back to the
+ * consultation notice when neither database nor local wine data is available.
  */
-export function MenuTabs({ categories, wineCategories, serviceNote, wineNotice }: MenuTabsProps) {
+export function MenuTabs({
+  categories,
+  wineCategories,
+  serviceNote,
+  wineNotice,
+  winePriceLabels,
+  tabLabels,
+  allergensLabel,
+}: MenuTabsProps) {
   const [tab, setTab] = useState<Tab>('food');
 
   const tabClass = (active: boolean) =>
@@ -37,7 +48,7 @@ export function MenuTabs({ categories, wineCategories, serviceNote, wineNotice }
   return (
     <div>
       {/* Tabs */}
-      <div role="tablist" aria-label="Menü seçimi" className="border-stone/60 flex gap-8 border-b">
+      <div role="tablist" aria-label={tabLabels.aria} className="border-stone/60 flex gap-8 border-b">
         <button
           type="button"
           role="tab"
@@ -47,7 +58,7 @@ export function MenuTabs({ categories, wineCategories, serviceNote, wineNotice }
           onClick={() => setTab('food')}
           className={tabClass(tab === 'food')}
         >
-          Ana Menü
+          {tabLabels.food}
         </button>
         <button
           type="button"
@@ -58,7 +69,7 @@ export function MenuTabs({ categories, wineCategories, serviceNote, wineNotice }
           onClick={() => setTab('wine')}
           className={tabClass(tab === 'wine')}
         >
-          Şarap Menüsü
+          {tabLabels.wine}
         </button>
       </div>
 
@@ -68,7 +79,11 @@ export function MenuTabs({ categories, wineCategories, serviceNote, wineNotice }
           <p className="text-muted mb-10 max-w-2xl text-sm leading-relaxed">{serviceNote}</p>
           <div>
             {categories.map((category) => (
-              <MenuAccordionCategory key={category.id} category={category} />
+              <MenuAccordionCategory
+                key={category.id}
+                category={category}
+                allergensLabel={allergensLabel}
+              />
             ))}
           </div>
         </div>
@@ -80,7 +95,12 @@ export function MenuTabs({ categories, wineCategories, serviceNote, wineNotice }
           <div id="panel-wine" role="tabpanel" aria-labelledby="tab-wine" className="fade-up mt-10">
             <div>
               {wineCategories.map((category) => (
-                <MenuAccordionCategory key={category.id} category={category} />
+                <MenuAccordionCategory
+                  key={category.id}
+                  category={category}
+                  variant="wine"
+                  winePriceLabels={winePriceLabels}
+                />
               ))}
             </div>
           </div>
@@ -91,7 +111,7 @@ export function MenuTabs({ categories, wineCategories, serviceNote, wineNotice }
             aria-labelledby="tab-wine"
             className="fade-up border-wine/25 bg-wine/5 mt-10 rounded-lg border p-8 text-center"
           >
-            <h2 className="font-display text-wine text-3xl">Şarap Menüsü</h2>
+            <h2 className="font-display text-wine text-3xl">{tabLabels.wine}</h2>
             <p className="text-muted mx-auto mt-3 max-w-xl text-sm leading-relaxed">{wineNotice}</p>
           </div>
         ))}

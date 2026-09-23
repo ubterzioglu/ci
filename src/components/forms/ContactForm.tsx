@@ -6,8 +6,12 @@ import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
 import { Textarea } from '@/components/ui/Textarea';
 import type { ActionResult } from '@/lib/types';
+import { defaultLocale, type Locale } from '@/lib/i18n/config';
+import { getDictionary } from '@/lib/i18n/dictionaries';
 
-export function ContactForm() {
+export function ContactForm({ locale = defaultLocale }: { locale?: Locale }) {
+  const dictionary = getDictionary(locale);
+  const copy = dictionary.forms.contact;
   const [state, formAction, isPending] = useActionState<ActionResult | null, FormData>(
     submitContact,
     null,
@@ -20,10 +24,8 @@ export function ContactForm() {
         aria-live="polite"
         className="bg-olive/10 rounded-md px-6 py-8 text-center"
       >
-        <h2 className="font-display text-olive mb-2 text-2xl">Mesajınız gönderildi</h2>
-        <p className="font-body text-charcoal">
-          Mesajınız bize ulaştı. En kısa sürede yanıt vereceğiz.
-        </p>
+        <h2 className="font-display text-olive mb-2 text-2xl">{copy.successTitle}</h2>
+        <p className="font-body text-charcoal">{copy.successBody}</p>
       </div>
     );
   }
@@ -52,11 +54,12 @@ export function ContactForm() {
         tabIndex={-1}
         autoComplete="off"
       />
+      <input type="hidden" name="locale" value={locale} />
 
       <Input
         id="contact-name"
         name="name"
-        label="Ad Soyad"
+        label={copy.fullName}
         required
         autoComplete="name"
         error={fieldErrors['name']?.[0]}
@@ -66,7 +69,7 @@ export function ContactForm() {
         id="contact-email"
         name="email"
         type="email"
-        label="E-posta"
+        label={dictionary.common.email}
         autoComplete="email"
         error={fieldErrors['email']?.[0]}
       />
@@ -75,27 +78,32 @@ export function ContactForm() {
         id="contact-phone"
         name="phone"
         type="tel"
-        label="Telefon"
+        label={dictionary.common.phone}
         autoComplete="tel"
         error={fieldErrors['phone']?.[0]}
       />
 
-      <Input id="contact-subject" name="subject" label="Konu" error={fieldErrors['subject']?.[0]} />
+      <Input
+        id="contact-subject"
+        name="subject"
+        label={copy.subject}
+        error={fieldErrors['subject']?.[0]}
+      />
 
       <Textarea
         id="contact-message"
         name="message"
-        label="Mesaj"
+        label={copy.message}
         required
         error={fieldErrors['message']?.[0]}
       />
 
       <div aria-live="polite" aria-atomic="true" className="sr-only">
-        {isPending ? 'Gönderiliyor…' : ''}
+        {isPending ? copy.pending : ''}
       </div>
 
       <Button type="submit" variant="solid" size="lg" disabled={isPending} className="w-full">
-        {isPending ? 'Gönderiliyor…' : 'Mesaj Gönder'}
+        {isPending ? copy.pending : copy.submit}
       </Button>
     </form>
   );

@@ -3,6 +3,8 @@ import Image from 'next/image';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { getGalleryPhotos } from '@/lib/db/gallery';
 import { siteConfig } from '@/lib/site-config';
+import { defaultLocale, type Locale } from '@/lib/i18n/config';
+import { getDictionary } from '@/lib/i18n/dictionaries';
 
 /**
  * Editorial photo gallery (#CiNeoCucina). A uniform grid of the atmosphere
@@ -11,14 +13,19 @@ import { siteConfig } from '@/lib/site-config';
  * with a local hardcoded fallback. Each photo may carry a short caption shown
  * in the bottom-left corner.
  */
-export async function Gallery() {
+export async function Gallery({ locale = defaultLocale }: { locale?: Locale }) {
   const photos = await getGalleryPhotos();
+  const dictionary = getDictionary(locale);
   if (photos.length === 0) return null;
 
   return (
     <section className="bg-marble py-section">
       <div className="container-editorial">
-        <SectionHeading eyebrow={siteConfig.hashtag} title="Atmosfer" align="center" />
+        <SectionHeading
+          eyebrow={siteConfig.hashtag}
+          title={dictionary.home.galleryTitle}
+          align="center"
+        />
 
         <div className="mt-12 grid grid-cols-2 gap-3 md:grid-cols-3">
           {photos.map((photo) => (

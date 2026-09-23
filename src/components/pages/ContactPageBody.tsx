@@ -31,15 +31,15 @@ export function ContactPageBody({ locale }: ContactPageBodyProps) {
       />
 
       <PageHeader
-        eyebrow="Bize Yazın"
-        title="İletişim"
-        intro="Sorularınız, özel etkinlik talepleriniz veya geri bildirimleriniz için bize mesaj bırakın."
+        eyebrow={dictionary.pages.contact.eyebrow}
+        title={dictionary.pages.contact.title}
+        intro={dictionary.pages.contact.intro}
       />
 
       <section className="bg-marble pb-section">
         <div className="container-editorial">
           <div className="border-stone-soft bg-cream-deep/40 mx-auto max-w-2xl rounded-lg border p-6 md:p-10">
-            <ContactForm />
+            <ContactForm locale={locale} />
           </div>
         </div>
       </section>

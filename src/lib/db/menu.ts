@@ -2,6 +2,7 @@ import 'server-only';
 
 import { createSupabaseServerClient } from '@/lib/supabase/server';
 import { getLocalMenu } from '@/content/menu-data';
+import { getLocalWineMenu } from '@/content/wine-menu-data';
 import {
   asMenuTranslations,
   localiseMenuText,
@@ -10,6 +11,7 @@ import {
 } from '@/lib/db/admin/menu-types';
 import { defaultLocale, type Locale } from '@/lib/i18n/config';
 import type { MenuCategory, MenuItem } from '@/lib/types';
+import { localiseMenuTaxonomy } from '@/content/menu-i18n';
 
 /**
  * Fetch the full menu (categories with nested active items) for a locale.
@@ -31,10 +33,7 @@ export async function getMenu(
   locale: Locale = defaultLocale,
   kind: MenuKind = DEFAULT_MENU_KIND,
 ): Promise<MenuCategory[]> {
-  // The static fallback only ever held the food menu; a wine list exists purely
-  // in the database, so an empty result there means an empty wine tab, not a
-  // reason to fall back.
-  const localMenu = kind === DEFAULT_MENU_KIND ? getLocalMenu(locale) : [];
+  const localMenu = kind === DEFAULT_MENU_KIND ? getLocalMenu(locale) : getLocalWineMenu(locale);
 
   const supabase = await createSupabaseServerClient();
   if (!supabase) return localMenu;
@@ -53,7 +52,7 @@ export async function getMenu(
   const { data: items, error: itemError } = await supabase
     .from('menu_items')
     .select(
-      'id, category_id, name, description, price, currency, image_url, tags, allergens, dietary_flags, translations, sort_order',
+      'id, category_id, name, description, price, glass_price, is_coravin, currency, image_url, tags, allergens, dietary_flags, translations, sort_order',
     )
     .eq('is_active', true)
     .order('sort_order', { ascending: true });
@@ -83,10 +82,12 @@ export async function getMenu(
       name: translate(row.name, row.translations, 'name'),
       description: translate(row.description, row.translations, 'description'),
       price: row.price,
+      glassPrice: row.glass_price,
+      isCoravin: row.is_coravin,
       currency: row.currency,
       imageUrl: row.image_url,
-      tags: row.tags ?? [],
-      allergens: row.allergens ?? [],
+      tags: (row.tags ?? []).map((tag) => localiseMenuTaxonomy(tag, locale)),
+      allergens: (row.allergens ?? []).map((allergen) => localiseMenuTaxonomy(allergen, locale)),
       dietaryFlags: row.dietary_flags ?? [],
       sortOrder: row.sort_order,
     };
@@ -96,7 +97,7 @@ export async function getMenu(
     itemsByCategory.set(key, bucket);
   }
 
-  return categories.map((category) => ({
+  const mappedCategories = categories.map((category) => ({
     id: category.id,
     name: translate(category.name, category.translations, 'name'),
     slug: category.slug,
@@ -104,4 +105,13 @@ export async function getMenu(
     sortOrder: category.sort_order,
     items: itemsByCategory.get(category.id) ?? [],
   }));
+
+  // A deployment may have the wine categories from an earlier panel setup but
+  // no entries yet. Keep the photographed list visible until database rows are
+  // seeded; once at least one DB item exists, the database remains authoritative.
+  if (kind === 'wine' && mappedCategories.every((category) => category.items.length === 0)) {
+    return localMenu;
+  }
+
+  return mappedCategories;
 }

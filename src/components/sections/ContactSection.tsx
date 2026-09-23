@@ -1,6 +1,6 @@
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { siteConfig } from '@/lib/site-config';
-import { RESERVATION_RULE_LINES } from '@/lib/reservation-rules';
+import { getReservationRuleLines } from '@/lib/reservation-rules';
 import { defaultLocale, type Locale } from '@/lib/i18n/config';
 import { getDictionary } from '@/lib/i18n/dictionaries';
 
@@ -20,17 +20,24 @@ export function ContactSection({
 }: ContactSectionProps) {
   const { contact, hours } = siteConfig;
   const dictionary = getDictionary(locale);
+  const reservationRules = getReservationRuleLines(locale);
 
   return (
     <section id="contact" className="bg-cream-deep py-section scroll-mt-24">
       <div className="container-editorial">
         {withHeading && (
-          <SectionHeading eyebrow="Bize Ulaşın" title="İletişim & Konum" align="center" />
+          <SectionHeading
+            eyebrow={dictionary.contactSection.eyebrow}
+            title={dictionary.contactSection.title}
+            align="center"
+          />
         )}
 
         <div className="mx-auto mt-12 grid max-w-3xl gap-8 sm:grid-cols-2">
           <div className="border-stone-soft bg-marble rounded-lg border p-7">
-            <h3 className="font-display text-charcoal text-xl">İletişim</h3>
+            <h3 className="font-display text-charcoal text-xl">
+              {dictionary.contactSection.contact}
+            </h3>
             <dl className="mt-4 space-y-3 text-sm">
               <div className="flex flex-col">
                 <dt className="text-muted">{dictionary.common.phone}</dt>
@@ -58,24 +65,26 @@ export function ContactSection({
           </div>
 
           <div className="border-stone-soft bg-marble rounded-lg border p-7">
-            <h3 className="font-display text-charcoal text-xl">Konum</h3>
+            <h3 className="font-display text-charcoal text-xl">
+              {dictionary.contactSection.location}
+            </h3>
             <p className="text-muted mt-4 text-sm leading-relaxed">
               {contact.region}.{' '}
-              {contact.address ?? 'Tam adres ve yol tarifi için lütfen bizi arayın.'}
+              {contact.address ?? dictionary.contactSection.addressFallback}
             </p>
 
             {hours ? (
               <ul className="text-charcoal mt-4 space-y-1 text-sm">
                 {hours.map((row) => (
                   <li key={row.label} className="flex justify-between gap-4">
-                    <span>{row.label}</span>
+                    <span>{dictionary.contactSection.openingDays}</span>
                     <span className="text-muted">{row.value}</span>
                   </li>
                 ))}
               </ul>
             ) : (
               <p className="text-muted mt-4 text-sm">
-                Güncel çalışma saatlerimiz için bizimle iletişime geçebilirsiniz.
+                {dictionary.contactSection.hoursFallback}
               </p>
             )}
 
@@ -83,9 +92,11 @@ export function ContactSection({
                 guest looks before picking up the phone. Same source as the
                 reservation form, so the two can never say different things. */}
             <div className="border-stone-soft mt-5 border-t pt-4">
-              <h4 className="font-body text-charcoal text-sm font-semibold">Rezervasyon</h4>
+              <h4 className="font-body text-charcoal text-sm font-semibold">
+                {dictionary.contactSection.reservation}
+              </h4>
               <ul className="text-muted mt-2 space-y-1 text-sm leading-relaxed">
-                {RESERVATION_RULE_LINES.map((line) => (
+                {reservationRules.map((line) => (
                   <li key={line}>· {line}</li>
                 ))}
               </ul>

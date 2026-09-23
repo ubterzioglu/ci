@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import { MenuPageBody } from '@/components/pages/MenuPageBody';
 import { defaultLocale, isLocale } from '@/lib/i18n/config';
 import { buildMetadata } from '@/lib/seo/metadata';
+import { getLocalPage } from '@/content/pages-i18n';
 
 export async function generateMetadata({
   params,
@@ -12,11 +13,11 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { lang } = await params;
   const locale = isLocale(lang) && lang !== defaultLocale ? lang : defaultLocale;
+  const page = getLocalPage('menu', locale);
 
   return buildMetadata({
-    title: 'Menü',
-    description:
-      'Çi Neo Cucina ana menüsü: topraktan, denizden ve otlaktan lezzetler; yerel üreticilerden şarap seçkisi.',
+    title: page?.title ?? 'Çi Neo Cucina',
+    description: page?.seoDescription ?? page?.excerpt ?? '',
     path: '/menu',
     locale,
   });

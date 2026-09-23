@@ -60,7 +60,7 @@ export const UPDATE_ENTRIES: UpdateGroup[] = [
     items: [
       'Sol menüye “Şarap Menüsü” bölümü eklendi. Ana menüyle aynı şekilde çalışıyor: önce kategori (örn. Beyaz, Kırmızı, Rosé), sonra şaraplar.',
       'Şaraplar da dört dilde girilebiliyor ve “Türkçeden Tümünü Çevir” butonu burada da çalışıyor.',
-      'Siz şarap eklemeden önce sitede eski “ekibimize danışın” notu görünmeye devam ediyor; ilk şarabı eklediğinizde not kalkıp liste görünüyor.',
+      'Basılı şarap menüsündeki 51 ürün kategori, kadeh/şişe fiyatı ve Coravin bilgileriyle toplu olarak eklendi.',
       'Mevcut yemek menüsü bundan etkilenmedi; iki liste tamamen ayrı yönetiliyor.',
     ],
   },
@@ -133,7 +133,6 @@ export const UPDATE_ENTRIES: UpdateGroup[] = [
 
 export const UPDATE_PENDING: string[] = [
   'Rusça çevirilerin anadili Rusça biri tarafından gözden geçirilmesi — özellikle yemek adları.',
-  'Şarap listesinin panelden girilmesi (sistem hazır, içerik bekleniyor).',
   'Sayfa metinlerinin (Hakkımızda, Deneyimler vb.) panelden düzenlenebilmesi — sonraki faz.',
   'Yönetim paneli şifresinin daha güçlü bir şifreyle değiştirilmesi.',
 ];

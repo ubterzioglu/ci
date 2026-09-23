@@ -13,6 +13,7 @@ import { createClient } from '@supabase/supabase-js';
 import { config } from 'dotenv';
 
 import { menuCategories } from '../src/content/menu-data.ts';
+import { wineCategoryNamesByLocale, wineMenuCategories } from '../src/content/wine-menu-data.ts';
 import { menuTextByLocale } from '../src/content/menu-i18n.ts';
 import { translatableLocales } from '../src/lib/i18n/config.ts';
 import { deterministicUuid } from '../src/lib/deterministic-id.ts';
@@ -79,28 +80,48 @@ async function seedMenu() {
   // The local content uses human-readable slugs as ids; the database columns
   // are uuid, so derive stable uuids from those slugs (referential integrity
   // is preserved because items map their category through the same function).
-  const categoryRows = menuCategories.map((category) => ({
-    id: deterministicUuid(`category:${category.slug}`),
-    name: category.name,
-    slug: category.slug,
-    description: category.description,
-    sort_order: category.sortOrder,
-    is_active: true,
-    translations: overlayTranslations('categories', category.id),
-  }));
+  const categoryRows = [
+    ...menuCategories.map((category) => ({
+      id: deterministicUuid(`category:${category.slug}`),
+      name: category.name,
+      slug: category.slug,
+      description: category.description,
+      kind: 'food',
+      sort_order: category.sortOrder,
+      is_active: true,
+      translations: overlayTranslations('categories', category.id),
+    })),
+    ...wineMenuCategories.map((category) => ({
+      id: deterministicUuid(`category:${category.slug}`),
+      name: category.name,
+      slug: category.slug,
+      description: category.description,
+      kind: 'wine',
+      sort_order: category.sortOrder,
+      is_active: true,
+      translations: Object.fromEntries(
+        translatableLocales.map((locale) => [
+          locale,
+          { name: wineCategoryNamesByLocale[locale][category.id] ?? category.name },
+        ]),
+      ),
+    })),
+  ];
   const { error: catError } = await supabase
     .from('menu_categories')
     .upsert(categoryRows, { onConflict: 'slug' });
   if (catError) throw new Error(`menu_categories: ${catError.message}`);
   console.log(`✓ menu_categories: ${categoryRows.length}`);
 
-  const itemRows = menuCategories.flatMap((category) =>
+  const foodItemRows = menuCategories.flatMap((category) =>
     category.items.map((item) => ({
       id: deterministicUuid(`item:${item.id}`),
       category_id: deterministicUuid(`category:${category.slug}`),
       name: item.name,
       description: item.description,
       price: item.price,
+      glass_price: null,
+      is_coravin: false,
       currency: item.currency,
       image_url: item.imageUrl,
       tags: item.tags,
@@ -111,6 +132,26 @@ async function seedMenu() {
       translations: overlayTranslations('items', item.id),
     })),
   );
+  const wineItemRows = wineMenuCategories.flatMap((category) =>
+    category.items.map((item) => ({
+      id: deterministicUuid(`item:${item.id}`),
+      category_id: deterministicUuid(`category:${category.slug}`),
+      name: item.name,
+      description: item.description,
+      price: item.price,
+      glass_price: item.glassPrice ?? null,
+      is_coravin: item.isCoravin ?? false,
+      currency: item.currency,
+      image_url: item.imageUrl,
+      tags: item.tags,
+      allergens: item.allergens,
+      dietary_flags: item.dietaryFlags,
+      sort_order: item.sortOrder,
+      is_active: true,
+      translations: {},
+    })),
+  );
+  const itemRows = [...foodItemRows, ...wineItemRows];
   const { error: itemError } = await supabase
     .from('menu_items')
     .upsert(itemRows, { onConflict: 'id' });

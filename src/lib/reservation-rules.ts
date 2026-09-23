@@ -10,6 +10,8 @@
  * from now" worked out in local server time would be three hours off in summer.
  */
 
+import { defaultLocale, type Locale } from '@/lib/i18n/config';
+
 /** Earliest bookable seating (24h, Istanbul). */
 export const RESERVATION_OPENS = '18:00';
 
@@ -102,21 +104,23 @@ export function findSlotProblem(
   isoDate: string,
   time: string,
   reference: Date = new Date(),
+  locale: Locale = defaultLocale,
 ): SlotProblem | null {
+  const messages = reservationMessagesByLocale[locale];
   const weekday = weekdayOfIsoDate(isoDate);
   if (weekday === null) {
-    return { field: 'requestedDate', message: 'Lütfen geçerli bir tarih seçin.' };
+    return { field: 'requestedDate', message: messages.invalidDate };
   }
   if (weekday === RESERVATION_CLOSED_WEEKDAY) {
     return {
       field: 'requestedDate',
-      message: 'Pazar günleri kapalıyız. Özel günler için lütfen bizimle iletişime geçin.',
+      message: messages.closedSunday,
     };
   }
 
   const requested = parseTimeToMinutes(time);
   if (requested === null) {
-    return { field: 'requestedTime', message: 'Lütfen geçerli bir saat seçin.' };
+    return { field: 'requestedTime', message: messages.invalidTime };
   }
 
   const opens = parseTimeToMinutes(RESERVATION_OPENS)!;
@@ -124,13 +128,13 @@ export function findSlotProblem(
   if (requested < opens || requested > closes) {
     return {
       field: 'requestedTime',
-      message: `Rezervasyon saatleri ${RESERVATION_OPENS} – ${RESERVATION_CLOSES} arasındadır.`,
+      message: messages.outsideHours,
     };
   }
 
   const now = istanbulNow(reference);
   if (isoDate < now.date) {
-    return { field: 'requestedDate', message: 'Geçmiş bir tarih seçilemez.' };
+    return { field: 'requestedDate', message: messages.pastDate };
   }
 
   // The lead time only bites on the current day; any later date clears it.
@@ -139,7 +143,7 @@ export function findSlotProblem(
     if (requested - now.minutes < leadMinutes) {
       return {
         field: 'requestedTime',
-        message: `Rezervasyonlar en az ${RESERVATION_MIN_LEAD_HOURS} saat önceden alınır. Daha erken bir saat için lütfen bizi arayın.`,
+        message: messages.leadTime,
       };
     }
   }
@@ -161,9 +165,78 @@ export function bookableTimes(): string[] {
 }
 
 /** The rules as guest-facing Turkish lines — shown on the form and contact page. */
-export const RESERVATION_RULE_LINES: readonly string[] = [
-  `Rezervasyon saatlerimiz ${RESERVATION_OPENS} – ${RESERVATION_CLOSES} arasındadır.`,
-  `Rezervasyonlar en az ${RESERVATION_MIN_LEAD_HOURS} saat önceden alınır.`,
-  `${RESERVATION_MAX_PARTY + 1} kişi ve üzeri gruplar için lütfen bizimle iletişime geçin.`,
-  'Pazar günleri kapalıyız; özel günlerde açıyoruz, lütfen bizi arayın.',
-] as const;
+interface ReservationMessages {
+  invalidDate: string;
+  closedSunday: string;
+  invalidTime: string;
+  outsideHours: string;
+  pastDate: string;
+  leadTime: string;
+  rules: readonly string[];
+}
+
+const reservationMessagesByLocale: Record<Locale, ReservationMessages> = {
+  tr: {
+    invalidDate: 'Lütfen geçerli bir tarih seçin.',
+    closedSunday: 'Pazar günleri kapalıyız. Özel günler için lütfen bizimle iletişime geçin.',
+    invalidTime: 'Lütfen geçerli bir saat seçin.',
+    outsideHours: `Rezervasyon saatleri ${RESERVATION_OPENS} – ${RESERVATION_CLOSES} arasındadır.`,
+    pastDate: 'Geçmiş bir tarih seçilemez.',
+    leadTime: `Rezervasyonlar en az ${RESERVATION_MIN_LEAD_HOURS} saat önceden alınır. Daha erken bir saat için lütfen bizi arayın.`,
+    rules: [
+      `Rezervasyon saatlerimiz ${RESERVATION_OPENS} – ${RESERVATION_CLOSES} arasındadır.`,
+      `Rezervasyonlar en az ${RESERVATION_MIN_LEAD_HOURS} saat önceden alınır.`,
+      `${RESERVATION_MAX_PARTY + 1} kişi ve üzeri gruplar için lütfen bizimle iletişime geçin.`,
+      'Pazar günleri kapalıyız; özel günlerde açıyoruz, lütfen bizi arayın.',
+    ],
+  },
+  en: {
+    invalidDate: 'Please select a valid date.',
+    closedSunday: 'We are closed on Sundays. Please contact us for special occasions.',
+    invalidTime: 'Please select a valid time.',
+    outsideHours: `Reservation hours are from ${RESERVATION_OPENS} to ${RESERVATION_CLOSES}.`,
+    pastDate: 'A past date cannot be selected.',
+    leadTime: `Reservations must be made at least ${RESERVATION_MIN_LEAD_HOURS} hours in advance. Please call us for an earlier time.`,
+    rules: [
+      `Reservation hours are from ${RESERVATION_OPENS} to ${RESERVATION_CLOSES}.`,
+      `Reservations must be made at least ${RESERVATION_MIN_LEAD_HOURS} hours in advance.`,
+      `Please contact us for groups of ${RESERVATION_MAX_PARTY + 1} or more.`,
+      'We are closed on Sundays; we open for special occasions, so please call us.',
+    ],
+  },
+  de: {
+    invalidDate: 'Bitte wählen Sie ein gültiges Datum.',
+    closedSunday: 'Sonntags haben wir geschlossen. Für besondere Anlässe kontaktieren Sie uns bitte.',
+    invalidTime: 'Bitte wählen Sie eine gültige Uhrzeit.',
+    outsideHours: `Reservierungen sind zwischen ${RESERVATION_OPENS} und ${RESERVATION_CLOSES} Uhr möglich.`,
+    pastDate: 'Ein Datum in der Vergangenheit kann nicht gewählt werden.',
+    leadTime: `Reservierungen müssen mindestens ${RESERVATION_MIN_LEAD_HOURS} Stunden im Voraus erfolgen. Für eine frühere Uhrzeit rufen Sie uns bitte an.`,
+    rules: [
+      `Reservierungen sind zwischen ${RESERVATION_OPENS} und ${RESERVATION_CLOSES} Uhr möglich.`,
+      `Reservierungen müssen mindestens ${RESERVATION_MIN_LEAD_HOURS} Stunden im Voraus erfolgen.`,
+      `Für Gruppen ab ${RESERVATION_MAX_PARTY + 1} Personen kontaktieren Sie uns bitte.`,
+      'Sonntags haben wir geschlossen; für besondere Anlässe öffnen wir nach Absprache.',
+    ],
+  },
+  ru: {
+    invalidDate: 'Выберите корректную дату.',
+    closedSunday: 'По воскресеньям мы закрыты. Свяжитесь с нами по поводу особых мероприятий.',
+    invalidTime: 'Выберите корректное время.',
+    outsideHours: `Бронирование доступно с ${RESERVATION_OPENS} до ${RESERVATION_CLOSES}.`,
+    pastDate: 'Нельзя выбрать прошедшую дату.',
+    leadTime: `Бронировать необходимо минимум за ${RESERVATION_MIN_LEAD_HOURS} часа. Для более раннего времени позвоните нам.`,
+    rules: [
+      `Бронирование доступно с ${RESERVATION_OPENS} до ${RESERVATION_CLOSES}.`,
+      `Бронировать необходимо минимум за ${RESERVATION_MIN_LEAD_HOURS} часа.`,
+      `Для групп от ${RESERVATION_MAX_PARTY + 1} человек свяжитесь с нами.`,
+      'По воскресеньям мы закрыты; для особых мероприятий можем открыться по договорённости.',
+    ],
+  },
+};
+
+export function getReservationRuleLines(locale: Locale): readonly string[] {
+  return reservationMessagesByLocale[locale].rules;
+}
+
+/** Default-language compatibility for server/API consumers. */
+export const RESERVATION_RULE_LINES = reservationMessagesByLocale.tr.rules;

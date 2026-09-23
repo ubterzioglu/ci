@@ -131,6 +131,8 @@ export interface AdminMenuItem {
   description: string | null;
   /** Major currency units (e.g. 580 for ₺580). Null = "ask staff". */
   price: number | null;
+  glassPrice: number | null;
+  isCoravin: boolean;
   currency: string;
   tags: string[];
   allergens: string[];
@@ -169,6 +171,8 @@ export interface ItemInput {
   name: string;
   description: string | null;
   price: number | null;
+  glassPrice: number | null;
+  isCoravin: boolean;
   currency: string;
   tags: string[];
   allergens: string[];

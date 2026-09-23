@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation';
 
 import { cn } from '@/lib/utils';
 import { defaultLocale, isLocale, locales, localeNames, type Locale } from '@/lib/i18n/config';
+import { getDictionary } from '@/lib/i18n/dictionaries';
 
 /**
  * Language switcher. Renders one link per locale and preserves the current
@@ -47,9 +48,13 @@ export function LanguageSwitcher({
 }: LanguageSwitcherProps) {
   const pathname = usePathname();
   const basePath = stripLocale(pathname);
+  const dictionary = getDictionary(current);
 
   return (
-    <nav aria-label="Dil seçimi" className={cn('flex items-center gap-1 text-xs', className)}>
+    <nav
+      aria-label={dictionary.a11y.languageSelection}
+      className={cn('flex items-center gap-1 text-xs', className)}
+    >
       {locales.map((locale, index) => {
         const active = locale === current;
         return (

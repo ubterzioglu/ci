@@ -16,6 +16,10 @@ export interface MenuItem {
   description: string | null;
   /** Price in major currency units (e.g. 580 for ₺580). Null when "ask staff". */
   price: number | null;
+  /** Optional by-the-glass/serving price, used by the wine menu. */
+  glassPrice?: number | null;
+  /** Whether the glass serving uses the Coravin preservation system. */
+  isCoravin?: boolean;
   currency: string;
   imageUrl: string | null;
   tags: string[];

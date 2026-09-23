@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import { ContactPageBody } from '@/components/pages/ContactPageBody';
 import { defaultLocale, isLocale } from '@/lib/i18n/config';
 import { buildMetadata } from '@/lib/seo/metadata';
+import { getLocalPage } from '@/content/pages-i18n';
 
 export async function generateMetadata({
   params,
@@ -12,11 +13,11 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { lang } = await params;
   const locale = isLocale(lang) && lang !== defaultLocale ? lang : defaultLocale;
+  const page = getLocalPage('contact', locale);
 
   return buildMetadata({
-    title: 'İletişim',
-    description:
-      'Çi Neo Cucina ile iletişime geçin: rezervasyon, özel etkinlik ve sorularınız için bize ulaşın.',
+    title: page?.title ?? 'Çi Neo Cucina',
+    description: page?.seoDescription ?? page?.excerpt ?? '',
     path: '/contact',
     locale,
   });

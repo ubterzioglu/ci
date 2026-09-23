@@ -1,9 +1,11 @@
 'use server';
 
-import { reservationSchema, contactSchema } from '@/lib/validation';
+import { createReservationSchema, createContactSchema } from '@/lib/validation';
 import { saveReservation, saveContactMessage } from '@/lib/db/forms';
 import { sendNotificationEmail } from '@/lib/email';
 import type { ActionResult } from '@/lib/types';
+import { defaultLocale, isLocale } from '@/lib/i18n/config';
+import { getDictionary } from '@/lib/i18n/dictionaries';
 
 export async function submitReservation(
   _prevState: ActionResult | null,
@@ -19,19 +21,22 @@ export async function submitReservation(
     message: formData.get('message'),
     company: formData.get('company'),
   };
+  const localeValue = formData.get('locale');
+  const locale = typeof localeValue === 'string' && isLocale(localeValue) ? localeValue : defaultLocale;
+  const dictionary = getDictionary(locale);
 
   // Honeypot: silently succeed for bots that fill the hidden field.
   if (raw.company) {
     return { ok: true };
   }
 
-  const result = reservationSchema.safeParse(raw);
+  const result = createReservationSchema(locale).safeParse(raw);
 
   if (!result.success) {
     const fieldErrors = result.error.flatten().fieldErrors as Record<string, string[]>;
     return {
       ok: false,
-      error: 'Lütfen formdaki hataları düzeltin.',
+      error: dictionary.forms.reservation.validationError,
       fieldErrors,
     };
   }
@@ -45,7 +50,7 @@ export async function submitReservation(
     }
     return {
       ok: false,
-      error: 'Talebiniz kaydedilemedi. Lütfen telefonla iletişime geçin.',
+      error: dictionary.forms.reservation.submitError,
     };
   }
 
@@ -95,19 +100,22 @@ export async function submitContact(
     message: formData.get('message'),
     company: formData.get('company'),
   };
+  const localeValue = formData.get('locale');
+  const locale = typeof localeValue === 'string' && isLocale(localeValue) ? localeValue : defaultLocale;
+  const dictionary = getDictionary(locale);
 
   // Honeypot: silently succeed for bots that fill the hidden field.
   if (raw.company) {
     return { ok: true };
   }
 
-  const result = contactSchema.safeParse(raw);
+  const result = createContactSchema(locale).safeParse(raw);
 
   if (!result.success) {
     const fieldErrors = result.error.flatten().fieldErrors as Record<string, string[]>;
     return {
       ok: false,
-      error: 'Lütfen formdaki hataları düzeltin.',
+      error: dictionary.forms.contact.validationError,
       fieldErrors,
     };
   }
@@ -121,7 +129,7 @@ export async function submitContact(
     }
     return {
       ok: false,
-      error: 'Mesajınız gönderilemedi. Lütfen telefonla iletişime geçin.',
+      error: dictionary.forms.contact.submitError,
     };
   }
 

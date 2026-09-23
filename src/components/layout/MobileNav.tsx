@@ -70,7 +70,7 @@ export function MobileNav({ open, onClose, locale = defaultLocale }: MobileNavPr
       {/* Backdrop */}
       <button
         type="button"
-        aria-label="Menüyü kapat"
+        aria-label={dictionary.a11y.closeMenu}
         onClick={onClose}
         className={`bg-charcoal/40 absolute inset-0 transition-opacity duration-300 ${
           open ? 'opacity-100' : 'opacity-0'
@@ -80,7 +80,7 @@ export function MobileNav({ open, onClose, locale = defaultLocale }: MobileNavPr
 
       {/* Panel */}
       <nav
-        aria-label="Mobil menü"
+        aria-label={dictionary.a11y.mobileNavigation}
         className={`bg-marble absolute top-0 right-0 flex h-full w-[82%] max-w-sm flex-col shadow-xl transition-transform duration-300 ease-out ${
           open ? 'translate-x-0' : 'translate-x-full'
         }`}
@@ -90,7 +90,7 @@ export function MobileNav({ open, onClose, locale = defaultLocale }: MobileNavPr
           <button
             type="button"
             onClick={onClose}
-            aria-label="Menüyü kapat"
+            aria-label={dictionary.a11y.closeMenu}
             className="text-charcoal hover:bg-cream-deep rounded-md p-2 transition-colors"
             tabIndex={open ? 0 : -1}
           >

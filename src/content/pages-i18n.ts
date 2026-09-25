@@ -5,6 +5,7 @@ import { aboutContent, homeContent, seedPages } from './pages-data';
 import pagesEn from '@/lib/i18n/generated/pages.en.json';
 import pagesDe from '@/lib/i18n/generated/pages.de.json';
 import pagesRu from '@/lib/i18n/generated/pages.ru.json';
+import pagesFr from '@/lib/i18n/generated/pages.fr.json';
 
 /**
  * Page content translations (overlay model).
@@ -43,12 +44,14 @@ interface PagesLocaleFile {
 const en = pagesEn as PagesLocaleFile;
 const de = pagesDe as PagesLocaleFile;
 const ru = pagesRu as PagesLocaleFile;
+const fr = pagesFr as PagesLocaleFile;
 
 export const aboutTextByLocale: Record<Locale, DeepPartial<AboutContent>> = {
   tr: {},
   en: en.about ?? {},
   de: de.about ?? {},
   ru: ru.about ?? {},
+  fr: fr.about ?? {},
 };
 
 export const homeTextByLocale: Record<Locale, DeepPartial<HomeContent>> = {
@@ -56,6 +59,7 @@ export const homeTextByLocale: Record<Locale, DeepPartial<HomeContent>> = {
   en: en.home ?? {},
   de: de.home ?? {},
   ru: ru.home ?? {},
+  fr: fr.home ?? {},
 };
 
 /**
@@ -112,6 +116,7 @@ export const seedPagesByLocale: Record<Locale, Record<string, PageMetaOverlay>> 
   en: en.seo ?? {},
   de: de.seo ?? {},
   ru: ru.seo ?? {},
+  fr: fr.seo ?? {},
 };
 
 /** A single page's content for a locale (TR seed + locale overlay). */

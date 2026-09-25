@@ -73,6 +73,18 @@ const validationMessages: Record<
     contactRequired: 'Укажите электронную почту или телефон, чтобы мы могли связаться с вами.',
     message: 'Введите сообщение.',
   },
+  fr: {
+    email: 'Veuillez saisir une adresse e-mail valide.',
+    phoneLong: 'Le numéro de téléphone est trop long.',
+    name: 'Veuillez saisir votre nom.',
+    partyInteger: 'Le nombre de convives doit être un nombre entier.',
+    partyMinimum: 'Au moins 1 convive est requis.',
+    partyMaximum: `Pour les groupes de ${RESERVATION_MAX_PARTY + 1} personnes ou plus, veuillez nous contacter.`,
+    date: 'Veuillez sélectionner une date.',
+    time: 'Veuillez sélectionner une heure.',
+    contactRequired: 'Veuillez saisir une adresse e-mail ou un numéro de téléphone pour que nous puissions vous joindre.',
+    message: 'Veuillez saisir un message.',
+  },
 };
 
 export function createReservationSchema(locale: Locale = defaultLocale) {

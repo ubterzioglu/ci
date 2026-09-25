@@ -431,6 +431,13 @@ export const wineCategoryNamesByLocale: Record<Locale, Record<string, string>> =
     'wine-red': 'Красные вина',
     'wine-liqueur': 'Ликёрные вина',
   },
+  fr: {
+    'wine-white': 'Vins blancs',
+    'wine-rose': 'Vins rosés',
+    'wine-sparkling': 'Vins effervescents',
+    'wine-red': 'Vins rouges',
+    'wine-liqueur': 'Vins de liqueur',
+  },
 };
 
 export interface WinePriceLabels {
@@ -444,6 +451,7 @@ export const winePriceLabelsByLocale: Record<Locale, WinePriceLabels> = {
   en: { glass: 'Glass', bottle: 'Bottle', coravin: 'Wine by the glass via Coravin' },
   de: { glass: 'Glas', bottle: 'Flasche', coravin: 'Glasweise mit Coravin' },
   ru: { glass: 'Бокал', bottle: 'Бутылка', coravin: 'Подача по бокалам с Coravin' },
+  fr: { glass: 'Verre', bottle: 'Bouteille', coravin: 'Service au verre via Coravin' },
 };
 
 export function getLocalWineMenu(locale: Locale): MenuCategory[] {

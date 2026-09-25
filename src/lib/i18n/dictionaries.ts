@@ -12,6 +12,7 @@ import { defaultLocale } from './config';
 import uiEn from './generated/ui.en.json';
 import uiDe from './generated/ui.de.json';
 import uiRu from './generated/ui.ru.json';
+import uiFr from './generated/ui.fr.json';
 
 // ---------------------------------------------------------------------------
 // Dictionary shape
@@ -294,6 +295,7 @@ export const dictionaries: Record<Locale, Dictionary> = {
   en: withOverlay(uiEn as DictionaryOverlay),
   de: withOverlay(uiDe as DictionaryOverlay),
   ru: withOverlay(uiRu as DictionaryOverlay),
+  fr: withOverlay(uiFr as DictionaryOverlay),
 };
 
 // ---------------------------------------------------------------------------

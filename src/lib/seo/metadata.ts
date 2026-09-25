@@ -18,6 +18,7 @@ const OG_LOCALE: Record<Locale, string> = {
   en: 'en_US',
   de: 'de_DE',
   ru: 'ru_RU',
+  fr: 'fr_FR',
 };
 
 export function buildGeoMetadata(): NonNullable<Metadata['other']> {

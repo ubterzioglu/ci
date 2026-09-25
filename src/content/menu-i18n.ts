@@ -2,6 +2,7 @@ import type { Locale } from '@/lib/i18n/config';
 import menuEn from '@/lib/i18n/generated/menu.en.json';
 import menuDe from '@/lib/i18n/generated/menu.de.json';
 import menuRu from '@/lib/i18n/generated/menu.ru.json';
+import menuFr from '@/lib/i18n/generated/menu.fr.json';
 
 /**
  * Menu text translations (overlay model).
@@ -43,6 +44,7 @@ interface MenuLocaleFile {
 const en = menuEn as MenuLocaleFile;
 const de = menuDe as MenuLocaleFile;
 const ru = menuRu as MenuLocaleFile;
+const fr = menuFr as MenuLocaleFile;
 
 /**
  * Per-locale overlays. `tr` is intentionally empty (it is the source).
@@ -55,6 +57,7 @@ export const menuTextByLocale: Record<Locale, MenuTextOverlay> = {
   en: { categories: en.categories ?? {}, items: en.items ?? {} },
   de: { categories: de.categories ?? {}, items: de.items ?? {} },
   ru: { categories: ru.categories ?? {}, items: ru.items ?? {} },
+  fr: { categories: fr.categories ?? {}, items: fr.items ?? {} },
 };
 
 export const menuNotesByLocale: Record<Locale, MenuNotesOverlay> = {
@@ -62,6 +65,7 @@ export const menuNotesByLocale: Record<Locale, MenuNotesOverlay> = {
   en: en.notes ?? {},
   de: de.notes ?? {},
   ru: ru.notes ?? {},
+  fr: fr.notes ?? {},
 };
 
 const menuTaxonomyByLocale: Record<Locale, Record<string, string>> = {
@@ -89,6 +93,14 @@ const menuTaxonomyByLocale: Record<Locale, Record<string, string>> = {
     'kabuklu deniz ürünü': 'ракообразные',
     yumuşakça: 'моллюски',
     'sert kabuklu yemiş': 'орехи',
+  },
+  fr: {
+    Vejetaryen: 'Végétarien',
+    süt: 'lait',
+    balık: 'poisson',
+    'kabuklu deniz ürünü': 'crustacés',
+    yumuşakça: 'mollusques',
+    'sert kabuklu yemiş': 'fruits à coque',
   },
 };
 

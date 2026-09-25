@@ -1,0 +1,103 @@
+{
+  "about": {
+    "title": "À propos de nous",
+    "intro": {
+      "heading": "Le lieu où se rencontrent sérénité et saveurs",
+      "paragraphs": [
+        "Chaque assiette recèle une intemporalité ; une intemporalité qui porte en elle le vent d’une oliveraie, la fraîcheur d’une rue pavée et les phrases modestes d’un vieux livre de recettes…",
+        "Çi Neo Cucina s'inspire des saveurs les plus simples mais les plus intenses de la Méditerranée et de l'Anatolie. Nous accordons une grande importance au caractère naturel des ingrédients, à la convivialité de la table et au bonheur serein du partage. Chacune de nos recettes porte en elle une trace des saisons, de la mer, de la terre et des histoires humaines.",
+        "Nous ne sommes pas un restaurant ; nous avons voulu incarner le concept d'un rassemblement autour d'une table, tissée par les voix de la nature et de la tradition.",
+        "C'est pourquoi Çi Neo Cucina n'est pas seulement un lieu où l'on mange ; chaque bouchée recèle une amitié intemporelle, chaque gorgée une brise méditerranéenne discrète.",
+        "Bienvenue. Votre place est prête à notre table."
+      ]
+    },
+    "vision": {
+      "heading": "Notre vision",
+      "paragraphs": [
+        "Dans la vision gastronomique de demain, loin du bruit, nous souhaitons construire un langage culinaire riche de sens, durable et émouvant.",
+        "La vision de Çi Neo Cucina consiste à partager avec le monde entier une philosophie culinaire qui s’étend du local à l’universel, sans imiter la nature, mais en harmonie avec elle.",
+        "Notre plus grand rêve est de dépasser, avec le temps, le simple statut de restaurant pour devenir une philosophie, un mode de vie."
+      ]
+    },
+    "chef": {
+      "heading": "Faisons connaissance avec le chef",
+      "paragraphs": [
+        "Après avoir obtenu son diplôme en sciences politiques et relations internationales à l'université Yeditepe, Simge Manacıoğlu a fait ses premiers pas dans le monde de l'entreprise. Bien qu'elle ait obtenu un MBA au cours de cette période, elle n'a jamais réussi à se sentir à sa place dans ce milieu.",
+        "À 30 ans, il s'est lancé dans la réalisation de son rêve de créer une cave à vin, qu'il nourrissait depuis son premier voyage à Kaş en 2003, avec le soutien de son épouse et de sa mère. Son intérêt pour la gastronomie a pris une orientation professionnelle en 2014 grâce à sa formation à l'Académie culinaire EKS, qu'il a terminée en tête de sa promotion.",
+        "En 2016, elle s'est installée à Kaş et a commencé à travailler comme chef à la Sumanu Şarap Evi, où elle a approfondi ses compétences culinaires. En 2018, avec le restaurant Mezeteryan qu’elle a fondé avec son mari Tolga Manacıoğlu, elle a innové en Turquie en intégrant le poisson-lion à sa carte et a sensibilisé le public à la question du développement durable. Pendant quatre ans, elle a mené des collaborations avec des organisations de premier plan telles que le PNUD, le WWF et la Fondation pour la protection de la Méditerranée.",
+        "Depuis 2024, elle continue de partager sa vision créative et durable de la gastronomie à travers « Çi Neo Cucina », un établissement qu'elle a baptisé du nom de sa fille Çağıl İda, qui apporte joie et inspiration à sa vie."
+      ]
+    },
+    "team": {
+      "heading": "Notre équipe",
+      "note": "2025 La famille Çi"
+    }
+  },
+  "home": {
+    "hero": {
+      "subtitle": "Des matériaux naturels, un langage culinaire intemporel.",
+      "description": "Entre l’« ancienne » et la « nouvelle » Kaş, une table inspirée de la Méditerranée et de l’Anatolie."
+    },
+    "menusTeaser": [
+      {
+        "title": "Menu principal",
+        "description": "Sous trois grandes rubriques : des recettes tantôt innovantes, tantôt inédites."
+      },
+      {
+        "title": "Le plat du jour",
+        "description": "N'hésitez pas à demander : des saveurs spéciales proposées ponctuellement pour le plus grand plaisir de nos clients."
+      },
+      {
+        "title": "Carte des vins",
+        "description": "Notre riche sélection, composée en grande partie de producteurs locaux, offre des saveurs pour tous les goûts."
+      }
+    ],
+    "chefsTable": {
+      "body": "Pour le « Chef’s Table », les menus sur mesure et les événements privés, n’hésitez pas à contacter notre équipe."
+    },
+    "experiences": [
+      {
+        "title": "La Table du Chef",
+        "description": "À la table du chef, une expérience culinaire sur mesure, élaborée à partir des ingrédients les plus frais de la saison."
+      }
+    ]
+  },
+  "seo": {
+    "home": {
+      "title": "Page d'accueil",
+      "excerpt": "Entre l’« ancien » et le « nouveau » Kaş, une cuisine inspirée de la Méditerranée et de l’Anatolie.",
+      "seoTitle": "Page d'accueil | Çi Neo Cucina",
+      "seoDescription": "À Kaş, Çi Neo Cucina propose une cuisine intemporelle inspirée de la Méditerranée et de l'Anatolie, à base d'ingrédients naturels."
+    },
+    "about": {
+      "title": "À propos de nous",
+      "excerpt": "Chaque assiette recèle une intemporalité ; une intemporalité qui porte en elle le vent d’une oliveraie, la fraîcheur d’une ruelle pavée et les phrases modestes d’un vieux livre de recettes…",
+      "seoTitle": "À propos de nous | Çi Neo Cucina",
+      "seoDescription": "L'histoire de Çi Neo Cucina, axée sur la sérénité, la durabilité, les produits locaux et la cuisine méditerranéenne."
+    },
+    "menu": {
+      "title": "Menu",
+      "excerpt": "Des saveurs issues de la terre, de la mer et des prairies.",
+      "seoTitle": "Menu | Çi Neo Cucina",
+      "seoDescription": "Menu principal de Çi Neo Cucina : des saveurs issues de la terre, de la mer et des prairies ; une sélection de vins provenant de producteurs locaux."
+    },
+    "reservations": {
+      "title": "Réservations",
+      "excerpt": "Précisez vos critères, et nous essaierons de vous trouver les meilleurs endroits.",
+      "seoTitle": "Réservations | Çi Neo Cucina",
+      "seoDescription": "Faites une demande de réservation chez Çi Neo Cucina ; indiquez le nombre de personnes, la date et l'heure."
+    },
+    "experiences": {
+      "title": "Expériences",
+      "excerpt": "N'hésitez pas à nous contacter pour des expériences et des événements sur mesure.",
+      "seoTitle": "Expériences | Çi Neo Cucina",
+      "seoDescription": "Les expériences Çi Neo Cucina et les annonces d'événements spéciaux."
+    },
+    "contact": {
+      "title": "Contact",
+      "excerpt": "N'hésitez pas à nous contacter pour vos réservations, vos événements privés et toutes vos questions.",
+      "seoTitle": "Contact | Çi Neo Cucina",
+      "seoDescription": "Contactez Çi Neo Cucina : n'hésitez pas à nous joindre pour vos réservations, vos événements privés et toutes vos questions."
+    }
+  }
+}

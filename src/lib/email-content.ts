@@ -65,6 +65,16 @@ const copy: Record<Locale, {
     phone: 'Телефон',
     email: 'Эл. почта',
   },
+  fr: {
+    subject: (name) => `Votre réservation est confirmée — ${name}`,
+    greeting: (name) => `Cher/chère ${name},`,
+    confirmation: (name) => `Votre réservation au ${name} est confirmée. Nous serons ravis de vous accueillir.`,
+    dateTime: 'Date et heure',
+    partySize: 'Nombre de convives',
+    changes: 'Si vos plans changent, merci de nous en informer :',
+    phone: 'Téléphone',
+    email: 'E-mail',
+  },
 };
 
 function formatDateTime(date: string, time: string, locale: Locale): string {
@@ -94,6 +104,7 @@ const tabLabels: Record<Locale, string> = {
   tr: 'Türkçe',
   de: 'Deutsch',
   ru: 'Русский',
+  fr: 'Français',
 };
 
 export function buildReservationConfirmation(reservation: ReservationConfirmationInput): EmailBody {
@@ -148,8 +159,8 @@ export function buildReservationConfirmation(reservation: ReservationConfirmatio
   const text = localized.map(({ label, text: body }) => `${label}\n${'─'.repeat(label.length)}\n\n${body}`).join('\n\n\n');
 
   return {
-    subject: localized[0].subject,
+    subject: localized[0]!.subject,
     text,
-    html: `<div style="max-width:640px;margin:0 auto;padding:24px;color:#292821;font:15px/1.6 Arial,sans-serif"><p style="margin:0 0 8px;color:#777">Choose your language / Dilinizi seçin / Sprache wählen / Выберите язык</p><nav style="margin:0 0 12px">${nav}</nav>${sections}</div>`,
+    html: `<div style="max-width:640px;margin:0 auto;padding:24px;color:#292821;font:15px/1.6 Arial,sans-serif"><p style="margin:0 0 8px;color:#777">Choose your language / Dilinizi seçin / Sprache wählen / Выберите язык / Choisissez votre langue</p><nav style="margin:0 0 12px">${nav}</nav>${sections}</div>`,
   };
 }

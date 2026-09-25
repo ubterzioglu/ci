@@ -232,6 +232,20 @@ const reservationMessagesByLocale: Record<Locale, ReservationMessages> = {
       'По воскресеньям мы закрыты; для особых мероприятий можем открыться по договорённости.',
     ],
   },
+  fr: {
+    invalidDate: 'Veuillez sélectionner une date valide.',
+    closedSunday: 'Nous sommes fermés le dimanche. Veuillez nous contacter pour les occasions spéciales.',
+    invalidTime: 'Veuillez sélectionner une heure valide.',
+    outsideHours: `Les réservations sont possibles de ${RESERVATION_OPENS} à ${RESERVATION_CLOSES}.`,
+    pastDate: 'Impossible de sélectionner une date passée.',
+    leadTime: `Les réservations doivent être effectuées au moins ${RESERVATION_MIN_LEAD_HOURS} heures à l'avance. Pour un créneau plus tôt, veuillez nous appeler.`,
+    rules: [
+      `Nos horaires de réservation sont de ${RESERVATION_OPENS} à ${RESERVATION_CLOSES}.`,
+      `Les réservations doivent être effectuées au moins ${RESERVATION_MIN_LEAD_HOURS} heures à l'avance.`,
+      `Pour les groupes de ${RESERVATION_MAX_PARTY + 1} personnes ou plus, veuillez nous contacter.`,
+      'Nous sommes fermés le dimanche ; nous ouvrons pour les occasions spéciales, veuillez nous appeler.',
+    ],
+  },
 };
 
 export function getReservationRuleLines(locale: Locale): readonly string[] {

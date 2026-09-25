@@ -38,11 +38,12 @@ config({ path: '.env.local' });
 const FORCE = process.argv.includes('--force');
 const GEN_DIR = join(process.cwd(), 'src', 'lib', 'i18n', 'generated');
 
-type DeepLTarget = 'EN' | 'DE' | 'RU';
+type DeepLTarget = 'EN' | 'DE' | 'RU' | 'FR';
 const TARGETS: { lang: DeepLTarget; locale: string }[] = [
   { lang: 'EN', locale: 'en' },
   { lang: 'DE', locale: 'de' },
   { lang: 'RU', locale: 'ru' },
+  { lang: 'FR', locale: 'fr' },
 ];
 
 interface DeepLResponse {

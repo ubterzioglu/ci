@@ -11,12 +11,12 @@
  * breaking changes.
  */
 
-export const locales = ['tr', 'en', 'de', 'ru'] as const;
+export const locales = ['tr', 'en', 'de', 'ru', 'fr'] as const;
 
 export type Locale = (typeof locales)[number];
 
 /** Guest confirmation language order, with English as the default tab. */
-export const reservationEmailLocales = ['en', 'tr', 'de', 'ru'] as const satisfies readonly Locale[];
+export const reservationEmailLocales = ['en', 'tr', 'de', 'ru', 'fr'] as const satisfies readonly Locale[];
 
 export const defaultLocale = 'tr' as const satisfies Locale;
 
@@ -37,6 +37,7 @@ export const localeNames: Record<Locale, string> = {
   en: 'English',
   de: 'Deutsch',
   ru: 'Русский',
+  fr: 'Français',
 };
 
 /**

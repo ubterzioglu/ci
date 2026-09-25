@@ -18,6 +18,7 @@ const DEEPL_TARGET: Record<TranslatableLocale, string> = {
   en: 'EN-GB',
   de: 'DE',
   ru: 'RU',
+  fr: 'FR',
 };
 
 /** DeepL allows 50 text params per request; stay under it. */

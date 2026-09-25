@@ -15,6 +15,7 @@ import {
   type ReservationStatus,
 } from '@/lib/db/admin/reservation-types';
 import { formatReservationDateTime } from '@/lib/utils';
+import { buildReservationConfirmation } from '@/lib/email-content';
 import { updateReservationStatusAction } from './actions';
 
 const STATUS_LABELS: Record<ReservationStatus, string> = {
@@ -48,6 +49,7 @@ function ReservationCard({
   busy: boolean;
 }) {
   const r = reservation;
+  const emailPreview = buildReservationConfirmation(r);
   return (
     <div className="border-stone bg-cream-deep/30 rounded-lg border p-5 shadow-[0_12px_30px_rgba(35,33,28,0.05)]">
       <div className="mb-4 flex flex-wrap items-start justify-between gap-3">
@@ -115,6 +117,16 @@ function ReservationCard({
             {STATUS_LABELS[s]}
           </button>
         ))}
+      </div>
+
+      <div className="border-stone mt-5 border-t pt-4">
+        <p className="font-body text-charcoal mb-2 text-xs font-semibold">
+          Misafir onay e-postası · tek e-postada dört dil
+        </p>
+        <div className="bg-cream-deep/40 mt-3 rounded-md p-3">
+          <p className="font-body text-charcoal text-xs font-semibold">{emailPreview.subject}</p>
+          <pre className="font-body text-muted mt-2 whitespace-pre-wrap text-xs leading-relaxed">{emailPreview.text}</pre>
+        </div>
       </div>
     </div>
   );

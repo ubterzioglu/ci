@@ -23,6 +23,8 @@ export interface SendNotificationEmailParams {
   to: string;
   subject: string;
   text: string;
+  /** Optional rich layout; plain text remains available to clients that need it. */
+  html?: string;
   /**
    * Address the recipient's "Reply" should go to — the guest, on a reservation
    * notification, so the restaurant can answer without copying the address out
@@ -104,7 +106,7 @@ async function getTransporter(settings: SmtpSettings): Promise<Transporter> {
 }
 
 /**
- * Send one plain-text notification.
+ * Send one notification with a plain-text fallback and optional HTML layout.
  *
  * Never throws: every caller is in the middle of something more important than
  * the email (saving a reservation, confirming one), so the outcome comes back
@@ -127,6 +129,7 @@ export async function sendNotificationEmail(
       ...(params.bcc ? { bcc: splitRecipients(params.bcc) } : {}),
       subject: params.subject,
       text: params.text,
+      ...(params.html ? { html: params.html } : {}),
       ...(params.replyTo ? { replyTo: params.replyTo } : {}),
     });
     return { sent: true };

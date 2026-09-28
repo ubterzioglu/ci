@@ -51,6 +51,12 @@ interface BuildMetadataInput {
   locale?: Locale;
   ogImage?: string | null;
   noIndex?: boolean;
+  /**
+   * Emit hreflang alternates for every locale. Set to `false` for pages that
+   * exist only in Turkish: pointing hreflang at /en/… URLs that 404 is a broken
+   * signal to crawlers, not a neutral one. Such pages get a canonical only.
+   */
+  localeAlternates?: boolean;
 }
 
 /**
@@ -73,6 +79,7 @@ export function buildMetadata({
   locale = defaultLocale,
   ogImage,
   noIndex = false,
+  localeAlternates = true,
 }: BuildMetadataInput): Metadata {
   const fullTitle = title ? `${title} | ${siteConfig.name}` : siteConfig.name;
   const desc = description ?? siteConfig.description;
@@ -84,7 +91,7 @@ export function buildMetadata({
     description: desc,
     alternates: {
       canonical,
-      languages: buildLanguageAlternates(path),
+      ...(localeAlternates ? { languages: buildLanguageAlternates(path) } : {}),
     },
     openGraph: {
       type: 'website',

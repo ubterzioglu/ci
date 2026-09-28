@@ -1,5 +1,6 @@
 import type { MetadataRoute } from 'next';
 
+import { CHEF_RESTAURANT_PATH } from '@/content/kas-sef-restorani';
 import { defaultLocale, locales } from '@/lib/i18n/config';
 import { localePath } from '@/lib/i18n/paths';
 import { siteConfig } from '@/lib/site-config';
@@ -31,6 +32,19 @@ const ROUTES: RouteConfig[] = [
   { path: '/contact', changeFrequency: 'monthly', priority: 0.6 },
 ];
 
+/**
+ * Turkish-only pages with no localized counterpart. Listed once, without
+ * hreflang alternates — fanning them across locales would advertise /en/… and
+ * /de/… URLs that 404.
+ *
+ * These pages are intentionally absent from `mainNav`, so the sitemap is the
+ * only way a crawler learns they exist. Removing an entry here effectively
+ * unpublishes the page.
+ */
+const TR_ONLY_ROUTES: RouteConfig[] = [
+  { path: CHEF_RESTAURANT_PATH, changeFrequency: 'monthly', priority: 0.6 },
+];
+
 const base = siteConfig.url;
 const absolute = (path: string): string => new URL(path, base).toString();
 
@@ -47,7 +61,7 @@ function languageAlternates(routePath: string): Record<string, string> {
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();
 
-  return ROUTES.flatMap((route) =>
+  const localized = ROUTES.flatMap((route) =>
     locales.map((locale) => ({
       url: absolute(localePath(route.path, locale)),
       lastModified,
@@ -56,4 +70,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       alternates: { languages: languageAlternates(route.path) },
     })),
   );
+
+  const turkishOnly = TR_ONLY_ROUTES.map((route) => ({
+    url: absolute(localePath(route.path, defaultLocale)),
+    lastModified,
+    changeFrequency: route.changeFrequency,
+    priority: route.priority,
+  }));
+
+  return [...localized, ...turkishOnly];
 }

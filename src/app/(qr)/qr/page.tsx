@@ -23,7 +23,9 @@ import { siteConfig } from '@/lib/site-config';
  * letting a curious guest read the chef's story without leaving the table.
  */
 export const metadata: Metadata = {
-  title: 'Menü',
+  // Spelled out rather than relying on a root-layout title template — the brand
+  // suffix is owned by buildMetadata(), which this chrome-free route bypasses.
+  title: `Menü | ${siteConfig.name}`,
 };
 
 export default async function QrMenuPage() {

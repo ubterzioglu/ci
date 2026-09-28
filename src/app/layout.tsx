@@ -24,10 +24,19 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
-  title: {
-    default: `${siteConfig.name} — ${siteConfig.tagline}`,
-    template: `%s | ${siteConfig.name}`,
-  },
+  /**
+   * Fallback title for any route that ships no metadata of its own.
+   *
+   * Deliberately NO `template` here: buildMetadata() already appends
+   * " | Çi Neo Cucina" to every public page, so a template would apply the
+   * brand a second time (pages read "Hakkımızda | Çi Neo Cucina | Çi Neo
+   * Cucina"). The brand suffix has exactly one owner — buildMetadata. Routes
+   * that bypass it (/qr, /admin) spell the full title out themselves.
+   *
+   * A plain string is the only way to express "no template": Next.js's object
+   * form (`{ default: … }`) requires a `template` alongside it.
+   */
+  title: `${siteConfig.name} — ${siteConfig.tagline}`,
   description: siteConfig.description,
   applicationName: siteConfig.name,
   keywords: [

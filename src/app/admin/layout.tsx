@@ -1,9 +1,12 @@
 import type { Metadata } from 'next';
 
 import { ToastProvider } from '@/components/admin/Toast';
+import { siteConfig } from '@/lib/site-config';
 
 export const metadata: Metadata = {
-  title: 'Yönetim Paneli',
+  // Spelled out rather than relying on a root-layout title template — the brand
+  // suffix is owned by buildMetadata(), which the admin area bypasses.
+  title: `Yönetim Paneli | ${siteConfig.name}`,
   robots: { index: false, follow: false },
 };
 

@@ -3,6 +3,7 @@ import { Cormorant_Garamond, Inter } from 'next/font/google';
 import { headers } from 'next/headers';
 
 import './globals.css';
+import { Clarity } from '@/components/analytics/Clarity';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { defaultLocale, isLocale } from '@/lib/i18n/config';
 import { buildGeoMetadata } from '@/lib/seo/metadata';
@@ -95,6 +96,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           provides its own chrome.
         */}
         {children}
+        <Clarity />
       </body>
     </html>
   );

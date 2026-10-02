@@ -42,8 +42,22 @@ export function buildGeoMetadata(): NonNullable<Metadata['other']> {
   };
 }
 
+/**
+ * Locale `x-default` points at. This is the page served to a visitor whose
+ * language matches no hreflang — an Italian, Dutch or Polish tourist looking
+ * for dinner in Kaş. English serves them; Turkish does not, which is why
+ * x-default is NOT the default locale here despite TR being the source.
+ */
+const X_DEFAULT_LOCALE: Locale = 'en';
+
 interface BuildMetadataInput {
   title?: string;
+  /**
+   * Complete `<title>`, used verbatim — no " | Çi Neo Cucina" suffix. Takes
+   * precedence over `title`. Pages use this via seoTitle() so the location
+   * keyword fits inside the length Google renders; see lib/seo/titles.ts.
+   */
+  absoluteTitle?: string;
   description?: string;
   /** UNPREFIXED path, e.g. "/menu". The locale prefix is applied internally. */
   path?: string;
@@ -61,19 +75,20 @@ interface BuildMetadataInput {
 
 /**
  * hreflang alternates for a given unprefixed path: one absolute URL per locale
- * plus an `x-default` pointing at the Turkish (default-locale) URL.
+ * plus an `x-default` pointing at the English URL (see X_DEFAULT_LOCALE).
  */
 function buildLanguageAlternates(path: string): Record<string, string> {
   const alternates: Record<string, string> = {};
   for (const locale of locales) {
     alternates[locale] = new URL(localePath(path, locale), baseUrl).toString();
   }
-  alternates['x-default'] = new URL(localePath(path, defaultLocale), baseUrl).toString();
+  alternates['x-default'] = new URL(localePath(path, X_DEFAULT_LOCALE), baseUrl).toString();
   return alternates;
 }
 
 export function buildMetadata({
   title,
+  absoluteTitle,
   description,
   path = '/',
   locale = defaultLocale,
@@ -81,7 +96,8 @@ export function buildMetadata({
   noIndex = false,
   localeAlternates = true,
 }: BuildMetadataInput): Metadata {
-  const fullTitle = title ? `${title} | ${siteConfig.name}` : siteConfig.name;
+  const fullTitle =
+    absoluteTitle ?? (title ? `${title} | ${siteConfig.name}` : siteConfig.name);
   const desc = description ?? siteConfig.description;
   const canonical = new URL(localePath(path, locale), baseUrl).toString();
   const image = ogImage ?? new URL(siteConfig.ogDefaultImage, baseUrl).toString();
@@ -100,7 +116,18 @@ export function buildMetadata({
       description: desc,
       url: canonical,
       locale: OG_LOCALE[locale],
-      images: [{ url: image, width: 1200, height: 630, alt: siteConfig.name }],
+      // og:locale:alternate tells sharing platforms the other language
+      // versions exist. Omitted for TR-only pages, which have no alternates.
+      ...(localeAlternates
+        ? {
+            alternateLocale: locales
+              .filter((other) => other !== locale)
+              .map((other) => OG_LOCALE[other]),
+          }
+        : {}),
+      // The share-card alt follows the locale rather than repeating the brand
+      // name in every language.
+      images: [{ url: image, width: 1200, height: 630, alt: fullTitle }],
     },
     twitter: {
       card: 'summary_large_image',

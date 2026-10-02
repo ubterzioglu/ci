@@ -56,8 +56,26 @@ export const metadata: Metadata = {
   category: 'restaurant',
   // Stop iOS Safari from auto-linking incidental numbers/addresses in the UI.
   formatDetection: { telephone: false, address: false, email: false },
-  alternates: { canonical: '/' },
+  /**
+   * Deliberately NO `alternates.canonical` here. Root metadata is inherited by
+   * every route that ships none of its own — `not-found`, `/qr`, admin — so a
+   * canonical at this level made 404s and the QR menu declare the homepage as
+   * their canonical URL. buildMetadata is the single owner of canonicals; the
+   * homepage sets its own via `buildMetadata({ path: '/' })`.
+   */
   other: buildGeoMetadata(),
+  /**
+   * Search-console ownership proofs. Left undefined when the env var is
+   * absent, which is the normal state locally — Next omits the tag entirely
+   * rather than emitting an empty one.
+   */
+  verification: {
+    google: process.env.GOOGLE_SITE_VERIFICATION,
+    yandex: process.env.YANDEX_VERIFICATION,
+    ...(process.env.BING_SITE_VERIFICATION
+      ? { other: { 'msvalidate.01': process.env.BING_SITE_VERIFICATION } }
+      : {}),
+  },
   openGraph: {
     type: 'website',
     siteName: siteConfig.name,
@@ -87,8 +105,13 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   return (
     <html lang={lang} className={`${cormorant.variable} ${inter.variable}`}>
       <body className="bg-marble text-charcoal flex min-h-screen flex-col antialiased">
-        <JsonLd data={restaurantSchema()} />
-        <JsonLd data={websiteSchema()} />
+        {/*
+          Both nodes are locale-aware: the description and `inLanguage` follow
+          the resolved request locale, while the `@id`s stay constant so every
+          language describes the same business and the same site.
+        */}
+        <JsonLd data={restaurantSchema(lang)} />
+        <JsonLd data={websiteSchema(lang)} />
         {/*
           Site chrome (Header/Footer/<main>) lives in app/(site)/layout.tsx so
           chrome-free routes — the at-table QR menu in app/(qr) — can opt out.

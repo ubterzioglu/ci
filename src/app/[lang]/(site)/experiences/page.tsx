@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import { ExperiencesPageBody } from '@/components/pages/ExperiencesPageBody';
 import { defaultLocale, isLocale } from '@/lib/i18n/config';
 import { buildMetadata } from '@/lib/seo/metadata';
+import { seoTitle } from '@/lib/seo/titles';
 import { getLocalPage } from '@/content/pages-i18n';
 
 export async function generateMetadata({
@@ -16,7 +17,7 @@ export async function generateMetadata({
   const page = getLocalPage('experiences', locale);
 
   return buildMetadata({
-    title: page?.title ?? 'Çi Neo Cucina',
+    absoluteTitle: seoTitle('/experiences', locale),
     description: page?.seoDescription ?? page?.excerpt ?? '',
     path: '/experiences',
     locale,

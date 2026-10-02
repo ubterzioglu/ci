@@ -1,6 +1,6 @@
 import type { MetadataRoute } from 'next';
 
-import { CHEF_RESTAURANT_PATH } from '@/content/kas-sef-restorani';
+import { CHEF_RESTAURANT_DATES, CHEF_RESTAURANT_PATH } from '@/content/kas-sef-restorani';
 import { defaultLocale, locales } from '@/lib/i18n/config';
 import { localePath } from '@/lib/i18n/paths';
 import { siteConfig } from '@/lib/site-config';
@@ -21,6 +21,12 @@ interface RouteConfig {
   path: string;
   changeFrequency: MetadataRoute.Sitemap[number]['changeFrequency'];
   priority: number;
+  /**
+   * Real last-edit date, for pages that track one. Editorial pages should use
+   * it instead of the build date: the Article JSON-LD already states a
+   * `dateModified`, and a sitemap claiming a newer date contradicts it.
+   */
+  lastModified?: string;
 }
 
 const ROUTES: RouteConfig[] = [
@@ -42,19 +48,32 @@ const ROUTES: RouteConfig[] = [
  * unpublishes the page.
  */
 const TR_ONLY_ROUTES: RouteConfig[] = [
-  { path: CHEF_RESTAURANT_PATH, changeFrequency: 'monthly', priority: 0.6 },
+  {
+    path: CHEF_RESTAURANT_PATH,
+    changeFrequency: 'monthly',
+    priority: 0.6,
+    lastModified: CHEF_RESTAURANT_DATES.modified,
+  },
 ];
 
 const base = siteConfig.url;
 const absolute = (path: string): string => new URL(path, base).toString();
 
-/** hreflang alternates for a route: one URL per locale + x-default (TR). */
+/**
+ * hreflang alternates for a route: one URL per locale + x-default.
+ *
+ * x-default is EN, not TR: it is what a visitor whose language matches no
+ * hreflang gets, and most of those visitors in Kaş are foreign tourists.
+ * Must stay in step with X_DEFAULT_LOCALE in lib/seo/metadata.ts — the sitemap
+ * and the page's own <link rel="alternate"> contradicting each other is worse
+ * than either choice.
+ */
 function languageAlternates(routePath: string): Record<string, string> {
   const languages: Record<string, string> = {};
   for (const locale of locales) {
     languages[locale] = absolute(localePath(routePath, locale));
   }
-  languages['x-default'] = absolute(localePath(routePath, defaultLocale));
+  languages['x-default'] = absolute(localePath(routePath, 'en'));
   return languages;
 }
 
@@ -73,7 +92,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const turkishOnly = TR_ONLY_ROUTES.map((route) => ({
     url: absolute(localePath(route.path, defaultLocale)),
-    lastModified,
+    lastModified: route.lastModified ? new Date(route.lastModified) : lastModified,
     changeFrequency: route.changeFrequency,
     priority: route.priority,
   }));

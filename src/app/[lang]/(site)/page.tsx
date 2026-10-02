@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import { HomePageBody } from '@/components/pages/HomePageBody';
 import { defaultLocale, isLocale } from '@/lib/i18n/config';
 import { buildMetadata } from '@/lib/seo/metadata';
+import { seoTitle } from '@/lib/seo/titles';
 import { getLocalPage } from '@/content/pages-i18n';
 
 export async function generateMetadata({
@@ -16,9 +17,10 @@ export async function generateMetadata({
   const page = getLocalPage('home', locale);
 
   return buildMetadata({
-    // Homepage uses the brand name as-is (no "| Çi Neo Cucina" suffix). Pass the
-    // UNPREFIXED path + locale; buildMetadata derives the locale-aware canonical
-    // and hreflang alternates.
+    // Title comes from the per-locale table (brand + "Kaş" + cuisine) and is
+    // used verbatim. Pass the UNPREFIXED path + locale; buildMetadata derives
+    // the locale-aware canonical and hreflang alternates.
+    absoluteTitle: seoTitle('/', locale),
     path: '/',
     locale,
     description: page?.seoDescription ?? page?.excerpt ?? undefined,

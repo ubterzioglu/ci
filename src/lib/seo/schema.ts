@@ -1,3 +1,7 @@
+import { getLocalPage } from '@/content/pages-i18n';
+import { aboutContent } from '@/content/pages-data';
+import { defaultLocale, type Locale } from '@/lib/i18n/config';
+import { localePath } from '@/lib/i18n/paths';
 import { siteConfig } from '@/lib/site-config';
 import type { MenuCategory } from '@/lib/types';
 
@@ -8,7 +12,31 @@ import type { MenuCategory } from '@/lib/types';
 
 const baseUrl = siteConfig.url;
 
-export function restaurantSchema(): Record<string, unknown> {
+/** BCP-47 tags for `inLanguage`, per app locale. */
+const LANGUAGE_TAG: Record<Locale, string> = {
+  tr: 'tr-TR',
+  en: 'en-US',
+  de: 'de-DE',
+  ru: 'ru-RU',
+  fr: 'fr-FR',
+};
+
+/** Stable node IDs. Locale-independent on purpose — see restaurantSchema. */
+const RESTAURANT_ID = `${baseUrl}#restaurant`;
+const CHEF_ID = `${baseUrl}#chef`;
+const MENU_ID = `${baseUrl}#menu`;
+
+/**
+ * The site description in a given locale. Falls back to the Turkish source
+ * when a locale has no translated home-page SEO description yet.
+ */
+function localizedDescription(locale: Locale): string {
+  if (locale === defaultLocale) return siteConfig.description;
+  const home = getLocalPage('home', locale);
+  return home?.seoDescription ?? home?.excerpt ?? siteConfig.description;
+}
+
+export function restaurantSchema(locale: Locale = defaultLocale): Record<string, unknown> {
   const { contact, geo, social, hours } = siteConfig;
   const mapsUrl =
     geo.latitude !== null && geo.longitude !== null
@@ -37,12 +65,23 @@ export function restaurantSchema(): Record<string, unknown> {
     (v): v is string => typeof v === 'string' && v.length > 0,
   );
 
+  const image = new URL(siteConfig.ogDefaultImage, baseUrl).toString();
+  const reservationsUrl = new URL(localePath('/reservations', locale), baseUrl).toString();
+
+  /**
+   * `@id` and `url` stay on the unprefixed (Turkish) root in every locale:
+   * this is ONE business, and emitting a per-locale id would split it into
+   * five entities, which is exactly how a restaurant ends up with its hours
+   * attached to one language and its address to another. Only the
+   * human-readable fields follow the locale.
+   */
   const schema: Record<string, unknown> = {
     '@context': 'https://schema.org',
     '@type': 'Restaurant',
-    '@id': `${baseUrl}#restaurant`,
+    '@id': RESTAURANT_ID,
     name: siteConfig.name,
-    description: siteConfig.description,
+    description: localizedDescription(locale),
+    inLanguage: LANGUAGE_TAG[locale],
     url: baseUrl,
     servesCuisine: ['Mediterranean', 'Anatolian', 'Seafood'],
     priceRange: '₺₺₺',
@@ -51,8 +90,44 @@ export function restaurantSchema(): Record<string, unknown> {
     email: contact.email,
     address,
     areaServed: { '@type': 'City', name: contact.locality },
-    acceptsReservations: `${baseUrl}/reservations`,
-    image: new URL(siteConfig.ogDefaultImage, baseUrl).toString(),
+    acceptsReservations: reservationsUrl,
+    image,
+    logo: image,
+    // Links the Restaurant to the Menu node emitted on the menu page, so a
+    // crawler that only sees the homepage still knows a menu exists.
+    hasMenu: { '@id': MENU_ID },
+    /**
+     * The chef is also the founder (see aboutContent.chef). `sameAs` is
+     * omitted: no public profile of hers is confirmed in the repo, and
+     * guessing one would merge her with the wrong person.
+     */
+    founder: {
+      '@type': 'Person',
+      '@id': CHEF_ID,
+      name: aboutContent.chef.name,
+      jobTitle: 'Chef',
+    },
+    employee: { '@id': CHEF_ID },
+    /**
+     * Lets assistants and Google offer "reserve a table" directly. Points at
+     * the site's own request form, which is the only reservation channel —
+     * there is no confirmed third-party booking integration.
+     */
+    potentialAction: {
+      '@type': 'ReserveAction',
+      target: {
+        '@type': 'EntryPoint',
+        urlTemplate: reservationsUrl,
+        inLanguage: LANGUAGE_TAG[locale],
+        actionPlatform: [
+          'https://schema.org/DesktopWebPlatform',
+          'https://schema.org/MobileWebPlatform',
+        ],
+      },
+      // No `name` here on purpose: it would have to be translated per locale
+      // and the type already says what the action produces.
+      result: { '@type': 'FoodEstablishmentReservation' },
+    },
   };
 
   // Geo coordinates + map link — only when confirmed.
@@ -82,13 +157,18 @@ export function restaurantSchema(): Record<string, unknown> {
   return schema;
 }
 
-export function websiteSchema(): Record<string, unknown> {
+export function websiteSchema(locale: Locale = defaultLocale): Record<string, unknown> {
   return {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
+    '@id': `${baseUrl}#website`,
     name: siteConfig.name,
+    description: localizedDescription(locale),
     url: baseUrl,
-    inLanguage: 'tr-TR',
+    // Previously hard-coded to tr-TR, which told crawlers the English and
+    // German pages were Turkish.
+    inLanguage: LANGUAGE_TAG[locale],
+    publisher: { '@id': RESTAURANT_ID },
   };
 }
 
@@ -186,10 +266,24 @@ export function articleSchema({
   };
 }
 
-export function menuSchema(categories: MenuCategory[]): Record<string, unknown> {
+/**
+ * Menu schema.
+ *
+ * Carries the same `@id` in every locale and points back at the Restaurant
+ * node, so the five localized menu pages describe one menu belonging to one
+ * business instead of five unrelated Menu objects.
+ */
+export function menuSchema(
+  categories: MenuCategory[],
+  locale: Locale = defaultLocale,
+): Record<string, unknown> {
   return {
     '@context': 'https://schema.org',
     '@type': 'Menu',
+    '@id': MENU_ID,
+    url: new URL(localePath('/menu', locale), baseUrl).toString(),
+    inLanguage: LANGUAGE_TAG[locale],
+    isPartOf: { '@id': RESTAURANT_ID },
     name: `${siteConfig.name} — Menü`,
     hasMenuSection: categories.map((category) => ({
       '@type': 'MenuSection',

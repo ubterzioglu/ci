@@ -26,7 +26,7 @@ export async function MenuPageBody({ locale }: MenuPageBodyProps) {
 
   return (
     <>
-      <JsonLd data={menuSchema(menu)} />
+      <JsonLd data={menuSchema(menu, locale)} />
       <JsonLd
         data={breadcrumbSchema([
           { name: dictionary.nav.home, path: localePath('/', locale) },

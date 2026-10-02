@@ -27,7 +27,7 @@ export async function HomePageBody({ locale }: HomePageBodyProps) {
 
   return (
     <>
-      <JsonLd data={menuSchema(menu)} />
+      <JsonLd data={menuSchema(menu, locale)} />
       <Hero locale={locale} />
       <StorySection locale={locale} />
       <ExperienceShowcase locale={locale} />

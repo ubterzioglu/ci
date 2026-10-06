@@ -11,13 +11,13 @@ Pazarlama amaçlı `/menu` sayfasından farklı; tek elle kaydırma için mobil-
 
 QR menü route'u `f8cb135` commit'iyle eklendi ve şu an çalışır durumda.
 
-| Parça | Konum | Not |
-|---|---|---|
-| Route (`/qr`) | [src/app/(qr)/qr/page.tsx](../src/app/(qr)/qr/page.tsx) | Server component, client JS yok |
-| Layout (chrome-free) | [src/app/(qr)/layout.tsx](../src/app/(qr)/layout.tsx) | Header/Footer yok; `robots: index:false` |
-| Menü veri katmanı | [src/lib/db/menu.ts](../src/lib/db/menu.ts) | `getMenu()` — Supabase → local fallback |
-| Local fallback verisi | [src/content/menu-data.ts](../src/content/menu-data.ts) | Supabase yoksa bu render edilir |
-| Ortak kategori bileşeni | [src/components/menu/MenuCategory.tsx](../src/components/menu/MenuCategory.tsx) | `/menu` ile paylaşılır |
+| Parça                   | Konum                                                                           | Not                                      |
+| ----------------------- | ------------------------------------------------------------------------------- | ---------------------------------------- |
+| Route (`/qr`)           | [src/app/(qr)/qr/page.tsx](<../src/app/(qr)/qr/page.tsx>)                       | Server component, client JS yok          |
+| Layout (chrome-free)    | [src/app/(qr)/layout.tsx](<../src/app/(qr)/layout.tsx>)                         | Header/Footer yok; `robots: index:false` |
+| Menü veri katmanı       | [src/lib/db/menu.ts](../src/lib/db/menu.ts)                                     | `getMenu()` — Supabase → local fallback  |
+| Local fallback verisi   | [src/content/menu-data.ts](../src/content/menu-data.ts)                         | Supabase yoksa bu render edilir          |
+| Ortak kategori bileşeni | [src/components/menu/MenuCategory.tsx](../src/components/menu/MenuCategory.tsx) | `/menu` ile paylaşılır                   |
 
 ### Davranış özeti
 
@@ -53,12 +53,12 @@ içeriğini panelden düzenleme.
 ### Mevcut admin yapısı (uyulacak desen)
 
 - Panel sayfaları: `src/app/admin/(panel)/<bölüm>/page.tsx`
-  ([reservations](../src/app/admin/(panel)/reservations/page.tsx),
-  [revisions](../src/app/admin/(panel)/revisions/page.tsx),
-  [updates](../src/app/admin/(panel)/updates/page.tsx) örnek alınabilir)
+  ([reservations](<../src/app/admin/(panel)/reservations/page.tsx>),
+  [revisions](<../src/app/admin/(panel)/revisions/page.tsx>),
+  [updates](<../src/app/admin/(panel)/updates/page.tsx>) örnek alınabilir)
 - Sol menü: [src/components/admin/AdminSidebar.tsx](../src/components/admin/AdminSidebar.tsx) →
   `NAV` dizisine yeni item eklenir (her item inline SVG icon kullanır, ikon kütüphanesi yok)
-- Yetki: [src/app/admin/(panel)/layout.tsx](../src/app/admin/(panel)/layout.tsx) içindeki
+- Yetki: [src/app/admin/(panel)/layout.tsx](<../src/app/admin/(panel)/layout.tsx>) içindeki
   `requireAdmin()` her panel sayfasını korur — yeni sayfa otomatik korunur, ek iş yok
 - UI primitifleri: `AdminPageHeader`, `AdminSurface`
   ([src/components/admin/primitives.tsx](../src/components/admin/primitives.tsx))

@@ -9,10 +9,12 @@ Bu dosya, kod dışındaki panel/işletme işlerini listeler. Ajan yapamaz; kull
 **Sorun:** `cineocucina.com` (www'siz) → `www.cineocucina.com` 301 yönlendirmesi yok.
 
 **Çözüm:** Coolify/Traefik panelinde veya DNS seviyesinde:
+
 - `cineocucina.com` için 301 redirect → `https://www.cineocucina.com`
 - Bu, SEO equity'yi tek host'a toplar
 
 **Adımlar:**
+
 1. Coolify paneline gir
 2. Domain ayarlarında `cineocucina.com` için redirect kuralı ekle
 3. Hedef: `https://www.cineocucina.com`, tip: 301 (permanent)
@@ -29,6 +31,7 @@ Bu dosya, kod dışındaki panel/işletme işlerini listeler. Ajan yapamaz; kull
 **Çözüm:** Her iki host için HTTP → HTTPS 301 yönlendirmesi.
 
 **Adımlar:**
+
 1. Coolify/Traefik panelinde HTTP → HTTPS redirect kuralı ekle
 2. Test et:
    - `curl -I http://www.cineocucina.com` → 301 veya 308, Location: `https://www.cineocucina.com/`
@@ -41,13 +44,15 @@ Bu dosya, kod dışındaki panel/işletme işlerini listeler. Ajan yapamaz; kull
 **Durum:** ⏳ Bekliyor (restoran teyidi gerekli)
 
 **Sorun:** Farklı platformlarda farklı isimler kullanılıyor:
-- Tripadvisor: *Ci Neo Cucina By Mezetaryen*
-- Wanderlog: *çi neo cucina by miskin*
-- RestaurantGuru: *Muskat-Meze-Bar-Kas*
+
+- Tripadvisor: _Ci Neo Cucina By Mezetaryen_
+- Wanderlog: _çi neo cucina by miskin_
+- RestaurantGuru: _Muskat-Meze-Bar-Kas_
 
 **Çözüm:** Tüm platformlarda tek resmî isim: **Çi Neo Cucina**
 
 **Adımlar:**
+
 1. Her platformda sahiplik talebi (claim) gönder
 2. İsim düzeltmesi talep et: "Çi Neo Cucina"
 3. Alternatif isimler `alternateName` olarak schema'ya eklendi (kod tarafı tamamlandı)
@@ -59,11 +64,13 @@ Bu dosya, kod dışındaki panel/işletme işlerini listeler. Ajan yapamaz; kull
 **Durum:** ⏳ Bekliyor
 
 **Kontrol edilecekler:**
+
 - `NEXT_PUBLIC_SITE_URL` = `https://www.cineocucina.com` (www ile, trailing slash yok)
 - Supabase Auth redirect URLs: `https://www.cineocucina.com/**` eklenmiş mi?
 - Resend sender domain: `cineocucina.com` doğrulanmış mı?
 
 **Adımlar:**
+
 1. Coolify panelinde environment variables'ı kontrol et
 2. Supabase Dashboard → Authentication → URL Configuration
 3. Resend Dashboard → Domains → `cineocucina.com` durumu

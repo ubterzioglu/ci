@@ -29,10 +29,14 @@ Zamanla bir restoran olmaktan öteye geçip, bir duruşa, bir yaşam biçimine d
 ## Ekibimiz
 
 ### Simge Manacıoğlu
+
 ### Lisa Rose
+
 ### Mutfak Ekibi
+
 2025 Çi Ailesi
 
 ## Footer
+
 #CiNeoCucina
 Tel: +90-544-687 0 528 | Email: cineo.cucina@gmail.com

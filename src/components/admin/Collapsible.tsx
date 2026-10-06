@@ -17,7 +17,7 @@ const Chevron = ({ open }: { open: boolean }) => (
     viewBox="0 0 20 20"
     fill="none"
     aria-hidden="true"
-    className={cn('shrink-0 text-muted transition-transform', open && 'rotate-180')}
+    className={cn('text-muted shrink-0 transition-transform', open && 'rotate-180')}
   >
     <path
       d="M5 7.5l5 5 5-5"
@@ -51,7 +51,7 @@ export function AdminCollapsible({
   return (
     <section
       className={cn(
-        'overflow-hidden rounded-lg border border-stone bg-marble shadow-[0_18px_50px_rgba(35,33,28,0.06)]',
+        'border-stone bg-marble overflow-hidden rounded-lg border shadow-[0_18px_50px_rgba(35,33,28,0.06)]',
         className,
       )}
     >
@@ -59,18 +59,18 @@ export function AdminCollapsible({
         type="button"
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
-        className="flex w-full items-center justify-between gap-4 px-4 py-4 text-left transition-colors hover:bg-cream-deep/50 sm:px-5"
+        className="hover:bg-cream-deep/50 flex w-full items-center justify-between gap-4 px-4 py-4 text-left transition-colors sm:px-5"
       >
         <div className="min-w-0">
-          <h2 className="font-display text-lg text-charcoal">{title}</h2>
+          <h2 className="font-display text-charcoal text-lg">{title}</h2>
           {description && (
-            <p className="mt-0.5 font-body text-sm leading-5 text-muted">{description}</p>
+            <p className="font-body text-muted mt-0.5 text-sm leading-5">{description}</p>
           )}
         </div>
         <Chevron open={open} />
       </button>
       {open && (
-        <div className={cn('border-t border-stone/70 px-4 py-4 sm:px-5', contentClassName)}>
+        <div className={cn('border-stone/70 border-t px-4 py-4 sm:px-5', contentClassName)}>
           {children}
         </div>
       )}

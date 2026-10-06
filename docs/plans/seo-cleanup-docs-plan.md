@@ -39,14 +39,14 @@ docs/
   archive/            handovers/, ref/ (Wix göçü), migration-notes.md
 ```
 
-| Mevcut yol | Yeni yol | Not |
-| --- | --- | --- |
-| `docs/deployment-coolify.md` | `docs/guides/deployment-coolify.md` | Geçici domain notunu güncel tut |
-| `docs/qr-menu.md` | `docs/guides/qr-menu.md` | |
-| `docs/panel-exports-todo.md` | `docs/backlog/panel-exports-todo.md` | |
-| `docs/handovers/01–05` | `docs/archive/handovers/` | `notyetbro.club` geçen yerlerin başına "tarihsel kayıt" notu |
-| `docs/ref/**` | `docs/archive/ref/` | Wix göçü referansı |
-| `docs/migration-notes.md` | `docs/archive/migration-notes.md` | |
+| Mevcut yol                   | Yeni yol                             | Not                                                          |
+| ---------------------------- | ------------------------------------ | ------------------------------------------------------------ |
+| `docs/deployment-coolify.md` | `docs/guides/deployment-coolify.md`  | Geçici domain notunu güncel tut                              |
+| `docs/qr-menu.md`            | `docs/guides/qr-menu.md`             |                                                              |
+| `docs/panel-exports-todo.md` | `docs/backlog/panel-exports-todo.md` |                                                              |
+| `docs/handovers/01–05`       | `docs/archive/handovers/`            | `notyetbro.club` geçen yerlerin başına "tarihsel kayıt" notu |
+| `docs/ref/**`                | `docs/archive/ref/`                  | Wix göçü referansı                                           |
+| `docs/migration-notes.md`    | `docs/archive/migration-notes.md`    |                                                              |
 
 `git mv` kullan (geçmiş korunur). Taşıdıktan sonra tüm iç bağlantıları tara ve güncelle: `grep -rn "docs/" README.md docs`. `docs/README.md` yeni ağacı gösteren bir indeks olarak yeniden yazılır.
 

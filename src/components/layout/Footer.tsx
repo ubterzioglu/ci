@@ -134,7 +134,6 @@ export function Footer({ locale = defaultLocale }: FooterProps) {
             ))}
           </ul>
         </div>
-
       </div>
     </footer>
   );

@@ -12,12 +12,7 @@ import {
   type RevisionComment,
   type RevisionStatus,
 } from '@/lib/db/admin/revision-types';
-import {
-  STATUS_LABELS,
-  STATUS_TONE,
-  urgencyTone,
-  ACTIVE_FILTERS,
-} from './RevisionsClient.helpers';
+import { STATUS_LABELS, STATUS_TONE, urgencyTone, ACTIVE_FILTERS } from './RevisionsClient.helpers';
 import {
   createRevisionAction,
   updateRevisionStatusAction,
@@ -69,29 +64,29 @@ function RevisionComments({
   };
 
   return (
-    <div className="mt-4 border-t border-stone/70 pt-3">
-      <div className="mb-2 font-body text-[11px] font-bold uppercase tracking-[0.14em] text-muted">
+    <div className="border-stone/70 mt-4 border-t pt-3">
+      <div className="font-body text-muted mb-2 text-[11px] font-bold tracking-[0.14em] uppercase">
         Yorumlar{comments.length > 0 ? ` (${comments.length})` : ''}
       </div>
 
       {comments.length > 0 && (
         <ul className="mb-3 space-y-2">
           {comments.map((c) => (
-            <li key={c.id} className="group rounded-md border border-stone bg-marble px-3 py-2">
+            <li key={c.id} className="group border-stone bg-marble rounded-md border px-3 py-2">
               <div className="flex items-baseline justify-between gap-2">
-                <span className="font-body text-xs font-semibold text-charcoal">{c.author}</span>
-                <span className="font-body text-[10px] uppercase tracking-[0.1em] text-muted">
+                <span className="font-body text-charcoal text-xs font-semibold">{c.author}</span>
+                <span className="font-body text-muted text-[10px] tracking-[0.1em] uppercase">
                   {new Date(c.createdAt).toLocaleString('tr-TR')}
                 </span>
               </div>
-              <p className="mt-1 whitespace-pre-wrap font-body text-[13px] leading-5 text-charcoal/80">
+              <p className="font-body text-charcoal/80 mt-1 text-[13px] leading-5 whitespace-pre-wrap">
                 {c.body}
               </p>
               <button
                 type="button"
                 disabled={busyId === c.id}
                 onClick={() => handleDelete(c.id)}
-                className="mt-1 font-body text-[10px] font-semibold text-wine/70 opacity-0 transition hover:text-wine group-hover:opacity-100 disabled:opacity-40"
+                className="font-body text-wine/70 hover:text-wine mt-1 text-[10px] font-semibold opacity-0 transition group-hover:opacity-100 disabled:opacity-40"
               >
                 Sil
               </button>
@@ -105,19 +100,19 @@ function RevisionComments({
           value={author}
           onChange={(e) => setAuthor(e.target.value)}
           placeholder="Adınız"
-          className="w-28 rounded-md border border-stone bg-marble px-2.5 py-1.5 font-body text-xs text-charcoal outline-none focus:border-olive"
+          className="border-stone bg-marble font-body text-charcoal focus:border-olive w-28 rounded-md border px-2.5 py-1.5 text-xs outline-none"
         />
         <textarea
           value={body}
           onChange={(e) => setBody(e.target.value)}
           placeholder="Yorum yazın…"
           rows={1}
-          className="min-w-0 flex-1 resize-y rounded-md border border-stone bg-marble px-2.5 py-1.5 font-body text-xs text-charcoal outline-none focus:border-olive"
+          className="border-stone bg-marble font-body text-charcoal focus:border-olive min-w-0 flex-1 resize-y rounded-md border px-2.5 py-1.5 text-xs outline-none"
         />
         <button
           type="submit"
           disabled={posting || !author.trim() || !body.trim()}
-          className="rounded-md bg-olive px-3 py-1.5 font-body text-xs font-semibold text-ivory transition-colors hover:bg-olive-deep disabled:opacity-40"
+          className="bg-olive font-body text-ivory hover:bg-olive-deep rounded-md px-3 py-1.5 text-xs font-semibold transition-colors disabled:opacity-40"
         >
           {posting ? '…' : 'Ekle'}
         </button>
@@ -165,17 +160,17 @@ function NewRevisionForm({ onCreated }: { onCreated: () => void }) {
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <div>
-        <label className="mb-1 block font-body text-sm font-medium text-charcoal">Kimsin?</label>
+        <label className="font-body text-charcoal mb-1 block text-sm font-medium">Kimsin?</label>
         <input
           value={requester}
           onChange={(e) => setRequester(e.target.value)}
           required
           placeholder="Adınız (örn: Simge)"
-          className="w-full rounded-md border border-stone bg-marble px-4 py-2.5 font-body text-charcoal outline-none focus:border-olive"
+          className="border-stone bg-marble font-body text-charcoal focus:border-olive w-full rounded-md border px-4 py-2.5 outline-none"
         />
       </div>
       <div>
-        <label className="mb-1 block font-body text-sm font-medium text-charcoal">
+        <label className="font-body text-charcoal mb-1 block text-sm font-medium">
           Revizyon isteğin nedir?
         </label>
         <textarea
@@ -184,12 +179,12 @@ function NewRevisionForm({ onCreated }: { onCreated: () => void }) {
           required
           rows={5}
           placeholder="Hangi değişiklik isteniyor?"
-          className="w-full resize-y rounded-md border border-stone bg-marble px-4 py-2.5 font-body text-charcoal outline-none focus:border-olive"
+          className="border-stone bg-marble font-body text-charcoal focus:border-olive w-full resize-y rounded-md border px-4 py-2.5 outline-none"
         />
       </div>
       <div className="grid gap-4 sm:grid-cols-2">
         <div>
-          <label className="mb-1 block font-body text-sm font-medium text-charcoal">
+          <label className="font-body text-charcoal mb-1 block text-sm font-medium">
             Aciliyet (1-10)
           </label>
           <input
@@ -198,15 +193,15 @@ function NewRevisionForm({ onCreated }: { onCreated: () => void }) {
             max={10}
             value={urgency}
             onChange={(e) => setUrgency(Number(e.target.value))}
-            className="w-full rounded-md border border-stone bg-marble px-4 py-2.5 font-body text-charcoal outline-none focus:border-olive"
+            className="border-stone bg-marble font-body text-charcoal focus:border-olive w-full rounded-md border px-4 py-2.5 outline-none"
           />
         </div>
         <div>
-          <label className="mb-1 block font-body text-sm font-medium text-charcoal">Durum</label>
+          <label className="font-body text-charcoal mb-1 block text-sm font-medium">Durum</label>
           <select
             value={status}
             onChange={(e) => setStatus(e.target.value as RevisionStatus)}
-            className="w-full cursor-pointer rounded-md border border-stone bg-marble px-4 py-2.5 font-body text-charcoal outline-none focus:border-olive"
+            className="border-stone bg-marble font-body text-charcoal focus:border-olive w-full cursor-pointer rounded-md border px-4 py-2.5 outline-none"
           >
             {REVISION_STATUSES.map((s) => (
               <option key={s} value={s}>
@@ -219,7 +214,7 @@ function NewRevisionForm({ onCreated }: { onCreated: () => void }) {
       <button
         type="submit"
         disabled={submitting}
-        className="rounded-md bg-terracotta px-6 py-2.5 font-body font-medium text-ivory transition-colors hover:bg-terracotta/90 disabled:opacity-50"
+        className="bg-terracotta font-body text-ivory hover:bg-terracotta/90 rounded-md px-6 py-2.5 font-medium transition-colors disabled:opacity-50"
       >
         {submitting ? 'Ekleniyor…' : 'İsteği Kaydet'}
       </button>
@@ -305,19 +300,19 @@ export function RevisionsClient({
   const renderCard = (r: RevisionRequest) => (
     <div
       key={r.id}
-      className={`rounded-lg border border-stone border-l-4 bg-cream-deep/30 p-5 shadow-[0_12px_30px_rgba(35,33,28,0.05)] ${
+      className={`border-stone bg-cream-deep/30 rounded-lg border border-l-4 p-5 shadow-[0_12px_30px_rgba(35,33,28,0.05)] ${
         r.status === 'done' ? 'border-l-stone' : 'border-l-terracotta'
       }`}
     >
       <div className="mb-2 flex flex-wrap items-center gap-2">
-        <span className="font-body font-semibold text-charcoal">{r.requester}</span>
+        <span className="font-body text-charcoal font-semibold">{r.requester}</span>
         <StatusPill tone={urgencyTone(r.urgency)}>Aciliyet {r.urgency}/10</StatusPill>
         <StatusPill tone={STATUS_TONE[r.status]}>{STATUS_LABELS[r.status]}</StatusPill>
-        <span className="font-body text-xs uppercase tracking-[0.12em] text-muted">
+        <span className="font-body text-muted text-xs tracking-[0.12em] uppercase">
           {new Date(r.createdAt).toLocaleString('tr-TR')}
         </span>
       </div>
-      <p className="mb-4 whitespace-pre-wrap font-body text-sm leading-7 text-charcoal/80">
+      <p className="font-body text-charcoal/80 mb-4 text-sm leading-7 whitespace-pre-wrap">
         {r.body}
       </p>
       <div className="flex flex-wrap gap-2">
@@ -327,10 +322,10 @@ export function RevisionsClient({
             type="button"
             disabled={busyId === r.id || r.status === s}
             onClick={() => handleStatus(r.id, s)}
-            className={`rounded-full px-3 py-1.5 font-body text-xs font-semibold transition-colors disabled:opacity-40 ${
+            className={`font-body rounded-full px-3 py-1.5 text-xs font-semibold transition-colors disabled:opacity-40 ${
               r.status === s
                 ? 'bg-olive text-ivory'
-                : 'border border-stone text-olive hover:bg-cream-deep'
+                : 'border-stone text-olive hover:bg-cream-deep border'
             }`}
           >
             {STATUS_LABELS[s]}
@@ -340,7 +335,7 @@ export function RevisionsClient({
           type="button"
           disabled={busyId === r.id}
           onClick={() => handleDelete(r.id)}
-          className="rounded-full border border-wine/40 px-3 py-1.5 font-body text-xs font-semibold text-wine transition-colors hover:bg-wine/5 disabled:opacity-40"
+          className="border-wine/40 font-body text-wine hover:bg-wine/5 rounded-full border px-3 py-1.5 text-xs font-semibold transition-colors disabled:opacity-40"
         >
           Sil
         </button>
@@ -378,10 +373,10 @@ export function RevisionsClient({
                 key={f.key}
                 type="button"
                 onClick={() => setActiveFilter(f.key)}
-                className={`rounded-full px-3 py-1.5 font-body text-xs font-semibold transition-colors ${
+                className={`font-body rounded-full px-3 py-1.5 text-xs font-semibold transition-colors ${
                   activeFilter === f.key
                     ? 'bg-charcoal text-ivory'
-                    : 'border border-stone text-olive hover:bg-cream-deep'
+                    : 'border-stone text-olive hover:bg-cream-deep border'
                 }`}
               >
                 {f.label}

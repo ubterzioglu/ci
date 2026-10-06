@@ -200,12 +200,7 @@ export function ReservationForm({ locale = defaultLocale }: { locale?: Locale })
         </Select>
       </div>
 
-      {sundayPicked && (
-        <ContactHandoff
-          title={copy.sundayTitle}
-          body={copy.sundayBody}
-        />
-      )}
+      {sundayPicked && <ContactHandoff title={copy.sundayTitle} body={copy.sundayBody} />}
 
       <Textarea
         id="res-message"

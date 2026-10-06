@@ -22,7 +22,8 @@ export async function submitReservation(
     company: formData.get('company'),
   };
   const localeValue = formData.get('locale');
-  const locale = typeof localeValue === 'string' && isLocale(localeValue) ? localeValue : defaultLocale;
+  const locale =
+    typeof localeValue === 'string' && isLocale(localeValue) ? localeValue : defaultLocale;
   const dictionary = getDictionary(locale);
 
   // Honeypot: silently succeed for bots that fill the hidden field.
@@ -101,7 +102,8 @@ export async function submitContact(
     company: formData.get('company'),
   };
   const localeValue = formData.get('locale');
-  const locale = typeof localeValue === 'string' && isLocale(localeValue) ? localeValue : defaultLocale;
+  const locale =
+    typeof localeValue === 'string' && isLocale(localeValue) ? localeValue : defaultLocale;
   const dictionary = getDictionary(locale);
 
   // Honeypot: silently succeed for bots that fill the hidden field.

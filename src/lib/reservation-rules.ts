@@ -206,7 +206,8 @@ const reservationMessagesByLocale: Record<Locale, ReservationMessages> = {
   },
   de: {
     invalidDate: 'Bitte wählen Sie ein gültiges Datum.',
-    closedSunday: 'Sonntags haben wir geschlossen. Für besondere Anlässe kontaktieren Sie uns bitte.',
+    closedSunday:
+      'Sonntags haben wir geschlossen. Für besondere Anlässe kontaktieren Sie uns bitte.',
     invalidTime: 'Bitte wählen Sie eine gültige Uhrzeit.',
     outsideHours: `Reservierungen sind zwischen ${RESERVATION_OPENS} und ${RESERVATION_CLOSES} Uhr möglich.`,
     pastDate: 'Ein Datum in der Vergangenheit kann nicht gewählt werden.',
@@ -234,7 +235,8 @@ const reservationMessagesByLocale: Record<Locale, ReservationMessages> = {
   },
   fr: {
     invalidDate: 'Veuillez sélectionner une date valide.',
-    closedSunday: 'Nous sommes fermés le dimanche. Veuillez nous contacter pour les occasions spéciales.',
+    closedSunday:
+      'Nous sommes fermés le dimanche. Veuillez nous contacter pour les occasions spéciales.',
     invalidTime: 'Veuillez sélectionner une heure valide.',
     outsideHours: `Les réservations sont possibles de ${RESERVATION_OPENS} à ${RESERVATION_CLOSES}.`,
     pastDate: 'Impossible de sélectionner une date passée.',

@@ -15,20 +15,24 @@ export interface EmailBody {
   html: string;
 }
 
-const copy: Record<Locale, {
-  subject: (restaurantName: string) => string;
-  greeting: (name: string) => string;
-  confirmation: (restaurantName: string) => string;
-  dateTime: string;
-  partySize: string;
-  changes: string;
-  phone: string;
-  email: string;
-}> = {
+const copy: Record<
+  Locale,
+  {
+    subject: (restaurantName: string) => string;
+    greeting: (name: string) => string;
+    confirmation: (restaurantName: string) => string;
+    dateTime: string;
+    partySize: string;
+    changes: string;
+    phone: string;
+    email: string;
+  }
+> = {
   en: {
     subject: (name) => `Your reservation is confirmed — ${name}`,
     greeting: (name) => `Dear ${name},`,
-    confirmation: (name) => `Your reservation at ${name} is confirmed. We look forward to welcoming you.`,
+    confirmation: (name) =>
+      `Your reservation at ${name} is confirmed. We look forward to welcoming you.`,
     dateTime: 'Date and time',
     partySize: 'Party size',
     changes: 'If your plans change, please let us know:',
@@ -38,7 +42,8 @@ const copy: Record<Locale, {
   tr: {
     subject: (name) => `Rezervasyonunuz onaylandı — ${name}`,
     greeting: (name) => `Sayın ${name},`,
-    confirmation: (name) => `${name} rezervasyonunuz onaylanmıştır. Sizi ağırlamayı dört gözle bekliyoruz.`,
+    confirmation: (name) =>
+      `${name} rezervasyonunuz onaylanmıştır. Sizi ağırlamayı dört gözle bekliyoruz.`,
     dateTime: 'Tarih ve saat',
     partySize: 'Kişi sayısı',
     changes: 'Planınız değişirse bize haber vermeniz yeterli:',
@@ -48,7 +53,8 @@ const copy: Record<Locale, {
   de: {
     subject: (name) => `Ihre Reservierung ist bestätigt — ${name}`,
     greeting: (name) => `Guten Tag ${name},`,
-    confirmation: (name) => `Ihre Reservierung im ${name} ist bestätigt. Wir freuen uns darauf, Sie bei uns begrüßen zu dürfen.`,
+    confirmation: (name) =>
+      `Ihre Reservierung im ${name} ist bestätigt. Wir freuen uns darauf, Sie bei uns begrüßen zu dürfen.`,
     dateTime: 'Datum und Uhrzeit',
     partySize: 'Personenzahl',
     changes: 'Falls sich Ihre Pläne ändern, geben Sie uns bitte Bescheid:',
@@ -58,7 +64,8 @@ const copy: Record<Locale, {
   ru: {
     subject: (name) => `Ваше бронирование подтверждено — ${name}`,
     greeting: (name) => `Уважаемый(-ая) ${name}!`,
-    confirmation: (name) => `Ваше бронирование в ресторане ${name} подтверждено. Будем рады видеть вас.`,
+    confirmation: (name) =>
+      `Ваше бронирование в ресторане ${name} подтверждено. Будем рады видеть вас.`,
     dateTime: 'Дата и время',
     partySize: 'Количество гостей',
     changes: 'Если ваши планы изменятся, пожалуйста, сообщите нам:',
@@ -68,7 +75,8 @@ const copy: Record<Locale, {
   fr: {
     subject: (name) => `Votre réservation est confirmée — ${name}`,
     greeting: (name) => `Cher/chère ${name},`,
-    confirmation: (name) => `Votre réservation au ${name} est confirmée. Nous serons ravis de vous accueillir.`,
+    confirmation: (name) =>
+      `Votre réservation au ${name} est confirmée. Nous serons ravis de vous accueillir.`,
     dateTime: 'Date et heure',
     partySize: 'Nombre de convives',
     changes: 'Si vos plans changent, merci de nous en informer :',
@@ -150,13 +158,21 @@ export function buildReservationConfirmation(reservation: ReservationConfirmatio
     };
   });
 
-  const nav = localized.map(({ locale, label }) =>
-    `<a href="#reservation-${locale}" style="display:inline-block;padding:9px 14px;margin:0 6px 8px 0;border:1px solid #d9d1c4;border-radius:18px;color:#536044;text-decoration:none;font:600 14px Arial,sans-serif">${label}</a>`,
-  ).join('');
-  const sections = localized.map(({ locale, label, html }) =>
-    `<section id="reservation-${locale}" style="padding:18px 0;border-top:1px solid #e5dfd4"><h2 style="margin:0 0 14px;color:#536044;font:600 18px Arial,sans-serif">${label}</h2>${html}</section>`,
-  ).join('');
-  const text = localized.map(({ label, text: body }) => `${label}\n${'─'.repeat(label.length)}\n\n${body}`).join('\n\n\n');
+  const nav = localized
+    .map(
+      ({ locale, label }) =>
+        `<a href="#reservation-${locale}" style="display:inline-block;padding:9px 14px;margin:0 6px 8px 0;border:1px solid #d9d1c4;border-radius:18px;color:#536044;text-decoration:none;font:600 14px Arial,sans-serif">${label}</a>`,
+    )
+    .join('');
+  const sections = localized
+    .map(
+      ({ locale, label, html }) =>
+        `<section id="reservation-${locale}" style="padding:18px 0;border-top:1px solid #e5dfd4"><h2 style="margin:0 0 14px;color:#536044;font:600 18px Arial,sans-serif">${label}</h2>${html}</section>`,
+    )
+    .join('');
+  const text = localized
+    .map(({ label, text: body }) => `${label}\n${'─'.repeat(label.length)}\n\n${body}`)
+    .join('\n\n\n');
 
   return {
     subject: localized[0]!.subject,

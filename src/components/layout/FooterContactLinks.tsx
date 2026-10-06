@@ -89,7 +89,10 @@ const GuruIcon = (
   <svg {...iconProps}>
     {/* Award star inside a rosette ring. */}
     <circle cx="12" cy="12" r="8.5" {...stroke} />
-    <path d="M12 7.5l1.4 2.9 3.1.4-2.3 2.1.6 3.1-2.8-1.5-2.8 1.5.6-3.1-2.3-2.1 3.1-.4Z" {...stroke} />
+    <path
+      d="M12 7.5l1.4 2.9 3.1.4-2.3 2.1.6 3.1-2.8-1.5-2.8 1.5.6-3.1-2.3-2.1 3.1-.4Z"
+      {...stroke}
+    />
   </svg>
 );
 

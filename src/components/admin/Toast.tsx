@@ -69,7 +69,7 @@ export function ToastProvider({ children }: { children: ReactNode }) {
     <ToastContext.Provider value={api}>
       {children}
       <div
-        className="pointer-events-none fixed bottom-4 right-4 z-[100] flex w-[min(92vw,22rem)] flex-col gap-2"
+        className="pointer-events-none fixed right-4 bottom-4 z-[100] flex w-[min(92vw,22rem)] flex-col gap-2"
         aria-live="polite"
         role="status"
       >
@@ -79,7 +79,7 @@ export function ToastProvider({ children }: { children: ReactNode }) {
             type="button"
             onClick={() => remove(t.id)}
             className={cn(
-              'pointer-events-auto fade-up rounded-md border px-4 py-3 text-left font-body text-sm shadow-[0_18px_40px_rgba(35,33,28,0.18)]',
+              'fade-up font-body pointer-events-auto rounded-md border px-4 py-3 text-left text-sm shadow-[0_18px_40px_rgba(35,33,28,0.18)]',
               toneClasses[t.tone],
             )}
           >

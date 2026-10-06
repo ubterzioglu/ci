@@ -96,8 +96,7 @@ export function buildMetadata({
   noIndex = false,
   localeAlternates = true,
 }: BuildMetadataInput): Metadata {
-  const fullTitle =
-    absoluteTitle ?? (title ? `${title} | ${siteConfig.name}` : siteConfig.name);
+  const fullTitle = absoluteTitle ?? (title ? `${title} | ${siteConfig.name}` : siteConfig.name);
   const desc = description ?? siteConfig.description;
   const canonical = new URL(localePath(path, locale), baseUrl).toString();
   const image = ogImage ?? new URL(siteConfig.ogDefaultImage, baseUrl).toString();

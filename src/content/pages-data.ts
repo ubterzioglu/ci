@@ -152,7 +152,8 @@ export const seedPages: PageContent[] = [
     excerpt: 'Özel deneyimler ve etkinlikler için bizimle iletişime geçin.',
     contentMd: null,
     seoTitle: 'Deneyimler | Çi Neo Cucina',
-    seoDescription: 'Çi Neo Cucina deneyimleri, Chef\u2019s Table ve özel etkinlikler — talebe göre.',
+    seoDescription:
+      'Çi Neo Cucina deneyimleri, Chef\u2019s Table ve özel etkinlikler — talebe göre.',
     ogImageUrl: null,
   },
   {

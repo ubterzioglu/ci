@@ -83,7 +83,10 @@ export function ChefRestaurantPageBody() {
           <div className="container-editorial">
             <div className="mx-auto max-w-2xl space-y-5">
               {chefRestaurantIntro.map((paragraph) => (
-                <p key={paragraph.slice(0, 40)} className="text-charcoal/90 text-lg leading-relaxed">
+                <p
+                  key={paragraph.slice(0, 40)}
+                  className="text-charcoal/90 text-lg leading-relaxed"
+                >
                   {paragraph}
                 </p>
               ))}
@@ -121,10 +124,17 @@ export function ChefRestaurantPageBody() {
         <section className="bg-charcoal py-section text-ivory">
           <div className="container-editorial mx-auto max-w-2xl text-center">
             <p className="eyebrow text-terracotta">Ziyaret edin</p>
-            <h2 className="font-display text-ivory mt-3 text-3xl">{siteConfig.name} by Mezetaryen</h2>
-            {contact.address && <p className="text-ivory/85 mt-4 leading-relaxed">{contact.address}</p>}
+            <h2 className="font-display text-ivory mt-3 text-3xl">
+              {siteConfig.name} by Mezetaryen
+            </h2>
+            {contact.address && (
+              <p className="text-ivory/85 mt-4 leading-relaxed">{contact.address}</p>
+            )}
             <p className="mt-2">
-              <a href={`tel:${contact.phoneE164}`} className="text-ivory/85 hover:text-ivory transition-colors">
+              <a
+                href={`tel:${contact.phoneE164}`}
+                className="text-ivory/85 hover:text-ivory transition-colors"
+              >
                 {contact.phoneDisplay}
               </a>
             </p>

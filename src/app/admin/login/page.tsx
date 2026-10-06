@@ -19,7 +19,7 @@ export default async function AdminLoginPage() {
   }
 
   return (
-    <main className="grid min-h-screen bg-marble lg:grid-cols-[1.05fr_minmax(440px,0.95fr)]">
+    <main className="bg-marble grid min-h-screen lg:grid-cols-[1.05fr_minmax(440px,0.95fr)]">
       {/* Left: immersive brand visual (hidden on small screens) */}
       <aside className="relative hidden overflow-hidden lg:block">
         <Image
@@ -40,15 +40,15 @@ export default async function AdminLoginPage() {
           }}
         />
         <div className="absolute inset-0 flex flex-col justify-between p-12 xl:p-16">
-          <div className="font-display text-3xl leading-none text-ivory drop-shadow-sm">
+          <div className="font-display text-ivory text-3xl leading-none drop-shadow-sm">
             Çi Neo Cucina
           </div>
           <div className="max-w-md">
             <div className="rule-olive mb-6 justify-start" aria-hidden="true" />
-            <p className="font-display text-3xl leading-snug text-ivory drop-shadow-sm xl:text-4xl">
+            <p className="font-display text-ivory text-3xl leading-snug drop-shadow-sm xl:text-4xl">
               Doğal malzemeler, zamansız bir mutfak dili.
             </p>
-            <p className="mt-4 font-body text-sm leading-7 text-ivory/80">
+            <p className="font-body text-ivory/80 mt-4 text-sm leading-7">
               Kaş · Antalya — Yönetim Paneli
             </p>
           </div>
@@ -67,16 +67,16 @@ export default async function AdminLoginPage() {
         />
         <div className="relative w-full max-w-sm">
           <div className="mb-2 lg:hidden">
-            <div className="text-center font-display text-3xl leading-none text-charcoal">
+            <div className="font-display text-charcoal text-center text-3xl leading-none">
               Çi Neo Cucina
             </div>
           </div>
 
           <div className="eyebrow text-center lg:text-left">Yönetim Paneli</div>
-          <h1 className="mt-2 text-center font-display text-3xl text-charcoal lg:text-left">
+          <h1 className="font-display text-charcoal mt-2 text-center text-3xl lg:text-left">
             Tekrar hoş geldiniz
           </h1>
-          <p className="mt-2 text-center font-body text-sm leading-6 text-muted lg:text-left">
+          <p className="font-body text-muted mt-2 text-center text-sm leading-6 lg:text-left">
             Devam etmek için admin şifrenizi girin.
           </p>
 
@@ -84,10 +84,10 @@ export default async function AdminLoginPage() {
             {configured ? (
               <LoginForm />
             ) : (
-              <div className="rounded-lg border border-stone bg-cream-deep/40 p-5">
-                <p className="font-body text-sm leading-7 text-muted">
-                  Admin girişi yapılandırılmamış. Ortam değişkenlerini ekleyin
-                  (<code className="font-mono text-xs">ADMIN_PASSWORD</code> ve
+              <div className="border-stone bg-cream-deep/40 rounded-lg border p-5">
+                <p className="font-body text-muted text-sm leading-7">
+                  Admin girişi yapılandırılmamış. Ortam değişkenlerini ekleyin (
+                  <code className="font-mono text-xs">ADMIN_PASSWORD</code> ve
                   <code className="font-mono text-xs"> ADMIN_SESSION_SECRET</code>) ve sayfayı
                   yenileyin.
                 </p>
@@ -95,7 +95,7 @@ export default async function AdminLoginPage() {
             )}
           </div>
 
-          <p className="mt-10 text-center font-body text-xs text-muted lg:text-left">
+          <p className="font-body text-muted mt-10 text-center text-xs lg:text-left">
             © {new Date().getFullYear()} Çi Neo Cucina
           </p>
         </div>

@@ -12,6 +12,7 @@ Use the content in this folder as the source of truth:
 Build a modern, production-ready website for “Çi Neo Cucina”.
 
 Recommended stack:
+
 - Next.js App Router
 - TypeScript
 - Tailwind CSS
@@ -20,6 +21,7 @@ Recommended stack:
 - SEO metadata per page
 
 Pages:
+
 - `/` home
 - `/menu`
 - `/about`
@@ -31,6 +33,7 @@ Design direction:
 Premium Mediterranean restaurant; calm, natural, timeless; white/cream base, olive green, stone tones, wine accent; large editorial images; serif headings; mobile-first.
 
 Functional requirements:
+
 1. Header with navigation from `navigation.json`.
 2. Persistent mobile reservation CTA.
 3. Footer with phone, email, hashtag, and copyright. Do not use Wix/Michael Bolano footer text.

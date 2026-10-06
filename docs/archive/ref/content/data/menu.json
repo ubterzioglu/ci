@@ -13,58 +13,42 @@
       "name": "Mezetaryen Meze Seçkisi",
       "description": "Üç Çeşit Mevsimsel “Mezetaryen” mezesi",
       "price": "₺580",
-      "tags": [
-        "Vegan",
-        "Vejetaryen"
-      ]
+      "tags": ["Vegan", "Vejetaryen"]
     },
     {
       "category": "TOPRAKTAN",
       "name": "Urla Enginar Confit",
       "description": "Taze Yeşillikler, Laktofermante Meyve ve Memecik Zeytinyağı",
       "price": "₺450",
-      "tags": [
-        "Vegan",
-        "Vejetaryen"
-      ]
+      "tags": ["Vegan", "Vejetaryen"]
     },
     {
       "category": "TOPRAKTAN",
       "name": "Tuzlu Kavun",
       "description": "Antakya tuzlu yoğurdu, kavun dilimleri, beyaz leblebi ve Memecik zeytinyağı",
       "price": "₺420",
-      "tags": [
-        "Vejetaryen"
-      ]
+      "tags": ["Vejetaryen"]
     },
     {
       "category": "TOPRAKTAN",
       "name": "Üç Mantarlı Taze Cavatelli",
       "description": "Porçini, sarıkız, istiridye mantarı, yıllanmış koyun Mihaliç Peyniri",
       "price": "₺550",
-      "tags": [
-        "Vejetaryen"
-      ]
+      "tags": ["Vejetaryen"]
     },
     {
       "category": "TOPRAKTAN",
       "name": "Kereviz Şinitzel",
       "description": "Panelenmiş kereviz dilimleri, hibeş ve kaşık salata.",
       "price": "₺820",
-      "tags": [
-        "Vegan",
-        "Vejetaryen"
-      ]
+      "tags": ["Vegan", "Vejetaryen"]
     },
     {
       "category": "TOPRAKTAN",
       "name": "“Çİ” Salatası",
       "description": "Roka, yabani semizotu, Yedikule marul, mevsim meyvesi, Çorum Kargı tulumu, fırın ceviz, salatalık vinaigrette.",
       "price": "₺500",
-      "tags": [
-        "Vegan",
-        "Vejetaryen"
-      ]
+      "tags": ["Vegan", "Vejetaryen"]
     },
     {
       "category": "DENİZDEN",

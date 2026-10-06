@@ -125,7 +125,9 @@ function ReservationCard({
         </p>
         <div className="bg-cream-deep/40 mt-3 rounded-md p-3">
           <p className="font-body text-charcoal text-xs font-semibold">{emailPreview.subject}</p>
-          <pre className="font-body text-muted mt-2 whitespace-pre-wrap text-xs leading-relaxed">{emailPreview.text}</pre>
+          <pre className="font-body text-muted mt-2 text-xs leading-relaxed whitespace-pre-wrap">
+            {emailPreview.text}
+          </pre>
         </div>
       </div>
     </div>

@@ -23,16 +23,16 @@ Hepsi hatasız bitmeli. `format:check` hata verirse `pnpm format` çalıştırı
 
 Her commit `<type>: <açıklama>` biçimindedir:
 
-| Type | Kullanım |
-|---|---|
-| `feat` | Yeni özellik |
-| `fix` | Hata düzeltmesi |
+| Type       | Kullanım                                       |
+| ---------- | ---------------------------------------------- |
+| `feat`     | Yeni özellik                                   |
+| `fix`      | Hata düzeltmesi                                |
 | `refactor` | Davranış değişikliği olmayan yeniden düzenleme |
-| `docs` | Yalnızca dokümantasyon |
-| `test` | Test ekleme/düzeltme |
-| `chore` | Build, CI, bağımlılık |
-| `perf` | Performans iyileştirmesi |
-| `ci` | CI/CD değişikliği |
+| `docs`     | Yalnızca dokümantasyon                         |
+| `test`     | Test ekleme/düzeltme                           |
+| `chore`    | Build, CI, bağımlılık                          |
+| `perf`     | Performans iyileştirmesi                       |
+| `ci`       | CI/CD değişikliği                              |
 
 ## Branch ve push
 

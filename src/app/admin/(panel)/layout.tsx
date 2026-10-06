@@ -11,7 +11,7 @@ export default async function PanelLayout({ children }: { children: React.ReactN
   await requireAdmin();
 
   return (
-    <div className="min-h-screen bg-marble">
+    <div className="bg-marble min-h-screen">
       <div className="mx-auto max-w-[1500px] px-4 py-4 sm:px-6 lg:px-8 lg:py-6">
         <div className="grid gap-6 lg:grid-cols-[272px_minmax(0,1fr)]">
           <div className="hidden lg:block">

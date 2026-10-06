@@ -27,7 +27,7 @@ export function ExperiencesPageBody({ locale }: ExperiencesPageBodyProps) {
     {
       question: 'Özel deneyimler var mı?',
       answer:
-        'Evet, Chef\'s Table ve özel etkinlikler talebe göre düzenlenmektedir. Kişiye özel menüler ve kapalı grup etkinlikleri için bizimle iletişime geçebilirsiniz.',
+        "Evet, Chef's Table ve özel etkinlikler talebe göre düzenlenmektedir. Kişiye özel menüler ve kapalı grup etkinlikleri için bizimle iletişime geçebilirsiniz.",
     },
     {
       question: 'Nasıl rezervasyon yapılır?',

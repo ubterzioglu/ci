@@ -22,13 +22,7 @@ import type { Locale } from '@/lib/i18n/config';
  * here, not in the generated overlays.
  */
 
-export type TitledRoute =
-  | '/'
-  | '/menu'
-  | '/about'
-  | '/experiences'
-  | '/contact'
-  | '/reservations';
+export type TitledRoute = '/' | '/menu' | '/about' | '/experiences' | '/contact' | '/reservations';
 
 const TITLES: Record<Locale, Record<TitledRoute, string>> = {
   tr: {

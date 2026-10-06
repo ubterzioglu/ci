@@ -6,10 +6,9 @@
  *
  * Google only honours one FAQPage per URL — never emit this twice on a page.
  */
-export function faqSchema(items: readonly { question: string; answer: string }[]): Record<
-  string,
-  unknown
-> {
+export function faqSchema(
+  items: readonly { question: string; answer: string }[],
+): Record<string, unknown> {
   return {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',

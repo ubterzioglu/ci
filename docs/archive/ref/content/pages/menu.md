@@ -7,8 +7,8 @@ slug: /menu
 # Menu
 
 ## ANA MENÜ
-Sonunda * olan ürünler ana yemek porsiyonundadır. %10 Servis bedeli hesaba eklenecektir.
 
+Sonunda \* olan ürünler ana yemek porsiyonundadır. %10 Servis bedeli hesaba eklenecektir.
 
 ## TOPRAKTAN
 
@@ -53,7 +53,6 @@ Roka, yabani semizotu, Yedikule marul, mevsim meyvesi, Çorum Kargı tulumu, fı
 
 **₺500**
 Tags: Vegan, Vejetaryen
-
 
 ## DENİZDEN
 
@@ -105,7 +104,6 @@ San Marzano domates sosu, karides, kalamar, iç midye, vongole, Divle obruk peyn
 
 **₺950**
 
-
 ## OTLAKTAN
 
 ### Sakatat Pate
@@ -150,12 +148,13 @@ Kabak polenta ve karamelize soğan sos
 
 **₺1.200**
 
-
 ## ŞARAP MENÜSÜ
+
 Saat: 18:00 23:00
 
 Not: Public sayfada şarap menüsü başlığı ve saat bilgisi görünüyor; ürün listesi görünmüyor.
 
 ## Footer
+
 #CiNeoCucina
 Tel: +90-544-687 0 528 | Email: cineo.cucina@gmail.com

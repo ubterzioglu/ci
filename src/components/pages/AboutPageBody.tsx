@@ -31,17 +31,17 @@ export async function AboutPageBody({ locale }: AboutPageBodyProps) {
     {
       question: 'Çi Neo Cucina nedir?',
       answer:
-        'Çi Neo Cucina, Kaş\'ta Şef Simge Manacıoğlu\'nun yönettiği, Akdeniz ve Anadolu mutfağı sunan bir restorandır. Doğal malzemeler, mevsimsellik ve sürdürülebilirlik odaklı bir mutfak dili.',
+        "Çi Neo Cucina, Kaş'ta Şef Simge Manacıoğlu'nun yönettiği, Akdeniz ve Anadolu mutfağı sunan bir restorandır. Doğal malzemeler, mevsimsellik ve sürdürülebilirlik odaklı bir mutfak dili.",
     },
     {
       question: 'Şef Simge Manacıoğlu kimdir?',
       answer:
-        'Simge Manacıoğlu, Yeditepe Üniversitesi Siyaset Bilimi mezunu, 2016\'dan beri Kaş\'ta şeflik yapan bir gastronomi profesyonelidir. EKS Mutfak Akademisi\'nde eğitimini dönem birincisi olarak tamamlamış, 2018\'de Mezeteryan restoranını kurmuştur.',
+        "Simge Manacıoğlu, Yeditepe Üniversitesi Siyaset Bilimi mezunu, 2016'dan beri Kaş'ta şeflik yapan bir gastronomi profesyonelidir. EKS Mutfak Akademisi'nde eğitimini dönem birincisi olarak tamamlamış, 2018'de Mezeteryan restoranını kurmuştur.",
     },
     {
       question: 'Restoranın vizyonu nedir?',
       answer:
-        'Çi Neo Cucina\'nın vizyonu, yerelden evrensele uzanan, doğayı taklit etmeyen ama onunla uyumlu bir mutfak felsefesini dünyayla paylaşmaktır. Gürültüden uzak, anlamlı ve dokunaklı bir gastronomi dili.',
+        "Çi Neo Cucina'nın vizyonu, yerelden evrensele uzanan, doğayı taklit etmeyen ama onunla uyumlu bir mutfak felsefesini dünyayla paylaşmaktır. Gürültüden uzak, anlamlı ve dokunaklı bir gastronomi dili.",
     },
   ];
 

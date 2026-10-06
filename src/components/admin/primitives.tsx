@@ -30,18 +30,16 @@ export function AdminSurface({
   return (
     <section
       className={cn(
-        'rounded-lg border border-stone bg-marble shadow-[0_18px_50px_rgba(35,33,28,0.06)]',
+        'border-stone bg-marble rounded-lg border shadow-[0_18px_50px_rgba(35,33,28,0.06)]',
         className,
       )}
     >
       {(title || description || actions) && (
-        <div className="flex flex-wrap items-start justify-between gap-4 border-b border-stone/70 px-4 py-4 sm:px-5">
+        <div className="border-stone/70 flex flex-wrap items-start justify-between gap-4 border-b px-4 py-4 sm:px-5">
           <div className="min-w-0">
-            {title && (
-              <h2 className="font-display text-lg text-charcoal">{title}</h2>
-            )}
+            {title && <h2 className="font-display text-charcoal text-lg">{title}</h2>}
             {description && (
-              <p className="mt-0.5 font-body text-sm leading-5 text-muted">{description}</p>
+              <p className="font-body text-muted mt-0.5 text-sm leading-5">{description}</p>
             )}
           </div>
           {actions && <div className="flex shrink-0 flex-wrap gap-2">{actions}</div>}
@@ -61,24 +59,15 @@ interface AdminPageHeaderProps {
   actions?: React.ReactNode;
 }
 
-export function AdminPageHeader({
-  eyebrow,
-  title,
-  description,
-  actions,
-}: AdminPageHeaderProps) {
+export function AdminPageHeader({ eyebrow, title, description, actions }: AdminPageHeaderProps) {
   return (
-    <section className="overflow-hidden rounded-lg border border-stone bg-marble px-5 py-4 shadow-[0_18px_50px_rgba(35,33,28,0.06)] sm:px-6">
+    <section className="border-stone bg-marble overflow-hidden rounded-lg border px-5 py-4 shadow-[0_18px_50px_rgba(35,33,28,0.06)] sm:px-6">
       <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-3">
         <div className="min-w-0">
           {eyebrow && <div className="eyebrow mb-1">{eyebrow}</div>}
-          <h1 className="font-display text-2xl leading-tight text-charcoal sm:text-3xl">
-            {title}
-          </h1>
+          <h1 className="font-display text-charcoal text-2xl leading-tight sm:text-3xl">{title}</h1>
           {description && (
-            <p className="mt-1 max-w-2xl font-body text-sm leading-5 text-muted">
-              {description}
-            </p>
+            <p className="font-body text-muted mt-1 max-w-2xl text-sm leading-5">{description}</p>
           )}
         </div>
         {actions && (
@@ -111,24 +100,24 @@ interface AdminStatCardProps {
 
 export function AdminStatCard({ label, value, detail, tone = 'olive' }: AdminStatCardProps) {
   return (
-    <div className="rounded-lg border border-stone bg-marble p-4 shadow-[0_12px_34px_rgba(35,33,28,0.05)]">
+    <div className="border-stone bg-marble rounded-lg border p-4 shadow-[0_12px_34px_rgba(35,33,28,0.05)]">
       <div className="flex items-start justify-between gap-3">
         <div>
-          <div className="font-body text-[11px] font-semibold uppercase tracking-[0.18em] text-muted">
+          <div className="font-body text-muted text-[11px] font-semibold tracking-[0.18em] uppercase">
             {label}
           </div>
-          <div className="mt-3 font-display text-3xl leading-none text-charcoal">{value}</div>
+          <div className="font-display text-charcoal mt-3 text-3xl leading-none">{value}</div>
         </div>
         <span
           className={cn(
-            'rounded-full px-2.5 py-1 font-body text-[11px] font-medium',
+            'font-body rounded-full px-2.5 py-1 text-[11px] font-medium',
             statToneClasses[tone],
           )}
         >
           canlı
         </span>
       </div>
-      {detail && <div className="mt-3 font-body text-sm text-muted">{detail}</div>}
+      {detail && <div className="font-body text-muted mt-3 text-sm">{detail}</div>}
     </div>
   );
 }
@@ -157,7 +146,7 @@ export function StatusPill({
   return (
     <span
       className={cn(
-        'inline-flex items-center rounded-full px-2.5 py-0.5 font-body text-xs font-semibold',
+        'font-body inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold',
         pillToneClasses[tone],
         className,
       )}
@@ -169,19 +158,11 @@ export function StatusPill({
 
 /* --- Empty state ----------------------------------------------------------- */
 
-export function AdminEmptyState({
-  title,
-  description,
-}: {
-  title: string;
-  description: string;
-}) {
+export function AdminEmptyState({ title, description }: { title: string; description: string }) {
   return (
-    <div className="rounded-lg border border-dashed border-stone bg-cream-deep/40 px-6 py-12 text-center">
-      <div className="font-display text-2xl text-charcoal">{title}</div>
-      <p className="mx-auto mt-2 max-w-md font-body text-sm leading-6 text-muted">
-        {description}
-      </p>
+    <div className="border-stone bg-cream-deep/40 rounded-lg border border-dashed px-6 py-12 text-center">
+      <div className="font-display text-charcoal text-2xl">{title}</div>
+      <p className="font-body text-muted mx-auto mt-2 max-w-md text-sm leading-6">{description}</p>
     </div>
   );
 }

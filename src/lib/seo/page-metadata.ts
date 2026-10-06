@@ -29,10 +29,7 @@ const ROUTE_TO_SLUG: Record<TitledRoute, string> = {
  * seedPages seoDescription (TR) or its locale overlay, and buildMetadata
  * derives canonical + hreflang from the unprefixed path + locale.
  */
-export function buildPageMetadata(
-  route: TitledRoute,
-  locale: Locale = defaultLocale,
-): Metadata {
+export function buildPageMetadata(route: TitledRoute, locale: Locale = defaultLocale): Metadata {
   const slug = ROUTE_TO_SLUG[route];
   const page = getLocalPage(slug, locale);
 

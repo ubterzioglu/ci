@@ -224,8 +224,7 @@ const tr: Dictionary = {
     },
     reservation: {
       successTitle: 'Talebiniz alındı',
-      successBody:
-        'Rezervasyon talebinizi aldık. En kısa sürede sizinle iletişime geçeceğiz.',
+      successBody: 'Rezervasyon talebinizi aldık. En kısa sürede sizinle iletişime geçeceğiz.',
       fullName: 'Ad Soyad',
       partySize: 'Kişi Sayısı',
       largePartyTitle: 'Kalabalık gruplar için sizi arayalım',

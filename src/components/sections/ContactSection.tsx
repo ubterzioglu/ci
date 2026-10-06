@@ -69,8 +69,7 @@ export function ContactSection({
               {dictionary.contactSection.location}
             </h3>
             <p className="text-muted mt-4 text-sm leading-relaxed">
-              {contact.region}.{' '}
-              {contact.address ?? dictionary.contactSection.addressFallback}
+              {contact.region}. {contact.address ?? dictionary.contactSection.addressFallback}
             </p>
 
             {hours ? (
@@ -83,9 +82,7 @@ export function ContactSection({
                 ))}
               </ul>
             ) : (
-              <p className="text-muted mt-4 text-sm">
-                {dictionary.contactSection.hoursFallback}
-              </p>
+              <p className="text-muted mt-4 text-sm">{dictionary.contactSection.hoursFallback}</p>
             )}
 
             {/* The booking rules live beside the hours because that is where a

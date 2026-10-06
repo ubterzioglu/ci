@@ -48,7 +48,11 @@ export function MenuTabs({
   return (
     <div>
       {/* Tabs */}
-      <div role="tablist" aria-label={tabLabels.aria} className="border-stone/60 flex gap-8 border-b">
+      <div
+        role="tablist"
+        aria-label={tabLabels.aria}
+        className="border-stone/60 flex gap-8 border-b"
+      >
         <button
           type="button"
           role="tab"

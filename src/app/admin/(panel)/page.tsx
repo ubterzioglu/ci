@@ -67,11 +67,11 @@ export default async function AdminDashboardPage() {
           <Link
             key={link.href}
             href={link.href}
-            className="group rounded-lg border border-stone bg-cream-deep/30 p-4 transition-all hover:-translate-y-0.5 hover:shadow-[0_18px_40px_rgba(35,33,28,0.08)]"
+            className="group border-stone bg-cream-deep/30 rounded-lg border p-4 transition-all hover:-translate-y-0.5 hover:shadow-[0_18px_40px_rgba(35,33,28,0.08)]"
           >
-            <div className="font-display text-lg text-charcoal">{link.title}</div>
-            <p className="mt-1 font-body text-sm leading-5 text-muted">{link.description}</p>
-            <div className="mt-3 inline-flex items-center gap-1 font-body text-xs font-semibold text-terracotta">
+            <div className="font-display text-charcoal text-lg">{link.title}</div>
+            <p className="font-body text-muted mt-1 text-sm leading-5">{link.description}</p>
+            <div className="font-body text-terracotta mt-3 inline-flex items-center gap-1 text-xs font-semibold">
               Aç
               <span aria-hidden="true" className="transition-transform group-hover:translate-x-0.5">
                 →

@@ -60,7 +60,10 @@ export function LanguageSwitcher({
         return (
           <span key={locale} className="flex items-center">
             {index > 0 && (
-              <span aria-hidden="true" className={tone === 'light' ? 'text-ivory/40' : 'text-muted'}>
+              <span
+                aria-hidden="true"
+                className={tone === 'light' ? 'text-ivory/40' : 'text-muted'}
+              >
                 ·
               </span>
             )}
@@ -70,7 +73,7 @@ export function LanguageSwitcher({
               aria-current={active ? 'true' : undefined}
               title={localeNames[locale]}
               className={cn(
-                'inline-flex min-h-8 min-w-8 items-center justify-center px-2 py-2 uppercase tracking-wide transition-colors',
+                'inline-flex min-h-8 min-w-8 items-center justify-center px-2 py-2 tracking-wide uppercase transition-colors',
                 tone === 'light'
                   ? 'text-ivory/80 hover:text-ivory'
                   : 'text-muted hover:text-charcoal',

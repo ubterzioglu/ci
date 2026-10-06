@@ -52,8 +52,7 @@ export const CHEF_RESTAURANT_DATES = {
 
 export const chefRestaurantMeta = {
   /** Full editorial title — used as the Article `headline` only. */
-  title:
-    'Kaş’ta Şef Restoranı Arayanlar İçin: Nitelikli Yemek ve Yerel Ürünlerle Çi Neo Cucina',
+  title: 'Kaş’ta Şef Restoranı Arayanlar İçin: Nitelikli Yemek ve Yerel Ürünlerle Çi Neo Cucina',
   /**
    * <title> input. Kept short because buildMetadata appends " | Çi Neo Cucina":
    * the full title already names the brand, so it would read twice and overrun

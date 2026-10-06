@@ -29,10 +29,7 @@ export async function Gallery({ locale = defaultLocale }: { locale?: Locale }) {
 
         <div className="mt-12 grid grid-cols-2 gap-3 md:grid-cols-3">
           {photos.map((photo) => (
-            <div
-              key={photo.id}
-              className="group relative aspect-[4/3] overflow-hidden rounded-md"
-            >
+            <div key={photo.id} className="group relative aspect-[4/3] overflow-hidden rounded-md">
               <Image
                 src={photo.src}
                 alt={photo.alt}
@@ -44,10 +41,10 @@ export async function Gallery({ locale = defaultLocale }: { locale?: Locale }) {
                 <>
                   {/* Subtle gradient so the caption stays legible on any photo. */}
                   <div
-                    className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-charcoal/65 to-transparent"
+                    className="from-charcoal/65 pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t to-transparent"
                     aria-hidden="true"
                   />
-                  <span className="absolute bottom-2 left-2 max-w-[calc(100%-1rem)] truncate font-body text-xs font-medium text-ivory drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)] sm:bottom-3 sm:left-3 sm:text-sm">
+                  <span className="font-body text-ivory absolute bottom-2 left-2 max-w-[calc(100%-1rem)] truncate text-xs font-medium drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)] sm:bottom-3 sm:left-3 sm:text-sm">
                     {photo.caption}
                   </span>
                 </>

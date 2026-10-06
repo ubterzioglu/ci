@@ -35,7 +35,7 @@ export function LoginForm() {
   return (
     <form action={formAction} className="space-y-5">
       <div className="flex flex-col gap-1.5">
-        <label htmlFor="password" className="font-body text-sm font-medium text-charcoal">
+        <label htmlFor="password" className="font-body text-charcoal text-sm font-medium">
           Admin Şifresi
         </label>
         <div className="relative">
@@ -49,7 +49,7 @@ export function LoginForm() {
             aria-invalid={passwordError ? true : undefined}
             aria-describedby={passwordError ? 'password-error' : undefined}
             className={cn(
-              'w-full rounded-md border border-stone bg-marble px-4 py-3 pr-12 font-body text-charcoal placeholder:text-muted transition-colors focus:border-olive focus:outline-none',
+              'border-stone bg-marble font-body text-charcoal placeholder:text-muted focus:border-olive w-full rounded-md border px-4 py-3 pr-12 transition-colors focus:outline-none',
               passwordError && 'border-wine',
             )}
             placeholder="••••••••"
@@ -58,7 +58,7 @@ export function LoginForm() {
             type="button"
             onClick={() => setShow((v) => !v)}
             aria-label={show ? 'Şifreyi gizle' : 'Şifreyi göster'}
-            className="absolute inset-y-0 right-0 flex items-center px-3 text-muted transition-colors hover:text-olive"
+            className="text-muted hover:text-olive absolute inset-y-0 right-0 flex items-center px-3 transition-colors"
           >
             {show ? (
               <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true">
@@ -82,14 +82,14 @@ export function LoginForm() {
           </button>
         </div>
         {passwordError && (
-          <p id="password-error" className="font-body text-sm text-wine">
+          <p id="password-error" className="font-body text-wine text-sm">
             {passwordError}
           </p>
         )}
       </div>
 
       {state && !state.ok && !state.fieldErrors && (
-        <div className="rounded-md border border-wine/30 bg-wine/5 px-4 py-3 font-body text-sm text-wine">
+        <div className="border-wine/30 bg-wine/5 font-body text-wine rounded-md border px-4 py-3 text-sm">
           {state.error}
         </div>
       )}
@@ -97,7 +97,7 @@ export function LoginForm() {
       <button
         type="submit"
         disabled={pending}
-        className="inline-flex w-full items-center justify-center rounded-md bg-olive px-5 py-3.5 font-body font-medium text-ivory shadow-[0_14px_28px_rgba(90,98,64,0.22)] transition-colors hover:bg-olive-deep disabled:opacity-50"
+        className="bg-olive font-body text-ivory hover:bg-olive-deep inline-flex w-full items-center justify-center rounded-md px-5 py-3.5 font-medium shadow-[0_14px_28px_rgba(90,98,64,0.22)] transition-colors disabled:opacity-50"
       >
         {pending ? 'Giriş yapılıyor…' : 'Panele Gir'}
       </button>

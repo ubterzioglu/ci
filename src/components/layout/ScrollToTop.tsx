@@ -111,7 +111,7 @@ export function ScrollToTop({ locale = defaultLocale }: { locale?: Locale }) {
       </svg>
 
       {/* Olive disc + arrow */}
-      <span className="bg-olive group-hover:bg-olive-deep relative grid h-11 w-11 place-items-center rounded-full shadow-lg shadow-charcoal/25 transition-[background-color,transform,box-shadow] duration-300 group-hover:-translate-y-0.5 group-hover:shadow-xl group-hover:shadow-charcoal/30">
+      <span className="bg-olive group-hover:bg-olive-deep shadow-charcoal/25 group-hover:shadow-charcoal/30 relative grid h-11 w-11 place-items-center rounded-full shadow-lg transition-[background-color,transform,box-shadow] duration-300 group-hover:-translate-y-0.5 group-hover:shadow-xl">
         <svg
           viewBox="0 0 24 24"
           fill="none"

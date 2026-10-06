@@ -25,22 +25,28 @@ Tam 30 yaşında, 2003’teki ilk Kaş seyahatinden beri kurduğu şarap evi hay
 ## Menus
 
 ### Ana Menü
+
 Üç ana başlıkta kimi yenilikçi kimisi yepyeni reçeteler. CTA: Sayfaya Git >
 
 ### Günün Spesiyali
+
 Lütfen Sorunuz: Dönemsel olarak misafirlerimizin damaklarıyla buluşan özel lezzetler. CTA: Sayfaya Git >
 
 ### Şarap Menüsü
+
 Büyük oranda yerel üreticiler tarafından oluşturulan zengin kavımızda her damağa uygun bir tat bulacağınızdan eminiz. CTA: Sayfaya Git >
 
 ## CHEF's TABLE
+
 Tel: +90-544-687 0 528 | Email: cineo.cucina@gmail.com
 
 Özel etkinlikleriniz için lütfen iletişime geçiniz.
 
 ## Photos
+
 #CiNeoCucina
 
 ## Contact
+
 Tel: +90-544-687 0 528 | Email: cineo.cucina@gmail.com
 Website: www.cineocucina.com

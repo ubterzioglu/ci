@@ -37,9 +37,7 @@ export function restaurantSchema(locale: Locale = defaultLocale): Record<string,
     social.wanderlog,
     social.restaurantGuru,
     mapsUrl,
-  ].filter(
-    (v): v is string => typeof v === 'string' && v.length > 0,
-  );
+  ].filter((v): v is string => typeof v === 'string' && v.length > 0);
 
   const image = new URL(siteConfig.ogDefaultImage, baseUrl).toString();
   const reservationsUrl = new URL(localePath('/reservations', locale), baseUrl).toString();

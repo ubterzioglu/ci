@@ -1,15 +1,9 @@
 import type { Metadata } from 'next';
 
 import { ContactPageBody } from '@/components/pages/ContactPageBody';
-import { buildMetadata } from '@/lib/seo/metadata';
-import { seoTitle } from '@/lib/seo/titles';
+import { buildPageMetadata } from '@/lib/seo/page-metadata';
 
-export const metadata: Metadata = buildMetadata({
-  absoluteTitle: seoTitle('/contact', 'tr'),
-  description:
-    'Çi Neo Cucina ile iletişime geçin: rezervasyon, özel etkinlik ve sorularınız için bize ulaşın.',
-  path: '/contact',
-});
+export const metadata: Metadata = buildPageMetadata('/contact', 'tr');
 
 export default function ContactPage() {
   return <ContactPageBody locale="tr" />;

@@ -3,9 +3,7 @@ import { notFound } from 'next/navigation';
 
 import { ContactPageBody } from '@/components/pages/ContactPageBody';
 import { defaultLocale, isLocale } from '@/lib/i18n/config';
-import { buildMetadata } from '@/lib/seo/metadata';
-import { seoTitle } from '@/lib/seo/titles';
-import { getLocalPage } from '@/content/pages-i18n';
+import { buildPageMetadata } from '@/lib/seo/page-metadata';
 
 export async function generateMetadata({
   params,
@@ -14,14 +12,8 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { lang } = await params;
   const locale = isLocale(lang) && lang !== defaultLocale ? lang : defaultLocale;
-  const page = getLocalPage('contact', locale);
 
-  return buildMetadata({
-    absoluteTitle: seoTitle('/contact', locale),
-    description: page?.seoDescription ?? page?.excerpt ?? '',
-    path: '/contact',
-    locale,
-  });
+  return buildPageMetadata('/contact', locale);
 }
 
 export default async function LangContactPage({ params }: { params: Promise<{ lang: string }> }) {

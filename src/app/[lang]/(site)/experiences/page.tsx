@@ -3,9 +3,7 @@ import { notFound } from 'next/navigation';
 
 import { ExperiencesPageBody } from '@/components/pages/ExperiencesPageBody';
 import { defaultLocale, isLocale } from '@/lib/i18n/config';
-import { buildMetadata } from '@/lib/seo/metadata';
-import { seoTitle } from '@/lib/seo/titles';
-import { getLocalPage } from '@/content/pages-i18n';
+import { buildPageMetadata } from '@/lib/seo/page-metadata';
 
 export async function generateMetadata({
   params,
@@ -14,14 +12,8 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { lang } = await params;
   const locale = isLocale(lang) && lang !== defaultLocale ? lang : defaultLocale;
-  const page = getLocalPage('experiences', locale);
 
-  return buildMetadata({
-    absoluteTitle: seoTitle('/experiences', locale),
-    description: page?.seoDescription ?? page?.excerpt ?? '',
-    path: '/experiences',
-    locale,
-  });
+  return buildPageMetadata('/experiences', locale);
 }
 
 export default async function LangExperiencesPage({

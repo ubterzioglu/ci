@@ -1,14 +1,14 @@
 {
   "nav": {
-    "home": "Page d'accueil",
+    "home": "Accueil",
     "menu": "Menu",
-    "about": "À propos de nous",
+    "about": "À propos",
     "experiences": "Expériences",
     "reservations": "Réservation",
     "contact": "Contact"
   },
   "cta": {
-    "reserve": "Demander une réservation"
+    "reserve": "Réserver une table"
   },
   "common": {
     "phone": "Téléphone",
@@ -16,22 +16,22 @@
   },
   "home": {
     "storyEyebrow": "Notre histoire",
-    "readFullStory": "Lire l'intégralité de l'histoire →",
+    "readFullStory": "Lire toute l’histoire →",
     "experienceEyebrow": "Expérience",
     "experienceTitle": "Au-delà de la table",
-    "discoverExperience": "Découvrez l'expérience →",
+    "discoverExperience": "Découvrir l’expérience →",
     "menuEyebrow": "Notre table",
     "menuTitle": "Un avant-goût de notre menu",
-    "goToPage": "Aller à la page →",
-    "viewFullMenu": "Afficher tout le menu",
-    "reservationTitle": "Votre place est réservée à notre table",
-    "galleryTitle": "Atmosphère"
+    "goToPage": "Voir la page →",
+    "viewFullMenu": "Voir le menu complet",
+    "reservationTitle": "Votre place vous attend à notre table",
+    "galleryTitle": "Ambiance"
   },
   "pages": {
     "menu": {
       "eyebrow": "Notre table",
-      "intro": "Des saveurs simples mais intenses, à base de produits de saison. Notre menu, articulé autour de trois thèmes, s'inspire de la terre, de la mer et des prairies.",
-      "tabAria": "Sélection du menu",
+      "intro": "Des saveurs simples mais profondes, autour des produits de saison. Articulé en trois chapitres, notre menu puise son inspiration dans la terre, la mer et la prairie.",
+      "tabAria": "Choix du menu",
       "mainTab": "Menu principal",
       "wineTab": "Carte des vins",
       "allergens": "Allergènes"
@@ -39,104 +39,104 @@
     "contact": {
       "eyebrow": "Écrivez-nous",
       "title": "Contact",
-      "intro": "N'hésitez pas à nous envoyer un message pour toute question, demande d'événement spécifique ou commentaire."
+      "intro": "Une question, une demande d’événement privé ou un retour à nous partager ? Laissez-nous un message."
     },
     "reservations": {
       "eyebrow": "Réservez votre table",
-      "title": "Demander une réservation",
-      "intro": "Donnez-nous plus de détails ; nous essaierons de trouver l'endroit qui vous convient le mieux. Dès réception de votre demande, nous vous contacterons dans les plus brefs délais.",
-      "largeGroupsPrefix": "Pour les grands groupes et les événements privés",
-      "largeGroupsSuffix": "Vous pouvez nous contacter à ce numéro."
+      "title": "Demande de réservation",
+      "intro": "Indiquez-nous les détails ; nous ferons de notre mieux pour vous trouver la place idéale. Dès réception de votre demande, nous reviendrons vers vous dans les plus brefs délais.",
+      "largeGroupsPrefix": "Pour les grands groupes et les événements privés, le",
+      "largeGroupsSuffix": "est à votre disposition."
     },
     "experiences": {
       "title": "Expériences",
-      "intro": "Pour l'instant, notre calendrier ne propose aucune expérience exclusive. Nous organisons des événements « Chef’s Table » et des événements exclusifs sur demande.",
-      "cardTitle": "Laissez-nous vous organiser une soirée sur mesure",
-      "contactText": "Chef’s Table : contactez notre équipe pour les menus sur mesure et les événements privés.",
+      "intro": "Aucune expérience particulière n’est programmée pour le moment. Nous organisons notre Chef’s Table et nos événements privés sur demande.",
+      "cardTitle": "Laissez-nous imaginer pour vous une soirée sur mesure",
+      "contactText": "Pour notre Chef’s Table, des menus sur mesure ou un événement privé, contactez notre équipe.",
       "contactCta": "Nous contacter"
     }
   },
   "contactSection": {
-    "eyebrow": "Contactez-nous",
-    "title": "Contact et localisation",
+    "eyebrow": "Nous joindre",
+    "title": "Contact & accès",
     "contact": "Contact",
-    "location": "Localisation",
-    "addressFallback": "Pour obtenir l'adresse complète et l'itinéraire, veuillez nous appeler.",
-    "hoursFallback": "Vous pouvez nous contacter pour connaître nos horaires d'ouverture actuels.",
+    "location": "Accès",
+    "addressFallback": "Pour l’adresse exacte et l’itinéraire, merci de nous appeler.",
+    "hoursFallback": "Pour connaître nos horaires d’ouverture actuels, n’hésitez pas à nous contacter.",
     "openingDays": "Du lundi au samedi",
     "reservation": "Réservation"
   },
   "forms": {
     "contact": {
-      "successTitle": "Votre message a été envoyé",
-      "successBody": "Nous avons bien reçu votre message. Nous vous répondrons dans les plus brefs délais.",
-      "fullName": "Prénom et nom",
-      "subject": "Sujet",
+      "successTitle": "Votre message a bien été envoyé",
+      "successBody": "Votre message nous est bien parvenu. Nous vous répondrons dans les plus brefs délais.",
+      "fullName": "Nom et prénom",
+      "subject": "Objet",
       "message": "Message",
-      "pending": "En cours d'envoi…",
-      "submit": "Envoyer un message",
-      "validationError": "Veuillez corriger les erreurs dans le formulaire.",
-      "submitError": "Votre message n'a pas pu être envoyé. Veuillez nous contacter par téléphone."
+      "pending": "Envoi en cours…",
+      "submit": "Envoyer",
+      "validationError": "Merci de corriger les erreurs du formulaire.",
+      "submitError": "Votre message n’a pas pu être envoyé. Merci de nous contacter par téléphone."
     },
     "reservation": {
-      "successTitle": "Votre demande a été enregistrée",
-      "successBody": "Nous avons bien reçu votre demande de réservation. Nous vous contacterons dans les plus brefs délais.",
-      "fullName": "Prénom et nom",
+      "successTitle": "Votre demande a bien été reçue",
+      "successBody": "Nous avons bien reçu votre demande de réservation et reviendrons vers vous dans les plus brefs délais.",
+      "fullName": "Nom et prénom",
       "partySize": "Nombre de personnes",
-      "largePartyTitle": "Pour les groupes nombreux, nous vous contacterons",
-      "largePartyBody": "{count} Pour les groupes de plusieurs personnes, nous devons planifier ensemble la disposition des tables. Veuillez nous contacter.",
+      "largePartyTitle": "Pour les grands groupes, parlons-en de vive voix",
+      "largePartyBody": "À partir de {count} personnes, nous devons organiser ensemble la disposition des tables. Merci de nous contacter.",
       "date": "Date",
       "time": "Heure",
-      "selectTime": "Choisissez l'heure",
+      "selectTime": "Choisissez une heure",
       "sundayTitle": "Nous sommes fermés le dimanche",
-      "sundayBody": "Nous ouvrons selon les occasions spéciales. Si vous avez prévu quelque chose pour dimanche, n'hésitez pas à nous appeler.",
-      "noteLabel": "Votre note (facultative)",
-      "notePlaceholder": "Demandes particulières, informations sur les allergies, etc.",
-      "pending": "En cours d'envoi…",
-      "submit": "Demander une réservation",
-      "validationError": "Veuillez corriger les erreurs dans le formulaire.",
-      "submitError": "Votre demande n'a pas pu être enregistrée. Veuillez nous contacter par téléphone."
+      "sundayBody": "Il nous arrive d’ouvrir pour des occasions particulières. Si vous avez un projet pour un dimanche, n’hésitez pas à nous appeler.",
+      "noteLabel": "Remarques (facultatif)",
+      "notePlaceholder": "Demande particulière, allergies, etc.",
+      "pending": "Envoi en cours…",
+      "submit": "Envoyer ma demande",
+      "validationError": "Merci de corriger les erreurs du formulaire.",
+      "submitError": "Votre demande n’a pas pu être enregistrée. Merci de nous contacter par téléphone."
     }
   },
   "a11y": {
     "languageSelection": "Choix de la langue",
-    "mainNavigation": "Menu principal",
-    "mobileNavigation": "Menu mobile",
+    "mainNavigation": "Navigation principale",
+    "mobileNavigation": "Navigation mobile",
     "openMenu": "Ouvrir le menu",
     "closeMenu": "Fermer le menu",
-    "footerNavigation": "Sous-menu",
+    "footerNavigation": "Navigation de pied de page",
     "skipToContent": "Aller au contenu",
-    "backToTop": "Retour en haut de la page"
+    "backToTop": "Retour en haut"
   },
   "footer": {
-    "tagline": "Des matériaux naturels, un style de cuisine intemporel.",
+    "tagline": "Des produits naturels, un langage culinaire intemporel.",
     "rights": "Tous droits réservés.",
     "impressum": "Mentions légales",
     "privacy": "Confidentialité"
   },
   "notFound": {
-    "title": "La page que vous recherchez est introuvable",
-    "body": "La page a peut-être été déplacée ou supprimée. Laissez-nous vous rediriger vers la page d'accueil.",
-    "home": "Page d'accueil",
+    "title": "Page introuvable",
+    "body": "Elle a peut-être été déplacée ou supprimée. Laissez-nous vous ramener à table.",
+    "home": "Accueil",
     "menu": "Menu"
   },
   "meta": {
-    "lastUpdated": "Dernière mise à jour : octobre 2026"
+    "lastUpdated": "Dernière mise à jour : octobre 2026"
   },
   "faq": {
     "about": {
-      "q1": "Çi Neo Cucina Qu'est-ce que c'est ?",
-      "a1": "Çi Neo Cucina est un restaurant situé à Kaş, dirigé par la chef Simge Manacıoğlu, qui propose une cuisine méditerranéenne et anatolienne. Une cuisine axée sur les ingrédients naturels, les produits de saison et le développement durable.",
-      "q2": "Qui est la cheffe Simge Manacıoğlu ?",
-      "a2": "Simge Manacıoğlu est diplômée en sciences politiques de l'université Yeditepe. Professionnelle de la gastronomie, elle occupe le poste de chef à Kaş depuis 2016. Elle a terminé sa formation à l'Académie culinaire EKS en tant que major de sa promotion et a fondé en 2018 le restaurant « Mezeteryan ».",
-      "q3": "Quelle est la vision du restaurant ?",
-      "a3": "Çi Neo Cucina"
+      "q1": "Qu’est-ce que Çi Neo Cucina ?",
+      "a1": "Çi Neo Cucina est un restaurant de cuisine méditerranéenne et anatolienne à Kaş, dirigé par la cheffe Simge Manacıoğlu. Un langage culinaire tourné vers les produits naturels, la saisonnalité et la durabilité.",
+      "q2": "Qui est la cheffe Simge Manacıoğlu ?",
+      "a2": "Diplômée en sciences politiques de l’université Yeditepe, Simge Manacıoğlu est une professionnelle de la gastronomie qui exerce comme cheffe à Kaş depuis 2016. Sortie major de sa promotion de l’EKS Mutfak Akademisi, elle a fondé le restaurant Mezeteryan en 2018.",
+      "q3": "Quelle est la vision du restaurant ?",
+      "a3": "La vision de Çi Neo Cucina est de partager avec le monde une philosophie culinaire qui va du local à l’universel, qui n’imite pas la nature mais s’accorde avec elle. Un langage gastronomique loin du tumulte, porteur de sens et d’émotion."
     },
     "experiences": {
-      "q1": "Avez-vous des expériences particulières ?",
-      "a1": "Oui, Chef's Table et les événements privés sont organisés sur demande. Vous pouvez nous contacter pour des menus personnalisés et des événements en groupe privé.",
-      "q2": "Comment effectuer une réservation ?",
-      "a2": "Pour effectuer une réservation, vous pouvez remplir le formulaire de réservation disponible sur notre site web ou nous contacter via la page « Contact ». Il vous suffit de nous indiquer le nombre de personnes, la date et l'heure."
+      "q1": "Proposez-vous des expériences particulières ?",
+      "a1": "Oui, notre Chef’s Table et nos événements privés sont organisés sur demande. Pour des menus personnalisés ou des événements réservés à un groupe, n’hésitez pas à nous contacter.",
+      "q2": "Comment réserver ?",
+      "a2": "Pour réserver, remplissez le formulaire de réservation de notre site ou contactez-nous via la page Contact. Il vous suffit de nous indiquer le nombre de personnes, la date et l’heure."
     }
   }
 }

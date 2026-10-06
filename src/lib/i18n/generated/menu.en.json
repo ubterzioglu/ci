@@ -1,106 +1,106 @@
 {
   "categories": {
     "topraktan": {
-      "name": "From the soil",
-      "description": "Dishes prepared with seasonal vegetables and herbs straight from the ground."
+      "name": "From the Land",
+      "description": "Dishes made with seasonal vegetables and herbs from the land."
     },
     "denizden": {
-      "name": "From the sea",
-      "description": "Dishes prepared with seafood from the Aegean and Mediterranean Seas."
+      "name": "From the Sea",
+      "description": "Dishes made with seafood from the Aegean and the Mediterranean."
     },
     "otlaktan": {
-      "name": "From the meadow",
-      "description": "Main courses featuring meat and offal, carefully prepared."
+      "name": "From the Pasture",
+      "description": "Main dishes of carefully cooked meat and offal."
     }
   },
   "items": {
     "mezetaryen-meze-seckisi": {
       "name": "Mezetaryen Meze Selection",
-      "description": "Three types of seasonal “mezetaryen” appetizers."
+      "description": "Three seasonal “mezetaryen” mezes."
     },
     "urla-enginar-confit": {
       "name": "Urla Artichoke Confit",
-      "description": "Fresh greens, lacto-fermented fruit, and Memecik olive oil."
+      "description": "Fresh greens, lacto-fermented fruit and Memecik olive oil."
     },
     "tuzlu-kavun": {
-      "name": "Salty Melon",
-      "description": "Antakya salted yogurt, melon slices, white chickpeas, and Memecik olive oil."
+      "name": "Salted Melon",
+      "description": "Antakya salted yoghurt, melon slices, white roasted chickpeas and Memecik olive oil."
     },
     "uc-mantarli-taze-cavatelli": {
-      "name": "Fresh Cavatelli with Three Types of Mushrooms",
-      "description": "Porcini, chanterelle, oyster mushrooms, and aged Mihaliç sheep’s milk cheese."
+      "name": "Fresh Three-Mushroom Cavatelli",
+      "description": "Porcini, chanterelle and oyster mushrooms with aged Mihaliç sheep’s cheese."
     },
     "kereviz-sinitzel": {
-      "name": "Celery Schnitzel",
-      "description": "Sliced celery, hibesh, and spoon salad."
+      "name": "Celeriac Schnitzel",
+      "description": "Breaded celeriac slices, hibeş (Antalya-style tahini dip) and finely chopped spoon salad."
     },
     "ci-salatasi": {
       "name": "“Çi” Salad",
       "description": "Rocket, wild purslane, Yedikule lettuce, seasonal fruit, Çorum Kargı tulum cheese, roasted walnuts and cucumber vinaigrette."
     },
     "avokadolu-fume-somon-tartar": {
-      "name": "Avocado and Smoked Salmon Tartare",
-      "description": "With caper berries and crackers."
+      "name": "Smoked Salmon Tartare with Avocado",
+      "description": "With caper berries and crisp toasts."
     },
     "karisik-kabuklu-kasesi": {
-      "name": "Assorted Nuts and Seeds Bowl",
-      "description": "Clams, cockles, black mussels, razor clams, and scallops; served with tomato or wine sauce."
+      "name": "Mixed Shellfish Bowl",
+      "description": "Vongole, kidonya clams, black mussels, razor clams and scallops, in a tomato or white wine sauce."
     },
     "ci-karides": {
-      "name": "“Çi” Shrimp",
-      "description": "Afyon sourdough bread and butter with bottarga."
+      "name": "“Çi” Prawns",
+      "description": "Afyon sourdough bread and bottarga butter."
     },
     "izgara-baby-kalamar": {
       "name": "Grilled Baby Squid",
-      "description": "Tomato paste and aged Mihaliç cheese."
+      "description": "Tomato compote and aged Mihaliç cheese."
     },
     "aslan-baligi": {
       "name": "Lionfish",
-      "description": "Beurre blanc sauce with basil and green apples."
+      "description": "Basil and green apple beurre blanc."
     },
     "izgara-granyoz": {
-      "name": "Grilled Granyöz",
-      "description": "Buckwheat salad with cucumber and caper sauce with brown butter."
+      "name": "Grilled Meagre",
+      "description": "Buckwheat and cucumber salad with a brown butter caper sauce."
     },
     "karidesli-arpa-sehriye-risotto": {
-      "name": "Shrimp and Barley Risotto",
-      "description": "Bisk and goat cheese."
+      "name": "Prawn Orzo Risotto",
+      "description": "Bisque and goat’s cheese."
     },
     "deniz-mahsullu-makarna": {
-      "name": "Pasta with Seafood",
-      "description": "San Marzano tomato sauce, shrimp, squid, mussels, vongole, and Divle Obruk cheese."
+      "name": "Seafood Pasta",
+      "description": "San Marzano tomato sauce, prawns, squid, shelled mussels, vongole and Divle Obruk cave-aged cheese."
     },
     "sakatat-pate": {
       "name": "Offal Pâté",
-      "description": "Lamb sweetbreads, lamb brain, chicken liver, and chicken heart."
+      "description": "Lamb sweetbreads, lamb brains, chicken liver and chicken hearts."
     },
     "dana-yanak-ragu": {
-      "name": "Veal Cheek Ragu",
-      "description": "With salsa salad."
+      "name": "Beef Cheek Ragù",
+      "description": "With a salsa salad."
     },
     "arnavut-cigeri": {
-      "name": "Albanian Liver",
-      "description": "Onion salad and hand-rolled crispy phyllo bread."
+      "name": "Albanian-Style Liver",
+      "description": "Onion salad and crisp hand-rolled yufka flatbread."
     },
     "izgara-kuzu-kokorec": {
       "name": "Grilled Lamb Kokoreç",
-      "description": "Denizli bell peppers, Antakya salted yogurt, and pickled cucumber salad."
+      "description": "Lamb intestines with Denizli kale peppers, Antakya salted yoghurt and matchstick cucumber salad."
     },
     "kuzu-haslama": {
-      "name": "Boiled Lamb",
-      "description": "With dark beer and vegetables."
+      "name": "Poached Lamb",
+      "description": "With stout and vegetables."
     },
     "izgara-kuzu-sirt": {
       "name": "Grilled Lamb Loin",
-      "description": "Caramelized celery purée and beans."
+      "description": "Caramelised celeriac purée and beans."
     },
     "izgara-dana-kontrfile-dilimleri": {
-      "name": "Grilled Beef Tenderloin Slices",
-      "description": "Zucchini polenta with caramelized onion sauce."
+      "name": "Grilled Sliced Beef Sirloin",
+      "description": "Courgette polenta and caramelised onion sauce."
     }
   },
   "notes": {
-    "serviceNote": "Items marked with an asterisk (*) are main course portions.",
-    "wineNotice": "Please consult our team regarding our wine selection, which consists largely of wines from local producers."
+    "serviceNote": "Dishes marked with an asterisk (*) are served as main-course portions.",
+    "wineNotice": "Please ask our team about our wine selection, sourced largely from local producers."
   }
 }

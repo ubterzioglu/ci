@@ -1,10 +1,10 @@
 {
   "nav": {
-    "home": "Home Page",
+    "home": "Home",
     "menu": "Menu",
-    "about": "About Us",
+    "about": "About",
     "experiences": "Experiences",
-    "reservations": "Reservation",
+    "reservations": "Reservations",
     "contact": "Contact"
   },
   "cta": {
@@ -18,24 +18,24 @@
     "storyEyebrow": "Our Story",
     "readFullStory": "Read the full story →",
     "experienceEyebrow": "Experience",
-    "experienceTitle": "Beyond the Dining Table",
+    "experienceTitle": "Beyond the Table",
     "discoverExperience": "Discover the Experience →",
-    "menuEyebrow": "Our Dining Table",
-    "menuTitle": "A Taste from Our Menu",
-    "goToPage": "Go to page →",
+    "menuEyebrow": "Our Table",
+    "menuTitle": "A Taste of Our Menu",
+    "goToPage": "Go to Page →",
     "viewFullMenu": "View the Full Menu",
-    "reservationTitle": "We’ve got a place for you at our table",
+    "reservationTitle": "Your place at our table is ready",
     "galleryTitle": "Atmosphere"
   },
   "pages": {
     "contact": {
       "title": "Contact",
-      "eyebrow": "Get in touch",
-      "intro": "Please leave us a message if you have any questions, requests for special events or feedback."
+      "eyebrow": "Write to Us",
+      "intro": "Leave us a message with your questions, special event requests or feedback."
     },
     "menu": {
-      "eyebrow": "Our Dining Table",
-      "intro": "Simple yet profound flavours, crafted with seasonal ingredients. Our menu, organised into three sections, draws inspiration from the earth, the sea and the meadows.",
+      "eyebrow": "Our Table",
+      "intro": "Simple yet profound flavours, built on ingredients at their seasonal best. Our menu, arranged in three sections, draws its inspiration from the land, the sea and the pasture.",
       "tabAria": "Menu selection",
       "mainTab": "Main Menu",
       "wineTab": "Wine List",
@@ -43,80 +43,80 @@
     },
     "reservations": {
       "eyebrow": "Book Your Table",
-      "title": "Request a Booking",
-      "intro": "Please share the details; we’ll try to find the most suitable place for you. Once we’ve received your enquiry, we’ll get in touch with you as soon as possible.",
-      "largeGroupsPrefix": "For large groups and special events",
-      "largeGroupsSuffix": "You can contact us on this number."
+      "title": "Request a Reservation",
+      "intro": "Share the details and we’ll do our best to find the right table for you. Once we receive your request, we’ll be in touch as soon as possible.",
+      "largeGroupsPrefix": "For large groups and special events, please call us on",
+      "largeGroupsSuffix": "and we’ll be glad to help."
     },
     "experiences": {
       "title": "Experiences",
-      "intro": "At the moment, there are no special experiences currently listed on our calendar. We organise ‘Chef’s Table’ and special events on request.",
-      "cardTitle": "Let’s plan a special evening for you",
-      "contactText": "Chef’s Table – please contact our team for bespoke menus and private events.",
-      "contactCta": "Get in touch"
+      "intro": "There are no special experiences on our calendar at the moment. We arrange Chef’s Table evenings and special events on request.",
+      "cardTitle": "Let us design a special evening for you",
+      "contactText": "For a Chef’s Table, bespoke menus and private events, please contact our team.",
+      "contactCta": "Get in Touch"
     }
   },
   "forms": {
     "contact": {
       "submit": "Send Message",
       "successTitle": "Your message has been sent",
-      "successBody": "We have received your message. We will reply as soon as possible.",
-      "fullName": "First Name, Surname",
+      "successBody": "Your message has reached us. We will reply as soon as possible.",
+      "fullName": "Full Name",
       "subject": "Subject",
       "message": "Message",
       "pending": "Sending…",
-      "validationError": "Please correct any errors in the form.",
-      "submitError": "Your message could not be sent. Please contact us by telephone."
+      "validationError": "Please correct the errors in the form.",
+      "submitError": "Your message could not be sent. Please contact us by phone."
     },
     "reservation": {
       "successTitle": "Your request has been received",
-      "successBody": "We have received your booking enquiry. We will be in touch with you as soon as possible.",
-      "fullName": "First Name, Surname",
-      "partySize": "Number of People",
-      "largePartyTitle": "For large groups, let us give you a call",
-      "largePartyBody": "{count} For groups of two or more people, we need to plan the table arrangements together. Please get in touch with us.",
+      "successBody": "We have received your reservation request and will be in touch as soon as possible.",
+      "fullName": "Full Name",
+      "partySize": "Number of Guests",
+      "largePartyTitle": "For larger groups, let’s talk by phone",
+      "largePartyBody": "For groups of {count} or more, we need to plan the seating together. Please get in touch with us.",
       "date": "Date",
       "time": "Time",
       "selectTime": "Select a time",
       "sundayTitle": "We are closed on Sundays",
-      "sundayBody": "We open on special occasions, depending on the situation. If you have plans for Sunday, please do give us a call.",
-      "noteLabel": "Your note (optional)",
-      "notePlaceholder": "Special requests, allergy information, etc.",
+      "sundayBody": "We sometimes open for special occasions. If you have plans for a Sunday, please give us a call.",
+      "noteLabel": "Notes (optional)",
+      "notePlaceholder": "Special requests, allergies, etc.",
       "pending": "Sending…",
-      "submit": "Request a Booking",
-      "validationError": "Please correct any errors in the form.",
-      "submitError": "Your request could not be recorded. Please contact us by telephone."
+      "submit": "Request a Reservation",
+      "validationError": "Please correct the errors in the form.",
+      "submitError": "Your request could not be saved. Please contact us by phone."
     }
   },
   "a11y": {
     "skipToContent": "Skip to content",
     "languageSelection": "Language selection",
-    "mainNavigation": "Main menu",
-    "mobileNavigation": "Mobile menu",
-    "openMenu": "Open the menu",
-    "closeMenu": "Close the menu",
-    "footerNavigation": "Sub-menu",
+    "mainNavigation": "Main navigation",
+    "mobileNavigation": "Mobile navigation",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "footerNavigation": "Footer navigation",
     "backToTop": "Back to top"
   },
   "contactSection": {
-    "eyebrow": "Contact Us",
+    "eyebrow": "Get in Touch",
     "title": "Contact & Location",
     "contact": "Contact",
     "location": "Location",
-    "addressFallback": "Please ring us for the full address and directions.",
-    "hoursFallback": "Please contact us for our current opening hours.",
+    "addressFallback": "Please call us for our full address and directions.",
+    "hoursFallback": "Please get in touch for our current opening hours.",
     "openingDays": "Monday – Saturday",
-    "reservation": "Booking"
+    "reservation": "Reservations"
   },
   "footer": {
-    "tagline": "Natural materials: a timeless kitchen aesthetic.",
+    "tagline": "Natural ingredients, a timeless culinary language.",
     "rights": "All rights reserved.",
     "impressum": "Legal Notice",
     "privacy": "Privacy"
   },
   "notFound": {
     "title": "The page you are looking for could not be found",
-    "body": "The page may have been moved or deleted. Let’s take you back to the table.",
+    "body": "The page may have been moved or removed. Let us take you back to the table.",
     "home": "Home",
     "menu": "Menu"
   },
@@ -125,18 +125,18 @@
   },
   "faq": {
     "about": {
-      "q1": "Çi Neo Cucina What is it?",
-      "a1": "Çi Neo Cucina is a restaurant in Kaş, run by Chef Simge Manacıoğlu, serving Mediterranean and Anatolian cuisine. Its culinary philosophy focuses on natural ingredients, seasonality and sustainability.",
+      "q1": "What is Çi Neo Cucina?",
+      "a1": "Çi Neo Cucina is a restaurant in Kaş led by Chef Simge Manacıoğlu, serving Mediterranean and Anatolian cuisine. Its culinary language centres on natural ingredients, seasonality and sustainability.",
       "q2": "Who is Chef Simge Manacıoğlu?",
-      "a2": "Simge Manacıoğlu is a gastronomy professional who graduated from Yeditepe University with a degree in Political Science and has been working as a chef in Kaş since 2016. She completed her training at the EKS Culinary Academy as top of her class and founded the ‘Mezeteryan’ restaurant in 2018.",
+      "a2": "Simge Manacıoğlu is a gastronomy professional and Yeditepe University Political Science graduate who has worked as a chef in Kaş since 2016. She trained at EKS Mutfak Akademisi, finishing top of her class, and founded the restaurant Mezeteryan in 2018.",
       "q3": "What is the restaurant’s vision?",
-      "a3": "Çi Neo Cucina"
+      "a3": "Çi Neo Cucina’s vision is to share with the world a culinary philosophy that reaches from the local to the universal: one that does not imitate nature, but lives in harmony with it. A gastronomic language that is meaningful and moving, far from the noise."
     },
     "experiences": {
-      "q1": "Do you have any particular experiences?",
-      "a1": "Yes, Chef's Table and special events are organised on request. Please contact us for bespoke menus and private group events.",
-      "q2": "How do I make a booking?",
-      "a2": "To make a booking, you can either fill in the booking form on our website or contact us via the contact page. Simply let us know the number of people, the date and the time."
+      "q1": "Do you offer special experiences?",
+      "a1": "Yes, Chef’s Table evenings and special events are arranged on request. Please contact us for bespoke menus and private group events.",
+      "q2": "How do I make a reservation?",
+      "a2": "To make a reservation, fill in the reservation form on our website or reach us via the contact page. Simply let us know the number of guests, the date and the time."
     }
   }
 }

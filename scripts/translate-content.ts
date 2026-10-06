@@ -2,8 +2,8 @@
  * translate-content.ts — DeepL translation pipeline for Çi Neo Cucina
  *
  * Usage:
- *   pnpm i18n:translate                 # fill MISSING / still-Turkish strings
- *   pnpm i18n:translate --force         # re-translate everything
+ *   pnpm i18n:translate                 # fill MISSING strings only (never overwrites)
+ *   pnpm i18n:translate --force         # re-translate everything (overwrites reviewed text!)
  *   pnpm i18n:translate --locale=de     # one target locale only
  *   pnpm i18n:translate --dry-run       # show what would be sent, no API calls
  *
@@ -19,10 +19,16 @@
  * The UI dictionary is flattened GENERICALLY from `dictionaries.tr`, so a key
  * added to the Turkish dictionary is picked up without touching this script.
  *
- * REUSE: menu and ui strings already present in the generated files are kept
- * (so human-reviewed corrections survive), unless they look untranslated — i.e.
- * identical to the Turkish source or still containing Turkish-only letters
- * (ğ ş ı İ). Page copy is small and always re-translated.
+ * FROZEN CONTENT: the generated JSON is hand-reviewed and is the source of truth
+ * for the site's hardcoded copy. This script NEVER overwrites a string that
+ * already exists in those files (menu, pages and ui alike) — it only fills keys
+ * that are missing, e.g. after a new key is added to the Turkish dictionary.
+ * Suspicious existing values (identical to Turkish / Turkish-only letters) are
+ * reported as warnings, not changed. Only `--force` re-translates everything, and
+ * it will clobber reviewed text, so use it deliberately.
+ *
+ * Content added later through the admin panel is translated there with the
+ * admin DeepL button (src/lib/i18n/translate.ts), not by this script.
  *
  * Brand and person names (Çi, Kaş, Mihaliç, Simge Manacıoğlu, …) and `{placeholders}`
  * are shielded from DeepL with <x> ignore-tags.
@@ -121,7 +127,7 @@ const TURKISH_ONLY = /[ğışİĞŞ]/;
 
 /** True when a stored translation still looks like untranslated Turkish. */
 function looksUntranslated(source: string, value: string): boolean {
-  const protectedStripped = value.replace(PROTECT_RE, '');
+  const protectedStripped = value.replace(PROTECT_RE, '').replace(/Kaş|Kargı/g, '');
   if (TURKISH_ONLY.test(protectedStripped)) return true;
   return value === source && (TURKISH_ONLY.test(source) || source.length > 20);
 }
@@ -409,6 +415,18 @@ function loadExisting(locale: string): Map<string, string> {
   if (menu.notes?.serviceNote) m.set('menu.note.service', menu.notes.serviceNote);
   if (menu.notes?.wineNotice) m.set('menu.note.wine', menu.notes.wineNotice);
   flatten(read(`ui.${locale}.json`), 'ui', m);
+
+  // Pages: map each overlay JSON path back to its source key. Building the
+  // overlay from an identity map (key → key) yields path → key.
+  const identity: T = new Map([...collectSources().keys()].map((k) => [k, k]));
+  const pathToKey = new Map<string, string>();
+  flatten(buildPagesOverlay(identity), 'pages', pathToKey);
+  const existingPages = new Map<string, string>();
+  flatten(read(`pages.${locale}.json`), 'pages', existingPages);
+  for (const [path, value] of existingPages) {
+    const key = pathToKey.get(path);
+    if (key && value) m.set(key, value);
+  }
   return m;
 }
 
@@ -436,13 +454,13 @@ async function main(): Promise<void> {
     const existing = FORCE ? new Map<string, string>() : loadExisting(locale);
 
     const keys = [...sources.keys()];
-    const toTranslate = keys.filter((k) => {
-      // Pages are always re-translated; menu + ui are reused when they look good.
-      if (!k.startsWith('menu.') && !k.startsWith('ui.')) return true;
-      if (contextFor(k)) return true; // gender-sensitive: always redo
+    // Frozen content: translate only keys with no existing value.
+    const toTranslate = keys.filter((k) => !existing.has(k));
+    for (const k of keys) {
       const have = existing.get(k);
-      return have === undefined || looksUntranslated(sources.get(k)!, have);
-    });
+      if (have !== undefined && looksUntranslated(sources.get(k)!, have))
+        console.log(`  warning: ${k} looks untranslated (kept as is): "${have.slice(0, 50)}"`);
+    }
     const chars = toTranslate.reduce((n, k) => n + sources.get(k)!.length, 0);
     console.log(
       `  ${toTranslate.length} to translate (${chars} chars), ${keys.length - toTranslate.length} reused.`,

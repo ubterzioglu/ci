@@ -2,105 +2,105 @@
   "categories": {
     "topraktan": {
       "name": "De la terre",
-      "description": "Des plats préparés avec des légumes et des herbes de saison, tout juste récoltés."
+      "description": "Des assiettes de légumes et d’herbes de saison, venus tout droit de la terre."
     },
     "denizden": {
       "name": "De la mer",
-      "description": "Des assiettes composées de fruits de mer de la mer Égée et de la Méditerranée."
+      "description": "Des assiettes autour des produits de la mer de l’Égée et de la Méditerranée."
     },
     "otlaktan": {
       "name": "De la prairie",
-      "description": "Des plats principaux où la viande et les abats sont cuits avec soin."
+      "description": "Des plats principaux où viandes et abats sont cuisinés avec soin."
     }
   },
   "items": {
     "mezetaryen-meze-seckisi": {
-      "name": "Sélection de mezzés de Mezetaryen",
-      "description": "Trois variétés de « mezetaryen », des amuse-bouches de saison."
+      "name": "Sélection de mezzés Mezetaryen",
+      "description": "Trois mezzés « mezetaryen » de saison."
     },
     "urla-enginar-confit": {
-      "name": "Confit d'artichauts d'Urla",
-      "description": "Des herbes fraîches, des fruits lacto-fermentés et de l'huile d'olive Memecik."
+      "name": "Artichaut d’Urla confit",
+      "description": "Jeunes pousses, fruits lacto-fermentés et huile d’olive Memecik."
     },
     "tuzlu-kavun": {
       "name": "Melon salé",
-      "description": "Yaourt salé d'Antakya, tranches de melon, pois chiches blanchis et huile d'olive Memecik."
+      "description": "Yaourt salé d’Antakya, tranches de melon, pois chiches grillés (leblebi blanc) et huile d’olive Memecik."
     },
     "uc-mantarli-taze-cavatelli": {
       "name": "Cavatelli frais aux trois champignons",
-      "description": "Cèpes, champignons jaunes, pleurotes et fromage de brebis Mihaliç affiné."
+      "description": "Cèpes, girolles, pleurotes et fromage de brebis Mihaliç affiné."
     },
     "kereviz-sinitzel": {
-      "name": "Schnitzel au céleri",
-      "description": "Tranches de céleri en lamelles, hibeş et salade à la cuillère."
+      "name": "Schnitzel de céleri",
+      "description": "Tranches de céleri panées, hibeş (crème de tahini relevée) et salade de légumes finement hachés."
     },
     "ci-salatasi": {
-      "name": "Salade « Çi »",
-      "description": "Roquette, pourpier sauvage, laitue de Yedikule, fruits de saison, fromage « tulum » de Kargı (Çorum), noix grillées et vinaigrette au concombre."
+      "name": "Salade « Çi »",
+      "description": "Roquette, pourpier sauvage, laitue de Yedikule, fruits de saison, fromage tulum de Kargı (Çorum), noix torréfiées et vinaigrette au concombre."
     },
     "avokadolu-fume-somon-tartar": {
-      "name": "Tartare de saumon fumé à l'avocat",
-      "description": "Avec des câpres et des chips."
+      "name": "Tartare de saumon fumé à l’avocat",
+      "description": "Avec câpres et croustillants."
     },
     "karisik-kabuklu-kasesi": {
-      "name": "Bol de fruits à coque variés",
-      "description": "Vongole, kidonya, moules noires, sülünez, tarak ; accompagnés d'une sauce à la tomate ou au vin."
+      "name": "Bol de coquillages",
+      "description": "Palourdes, praires, moules noires, couteaux et pétoncles ; à la sauce tomate ou au vin."
     },
     "ci-karides": {
-      "name": "Crevette « Çi »",
-      "description": "Pain au levain d'Afyon et beurre à la botarga."
+      "name": "Crevettes « Çi »",
+      "description": "Pain au levain d’Afyon et beurre à la poutargue."
     },
     "izgara-baby-kalamar": {
-      "name": "Calamars grillés « Baby »",
-      "description": "Des tomates cerises et du fromage Mihaliç affiné."
+      "name": "Petits calamars grillés",
+      "description": "Tomates et fromage Mihaliç affiné."
     },
     "aslan-baligi": {
       "name": "Poisson-lion",
-      "description": "Sauce beurre blanc au basilic et à la pomme verte."
+      "description": "Beurre blanc au basilic et à la pomme verte."
     },
     "izgara-granyoz": {
-      "name": "Granyöz au grill",
-      "description": "Salade de sarrasin aux concombres et sauce aux câpres au beurre noisette."
+      "name": "Maigre grillé",
+      "description": "Salade de sarrasin au concombre et sauce aux câpres au beurre noisette."
     },
     "karidesli-arpa-sehriye-risotto": {
-      "name": "Risotto aux crevettes et aux vermicelles d'orge",
-      "description": "Du bisk et du fromage de chèvre."
+      "name": "Risotto d’orzo aux crevettes",
+      "description": "Bisque et fromage de chèvre."
     },
     "deniz-mahsullu-makarna": {
       "name": "Pâtes aux fruits de mer",
-      "description": "Sauce tomate San Marzano, crevettes, calamars, moules, palourdes et fromage Divle Obruk."
+      "description": "Sauce tomate San Marzano, crevettes, calamars, moules décortiquées, palourdes et fromage Divle Obruk (affiné en grotte)."
     },
     "sakatat-pate": {
-      "name": "Pâté d'abats",
-      "description": "Cerveaux d'agneau, cœur et foie de poulet."
+      "name": "Pâté d’abats",
+      "description": "Ris d’agneau, cervelle d’agneau, foie et cœur de volaille."
     },
     "dana-yanak-ragu": {
-      "name": "Ragoût de joues de veau",
-      "description": "Avec une salade de salsa."
+      "name": "Ragù de joue de bœuf",
+      "description": "Avec une salade façon salsa."
     },
     "arnavut-cigeri": {
-      "name": "Foie à l'albanaise",
-      "description": "Salade d'oignons et pain feuilleté croustillant fait maison."
+      "name": "Foie à l’albanaise",
+      "description": "Salade d’oignons et pain yufka croustillant, abaissé à la main."
     },
     "izgara-kuzu-kokorec": {
-      "name": "Kokoreç d'agneau grillé",
-      "description": "Piments de Kale de Denizli, yaourt salé d'Antakya et salade de concombres « kibrit »."
+      "name": "Kokoreç d’agneau grillé",
+      "description": "Piment doux de Denizli, yaourt salé d’Antakya et salade de petits concombres."
     },
     "kuzu-haslama": {
-      "name": "Agneau bouilli",
-      "description": "Avec de la bière brune et des légumes."
+      "name": "Agneau poché",
+      "description": "À la bière brune et aux légumes."
     },
     "izgara-kuzu-sirt": {
-      "name": "Selle d'agneau grillée",
+      "name": "Selle d’agneau grillée",
       "description": "Purée de céleri caramélisé et haricots."
     },
     "izgara-dana-kontrfile-dilimleri": {
-      "name": "Tranches de contre-filet de bœuf à griller",
+      "name": "Contre-filet de bœuf grillé, en tranches",
       "description": "Polenta à la courgette et sauce aux oignons caramélisés."
     }
   },
   "notes": {
-    "serviceNote": "Les produits marqués d'un * correspondent à une portion de plat principal.",
-    "wineNotice": "Pour découvrir notre sélection de vins, composée en grande partie de producteurs locaux, n'hésitez pas à vous adresser à notre équipe."
+    "serviceNote": "Les plats marqués d’un astérisque (*) sont servis en portion de plat principal.",
+    "wineNotice": "Pour découvrir notre sélection de vins, issue en grande partie de producteurs locaux, n’hésitez pas à consulter notre équipe."
   }
 }

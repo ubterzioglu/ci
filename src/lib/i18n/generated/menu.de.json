@@ -2,105 +2,105 @@
   "categories": {
     "topraktan": {
       "name": "Aus der Erde",
-      "description": "Gerichte, die in der Saison aus Gemüse und Kräutern aus eigenem Anbau zubereitet werden."
+      "description": "Saisonale Gerichte mit Gemüse und Kräutern, frisch aus der Erde."
     },
     "denizden": {
-      "name": "Vom Meer aus",
-      "description": "Gerichte, die mit Meeresfrüchten aus der Ägäis und dem Mittelmeer zubereitet werden."
+      "name": "Aus dem Meer",
+      "description": "Gerichte mit Fisch und Meeresfrüchten aus der Ägäis und dem Mittelmeer."
     },
     "otlaktan": {
       "name": "Von der Weide",
-      "description": "Hauptgerichte, bei denen Fleisch und Innereien sorgfältig zubereitet werden."
+      "description": "Hauptgerichte, in denen Fleisch und Innereien mit Sorgfalt zubereitet werden."
     }
   },
   "items": {
     "mezetaryen-meze-seckisi": {
-      "name": "Mezetaryen Meze-Auswahl",
-      "description": "Drei verschiedene saisonale „mezetaryen“-Vorspeisen."
+      "name": "Mezetaryen-Meze-Auswahl",
+      "description": "Drei saisonale „Mezetaryen“-Mezes."
     },
     "urla-enginar-confit": {
-      "name": "Urla-Artischocken-Confit",
-      "description": "Frisches Grünzeug, milchsauer vergorenes Obst und Memecik-Olivenöl."
+      "name": "Artischocken-Confit aus Urla",
+      "description": "Frische Blattsalate, milchsauer fermentiertes Obst und Memecik-Olivenöl."
     },
     "tuzlu-kavun": {
       "name": "Salzige Melone",
-      "description": "Salziger Joghurt aus Antakya, Melonenscheiben, weiße Kichererbsen und Memecik-Olivenöl."
+      "description": "Salzjoghurt aus Antakya, Melonenscheiben, geröstete weiße Kichererbsen und Memecik-Olivenöl."
     },
     "uc-mantarli-taze-cavatelli": {
-      "name": "Frische Cavatelli mit drei Pilzsorten",
-      "description": "Steinpilze, Gelbpilze, Austernpilze und gereifter Mihaliç-Schafskäse."
+      "name": "Frische Cavatelli mit dreierlei Pilzen",
+      "description": "Steinpilze, Pfifferlinge, Austernpilze und gereifter Mihaliç-Schafskäse."
     },
     "kereviz-sinitzel": {
-      "name": "Sellerie-Schnitzel",
-      "description": "In Scheiben geschnittener Sellerie, Hibesh und Löffelsalat."
+      "name": "Sellerieschnitzel",
+      "description": "Panierte Selleriescheiben, hibeş (Tahini-Creme nach Antakya-Art) und fein gehackter Löffelsalat."
     },
     "ci-salatasi": {
       "name": "„Çi“-Salat",
-      "description": "Rucola, wilder Portulak, Yedikule-Salat, Obst der Saison, Çorum-Kargı-Käse, geröstete Walnüsse und Gurken-Vinaigrette."
+      "description": "Rucola, wilder Portulak, Yedikule-Romanasalat, Obst der Saison, Tulum-Käse aus Kargı (Çorum), ofengeröstete Walnüsse und Gurken-Vinaigrette."
     },
     "avokadolu-fume-somon-tartar": {
-      "name": "Tartar aus geräuchertem Lachs mit Avocado",
-      "description": "Mit Kapari-Früchten und Knuspergebäck."
+      "name": "Räucherlachs-Tatar mit Avocado",
+      "description": "Mit Kapernäpfeln und knusprigen Crackern."
     },
     "karisik-kabuklu-kasesi": {
-      "name": "Schale mit gemischten Nüssen",
-      "description": "Vongole, Kidoña, Schwarzmuscheln, Sülünez, Tarak; mit Tomaten- oder Weinsauce."
+      "name": "Schale gemischter Muscheln",
+      "description": "Vongole, Warzige Venusmuscheln, Miesmuscheln, Schwertmuscheln und Kammmuscheln – wahlweise in Tomaten- oder Weinsauce."
     },
     "ci-karides": {
-      "name": "„Çi“-Garnele",
-      "description": "Brot aus Afyon mit Sauerteig und Butter mit Botarga."
+      "name": "„Çi“-Garnelen",
+      "description": "Sauerteigbrot aus Afyon und Bottarga-Butter."
     },
     "izgara-baby-kalamar": {
-      "name": "Gegrillte Baby-Tintenfische",
-      "description": "Tomaten-Civesi und gereifter Mihaliç-Käse."
+      "name": "Gegrillte Baby-Calamari",
+      "description": "Tomatenconfit und gereifter Mihaliç-Käse."
     },
     "aslan-baligi": {
-      "name": "Löwenfisch",
-      "description": "Beurre-blanc-Soße mit Basilikum und grünem Apfel."
+      "name": "Rotfeuerfisch",
+      "description": "Beurre blanc mit Basilikum und grünem Apfel."
     },
     "izgara-granyoz": {
-      "name": "Grill-Granyöz",
-      "description": "Buchweizensalat mit Gurken und Kapernsoße mit brauner Butter."
+      "name": "Gegrillter Adlerfisch",
+      "description": "Buchweizensalat mit Gurke und Kapernsauce mit Nussbutter."
     },
     "karidesli-arpa-sehriye-risotto": {
-      "name": "Risotto mit Garnelen und Gerstengrieß",
-      "description": "Bisk und Ziegenkäse."
+      "name": "Orzo-Risotto mit Garnelen",
+      "description": "Bisque und Ziegenkäse."
     },
     "deniz-mahsullu-makarna": {
-      "name": "Nudeln mit Meeresfrüchten",
-      "description": "San-Marzano-Tomatensauce, Garnelen, Tintenfisch, Muscheln, Vongole und Divle-Obruk-Käse."
+      "name": "Pasta mit Meeresfrüchten",
+      "description": "San-Marzano-Tomatensauce, Garnelen, Calamari, ausgelöste Miesmuscheln, Vongole und Divle-Obruk-Käse."
     },
     "sakatat-pate": {
       "name": "Innereien-Pastete",
-      "description": "Lammhirn, Lammgehirn, Hühnerleber und Hühnerherz."
+      "description": "Lammbries, Lammhirn, Hühnerleber und Hühnerherzen."
     },
     "dana-yanak-ragu": {
-      "name": "Ragout aus Rinderbacken",
+      "name": "Rinderbacken-Ragout",
       "description": "Mit Salsa-Salat."
     },
     "arnavut-cigeri": {
-      "name": "Albanische Leber",
-      "description": "Zwiebelsalat und handgerolltes, knuspriges Fladenbrot."
+      "name": "Leber nach albanischer Art",
+      "description": "Zwiebelsalat und knuspriges, von Hand ausgerolltes Yufka-Brot."
     },
     "izgara-kuzu-kokorec": {
       "name": "Gegrilltes Lamm-Kokoreç",
-      "description": "Paprika aus Denizli, gesalzener Joghurt aus Antakya und Gurkensalat."
+      "description": "Kale-Paprika aus Denizli, Salzjoghurt aus Antakya und Salat von Minigurken."
     },
     "kuzu-haslama": {
-      "name": "Lamm-Eintopf",
+      "name": "Geschmortes Lamm",
       "description": "Mit Schwarzbier und Gemüse."
     },
     "izgara-kuzu-sirt": {
-      "name": "Lammrücken vom Grill",
+      "name": "Gegrillter Lammrücken",
       "description": "Karamellisiertes Selleriepüree und Bohnen."
     },
     "izgara-dana-kontrfile-dilimleri": {
-      "name": "Rinderfilet-Scheiben vom Grill",
-      "description": "Kürbis-Polenta mit karamellisierter Zwiebelsauce."
+      "name": "Gegrilltes Rinder-Contrefilet in Scheiben",
+      "description": "Zucchini-Polenta und Sauce von karamellisierten Zwiebeln."
     }
   },
   "notes": {
-    "serviceNote": "Produkte, die mit einem * gekennzeichnet sind, entsprechen einer Hauptmahlzeitportion.",
-    "wineNotice": "Bitte wenden Sie sich an unser Team, wenn Sie mehr über unsere Weinauswahl erfahren möchten, die größtenteils aus Weinen lokaler Erzeuger besteht."
+    "serviceNote": "Mit * gekennzeichnete Gerichte werden als Hauptgerichtsportion serviert.",
+    "wineNotice": "Zu unserer Weinauswahl, die überwiegend von lokalen Erzeugern stammt, berät Sie unser Team gerne."
   }
 }

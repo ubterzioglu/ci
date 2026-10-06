@@ -13,30 +13,18 @@ import {
   type RevisionStatus,
 } from '@/lib/db/admin/revision-types';
 import {
+  STATUS_LABELS,
+  STATUS_TONE,
+  urgencyTone,
+  ACTIVE_FILTERS,
+} from './RevisionsClient.helpers';
+import {
   createRevisionAction,
   updateRevisionStatusAction,
   deleteRevisionAction,
   addCommentAction,
   deleteCommentAction,
 } from './actions';
-
-const STATUS_LABELS: Record<RevisionStatus, string> = {
-  open: 'Açık',
-  progress: 'Devam Ediyor',
-  done: 'Tamamlandı',
-};
-
-const STATUS_TONE: Record<RevisionStatus, 'terracotta' | 'olive' | 'neutral'> = {
-  open: 'terracotta',
-  progress: 'olive',
-  done: 'neutral',
-};
-
-function urgencyTone(u: number): 'wine' | 'terracotta' | 'olive' {
-  if (u >= 8) return 'wine';
-  if (u >= 4) return 'terracotta';
-  return 'olive';
-}
 
 /* --- Threaded comments under a single revision ----------------------------- */
 
@@ -240,12 +228,6 @@ function NewRevisionForm({ onCreated }: { onCreated: () => void }) {
 }
 
 /* --- Main client ----------------------------------------------------------- */
-
-const ACTIVE_FILTERS: { key: 'all' | 'open' | 'progress'; label: string }[] = [
-  { key: 'all', label: 'Tümü' },
-  { key: 'open', label: STATUS_LABELS.open },
-  { key: 'progress', label: STATUS_LABELS.progress },
-];
 
 export function RevisionsClient({
   initialRevisions,

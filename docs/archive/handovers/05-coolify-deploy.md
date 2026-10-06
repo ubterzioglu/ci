@@ -1,5 +1,7 @@
 # Handover — hd5
 
+> **Tarihsel kayıt.** Bu dosya arşivlenmiştir. İçerdiği bilgiler (geçici domain, eski branch yapısı vb.) o günkü durumu yansıtır; güncel kaynak olarak kodu ve canlı sistemi esas alın.
+
 **Project:** Çi Neo Cucina — Wix → Next.js 16 + Supabase restaurant site
 **Repo:** `c:\temp_private\ci` (branch `main`)
 **Remote:** `https://github.com/ubterzioglu/ci.git`

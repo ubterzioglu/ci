@@ -3,9 +3,9 @@ import { notFound } from 'next/navigation';
 
 import { ReservationsPageBody } from '@/components/pages/ReservationsPageBody';
 import { defaultLocale, isLocale } from '@/lib/i18n/config';
-import { buildMetadata } from '@/lib/seo/metadata';
-import { seoTitle } from '@/lib/seo/titles';
-import { getLocalPage } from '@/content/pages-i18n';
+import { buildPageMetadata } from '@/lib/seo/page-metadata';
+
+export const revalidate = 60;
 
 export async function generateMetadata({
   params,
@@ -14,14 +14,8 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { lang } = await params;
   const locale = isLocale(lang) && lang !== defaultLocale ? lang : defaultLocale;
-  const page = getLocalPage('reservations', locale);
 
-  return buildMetadata({
-    absoluteTitle: seoTitle('/reservations', locale),
-    description: page?.seoDescription ?? page?.excerpt ?? '',
-    path: '/reservations',
-    locale,
-  });
+  return buildPageMetadata('/reservations', locale);
 }
 
 export default async function LangReservationsPage({

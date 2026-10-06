@@ -1,5 +1,7 @@
 # Handover — Premium "Deneyim" Showcase Section
 
+> **Tarihsel kayıt.** Bu dosya arşivlenmiştir. İçerdiği bilgiler (geçici domain, eski branch yapısı vb.) o günkü durumu yansıtır; güncel kaynak olarak kodu ve canlı sistemi esas alın.
+
 > **Amaç:** Ana sayfaya, gece-bahçe fotoğrafı üzerinde yüzen frosted-glass kartlarla
 > premium bir "deneyim" (experience) showcase bölümü eklemek. Bu döküman, işi
 > sıfırdan bağlam olmadan devralacak başka bir session için hazırlandı.

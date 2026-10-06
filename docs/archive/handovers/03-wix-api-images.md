@@ -1,5 +1,7 @@
 # Handover — hd3
 
+> **Tarihsel kayıt.** Bu dosya arşivlenmiştir. İçerdiği bilgiler (geçici domain, eski branch yapısı vb.) o günkü durumu yansıtır; güncel kaynak olarak kodu ve canlı sistemi esas alın.
+
 **Project:** Çi Neo Cucina — Wix → Next.js 16 + Supabase restaurant site migration
 **Repo:** `c:\temp_private\ci` (branch `main`, clean before this session)
 **Date of handover:** 2026-06-28

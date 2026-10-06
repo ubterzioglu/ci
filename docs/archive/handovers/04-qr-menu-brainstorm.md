@@ -1,5 +1,7 @@
 # Handover — HD4: QR Mobile-Only Menu Route
 
+> **Tarihsel kayıt.** Bu dosya arşivlenmiştir. İçerdiği bilgiler (geçici domain, eski branch yapısı vb.) o günkü durumu yansıtır; güncel kaynak olarak kodu ve canlı sistemi esas alın.
+
 **Date:** 2026-06-28
 **Status:** Brainstorming phase — design NOT finalized. No code written yet.
 **Next step:** Resume the brainstorming dialogue (1 question already asked, awaiting answer), then write spec → plan → implement.

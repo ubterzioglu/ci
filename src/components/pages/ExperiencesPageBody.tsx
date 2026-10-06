@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/Button';
 import { PageHeader } from '@/components/layout/PageHeader';
 import { JsonLd } from '@/components/seo/JsonLd';
-import { breadcrumbSchema } from '@/lib/seo/schema';
+import { breadcrumbSchema, faqSchema } from '@/lib/seo/schema';
 import { PRIMARY_CTA } from '@/lib/site-config';
 import type { Locale } from '@/lib/i18n/config';
 import { getDictionary } from '@/lib/i18n/dictionaries';
@@ -22,6 +22,20 @@ interface ExperiencesPageBodyProps {
 export function ExperiencesPageBody({ locale }: ExperiencesPageBodyProps) {
   const dictionary = getDictionary(locale);
 
+  // FAQ items for structured data — not linked from navigation or sitemap.
+  const faqItems = [
+    {
+      question: 'Özel deneyimler var mı?',
+      answer:
+        'Evet, Chef\'s Table ve özel etkinlikler talebe göre düzenlenmektedir. Kişiye özel menüler ve kapalı grup etkinlikleri için bizimle iletişime geçebilirsiniz.',
+    },
+    {
+      question: 'Nasıl rezervasyon yapılır?',
+      answer:
+        'Rezervasyon için web sitemizdeki rezervasyon formunu doldurabilir veya iletişim sayfasından bize ulaşabilirsiniz. Kişi sayısı, tarih ve saat bilgilerinizi paylaşmanız yeterlidir.',
+    },
+  ];
+
   return (
     <>
       <JsonLd
@@ -30,12 +44,20 @@ export function ExperiencesPageBody({ locale }: ExperiencesPageBodyProps) {
           { name: dictionary.nav.experiences, path: localePath('/experiences', locale) },
         ])}
       />
+      <JsonLd data={faqSchema(faqItems)} />
 
       <PageHeader
         eyebrow="Çi Neo Cucina"
         title={dictionary.pages.experiences.title}
         intro={dictionary.pages.experiences.intro}
       />
+
+      {/* Last updated */}
+      <div className="bg-marble pt-6 pb-0">
+        <div className="container-editorial">
+          <p className="text-muted text-center text-xs">Son güncelleme: Ekim 2026</p>
+        </div>
+      </div>
 
       <section className="bg-marble pb-section">
         <div className="container-editorial">

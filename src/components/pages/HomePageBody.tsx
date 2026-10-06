@@ -8,7 +8,7 @@ import { ChefIntro } from '@/components/sections/ChefIntro';
 import { ContactSection } from '@/components/sections/ContactSection';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { getMenu } from '@/lib/db/menu';
-import { menuSchema } from '@/lib/seo/schema';
+import { menuSchema, restaurantSchema } from '@/lib/seo/schema';
 import type { Locale } from '@/lib/i18n/config';
 
 interface HomePageBodyProps {
@@ -27,6 +27,9 @@ export async function HomePageBody({ locale }: HomePageBodyProps) {
 
   return (
     <>
+      {/* Full Restaurant node — only emitted here. Other pages carry a compact
+          @id reference (see layout.tsx) so crawlers see one business entity. */}
+      <JsonLd data={restaurantSchema(locale)} />
       <JsonLd data={menuSchema(menu, locale)} />
       <Hero locale={locale} />
       <StorySection locale={locale} />

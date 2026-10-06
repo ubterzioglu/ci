@@ -28,6 +28,9 @@ export const metadata: Metadata = {
   title: `Menü | ${siteConfig.name}`,
 };
 
+// ISR — admin menu actions call revalidatePath('/qr') for instant updates.
+export const revalidate = 60;
+
 export default async function QrMenuPage() {
   const [menu, wineMenu] = await Promise.all([getMenu('tr', 'food'), getMenu('tr', 'wine')]);
 

@@ -1,5 +1,7 @@
 # Handover — Çi Neo Cucina rebuild (session 1 → next session)
 
+> **Tarihsel kayıt.** Bu dosya arşivlenmiştir. İçerdiği bilgiler (geçici domain, eski branch yapısı vb.) o günkü durumu yansıtır; güncel kaynak olarak kodu ve canlı sistemi esas alın.
+
 > Read this first. It captures everything done, the current state, open
 > decisions, and exactly where to pick up. The repo is already a working,
 > deployed-ready Next.js 16 + Supabase site.

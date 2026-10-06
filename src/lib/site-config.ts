@@ -2,9 +2,9 @@
  * Çi Neo Cucina — central site configuration.
  *
  * Single source of truth for brand facts, contact details, and navigation.
- * All values are sourced from the archived Wix export (see docs/ref/). Items that
+ * All values are sourced from the archived Wix export (see docs/archive/ref/). Items that
  * are NOT present in the source are marked `null` and tracked in
- * docs/panel-exports-todo.md — do not fabricate them.
+ * docs/backlog/panel-exports-todo.md — do not fabricate them.
  */
 
 export const siteConfig = {
@@ -19,8 +19,7 @@ export const siteConfig = {
    * Public site URL — overridden by NEXT_PUBLIC_SITE_URL at runtime.
    *
    * The fallback is the live domain, so canonical URLs, Open Graph tags and the
-   * sitemap stay correct even if the variable is missing. It used to point at
-   * the temporary notyetbro.club, which would now publish wrong canonicals.
+   * sitemap stay correct even if the variable is missing.
    *
    * Keep the `www.` — it must match the domain configured in Coolify, or the
    * canonical tag and the served host disagree.

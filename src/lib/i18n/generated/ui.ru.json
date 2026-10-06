@@ -13,5 +13,21 @@
   "common": {
     "phone": "Телефон",
     "email": "Электронная почта"
+  },
+  "home": {
+    "storyEyebrow": "Наша история"
+  },
+  "pages": {
+    "contact": {
+      "title": "Контакты"
+    }
+  },
+  "forms": {
+    "contact": {
+      "submit": "Отправить сообщение"
+    }
+  },
+  "a11y": {
+    "skipToContent": "Перейти к содержимому"
   }
 }

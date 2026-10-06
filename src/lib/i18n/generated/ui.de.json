@@ -13,5 +13,21 @@
   "common": {
     "phone": "Telefon",
     "email": "E-Mail"
+  },
+  "home": {
+    "storyEyebrow": "Unsere Geschichte"
+  },
+  "pages": {
+    "contact": {
+      "title": "Kontakt"
+    }
+  },
+  "forms": {
+    "contact": {
+      "submit": "Nachricht senden"
+    }
+  },
+  "a11y": {
+    "skipToContent": "Zum Inhalt springen"
   }
 }

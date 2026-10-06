@@ -13,5 +13,21 @@
   "common": {
     "phone": "Phone",
     "email": "Email"
+  },
+  "home": {
+    "storyEyebrow": "Our Story"
+  },
+  "pages": {
+    "contact": {
+      "title": "Contact"
+    }
+  },
+  "forms": {
+    "contact": {
+      "submit": "Send Message"
+    }
+  },
+  "a11y": {
+    "skipToContent": "Skip to content"
   }
 }

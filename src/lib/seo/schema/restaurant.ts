@@ -56,6 +56,10 @@ export function restaurantSchema(locale: Locale = defaultLocale): Record<string,
     '@type': 'Restaurant',
     '@id': RESTAURANT_ID,
     name: siteConfig.name,
+    // Known historical/alternate names from third-party listings. These help
+    // crawlers merge the entity across platforms that registered it under
+    // different names (Tripadvisor, Wanderlog, RestaurantGuru).
+    alternateName: ['by Mezetaryen', 'by miskin', 'Muskat Meze Bar'],
     description: localizedDescription(locale),
     inLanguage: LANGUAGE_TAG[locale],
     url: baseUrl,
@@ -131,4 +135,17 @@ export function restaurantSchema(locale: Locale = defaultLocale): Record<string,
   if (sameAs.length > 0) schema.sameAs = sameAs;
 
   return schema;
+}
+
+/**
+ * Compact Restaurant reference — only `@type` and `@id`. Used on every page
+ * except the homepage, where the full `restaurantSchema` is emitted. This way
+ * crawlers see one business entity (the homepage defines it; other pages point
+ * at it) instead of five copies of the same Restaurant node.
+ */
+export function restaurantRefSchema(): Record<string, unknown> {
+  return {
+    '@type': 'Restaurant',
+    '@id': RESTAURANT_ID,
+  };
 }

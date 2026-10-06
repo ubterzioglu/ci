@@ -1,6 +1,7 @@
 import { siteConfig } from '@/lib/site-config';
 
 import { baseUrl } from './shared';
+import { webPageId } from './webpage';
 
 export interface ArticleSchemaInput {
   headline: string;
@@ -46,7 +47,7 @@ export function articleSchema({
     headline,
     description,
     url,
-    mainEntityOfPage: { '@type': 'WebPage', '@id': url },
+    mainEntityOfPage: { '@type': 'WebPage', '@id': webPageId(url) },
     inLanguage,
     datePublished,
     dateModified: dateModified ?? datePublished,

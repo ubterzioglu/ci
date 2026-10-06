@@ -1,13 +1,13 @@
 import { defaultLocale, type Locale } from '@/lib/i18n/config';
 import { siteConfig } from '@/lib/site-config';
 
-import { baseUrl, LANGUAGE_TAG, localizedDescription, RESTAURANT_ID } from './shared';
+import { baseUrl, LANGUAGE_TAG, localizedDescription, RESTAURANT_ID, WEBSITE_ID } from './shared';
 
 export function websiteSchema(locale: Locale = defaultLocale): Record<string, unknown> {
   return {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    '@id': `${baseUrl}#website`,
+    '@id': WEBSITE_ID,
     name: siteConfig.name,
     description: localizedDescription(locale),
     url: baseUrl,

@@ -27,7 +27,7 @@ export function restaurantSchema(locale: Locale = defaultLocale): Record<string,
     postalCode: contact.postalCode,
     addressCountry: contact.countryCode,
   };
-  if (contact.address) address.streetAddress = contact.address;
+  if (contact.streetAddress) address.streetAddress = contact.streetAddress;
 
   // Social/listing profiles for entity disambiguation (Google "sameAs").
   const sameAs = [

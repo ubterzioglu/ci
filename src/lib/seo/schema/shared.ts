@@ -19,6 +19,7 @@ export const LANGUAGE_TAG: Record<Locale, string> = {
 
 /** Stable node IDs. Locale-independent on purpose — see restaurantSchema. */
 export const RESTAURANT_ID = `${baseUrl}#restaurant`;
+export const WEBSITE_ID = `${baseUrl}#website`;
 export const CHEF_ID = `${baseUrl}#chef`;
 export const MENU_ID = `${baseUrl}#menu`;
 

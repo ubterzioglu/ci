@@ -10,7 +10,7 @@ import {
   chefRestaurantSections,
   type ContentBlock,
 } from '@/content/kas-sef-restorani';
-import { articleSchema, faqSchema } from '@/lib/seo/schema';
+import { articleSchema, faqSchema, webPageSchema } from '@/lib/seo/schema';
 import { siteConfig } from '@/lib/site-config';
 
 /**
@@ -62,6 +62,7 @@ function Block({ block }: { block: ContentBlock }) {
 
 export function ChefRestaurantPageBody() {
   const { contact } = siteConfig;
+  const pageUrl = new URL(CHEF_RESTAURANT_PATH, siteConfig.url).toString();
 
   return (
     <>
@@ -74,7 +75,16 @@ export function ChefRestaurantPageBody() {
           dateModified: CHEF_RESTAURANT_DATES.modified,
         })}
       />
-      <JsonLd data={faqSchema(chefRestaurantFaq)} />
+      <JsonLd data={faqSchema(chefRestaurantFaq, pageUrl)} />
+      <JsonLd
+        data={webPageSchema({
+          name: chefRestaurantMeta.seoTitle,
+          description: chefRestaurantMeta.description,
+          path: CHEF_RESTAURANT_PATH,
+          datePublished: CHEF_RESTAURANT_DATES.published,
+          dateModified: CHEF_RESTAURANT_DATES.modified,
+        })}
+      />
 
       <PageHeader eyebrow={chefRestaurantMeta.eyebrow} title={chefRestaurantMeta.heading} />
 

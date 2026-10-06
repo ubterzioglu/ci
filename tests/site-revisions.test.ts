@@ -28,7 +28,8 @@ test('every non-Turkish locale has translated page, section, form and a11y copy'
   const expectations = {
     en: ['Contact', 'Send Message', 'Our Story', 'Skip to content'],
     de: ['Kontakt', 'Nachricht senden', 'Unsere Geschichte', 'Zum Inhalt springen'],
-    ru: ['Контакты', 'Отправить сообщение', 'Наша история', 'Перейти к содержимому'],
+    ru: ['Контакты', 'Отправить', 'Наша история', 'Перейти к содержанию'],
+    fr: ['Contact', 'Envoyer', 'Notre histoire', 'Aller au contenu'],
   } as const;
 
   for (const [locale, expected] of Object.entries(expectations)) {
@@ -56,6 +57,7 @@ test('reservation guidance and validation are localised', () => {
 
 test('localized routes use translated metadata instead of Turkish defaults', () => {
   assert.equal(getLocalPage('about', 'en')?.title, 'About Us');
-  assert.equal(getLocalPage('menu', 'de')?.title, 'Menü');
+  assert.equal(getLocalPage('menu', 'de')?.title, 'Speisekarte');
   assert.equal(getLocalPage('contact', 'ru')?.title, 'Контакты');
+  assert.equal(getLocalPage('about', 'fr')?.title, 'À propos');
 });

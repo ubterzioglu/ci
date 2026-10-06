@@ -5,6 +5,8 @@ import { ExperiencesPageBody } from '@/components/pages/ExperiencesPageBody';
 import { defaultLocale, isLocale } from '@/lib/i18n/config';
 import { buildPageMetadata } from '@/lib/seo/page-metadata';
 
+export const revalidate = 60;
+
 export async function generateMetadata({
   params,
 }: {

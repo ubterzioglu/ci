@@ -5,6 +5,9 @@ import { HomePageBody } from '@/components/pages/HomePageBody';
 import { defaultLocale, isLocale } from '@/lib/i18n/config';
 import { buildPageMetadata } from '@/lib/seo/page-metadata';
 
+// ISR — admin actions call revalidatePath for instant updates.
+export const revalidate = 60;
+
 export async function generateMetadata({
   params,
 }: {

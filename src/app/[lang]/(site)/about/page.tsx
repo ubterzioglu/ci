@@ -5,6 +5,8 @@ import { AboutPageBody } from '@/components/pages/AboutPageBody';
 import { defaultLocale, isLocale } from '@/lib/i18n/config';
 import { buildPageMetadata } from '@/lib/seo/page-metadata';
 
+export const revalidate = 60;
+
 export async function generateMetadata({
   params,
 }: {

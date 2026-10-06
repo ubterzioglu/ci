@@ -5,6 +5,8 @@ import { buildPageMetadata } from '@/lib/seo/page-metadata';
 
 export const metadata: Metadata = buildPageMetadata('/reservations', 'tr');
 
+export const revalidate = 60;
+
 export default function ReservationsPage() {
   return <ReservationsPageBody locale="tr" />;
 }

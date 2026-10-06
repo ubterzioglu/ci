@@ -22,6 +22,8 @@ export const metadata: Metadata = buildMetadata({
   localeAlternates: false,
 });
 
+export const revalidate = 60;
+
 export default function ChefRestaurantPage() {
   return <ChefRestaurantPageBody />;
 }

@@ -170,16 +170,15 @@ public/
     └── imported/                 # Site photography (committed; no external host)
 
 docs/                             # Everything not built or shipped
-├── deployment-coolify.md         # Coolify / Docker deployment guide
-├── migration-notes.md            # Wix -> Next.js migration decisions
-├── panel-exports-todo.md         # Data still owed by the restaurant
-├── qr-menu.md                    # QR table menu (/qr) status and notes
-├── handovers/                    # Historical session handover notes
-└── ref/                          # Raw Wix export the site was rebuilt from
+├── guides/                       # Operational guides (deployment, QR menu)
+├── seo/                          # SEO/GEO plans and audits
+├── plans/                        # Multi-step implementation plans
+├── backlog/                      # Data and tasks waiting on the restaurant
+└── archive/                      # Historical records (handovers, Wix ref)
 ```
 
 Nothing in `docs/` is read at build or run time — the Wix content was copied
-into `src/content/` during the migration, so `docs/ref/` is kept only as the
+into `src/content/` during the migration, so `docs/archive/ref/` is kept only as the
 record of what the original site said.
 
 ## Deployment
@@ -188,7 +187,7 @@ record of what the original site said.
 
 Coolify builds the repository's `Dockerfile` (Next.js standalone output) on every
 push to `main`. Full walkthrough - build pack, environment variables, domain and
-post-deploy checks - lives in **[docs/deployment-coolify.md](docs/deployment-coolify.md)**.
+post-deploy checks - lives in **[docs/guides/deployment-coolify.md](docs/guides/deployment-coolify.md)**.
 
 ### Vercel (Alternative)
 
@@ -212,7 +211,7 @@ This requires `DEEPL_API_KEY` to be set in `.env.local`.
 
 ## Content Migration from Wix
 
-This project was migrated from a Wix website. Exported content, decisions made during migration, and remaining tasks are documented in `docs/migration-notes.md`.
+This project was migrated from a Wix website. Exported content, decisions made during migration, and remaining tasks are documented in `docs/archive/migration-notes.md`.
 
 ## Documentation
 

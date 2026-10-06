@@ -8,13 +8,13 @@
 
 The legacy Wix website data was exported to the `/ref` directory:
 
-- **Pages markdown** (`docs/ref/content/pages/`): Converted HTML/text from public pages
-- **Menu data** (`docs/ref/content/data/menu.csv`): Menu items with categories
-- **Navigation** (`docs/ref/content/data/navigation.json`): Site navigation structure
-- **Contact info** (`docs/ref/content/data/contact.json`): Phone, email, region
-- **SEO metadata** (`docs/ref/content/data/seo.json`): Page titles and descriptions for each route
-- **Image assets** (`docs/ref/content/assets/image-assets.json`): Manifest of Wix CDN image URLs
-- **Audit notes** (`docs/ref/audit/fix-list.md`): Issues identified in the source
+- **Pages markdown** (`docs/archive/ref/content/pages/`): Converted HTML/text from public pages
+- **Menu data** (`docs/archive/ref/content/data/menu.csv`): Menu items with categories
+- **Navigation** (`docs/archive/ref/content/data/navigation.json`): Site navigation structure
+- **Contact info** (`docs/archive/ref/content/data/contact.json`): Phone, email, region
+- **SEO metadata** (`docs/archive/ref/content/data/seo.json`): Page titles and descriptions for each route
+- **Image assets** (`docs/archive/ref/content/assets/image-assets.json`): Manifest of Wix CDN image URLs
+- **Audit notes** (`docs/archive/ref/audit/fix-list.md`): Issues identified in the source
 
 ## Migration Decisions & Assumptions
 
@@ -102,11 +102,11 @@ returns null for a missing file instead of falling back to a remote host, and
 the one-off download/optimise scripts were deleted.
 
 The original CDN URLs remain catalogued in
-`docs/ref/content/assets/image-assets.json` as the historical record.
+`docs/archive/ref/content/assets/image-assets.json` as the historical record.
 
 ## What's Still Missing (Panel Exports)
 
-The following data was not present in the public Wix website export and must be provided by the restaurant. See `panel-exports-todo.md` for the complete checklist.
+The following data was not present in the public Wix website export and must be provided by the restaurant. See `docs/backlog/panel-exports-todo.md` for the complete checklist.
 
 ### High Priority (Required for Launch)
 
@@ -170,5 +170,5 @@ See `supabase/README.md` for detailed security model and seeding instructions.
 - **Brand facts**: `src/lib/site-config.ts`
 - **Database schema**: `supabase/migrations/001_initial_schema.sql`
 - **Supabase setup**: `supabase/README.md`
-- **Remaining tasks**: `panel-exports-todo.md`
-- **Original Wix export**: `docs/ref/` directory
+- **Remaining tasks**: `docs/backlog/panel-exports-todo.md`
+- **Original Wix export**: `docs/archive/ref/` directory

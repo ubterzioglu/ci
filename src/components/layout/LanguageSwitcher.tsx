@@ -2,9 +2,17 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useEffect } from 'react';
 
 import { cn } from '@/lib/utils';
-import { defaultLocale, isLocale, locales, localeNames, type Locale } from '@/lib/i18n/config';
+import {
+  defaultLocale,
+  isLocale,
+  locales,
+  localeNames,
+  turkishOnlyPaths,
+  type Locale,
+} from '@/lib/i18n/config';
 import { getDictionary } from '@/lib/i18n/dictionaries';
 
 /**
@@ -47,7 +55,13 @@ export function LanguageSwitcher({
   className,
 }: LanguageSwitcherProps) {
   const pathname = usePathname();
-  const basePath = stripLocale(pathname);
+  // Soft navigations never re-render the root layout, so keep <html lang> in sync.
+  useEffect(() => {
+    document.documentElement.lang = current;
+  }, [current]);
+  const strippedPath = stripLocale(pathname);
+  // Turkish-only pages have no translated twin: send other locales to their home.
+  const basePath = turkishOnlyPaths.includes(strippedPath) ? '/' : strippedPath;
   const dictionary = getDictionary(current);
 
   return (

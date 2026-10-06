@@ -23,17 +23,10 @@ export function ExperiencesPageBody({ locale }: ExperiencesPageBodyProps) {
   const dictionary = getDictionary(locale);
 
   // FAQ items for structured data — not linked from navigation or sitemap.
+  const { experiences: faq } = dictionary.faq;
   const faqItems = [
-    {
-      question: 'Özel deneyimler var mı?',
-      answer:
-        "Evet, Chef's Table ve özel etkinlikler talebe göre düzenlenmektedir. Kişiye özel menüler ve kapalı grup etkinlikleri için bizimle iletişime geçebilirsiniz.",
-    },
-    {
-      question: 'Nasıl rezervasyon yapılır?',
-      answer:
-        'Rezervasyon için web sitemizdeki rezervasyon formunu doldurabilir veya iletişim sayfasından bize ulaşabilirsiniz. Kişi sayısı, tarih ve saat bilgilerinizi paylaşmanız yeterlidir.',
-    },
+    { question: faq.q1, answer: faq.a1 },
+    { question: faq.q2, answer: faq.a2 },
   ];
 
   return (
@@ -55,7 +48,7 @@ export function ExperiencesPageBody({ locale }: ExperiencesPageBodyProps) {
       {/* Last updated */}
       <div className="bg-marble pt-6 pb-0">
         <div className="container-editorial">
-          <p className="text-muted text-center text-xs">Son güncelleme: Ekim 2026</p>
+          <p className="text-muted text-center text-xs">{dictionary.meta.lastUpdated}</p>
         </div>
       </div>
 

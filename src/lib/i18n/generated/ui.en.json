@@ -15,19 +15,128 @@
     "email": "Email"
   },
   "home": {
-    "storyEyebrow": "Our Story"
+    "storyEyebrow": "Our Story",
+    "readFullStory": "Read the full story →",
+    "experienceEyebrow": "Experience",
+    "experienceTitle": "Beyond the Dining Table",
+    "discoverExperience": "Discover the Experience →",
+    "menuEyebrow": "Our Dining Table",
+    "menuTitle": "A Taste from Our Menu",
+    "goToPage": "Go to page →",
+    "viewFullMenu": "View the Full Menu",
+    "reservationTitle": "We’ve got a place for you at our table",
+    "galleryTitle": "Atmosphere"
   },
   "pages": {
     "contact": {
-      "title": "Contact"
+      "title": "Contact",
+      "eyebrow": "Get in touch",
+      "intro": "Please leave us a message if you have any questions, requests for special events or feedback."
+    },
+    "menu": {
+      "eyebrow": "Our Dining Table",
+      "intro": "Simple yet profound flavours, crafted with seasonal ingredients. Our menu, organised into three sections, draws inspiration from the earth, the sea and the meadows.",
+      "tabAria": "Menu selection",
+      "mainTab": "Main Menu",
+      "wineTab": "Wine List",
+      "allergens": "Allergens"
+    },
+    "reservations": {
+      "eyebrow": "Book Your Table",
+      "title": "Request a Booking",
+      "intro": "Please share the details; we’ll try to find the most suitable place for you. Once we’ve received your enquiry, we’ll get in touch with you as soon as possible.",
+      "largeGroupsPrefix": "For large groups and special events",
+      "largeGroupsSuffix": "You can contact us on this number."
+    },
+    "experiences": {
+      "title": "Experiences",
+      "intro": "At the moment, there are no special experiences currently listed on our calendar. We organise ‘Chef’s Table’ and special events on request.",
+      "cardTitle": "Let’s plan a special evening for you",
+      "contactText": "Chef’s Table – please contact our team for bespoke menus and private events.",
+      "contactCta": "Get in touch"
     }
   },
   "forms": {
     "contact": {
-      "submit": "Send Message"
+      "submit": "Send Message",
+      "successTitle": "Your message has been sent",
+      "successBody": "We have received your message. We will reply as soon as possible.",
+      "fullName": "First Name, Surname",
+      "subject": "Subject",
+      "message": "Message",
+      "pending": "Sending…",
+      "validationError": "Please correct any errors in the form.",
+      "submitError": "Your message could not be sent. Please contact us by telephone."
+    },
+    "reservation": {
+      "successTitle": "Your request has been received",
+      "successBody": "We have received your booking enquiry. We will be in touch with you as soon as possible.",
+      "fullName": "First Name, Surname",
+      "partySize": "Number of People",
+      "largePartyTitle": "For large groups, let us give you a call",
+      "largePartyBody": "{count} For groups of two or more people, we need to plan the table arrangements together. Please get in touch with us.",
+      "date": "Date",
+      "time": "Time",
+      "selectTime": "Select a time",
+      "sundayTitle": "We are closed on Sundays",
+      "sundayBody": "We open on special occasions, depending on the situation. If you have plans for Sunday, please do give us a call.",
+      "noteLabel": "Your note (optional)",
+      "notePlaceholder": "Special requests, allergy information, etc.",
+      "pending": "Sending…",
+      "submit": "Request a Booking",
+      "validationError": "Please correct any errors in the form.",
+      "submitError": "Your request could not be recorded. Please contact us by telephone."
     }
   },
   "a11y": {
-    "skipToContent": "Skip to content"
+    "skipToContent": "Skip to content",
+    "languageSelection": "Language selection",
+    "mainNavigation": "Main menu",
+    "mobileNavigation": "Mobile menu",
+    "openMenu": "Open the menu",
+    "closeMenu": "Close the menu",
+    "footerNavigation": "Sub-menu",
+    "backToTop": "Back to top"
+  },
+  "contactSection": {
+    "eyebrow": "Contact Us",
+    "title": "Contact & Location",
+    "contact": "Contact",
+    "location": "Location",
+    "addressFallback": "Please ring us for the full address and directions.",
+    "hoursFallback": "Please contact us for our current opening hours.",
+    "openingDays": "Monday – Saturday",
+    "reservation": "Booking"
+  },
+  "footer": {
+    "tagline": "Natural materials: a timeless kitchen aesthetic.",
+    "rights": "All rights reserved.",
+    "impressum": "Legal Notice",
+    "privacy": "Privacy"
+  },
+  "notFound": {
+    "title": "The page you are looking for could not be found",
+    "body": "The page may have been moved or deleted. Let’s take you back to the table.",
+    "home": "Home",
+    "menu": "Menu"
+  },
+  "meta": {
+    "lastUpdated": "Last updated: October 2026"
+  },
+  "faq": {
+    "about": {
+      "q1": "Çi Neo Cucina What is it?",
+      "a1": "Çi Neo Cucina is a restaurant in Kaş, run by Chef Simge Manacıoğlu, serving Mediterranean and Anatolian cuisine. Its culinary philosophy focuses on natural ingredients, seasonality and sustainability.",
+      "q2": "Who is Chef Simge Manacıoğlu?",
+      "a2": "Simge Manacıoğlu is a gastronomy professional who graduated from Yeditepe University with a degree in Political Science and has been working as a chef in Kaş since 2016. She completed her training at the EKS Culinary Academy as top of her class and founded the ‘Mezeteryan’ restaurant in 2018.",
+      "q3": "What is the restaurant’s vision?",
+      "a3": "Çi Neo Cucina"
+    },
+    "experiences": {
+      "q1": "Do you have any particular experiences?",
+      "a1": "Yes, Chef's Table and special events are organised on request. Please contact us for bespoke menus and private group events.",
+      "q2": "How do I make a booking?",
+      "a2": "To make a booking, you can either fill in the booking form on our website or contact us via the contact page. Simply let us know the number of people, the date and the time."
+    }
   }
 }

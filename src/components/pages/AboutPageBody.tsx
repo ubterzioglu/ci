@@ -27,22 +27,11 @@ export async function AboutPageBody({ locale }: AboutPageBodyProps) {
   const teamPhotos = await getTeamPhotos();
 
   // FAQ items for structured data — not linked from navigation or sitemap.
+  const { about: faq } = dictionary.faq;
   const faqItems = [
-    {
-      question: 'Çi Neo Cucina nedir?',
-      answer:
-        "Çi Neo Cucina, Kaş'ta Şef Simge Manacıoğlu'nun yönettiği, Akdeniz ve Anadolu mutfağı sunan bir restorandır. Doğal malzemeler, mevsimsellik ve sürdürülebilirlik odaklı bir mutfak dili.",
-    },
-    {
-      question: 'Şef Simge Manacıoğlu kimdir?',
-      answer:
-        "Simge Manacıoğlu, Yeditepe Üniversitesi Siyaset Bilimi mezunu, 2016'dan beri Kaş'ta şeflik yapan bir gastronomi profesyonelidir. EKS Mutfak Akademisi'nde eğitimini dönem birincisi olarak tamamlamış, 2018'de Mezeteryan restoranını kurmuştur.",
-    },
-    {
-      question: 'Restoranın vizyonu nedir?',
-      answer:
-        "Çi Neo Cucina'nın vizyonu, yerelden evrensele uzanan, doğayı taklit etmeyen ama onunla uyumlu bir mutfak felsefesini dünyayla paylaşmaktır. Gürültüden uzak, anlamlı ve dokunaklı bir gastronomi dili.",
-    },
+    { question: faq.q1, answer: faq.a1 },
+    { question: faq.q2, answer: faq.a2 },
+    { question: faq.q3, answer: faq.a3 },
   ];
 
   return (
@@ -60,7 +49,7 @@ export async function AboutPageBody({ locale }: AboutPageBodyProps) {
       {/* Last updated */}
       <div className="bg-marble pt-6 pb-0">
         <div className="container-editorial">
-          <p className="text-muted text-center text-xs">Son güncelleme: Ekim 2026</p>
+          <p className="text-muted text-center text-xs">{dictionary.meta.lastUpdated}</p>
         </div>
       </div>
 

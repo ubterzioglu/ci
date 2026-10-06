@@ -37,6 +37,18 @@ export const translatableLocales = locales.filter(
   (locale): locale is TranslatableLocale => locale !== defaultLocale,
 );
 
+/**
+ * Pages that exist only in Turkish (legal pages, chef-restaurant landing page,
+ * QR menu). The language switcher must not offer `/en/<these>` — it would 404.
+ * Keep in step with TR_ONLY_ROUTES in app/sitemap.ts.
+ */
+export const turkishOnlyPaths: readonly string[] = [
+  '/impressum',
+  '/datenschutz',
+  '/kas-sef-restorani',
+  '/qr',
+];
+
 /** Human-readable display names for the locale switcher. */
 export const localeNames: Record<Locale, string> = {
   tr: 'Türkçe',

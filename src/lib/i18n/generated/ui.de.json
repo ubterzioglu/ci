@@ -15,19 +15,128 @@
     "email": "E-Mail"
   },
   "home": {
-    "storyEyebrow": "Unsere Geschichte"
+    "storyEyebrow": "Unsere Geschichte",
+    "readFullStory": "Lies die ganze Geschichte →",
+    "experienceEyebrow": "Erfahrung",
+    "experienceTitle": "Jenseits des Tisches",
+    "discoverExperience": "Entdecken Sie das Erlebnis →",
+    "menuEyebrow": "Unser Esstisch",
+    "menuTitle": "Ein Gericht aus unserer Speisekarte",
+    "goToPage": "Zur Seite gehen →",
+    "viewFullMenu": "Gesamtes Menü anzeigen",
+    "reservationTitle": "An unserem Tisch ist ein Platz für Sie reserviert",
+    "galleryTitle": "Atmosphäre"
   },
   "pages": {
     "contact": {
-      "title": "Kontakt"
+      "title": "Kontakt",
+      "eyebrow": "Schreiben Sie uns",
+      "intro": "Wenn Sie Fragen haben, eine spezielle Veranstaltung anfragen möchten oder Feedback geben möchten, schreiben Sie uns bitte eine Nachricht."
+    },
+    "menu": {
+      "eyebrow": "Unser Esstisch",
+      "intro": "Einfache, aber intensive Aromen mit Zutaten der Saison. Unsere Speisekarte, die sich in drei Rubriken gliedert, ist von der Erde, dem Meer und den Wiesen inspiriert.",
+      "tabAria": "Menüauswahl",
+      "mainTab": "Hauptmenü",
+      "wineTab": "Weinkarte",
+      "allergens": "Allergene"
+    },
+    "reservations": {
+      "eyebrow": "Reservieren Sie Ihren Tisch",
+      "title": "Reservierungsanfrage stellen",
+      "intro": "Teilen Sie uns die Details mit; wir werden versuchen, den für Sie am besten geeigneten Ort zu finden. Sobald wir Ihre Anfrage erhalten haben, werden wir uns so schnell wie möglich bei Ihnen melden.",
+      "largeGroupsPrefix": "Für große Gruppen und besondere Veranstaltungen",
+      "largeGroupsSuffix": "Sie können uns unter dieser Nummer erreichen."
+    },
+    "experiences": {
+      "title": "Erfahrungen",
+      "intro": "Derzeit ist in unserem Kalender kein besonderes Erlebnis aufgeführt. Chef’s Table und Sonderveranstaltungen organisieren wir auf Anfrage.",
+      "cardTitle": "Lassen Sie uns einen ganz besonderen Abend für Sie gestalten",
+      "contactText": "Chef’s Table – wenden Sie sich für spezielle Menüs und geschlossene Veranstaltungen bitte an unser Team.",
+      "contactCta": "Kontakt aufnehmen"
     }
   },
   "forms": {
     "contact": {
-      "submit": "Nachricht senden"
+      "submit": "Nachricht senden",
+      "successTitle": "Ihre Nachricht wurde gesendet",
+      "successBody": "Ihre Nachricht ist bei uns eingegangen. Wir werden Ihnen so schnell wie möglich antworten.",
+      "fullName": "Vorname Nachname",
+      "subject": "Thema",
+      "message": "Nachricht",
+      "pending": "Wird gesendet…",
+      "validationError": "Bitte korrigieren Sie die Fehler im Formular.",
+      "submitError": "Ihre Nachricht konnte nicht gesendet werden. Bitte kontaktieren Sie uns telefonisch."
+    },
+    "reservation": {
+      "successTitle": "Ihre Anfrage wurde entgegengenommen",
+      "successBody": "Wir haben Ihre Reservierungsanfrage erhalten. Wir werden uns so schnell wie möglich bei Ihnen melden.",
+      "fullName": "Vorname Nachname",
+      "partySize": "Anzahl der Personen",
+      "largePartyTitle": "Bei größeren Gruppen rufen wir Sie gerne an",
+      "largePartyBody": "{count} Bei Gruppen ab einer bestimmten Personenzahl müssen wir die Tischanordnung gemeinsam planen. Bitte setzen Sie sich mit uns in Verbindung.",
+      "date": "Datum",
+      "time": "Uhrzeit",
+      "selectTime": "Wählen Sie eine Uhrzeit aus",
+      "sundayTitle": "Sonntags haben wir geschlossen",
+      "sundayBody": "An besonderen Tagen haben wir je nach Situation geöffnet. Wenn Sie für Sonntag etwas vorhaben, rufen Sie uns bitte an.",
+      "noteLabel": "Ihre Bewertung (optional)",
+      "notePlaceholder": "Sonderwünsche, Angaben zu Allergien usw.",
+      "pending": "Wird gesendet…",
+      "submit": "Reservierung anfragen",
+      "validationError": "Bitte korrigieren Sie die Fehler im Formular.",
+      "submitError": "Ihre Anfrage konnte nicht gespeichert werden. Bitte kontaktieren Sie uns telefonisch."
     }
   },
   "a11y": {
-    "skipToContent": "Zum Inhalt springen"
+    "skipToContent": "Zum Inhalt springen",
+    "languageSelection": "Sprachauswahl",
+    "mainNavigation": "Hauptmenü",
+    "mobileNavigation": "Mobilmenü",
+    "openMenu": "Menü öffnen",
+    "closeMenu": "Menü schließen",
+    "footerNavigation": "Untermenü",
+    "backToTop": "Zurück zum Anfang"
+  },
+  "contactSection": {
+    "eyebrow": "Kontaktieren Sie uns",
+    "title": "Kontakt & Standort",
+    "contact": "Kontakt",
+    "location": "Standort",
+    "addressFallback": "Für die genaue Adresse und eine Wegbeschreibung rufen Sie uns bitte an.",
+    "hoursFallback": "Für unsere aktuellen Öffnungszeiten können Sie sich gerne an uns wenden.",
+    "openingDays": "Montag – Samstag",
+    "reservation": "Reservierung"
+  },
+  "footer": {
+    "tagline": "Natürliche Materialien – eine zeitlose Küchensprache.",
+    "rights": "Alle Rechte vorbehalten.",
+    "impressum": "Impressum",
+    "privacy": "Datenschutz"
+  },
+  "notFound": {
+    "title": "Die gesuchte Seite wurde nicht gefunden",
+    "body": "Die Seite wurde möglicherweise verschoben oder gelöscht. Wir führen Sie zurück zur Startseite.",
+    "home": "Startseite",
+    "menu": "Menü"
+  },
+  "meta": {
+    "lastUpdated": "Letzte Aktualisierung: Oktober 2026"
+  },
+  "faq": {
+    "about": {
+      "q1": "Çi Neo Cucina Was ist das?",
+      "a1": "Çi Neo Cucina ist ein Restaurant in Kaş, das von Chefkoch Simge Manacıoğlu geleitet wird und Gerichte der mediterranen und anatolischen Küche serviert. Die Küche zeichnet sich durch natürliche Zutaten, Saisonalität und Nachhaltigkeit aus.",
+      "q2": "Wer ist die Köchin Simge Manacıoğlu?",
+      "a2": "Simge Manacıoğlu ist Absolventin der Politikwissenschaft an der Yeditepe-Universität und seit 2016 als Chefköchin in Kaş tätig. Sie schloss ihre Ausbildung an der EKS Mutfak Akademisi als Jahrgangsbeste ab und gründete 2018 das Restaurant „Mezeteryan“.",
+      "q3": "Was ist die Vision des Restaurants?",
+      "a3": "Çi Neo Cucina"
+    },
+    "experiences": {
+      "q1": "Gibt es besondere Erfahrungen?",
+      "a1": "Ja, Chef's Table und Sonderveranstaltungen werden auf Anfrage organisiert. Für individuelle Menüs und Veranstaltungen für geschlossene Gruppen können Sie sich gerne an uns wenden.",
+      "q2": "Wie kann man reservieren?",
+      "a2": "Für eine Reservierung können Sie das Reservierungsformular auf unserer Website ausfüllen oder uns über die Kontaktseite erreichen. Es reicht aus, wenn Sie uns die Anzahl der Personen sowie Datum und Uhrzeit mitteilen."
+    }
   }
 }

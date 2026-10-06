@@ -130,6 +130,31 @@ export interface Dictionary {
     impressum: string;
     privacy: string;
   };
+  notFound: {
+    title: string;
+    body: string;
+    home: string;
+    menu: string;
+  };
+  meta: {
+    lastUpdated: string;
+  };
+  faq: {
+    about: {
+      q1: string;
+      a1: string;
+      q2: string;
+      a2: string;
+      q3: string;
+      a3: string;
+    };
+    experiences: {
+      q1: string;
+      a1: string;
+      q2: string;
+      a2: string;
+    };
+  };
 }
 
 // ---------------------------------------------------------------------------
@@ -260,6 +285,31 @@ const tr: Dictionary = {
     impressum: 'İmpressum',
     privacy: 'Gizlilik',
   },
+  notFound: {
+    title: 'Aradığınız sayfa bulunamadı',
+    body: 'Sayfa taşınmış ya da kaldırılmış olabilir. Sizi sofraya geri götürelim.',
+    home: 'Ana Sayfa',
+    menu: 'Menü',
+  },
+  meta: {
+    lastUpdated: 'Son güncelleme: Ekim 2026',
+  },
+  faq: {
+    about: {
+      q1: 'Çi Neo Cucina nedir?',
+      a1: "Çi Neo Cucina, Kaş'ta Şef Simge Manacıoğlu'nun yönettiği, Akdeniz ve Anadolu mutfağı sunan bir restorandır. Doğal malzemeler, mevsimsellik ve sürdürülebilirlik odaklı bir mutfak dili.",
+      q2: 'Şef Simge Manacıoğlu kimdir?',
+      a2: "Simge Manacıoğlu, Yeditepe Üniversitesi Siyaset Bilimi mezunu, 2016'dan beri Kaş'ta şeflik yapan bir gastronomi profesyonelidir. EKS Mutfak Akademisi'nde eğitimini dönem birincisi olarak tamamlamış, 2018'de Mezeteryan restoranını kurmuştur.",
+      q3: 'Restoranın vizyonu nedir?',
+      a3: "Çi Neo Cucina'nın vizyonu, yerelden evrensele uzanan, doğayı taklit etmeyen ama onunla uyumlu bir mutfak felsefesini dünyayla paylaşmaktır. Gürültüden uzak, anlamlı ve dokunaklı bir gastronomi dili.",
+    },
+    experiences: {
+      q1: 'Özel deneyimler var mı?',
+      a1: "Evet, Chef's Table ve özel etkinlikler talebe göre düzenlenmektedir. Kişiye özel menüler ve kapalı grup etkinlikleri için bizimle iletişime geçebilirsiniz.",
+      q2: 'Nasıl rezervasyon yapılır?',
+      a2: 'Rezervasyon için web sitemizdeki rezervasyon formunu doldurabilir veya iletişim sayfasından bize ulaşabilirsiniz. Kişi sayısı, tarih ve saat bilgilerinizi paylaşmanız yeterlidir.',
+    },
+  },
 };
 
 type DictionaryOverlay = {
@@ -286,6 +336,12 @@ function withOverlay(overlay: DictionaryOverlay): Dictionary {
     },
     a11y: { ...tr.a11y, ...overlay.a11y },
     footer: { ...tr.footer, ...overlay.footer },
+    notFound: { ...tr.notFound, ...overlay.notFound },
+    meta: { ...tr.meta, ...overlay.meta },
+    faq: {
+      about: { ...tr.faq.about, ...overlay.faq?.about },
+      experiences: { ...tr.faq.experiences, ...overlay.faq?.experiences },
+    },
   };
 }
 

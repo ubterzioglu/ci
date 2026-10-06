@@ -199,7 +199,7 @@ Vercel natively supports Next.js and handles build/start commands automatically:
 
 ## Internationalization
 
-The website is **Turkish-first**. English and German translations are generated from Turkish source content using the DeepL API.
+The website is **Turkish-first**. English, German, Russian and French translations are generated from Turkish source content using the DeepL API.
 
 To generate translations:
 

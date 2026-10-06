@@ -15,6 +15,7 @@ import {
   type MenuTranslations,
   type MenuKind,
 } from '@/lib/db/admin/menu-types';
+import { slugify } from './MenuClient.helpers';
 import { LocalizedField, TranslateAllFields } from './LocalizedFields';
 import {
   ItemForm,
@@ -495,17 +496,6 @@ function NewCategoryForm({
 
   // Auto-suggest a slug from the name until the user edits the slug directly.
   const [slugTouched, setSlugTouched] = useState(false);
-  const slugify = (s: string) =>
-    s
-      .toLowerCase()
-      .replace(/ç/g, 'c')
-      .replace(/ğ/g, 'g')
-      .replace(/ı/g, 'i')
-      .replace(/ö/g, 'o')
-      .replace(/ş/g, 's')
-      .replace(/ü/g, 'u')
-      .replace(/[^a-z0-9]+/g, '-')
-      .replace(/^-+|-+$/g, '');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

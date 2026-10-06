@@ -1,6 +1,7 @@
 import 'server-only';
 
 import { createSupabaseAdminClient } from '@/lib/supabase/admin';
+import { isLocale } from '@/lib/i18n/config';
 import {
   isReservationStatus,
   type AdminReservation,
@@ -31,7 +32,7 @@ export async function listReservations(): Promise<AdminReservation[]> {
   const { data, error } = await supabase
     .from('reservation_requests')
     .select(
-      'id, name, email, phone, party_size, requested_date, requested_time, message, status, created_at',
+      'id, name, email, phone, party_size, requested_date, requested_time, message, status, locale, created_at',
     )
     .order('created_at', { ascending: false });
 
@@ -47,6 +48,7 @@ export async function listReservations(): Promise<AdminReservation[]> {
     requestedTime: row.requested_time,
     message: row.message,
     status: isReservationStatus(row.status) ? row.status : 'new',
+    locale: row.locale && isLocale(row.locale) ? row.locale : null,
     createdAt: row.created_at,
   }));
 }
@@ -76,7 +78,7 @@ export async function setReservationStatus(
   const { data: before, error: readError } = await supabase
     .from('reservation_requests')
     .select(
-      'id, name, email, phone, party_size, requested_date, requested_time, message, status, created_at',
+      'id, name, email, phone, party_size, requested_date, requested_time, message, status, locale, created_at',
     )
     .eq('id', id)
     .maybeSingle();
@@ -99,6 +101,7 @@ export async function setReservationStatus(
       requestedTime: before.requested_time,
       message: before.message,
       status,
+      locale: before.locale && isLocale(before.locale) ? before.locale : null,
       createdAt: before.created_at,
     },
   };

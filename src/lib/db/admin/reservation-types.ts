@@ -4,6 +4,8 @@
  * actual data-access functions live in reservations.ts (server-only).
  */
 
+import type { Locale } from '@/lib/i18n/config';
+
 export const RESERVATION_STATUSES = ['new', 'confirmed', 'declined', 'cancelled'] as const;
 
 export type ReservationStatus = (typeof RESERVATION_STATUSES)[number];
@@ -18,6 +20,8 @@ export interface AdminReservation {
   requestedTime: string;
   message: string | null;
   status: ReservationStatus;
+  /** Site language the guest booked in; null for rows saved before it was recorded. */
+  locale: Locale | null;
   createdAt: string;
 }
 

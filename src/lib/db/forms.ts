@@ -3,6 +3,7 @@ import 'server-only';
 import { createSupabaseServerClient } from '@/lib/supabase/server';
 import { createSupabaseAdminClient } from '@/lib/supabase/admin';
 import { isSupabaseConfigured } from '@/lib/supabase/env';
+import type { Locale } from '@/lib/i18n/config';
 import type { ContactInput, ReservationInput } from '@/lib/types';
 
 /**
@@ -33,6 +34,7 @@ interface ReservationRow {
   message: string | null;
   status: 'new';
   source: 'website';
+  locale: Locale | null;
 }
 
 interface ContactRow {
@@ -45,7 +47,11 @@ interface ContactRow {
   source: 'website';
 }
 
-export async function saveReservation(input: ReservationInput): Promise<PersistResult> {
+/** `locale` is the site language the guest booked in (null when unknown); the confirmation mail follows it. */
+export async function saveReservation(
+  input: ReservationInput,
+  locale: Locale | null,
+): Promise<PersistResult> {
   if (!isSupabaseConfigured()) return { ok: false, reason: 'not-configured' };
 
   const row: ReservationRow = {
@@ -58,6 +64,7 @@ export async function saveReservation(input: ReservationInput): Promise<PersistR
     message: input.message || null,
     status: 'new',
     source: 'website',
+    locale,
   };
 
   // Preferred path: service-role client can insert and return the id.

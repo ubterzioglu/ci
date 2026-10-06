@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 
 import { reservationSchema } from '@/lib/validation';
 import { saveReservation } from '@/lib/db/forms';
+import { isLocale } from '@/lib/i18n/config';
 
 /**
  * JSON API for reservation requests (alternative to the Server Action; useful
@@ -28,15 +29,22 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: true });
   }
 
-  const result = await saveReservation({
-    name: parsed.data.name,
-    email: parsed.data.email || undefined,
-    phone: parsed.data.phone || undefined,
-    partySize: parsed.data.partySize,
-    requestedDate: parsed.data.requestedDate,
-    requestedTime: parsed.data.requestedTime,
-    message: parsed.data.message || undefined,
-  });
+  // Optional: external callers may say which language the guest booked in.
+  const rawLocale = (body as { locale?: unknown }).locale;
+  const locale = typeof rawLocale === 'string' && isLocale(rawLocale) ? rawLocale : null;
+
+  const result = await saveReservation(
+    {
+      name: parsed.data.name,
+      email: parsed.data.email || undefined,
+      phone: parsed.data.phone || undefined,
+      partySize: parsed.data.partySize,
+      requestedDate: parsed.data.requestedDate,
+      requestedTime: parsed.data.requestedTime,
+      message: parsed.data.message || undefined,
+    },
+    locale,
+  );
 
   if (!result.ok && result.reason === 'error') {
     return NextResponse.json({ ok: false, error: 'Talebiniz kaydedilemedi.' }, { status: 500 });

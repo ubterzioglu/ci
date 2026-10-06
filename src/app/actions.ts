@@ -42,7 +42,7 @@ export async function submitReservation(
     };
   }
 
-  const persistResult = await saveReservation(result.data);
+  const persistResult = await saveReservation(result.data, locale);
 
   if (!persistResult.ok) {
     if (persistResult.reason === 'not-configured') {

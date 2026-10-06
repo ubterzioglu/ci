@@ -250,6 +250,7 @@ export interface Database {
           message: string | null;
           status: string;
           source: string;
+          locale: string | null;
           created_at: string;
         };
         Insert: {
@@ -263,6 +264,7 @@ export interface Database {
           message?: string | null;
           status?: string;
           source?: string;
+          locale?: string | null;
           created_at?: string;
         };
         Update: Partial<Database['public']['Tables']['reservation_requests']['Insert']>;

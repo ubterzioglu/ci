@@ -5,7 +5,7 @@ import { z } from 'zod';
 
 import { requireAdmin } from '@/lib/auth/require-admin';
 import { setReservationStatus, RESERVATION_STATUSES } from '@/lib/db/admin/reservations';
-import { buildReservationConfirmation } from '@/lib/email-content';
+import { buildReservationConfirmation, resolveEmailLocale } from '@/lib/email-content';
 import { sendNotificationEmail } from '@/lib/email';
 import type { ActionResult } from '@/lib/types';
 
@@ -68,6 +68,7 @@ async function notifyGuestIfNewlyConfirmed(change: {
     requestedTime: string;
     partySize: number;
     status: string;
+    locale: string | null;
   };
   previousStatus: string;
 }): Promise<ConfirmationNotice> {
@@ -82,7 +83,8 @@ async function notifyGuestIfNewlyConfirmed(change: {
   // email is nullable — a guest may have left only a phone number.
   if (!reservation.email) return { kind: 'no-email' };
 
-  const body = buildReservationConfirmation(reservation);
+  // Same language the guest booked in; rows without one get English.
+  const body = buildReservationConfirmation(reservation, resolveEmailLocale(reservation.locale));
   const result = await sendNotificationEmail({
     to: reservation.email,
     // A copy of the guest's confirmation, for the restaurant's own records.

@@ -6,7 +6,7 @@ import { JsonLd } from '@/components/seo/JsonLd';
 import { getAboutContent } from '@/content/pages-i18n';
 import { resolveImage } from '@/lib/images';
 import { getTeamPhotos } from '@/lib/db/team-photos';
-import { breadcrumbSchema } from '@/lib/seo/schema';
+import { breadcrumbSchema, faqSchema } from '@/lib/seo/schema';
 import type { Locale } from '@/lib/i18n/config';
 import { getDictionary } from '@/lib/i18n/dictionaries';
 import { localePath } from '@/lib/i18n/paths';
@@ -26,6 +26,25 @@ export async function AboutPageBody({ locale }: AboutPageBodyProps) {
   const portrait = await resolveImage('chef-simge');
   const teamPhotos = await getTeamPhotos();
 
+  // FAQ items for structured data — not linked from navigation or sitemap.
+  const faqItems = [
+    {
+      question: 'Çi Neo Cucina nedir?',
+      answer:
+        'Çi Neo Cucina, Kaş\'ta Şef Simge Manacıoğlu\'nun yönettiği, Akdeniz ve Anadolu mutfağı sunan bir restorandır. Doğal malzemeler, mevsimsellik ve sürdürülebilirlik odaklı bir mutfak dili.',
+    },
+    {
+      question: 'Şef Simge Manacıoğlu kimdir?',
+      answer:
+        'Simge Manacıoğlu, Yeditepe Üniversitesi Siyaset Bilimi mezunu, 2016\'dan beri Kaş\'ta şeflik yapan bir gastronomi profesyonelidir. EKS Mutfak Akademisi\'nde eğitimini dönem birincisi olarak tamamlamış, 2018\'de Mezeteryan restoranını kurmuştur.',
+    },
+    {
+      question: 'Restoranın vizyonu nedir?',
+      answer:
+        'Çi Neo Cucina\'nın vizyonu, yerelden evrensele uzanan, doğayı taklit etmeyen ama onunla uyumlu bir mutfak felsefesini dünyayla paylaşmaktır. Gürültüden uzak, anlamlı ve dokunaklı bir gastronomi dili.',
+    },
+  ];
+
   return (
     <>
       <JsonLd
@@ -34,8 +53,16 @@ export async function AboutPageBody({ locale }: AboutPageBodyProps) {
           { name: dictionary.nav.about, path: localePath('/about', locale) },
         ])}
       />
+      <JsonLd data={faqSchema(faqItems)} />
 
       <PageHeader eyebrow="Çi Neo Cucina" title={aboutContent.title} />
+
+      {/* Last updated */}
+      <div className="bg-marble pt-6 pb-0">
+        <div className="container-editorial">
+          <p className="text-muted text-center text-xs">Son güncelleme: Ekim 2026</p>
+        </div>
+      </div>
 
       {/* Intro / story */}
       <section className="bg-marble pb-section">

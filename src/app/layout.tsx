@@ -4,6 +4,7 @@ import { headers } from 'next/headers';
 
 import './globals.css';
 import { Clarity } from '@/components/analytics/Clarity';
+import { GoogleAnalytics } from '@/components/analytics/GoogleAnalytics';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { defaultLocale, isLocale } from '@/lib/i18n/config';
 import { buildGeoMetadata } from '@/lib/seo/metadata';
@@ -122,6 +123,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         */}
         {children}
         <Clarity />
+        <GoogleAnalytics />
       </body>
     </html>
   );

@@ -1,7 +1,11 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 
-import { buildReservationConfirmation, resolveEmailLocale } from '../src/lib/email-content';
+import {
+  buildReservationConfirmation,
+  buildReservationDeclined,
+  resolveEmailLocale,
+} from '../src/lib/email-content';
 import { locales } from '../src/lib/i18n/config';
 
 const reservation = {
@@ -58,4 +62,34 @@ test('resolveEmailLocale accepts known locales and falls back to English', () =>
   assert.equal(resolveEmailLocale(null), 'en');
   assert.equal(resolveEmailLocale(undefined), 'en');
   assert.equal(resolveEmailLocale('xx'), 'en');
+});
+
+const declinedSubjectStart: Record<(typeof locales)[number], string> = {
+  tr: 'Rezervasyon talebiniz hakkında',
+  en: 'About your reservation request',
+  de: 'Zu Ihrer Reservierungsanfrage',
+  ru: 'По вашему запросу на бронирование',
+  fr: 'Concernant votre demande de réservation',
+};
+
+for (const locale of locales) {
+  test(`declined mail is written in ${locale} only and invites a call`, () => {
+    const body = buildReservationDeclined(reservation, locale);
+
+    assert.ok(body.subject.startsWith(declinedSubjectStart[locale]), body.subject);
+    assert.ok(body.text.includes('+90 544 687 05 28'), 'phone number missing');
+
+    for (const other of locales) {
+      if (other === locale) continue;
+      assert.ok(
+        !body.subject.includes(declinedSubjectStart[other]),
+        `${other} leaked into ${locale}`,
+      );
+    }
+  });
+}
+
+test('declined mail escapes the guest name', () => {
+  const body = buildReservationDeclined(reservation, 'en');
+  assert.ok(!body.html.includes('<b>Schmidt</b>'));
 });

@@ -1,5 +1,6 @@
 import { siteConfig } from '@/lib/site-config';
 import { isLocale, type Locale } from '@/lib/i18n/config';
+import { renderEmailLayout } from '@/lib/email-layout';
 
 /** Reservation details used to build a guest confirmation email. */
 export interface ReservationConfirmationInput {
@@ -97,21 +98,108 @@ function formatDateTime(date: string, time: string, locale: Locale): string {
   return `${formattedDate} ${time}`;
 }
 
-function escapeHtml(value: string): string {
-  return value
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#39;');
-}
-
 /** Locale used when a reservation carries none (rows saved before the column existed). */
 const fallbackEmailLocale: Locale = 'en';
 
 /** Narrow a stored/unknown locale to one we have copy for. */
 export function resolveEmailLocale(value: string | null | undefined): Locale {
   return value && isLocale(value) ? value : fallbackEmailLocale;
+}
+
+const declinedCopy: Record<
+  Locale,
+  {
+    subject: (restaurantName: string) => string;
+    greeting: (name: string) => string;
+    message: (restaurantName: string) => string;
+    callUs: string;
+  }
+> = {
+  en: {
+    subject: (name) => `About your reservation request — ${name}`,
+    greeting: (name) => `Dear ${name},`,
+    message: (name) =>
+      `Thank you for your interest in ${name}. Unfortunately we are unable to accommodate your request at the moment. We are sorry for the inconvenience.`,
+    callUs: 'If you wish, please call us and we will gladly help you find another time:',
+  },
+  tr: {
+    subject: (name) => `Rezervasyon talebiniz hakkında — ${name}`,
+    greeting: (name) => `Sayın ${name},`,
+    message: (name) =>
+      `${name} olarak gösterdiğiniz ilgi için teşekkür ederiz. Ne yazık ki talebinizi şu an karşılayamıyoruz, rahatsızlık için özür dileriz.`,
+    callUs:
+      'Dilerseniz bizi arayabilirsiniz, size uygun başka bir zaman bulmaktan memnuniyet duyarız:',
+  },
+  de: {
+    subject: (name) => `Zu Ihrer Reservierungsanfrage — ${name}`,
+    greeting: (name) => `Guten Tag ${name},`,
+    message: (name) =>
+      `Vielen Dank für Ihr Interesse am ${name}. Leider können wir Ihre Anfrage im Moment nicht berücksichtigen. Wir bitten um Ihr Verständnis.`,
+    callUs: 'Gerne können Sie uns anrufen, dann finden wir gemeinsam einen anderen Termin für Sie:',
+  },
+  ru: {
+    subject: (name) => `По вашему запросу на бронирование — ${name}`,
+    greeting: (name) => `Уважаемый(-ая) ${name}!`,
+    message: (name) =>
+      `Благодарим вас за интерес к ресторану ${name}. К сожалению, сейчас мы не можем принять ваш запрос. Приносим извинения за неудобства.`,
+    callUs: 'При желании позвоните нам — мы с радостью подберём другое время:',
+  },
+  fr: {
+    subject: (name) => `Concernant votre demande de réservation — ${name}`,
+    greeting: (name) => `Cher/chère ${name},`,
+    message: (name) =>
+      `Merci de l'intérêt que vous portez au ${name}. Malheureusement, nous ne sommes pas en mesure de donner suite à votre demande pour le moment. Nous nous en excusons.`,
+    callUs: 'Si vous le souhaitez, appelez-nous : nous trouverons volontiers un autre créneau :',
+  },
+};
+
+/** Contact block shared by every guest mail. */
+function layoutContact(intro: string, locale: Locale) {
+  const { contact } = siteConfig;
+  const c = copy[locale];
+  return {
+    intro,
+    phoneLabel: c.phone,
+    phoneDisplay: contact.phoneDisplay,
+    phoneE164: contact.phoneE164,
+    emailLabel: c.email,
+    emailAddress: contact.email,
+  };
+}
+
+/** Polite one-language "we can't take this booking right now" note, inviting a phone call. */
+export function buildReservationDeclined(
+  reservation: Pick<ReservationConfirmationInput, 'name'>,
+  locale: Locale,
+): EmailBody {
+  const { contact, name: restaurantName } = siteConfig;
+  const t = declinedCopy[locale];
+  const c = copy[locale];
+
+  const text = [
+    t.greeting(reservation.name),
+    '',
+    t.message(restaurantName),
+    '',
+    t.callUs,
+    `${c.phone}: ${contact.phoneDisplay}`,
+    `${c.email}: ${contact.email}`,
+    '',
+    restaurantName,
+    contact.region,
+  ].join('\n');
+
+  const html = renderEmailLayout({
+    lang: locale,
+    brandName: restaurantName,
+    greeting: t.greeting(reservation.name),
+    paragraphs: [t.message(restaurantName)],
+    contact: layoutContact(t.callUs, locale),
+    region: contact.region,
+    siteUrl: siteConfig.url,
+  });
+
+  return { subject: t.subject(restaurantName), text, html };
 }
 
 /** One-language confirmation, in the language the guest booked in. */
@@ -122,8 +210,6 @@ export function buildReservationConfirmation(
   const { contact, name: restaurantName } = siteConfig;
   const t = copy[locale];
   const when = formatDateTime(reservation.requestedDate, reservation.requestedTime, locale);
-  const phone = escapeHtml(contact.phoneDisplay);
-  const email = escapeHtml(contact.email);
 
   const text = [
     t.greeting(reservation.name),
@@ -141,18 +227,19 @@ export function buildReservationConfirmation(
     contact.region,
   ].join('\n');
 
-  const html = [
-    `<div lang="${locale}" style="max-width:640px;margin:0 auto;padding:24px;color:#292821;font:15px/1.6 Arial,sans-serif">`,
-    `<p>${escapeHtml(t.greeting(reservation.name))}</p>`,
-    `<p>${escapeHtml(t.confirmation(restaurantName))}</p>`,
-    `<p><strong>${escapeHtml(t.dateTime)}:</strong> ${escapeHtml(when)}<br>`,
-    `<strong>${escapeHtml(t.partySize)}:</strong> ${reservation.partySize}</p>`,
-    `<p>${escapeHtml(t.changes)}<br>`,
-    `<strong>${escapeHtml(t.phone)}:</strong> ${phone}<br>`,
-    `<strong>${escapeHtml(t.email)}:</strong> ${email}</p>`,
-    `<p><strong>${escapeHtml(restaurantName)}</strong><br>${escapeHtml(contact.region)}</p>`,
-    '</div>',
-  ].join('');
+  const html = renderEmailLayout({
+    lang: locale,
+    brandName: restaurantName,
+    greeting: t.greeting(reservation.name),
+    paragraphs: [t.confirmation(restaurantName)],
+    details: [
+      { label: t.dateTime, value: when },
+      { label: t.partySize, value: String(reservation.partySize) },
+    ],
+    contact: layoutContact(t.changes, locale),
+    region: contact.region,
+    siteUrl: siteConfig.url,
+  });
 
   return { subject: t.subject(restaurantName), text, html };
 }

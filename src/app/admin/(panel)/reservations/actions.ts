@@ -5,7 +5,11 @@ import { z } from 'zod';
 
 import { requireAdmin } from '@/lib/auth/require-admin';
 import { setReservationStatus, RESERVATION_STATUSES } from '@/lib/db/admin/reservations';
-import { buildReservationConfirmation, resolveEmailLocale } from '@/lib/email-content';
+import {
+  buildReservationConfirmation,
+  buildReservationDeclined,
+  resolveEmailLocale,
+} from '@/lib/email-content';
 import { sendNotificationEmail } from '@/lib/email';
 import type { ActionResult } from '@/lib/types';
 
@@ -26,8 +30,8 @@ export type ConfirmationNotice =
   | { kind: 'none' };
 
 /**
- * Updates a reservation's status, and on a new→confirmed transition emails the
- * guest.
+ * Updates a reservation's status, and on a transition to confirmed or declined
+ * emails the guest (confirmation, or a polite note inviting a phone call).
  *
  * The status change is what matters and is committed first. A mail that cannot
  * be sent is reported back, never thrown: losing the confirmation because the
@@ -74,9 +78,11 @@ async function notifyGuestIfNewlyConfirmed(change: {
 }): Promise<ConfirmationNotice> {
   const { reservation, previousStatus } = change;
 
-  // Only a genuine transition: re-confirming an already-confirmed booking
-  // must not send the guest a second copy.
-  if (reservation.status !== 'confirmed' || previousStatus === 'confirmed') {
+  // Only a genuine transition: re-confirming (or re-declining) an already
+  // settled booking must not send the guest a second copy.
+  const isConfirmation = reservation.status === 'confirmed' && previousStatus !== 'confirmed';
+  const isDecline = reservation.status === 'declined' && previousStatus !== 'declined';
+  if (!isConfirmation && !isDecline) {
     return { kind: 'none' };
   }
 
@@ -84,7 +90,10 @@ async function notifyGuestIfNewlyConfirmed(change: {
   if (!reservation.email) return { kind: 'no-email' };
 
   // Same language the guest booked in; rows without one get English.
-  const body = buildReservationConfirmation(reservation, resolveEmailLocale(reservation.locale));
+  const locale = resolveEmailLocale(reservation.locale);
+  const body = isConfirmation
+    ? buildReservationConfirmation(reservation, locale)
+    : buildReservationDeclined(reservation, locale);
   const result = await sendNotificationEmail({
     to: reservation.email,
     // A copy of the guest's confirmation, for the restaurant's own records.

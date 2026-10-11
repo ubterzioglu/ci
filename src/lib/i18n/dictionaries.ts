@@ -46,6 +46,7 @@ export interface Dictionary {
     viewFullMenu: string;
     reservationTitle: string;
     galleryTitle: string;
+    faqTitle: string;
   };
   pages: {
     menu: {
@@ -190,6 +191,7 @@ const tr: Dictionary = {
     viewFullMenu: 'Tüm Menüyü Görüntüle',
     reservationTitle: 'Masamızda yeriniz hazır',
     galleryTitle: 'Atmosfer',
+    faqTitle: 'Sıkça Sorulan Sorular',
   },
   pages: {
     menu: {

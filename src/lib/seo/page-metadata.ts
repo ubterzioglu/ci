@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 
+import { HOME_DATES } from '@/content/pages-data';
 import { getLocalPage } from '@/content/pages-i18n';
 import { defaultLocale, type Locale } from '@/lib/i18n/config';
 
@@ -38,5 +39,6 @@ export function buildPageMetadata(route: TitledRoute, locale: Locale = defaultLo
     description: page?.seoDescription ?? page?.excerpt ?? undefined,
     path: route,
     locale,
+    ...(route === '/' ? { modifiedTime: HOME_DATES.modified } : {}),
   });
 }

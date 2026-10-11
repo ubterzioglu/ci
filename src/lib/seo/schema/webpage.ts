@@ -11,6 +11,10 @@ export interface WebPageSchemaInput {
   /** ISO dates (YYYY-MM-DD). */
   datePublished?: string;
   dateModified?: string;
+  /** Emit `mainEntity: <url>#article` — only for pages that carry an Article node. */
+  hasArticle?: boolean;
+  /** Emit `hasPart: <url>#faq` — only for pages that carry a FAQPage node. */
+  hasFaq?: boolean;
 }
 
 /** `@id` of the WebPage node for a given page URL. */
@@ -31,6 +35,8 @@ export function webPageSchema({
   inLanguage = 'tr-TR',
   datePublished,
   dateModified,
+  hasArticle = false,
+  hasFaq = false,
 }: WebPageSchemaInput): Record<string, unknown> {
   const url = new URL(path, baseUrl).toString();
   const image = new URL(siteConfig.ogDefaultImage, baseUrl).toString();
@@ -46,9 +52,9 @@ export function webPageSchema({
     isPartOf: { '@id': WEBSITE_ID },
     about: { '@id': RESTAURANT_ID },
     primaryImageOfPage: { '@type': 'ImageObject', url: image },
-    mainEntity: { '@id': `${url}#article` },
-    hasPart: { '@id': `${url}#faq` },
+    ...(hasArticle ? { mainEntity: { '@id': `${url}#article` } } : {}),
+    ...(hasFaq ? { hasPart: { '@id': `${url}#faq` } } : {}),
     ...(datePublished ? { datePublished } : {}),
-    ...(dateModified ?? datePublished ? { dateModified: dateModified ?? datePublished } : {}),
+    ...((dateModified ?? datePublished) ? { dateModified: dateModified ?? datePublished } : {}),
   };
 }

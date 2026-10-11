@@ -46,6 +46,18 @@ export const aboutContent = {
   },
 } as const;
 
+/**
+ * Home-page dates for the WebPage JSON-LD, the article:modified_time meta tag,
+ * the sitemap and llms.txt. Hard-coded rather than derived from `new Date()` so
+ * crawlers are not told the site was rewritten on every deploy. Bump `modified`
+ * when the home copy, the FAQ strings (dictionary `faq.*`) or the facts quoted in
+ * llms.txt (hours, phone, address in siteConfig) actually change.
+ */
+export const HOME_DATES = {
+  published: '2026-09-28',
+  modified: '2026-10-11',
+} as const;
+
 export const homeContent = {
   hero: {
     title: 'Çi Neo Cucina',

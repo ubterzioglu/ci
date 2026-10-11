@@ -83,6 +83,8 @@ export function ChefRestaurantPageBody() {
           path: CHEF_RESTAURANT_PATH,
           datePublished: CHEF_RESTAURANT_DATES.published,
           dateModified: CHEF_RESTAURANT_DATES.modified,
+          hasArticle: true,
+          hasFaq: true,
         })}
       />
 

@@ -25,7 +25,8 @@
     "goToPage": "Перейти →",
     "viewFullMenu": "Смотреть всё меню",
     "reservationTitle": "Ваше место за нашим столом уже ждёт вас",
-    "galleryTitle": "Атмосфера"
+    "galleryTitle": "Атмосфера",
+    "faqTitle": "Часто задаваемые вопросы"
   },
   "pages": {
     "contact": {

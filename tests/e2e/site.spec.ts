@@ -141,6 +141,25 @@ test.describe('seo endpoints', () => {
     });
   }
 
+  test('llms.txt uses markdown links', async ({ request }) => {
+    const res = await request.get('/llms.txt');
+    expect(res.status()).toBe(200);
+    expect(await res.text()).toMatch(/\]\(https?:\/\/[^)]+\/menu\)/);
+  });
+
+  test('home page shows the FAQ and marks it up with a dated WebPage', async ({ page }) => {
+    await page.goto('/en');
+    await expect(page.getByRole('heading', { name: 'Frequently Asked Questions' })).toBeVisible();
+    const jsonLd = (
+      await page.locator('script[type="application/ld+json"]').allTextContents()
+    ).join('\n');
+    expect(jsonLd).toContain('"FAQPage"');
+    expect(jsonLd).toContain('"dateModified"');
+    await expect(
+      page.locator('meta[name="article:modified_time"], meta[property="article:modified_time"]'),
+    ).toHaveCount(1);
+  });
+
   test('sitemap lists every locale of every public page', async ({ request }) => {
     const xml = await (await request.get('/sitemap.xml')).text();
     for (const locale of LOCALES) {

@@ -71,6 +71,8 @@ interface BuildMetadataInput {
    * signal to crawlers, not a neutral one. Such pages get a canonical only.
    */
   localeAlternates?: boolean;
+  /** ISO date of the last real content change, emitted as article:modified_time. */
+  modifiedTime?: string;
 }
 
 /**
@@ -95,6 +97,7 @@ export function buildMetadata({
   ogImage,
   noIndex = false,
   localeAlternates = true,
+  modifiedTime,
 }: BuildMetadataInput): Metadata {
   const fullTitle = absoluteTitle ?? (title ? `${title} | ${siteConfig.name}` : siteConfig.name);
   const desc = description ?? siteConfig.description;
@@ -135,5 +138,6 @@ export function buildMetadata({
       images: [image],
     },
     robots: noIndex ? { index: false, follow: false } : { index: true, follow: true },
+    ...(modifiedTime ? { other: { 'article:modified_time': modifiedTime } } : {}),
   };
 }

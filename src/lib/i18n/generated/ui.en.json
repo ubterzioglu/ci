@@ -25,7 +25,8 @@
     "goToPage": "Go to Page →",
     "viewFullMenu": "View the Full Menu",
     "reservationTitle": "Your place at our table is ready",
-    "galleryTitle": "Atmosphere"
+    "galleryTitle": "Atmosphere",
+    "faqTitle": "Frequently Asked Questions"
   },
   "pages": {
     "contact": {

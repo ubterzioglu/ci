@@ -1,5 +1,6 @@
 import { PageHeader } from '@/components/layout/PageHeader';
 import { JsonLd } from '@/components/seo/JsonLd';
+import { LastUpdated } from '@/components/seo/LastUpdated';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import {
   CHEF_RESTAURANT_DATES,
@@ -131,6 +132,8 @@ export function ChefRestaurantPageBody() {
             </dl>
           </div>
         </section>
+
+        <LastUpdated date={CHEF_RESTAURANT_DATES.modified} locale="tr" />
 
         {/* Contact block — values come from siteConfig so NAP stays consistent. */}
         <section className="bg-charcoal py-section text-ivory">

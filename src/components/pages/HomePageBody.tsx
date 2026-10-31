@@ -8,6 +8,7 @@ import { ChefIntro } from '@/components/sections/ChefIntro';
 import { FaqSection } from '@/components/sections/FaqSection';
 import { ContactSection } from '@/components/sections/ContactSection';
 import { JsonLd } from '@/components/seo/JsonLd';
+import { LastUpdated } from '@/components/seo/LastUpdated';
 import { getHomeFaq } from '@/content/home-faq';
 import { HOME_DATES } from '@/content/pages-data';
 import { getLocalPage } from '@/content/pages-i18n';
@@ -65,6 +66,7 @@ export async function HomePageBody({ locale }: HomePageBodyProps) {
       <ChefIntro locale={locale} />
       <FaqSection title={getDictionary(locale).home.faqTitle} items={faq} />
       <ContactSection locale={locale} />
+      <LastUpdated date={HOME_DATES.modified} locale={locale} />
     </>
   );
 }

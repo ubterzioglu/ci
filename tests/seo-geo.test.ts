@@ -4,6 +4,8 @@ import test from 'node:test';
 import { getHomeFaq } from '../src/content/home-faq';
 import { HOME_DATES } from '../src/content/pages-data';
 import { locales } from '../src/lib/i18n/config';
+import { siteConfig } from '../src/lib/site-config';
+import { buildAiFaq, buildAiSummary, buildAiTxt } from '../src/lib/seo/ai-discovery';
 import { buildLlmsTxt } from '../src/lib/seo/llms-txt';
 import { buildPageMetadata } from '../src/lib/seo/page-metadata';
 import { faqSchema, webPageSchema } from '../src/lib/seo/schema';
@@ -19,6 +21,25 @@ test('llms.txt lists pages and profiles as markdown links and states a date', ()
   );
   assert.match(body, /- \[Instagram\]\(https:\/\/www\.instagram\.com\//);
   assert.ok(body.includes(`Last updated: ${HOME_DATES.modified}`));
+});
+
+test('AI discovery files are generated from site facts and stay in sync', () => {
+  const summary = buildAiSummary();
+  assert.equal(summary.name, siteConfig.name);
+  assert.equal(summary.contact.phone, siteConfig.contact.phoneDisplay);
+  assert.equal(summary.lastUpdated, HOME_DATES.modified);
+  assert.ok(summary.profiles.length > 0);
+
+  const faq = buildAiFaq();
+  for (const locale of locales) {
+    assert.deepEqual(faq.faq[locale], getHomeFaq(locale), locale);
+  }
+  JSON.parse(JSON.stringify(faq));
+
+  const txt = buildAiTxt();
+  assert.match(txt, /^User-Agent: \*$/m);
+  assert.match(txt, /^Disallow: \/admin\/$/m);
+  assert.ok(txt.includes('/ai/summary.json') && txt.includes('/ai/faq.json'));
 });
 
 test('home FAQ has five non-empty pairs in every locale', () => {

@@ -142,18 +142,3 @@ export function restaurantSchema(locale: Locale = defaultLocale): Record<string,
 
   return schema;
 }
-
-/**
- * Compact Restaurant reference — only `@type` and `@id`. Used on every page
- * except the homepage, where the full `restaurantSchema` is emitted. This way
- * crawlers see one business entity (the homepage defines it; other pages point
- * at it) instead of five copies of the same Restaurant node.
- */
-export function restaurantRefSchema(): Record<string, unknown> {
-  const sameAs = restaurantSameAs();
-  return {
-    '@type': 'Restaurant',
-    '@id': RESTAURANT_ID,
-    ...(sameAs.length > 0 ? { sameAs } : {}),
-  };
-}

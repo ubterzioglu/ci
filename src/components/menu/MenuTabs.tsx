@@ -58,7 +58,7 @@ export function MenuTabs({
           role="tab"
           id="tab-food"
           aria-selected={tab === 'food'}
-          aria-controls="panel-food"
+          aria-controls={tab === 'food' ? 'panel-food' : undefined}
           onClick={() => setTab('food')}
           className={tabClass(tab === 'food')}
         >
@@ -69,7 +69,7 @@ export function MenuTabs({
           role="tab"
           id="tab-wine"
           aria-selected={tab === 'wine'}
-          aria-controls="panel-wine"
+          aria-controls={tab === 'wine' ? 'panel-wine' : undefined}
           onClick={() => setTab('wine')}
           className={tabClass(tab === 'wine')}
         >

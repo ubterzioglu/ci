@@ -8,7 +8,7 @@ import { GoogleAnalytics } from '@/components/analytics/GoogleAnalytics';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { defaultLocale, isLocale } from '@/lib/i18n/config';
 import { buildGeoMetadata } from '@/lib/seo/metadata';
-import { restaurantRefSchema, websiteSchema } from '@/lib/seo/schema';
+import { websiteSchema } from '@/lib/seo/schema';
 import { siteConfig } from '@/lib/site-config';
 
 const cormorant = Cormorant_Garamond({
@@ -107,13 +107,14 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     <html lang={lang} className={`${cormorant.variable} ${inter.variable}`}>
       <body className="bg-marble text-charcoal flex min-h-screen flex-col antialiased">
         {/*
-          The full Restaurant node is emitted only on the homepage (see
-          HomePageBody). Every other page carries a compact @id reference so
-          crawlers see ONE business entity, not five copies of the same node.
+          The Restaurant node is emitted only on the homepage (see
+          HomePageBody); other pages reach it by @id through WebSite.publisher
+          and WebPage.about, so crawlers see ONE business entity. A bare
+          Restaurant stub here was invalid (no @context, no address) and put a
+          LocalBusiness on every page, noindex pages included.
           The WebSite node is emitted everywhere — it is cheap and identifies
           the site as the publisher of this Restaurant.
         */}
-        <JsonLd data={restaurantRefSchema()} />
         <JsonLd data={websiteSchema(lang)} />
         {/*
           Site chrome (Header/Footer/<main>) lives in app/(site)/layout.tsx so

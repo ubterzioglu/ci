@@ -41,8 +41,8 @@ export async function HomePageBody({ locale }: HomePageBodyProps) {
 
   return (
     <>
-      {/* Full Restaurant node — only emitted here. Other pages carry a compact
-          @id reference (see layout.tsx) so crawlers see one business entity. */}
+      {/* Restaurant node — only emitted here. Other pages reference it by @id
+          (WebSite.publisher, WebPage.about) so crawlers see one business entity. */}
       <JsonLd data={restaurantSchema(locale)} />
       <JsonLd data={menuSchema(menu, locale)} />
       <JsonLd

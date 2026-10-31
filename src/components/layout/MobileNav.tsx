@@ -66,6 +66,9 @@ export function MobileNav({ open, onClose, locale = defaultLocale }: MobileNavPr
       id="mobile-nav"
       className={`fixed inset-0 z-50 md:hidden ${open ? '' : 'pointer-events-none'}`}
       aria-hidden={!open}
+      // `inert` keeps focus out of the closed panel; aria-hidden alone would
+      // leave its links focusable.
+      inert={!open}
     >
       {/* Backdrop */}
       <button

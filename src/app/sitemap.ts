@@ -1,7 +1,7 @@
 import type { MetadataRoute } from 'next';
 
 import { CHEF_RESTAURANT_DATES, CHEF_RESTAURANT_PATH } from '@/content/kas-sef-restorani';
-import { HOME_DATES } from '@/content/pages-data';
+import { HOME_DATES, INNER_PAGE_DATES } from '@/content/pages-data';
 import { defaultLocale, locales } from '@/lib/i18n/config';
 import { localePath } from '@/lib/i18n/paths';
 import { siteConfig } from '@/lib/site-config';
@@ -32,11 +32,21 @@ interface RouteConfig {
 
 const ROUTES: RouteConfig[] = [
   { path: '/', changeFrequency: 'weekly', priority: 1, lastModified: HOME_DATES.modified },
-  { path: '/menu', changeFrequency: 'weekly', priority: 0.9 },
-  { path: '/reservations', changeFrequency: 'monthly', priority: 0.8 },
-  { path: '/about', changeFrequency: 'monthly', priority: 0.7 },
-  { path: '/experiences', changeFrequency: 'monthly', priority: 0.7 },
-  { path: '/contact', changeFrequency: 'monthly', priority: 0.6 },
+  { path: '/menu', changeFrequency: 'weekly', priority: 0.9, lastModified: INNER_PAGE_DATES.modified },
+  {
+    path: '/reservations',
+    changeFrequency: 'monthly',
+    priority: 0.8,
+    lastModified: INNER_PAGE_DATES.modified,
+  },
+  { path: '/about', changeFrequency: 'monthly', priority: 0.7, lastModified: INNER_PAGE_DATES.modified },
+  {
+    path: '/experiences',
+    changeFrequency: 'monthly',
+    priority: 0.7,
+    lastModified: INNER_PAGE_DATES.modified,
+  },
+  { path: '/contact', changeFrequency: 'monthly', priority: 0.6, lastModified: INNER_PAGE_DATES.modified },
 ];
 
 /**

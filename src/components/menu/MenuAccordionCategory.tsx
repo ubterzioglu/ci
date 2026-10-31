@@ -30,10 +30,11 @@ export function MenuAccordionCategory({
 }) {
   const [open, setOpen] = useState(false);
   const panelId = useId();
+  const headingId = useId();
 
   return (
-    <section aria-labelledby={`cat-${category.slug}`} className="scroll-mt-28">
-      <h2 id={`cat-${category.slug}`} className="border-stone border-b">
+    <section aria-labelledby={headingId} className="scroll-mt-28">
+      <h2 id={headingId} className="border-stone border-b">
         <button
           type="button"
           onClick={() => setOpen((v) => !v)}
@@ -61,11 +62,12 @@ export function MenuAccordionCategory({
         </button>
       </h2>
 
-      {open && (
-        <div id={panelId} className="fade-up">
-          {category.description && (
-            <p className="text-muted mt-4 max-w-prose text-sm">{category.description}</p>
-          )}
+      {/* Always rendered so aria-controls resolves; `hidden` collapses it. */}
+      <div id={panelId} hidden={!open} className={open ? 'fade-up' : undefined}>
+        {open && category.description && (
+          <p className="text-muted mt-4 max-w-prose text-sm">{category.description}</p>
+        )}
+        {open && (
           <div className="divide-stone-soft divide-y">
             {category.items.map((item) =>
               variant === 'wine' ? (
@@ -75,8 +77,8 @@ export function MenuAccordionCategory({
               ),
             )}
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </section>
   );
 }

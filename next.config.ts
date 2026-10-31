@@ -28,6 +28,26 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  async headers() {
+    return [
+      {
+        source: '/:path*',
+        headers: [
+          { key: 'Strict-Transport-Security', value: 'max-age=63072000; includeSubDomains' },
+          { key: 'X-Frame-Options', value: 'SAMEORIGIN' },
+          { key: 'X-Content-Type-Options', value: 'nosniff' },
+          { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
+          // Script/style sources are intentionally left open: GA, Clarity and
+          // Next's inline bootstrap would need a nonce-based policy first.
+          // These directives lock down framing, <base>, plugins and form targets.
+          {
+            key: 'Content-Security-Policy',
+            value: "frame-ancestors 'self'; base-uri 'self'; object-src 'none'; form-action 'self'",
+          },
+        ],
+      },
+    ];
+  },
   async redirects() {
     return [
       {

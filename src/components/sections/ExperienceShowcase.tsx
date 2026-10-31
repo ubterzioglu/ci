@@ -96,6 +96,7 @@ export async function ExperienceShowcase({ locale = defaultLocale }: ExperienceS
         <Image
           src={background.src}
           alt=""
+          role="presentation"
           fill
           sizes="100vw"
           aria-hidden="true"

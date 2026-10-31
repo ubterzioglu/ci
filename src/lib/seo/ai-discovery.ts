@@ -46,7 +46,9 @@ export function buildAiSummary() {
       contact: abs(localePath('/contact', 'en')),
     },
     faq: abs(AI_FAQ_PATH),
+    service: abs('/ai/service.json'),
     llmsTxt: abs('/llms.txt'),
+    llmsFullTxt: abs('/llms-full.txt'),
     profiles: profiles.filter((href): href is string => Boolean(href)),
   };
 }
@@ -56,6 +58,9 @@ export function buildAiFaq() {
     name: siteConfig.name,
     url: abs('/'),
     lastUpdated: HOME_DATES.modified,
+    // Flat Turkish list (the default language) for consumers that read `faqs`;
+    // every language is under `faq`.
+    faqs: getHomeFaq('tr'),
     faq: {
       tr: getHomeFaq('tr'),
       en: getHomeFaq('en'),
@@ -63,6 +68,47 @@ export function buildAiFaq() {
       ru: getHomeFaq('ru'),
       fr: getHomeFaq('fr'),
     },
+  };
+}
+
+/**
+ * /ai/service.json — what the restaurant offers and how to engage it. Only
+ * services the site already states publicly: no online instant booking, no
+ * delivery, no unconfirmed extras.
+ */
+export function buildAiService() {
+  const { contact } = siteConfig;
+
+  return {
+    name: siteConfig.name,
+    url: abs('/'),
+    capabilities: [
+      {
+        name: 'Dining',
+        description:
+          'Mediterranean and Anatolian restaurant in Kaş, Antalya with a seasonal, product-led menu and a wine selection from local producers.',
+        url: abs(localePath('/menu', 'en')),
+      },
+      {
+        name: "Chef's Table",
+        description: 'A set-menu experience with the chef, offered by arrangement.',
+        url: abs(localePath('/experiences', 'en')),
+      },
+      {
+        name: 'Private events',
+        description: 'Private events and set menus by arrangement; contact the restaurant.',
+        url: abs(localePath('/contact', 'en')),
+      },
+    ],
+    booking: {
+      method: 'request',
+      note: 'Reservations are requested through the website form or by phone; there is no online instant booking.',
+      form: abs(localePath('/reservations', 'en')),
+      phone: contact.phoneE164,
+      email: contact.email,
+    },
+    location: { address: contact.address, map: contact.mapsUrl },
+    lastUpdated: HOME_DATES.modified,
   };
 }
 
@@ -88,12 +134,15 @@ export function buildAiTxt(): string {
     'User-Agent: Perplexity-User',
     'User-Agent: Claude-SearchBot',
     'User-Agent: Claude-User',
+    'User-Agent: Googlebot',
+    'User-Agent: Applebot',
     'Allow: /',
     'Disallow: /api/',
     'Disallow: /admin/',
     '',
     `Summary: ${abs(AI_SUMMARY_PATH)}`,
     `FAQ: ${abs(AI_FAQ_PATH)}`,
+    `Service: ${abs('/ai/service.json')}`,
     `LLMs: ${abs('/llms.txt')}`,
     `Contact: ${siteConfig.contact.email}`,
     '',

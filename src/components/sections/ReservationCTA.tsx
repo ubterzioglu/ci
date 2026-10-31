@@ -28,6 +28,7 @@ export async function ReservationCTA({ locale = defaultLocale }: ReservationCTAP
         <Image
           src={image.src}
           alt=""
+          role="presentation"
           fill
           sizes="100vw"
           className="object-cover opacity-20"

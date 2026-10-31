@@ -32,6 +32,14 @@ export function proxy(request: NextRequest) {
     return NextResponse.redirect(redirectUrl, match.status);
   }
 
+  // 1b. Content negotiation: agents asking for `text/markdown` get the markdown
+  //     rendition of the home page instead of HTML.
+  if (path === '/' && request.headers.get('accept')?.includes('text/markdown')) {
+    const markdownUrl = request.nextUrl.clone();
+    markdownUrl.pathname = '/markdown';
+    return NextResponse.rewrite(markdownUrl);
+  }
+
   // 2. Gate the admin area. The login page is public; every other /admin path
   //    requires a valid admin session cookie. The cookie's HMAC is verified
   //    server-side by requireAdmin() on each page/action — here we only check

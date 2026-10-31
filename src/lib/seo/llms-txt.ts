@@ -1,3 +1,4 @@
+import { getHomeFaq } from '@/content/home-faq';
 import { CHEF_RESTAURANT_PATH } from '@/content/kas-sef-restorani';
 import { aboutContent, HOME_DATES } from '@/content/pages-data';
 import { localePath } from '@/lib/i18n/paths';
@@ -98,4 +99,19 @@ export function buildLlmsTxt(): string {
   }
 
   return lines.join('\n');
+}
+
+/**
+ * Body of /llms-full.txt — llms.txt plus the full home-page FAQ in Turkish and
+ * English, so an assistant gets the quotable answers in a single fetch. Built
+ * from the same dictionary as the visible FAQ and its FAQPage JSON-LD.
+ */
+export function buildLlmsFullTxt(): string {
+  const sections = (['tr', 'en'] as const).flatMap((locale) => [
+    `## FAQ (${locale.toUpperCase()})`,
+    '',
+    ...getHomeFaq(locale).flatMap((item) => [`### ${item.question}`, '', item.answer, '']),
+  ]);
+
+  return [buildLlmsTxt(), ...sections].join('\n');
 }

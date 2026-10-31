@@ -5,8 +5,14 @@ import { getHomeFaq } from '../src/content/home-faq';
 import { HOME_DATES } from '../src/content/pages-data';
 import { locales } from '../src/lib/i18n/config';
 import { siteConfig } from '../src/lib/site-config';
-import { buildAiFaq, buildAiSummary, buildAiTxt } from '../src/lib/seo/ai-discovery';
-import { buildLlmsTxt } from '../src/lib/seo/llms-txt';
+import {
+  buildAiFaq,
+  buildAiService,
+  buildAiSummary,
+  buildAiTxt,
+} from '../src/lib/seo/ai-discovery';
+import { buildAtomFeed } from '../src/lib/seo/feed';
+import { buildLlmsFullTxt, buildLlmsTxt } from '../src/lib/seo/llms-txt';
 import { buildPageMetadata } from '../src/lib/seo/page-metadata';
 import { faqSchema, webPageSchema } from '../src/lib/seo/schema';
 
@@ -40,6 +46,24 @@ test('AI discovery files are generated from site facts and stay in sync', () => 
   assert.match(txt, /^User-Agent: \*$/m);
   assert.match(txt, /^Disallow: \/admin\/$/m);
   assert.ok(txt.includes('/ai/summary.json') && txt.includes('/ai/faq.json'));
+});
+
+test('audit-facing endpoints expose the shapes crawlers read', () => {
+  const faq = buildAiFaq();
+  assert.equal(faq.faqs.length, 5);
+  assert.ok(faq.faqs.every((f) => f.question.length >= 10 && f.answer.length >= 20));
+
+  const service = buildAiService();
+  assert.ok(service.name.length >= 3 && service.capabilities.length > 0);
+
+  const full = buildLlmsFullTxt();
+  assert.ok(full.startsWith(buildLlmsTxt()));
+  assert.ok(full.includes('## FAQ (EN)'));
+
+  const feed = buildAtomFeed();
+  assert.match(feed, /<feed xmlns="http:\/\/www\.w3\.org\/2005\/Atom"/);
+  assert.equal((feed.match(/<entry>/g) ?? []).length, 2);
+  assert.ok(feed.includes(`<updated>${HOME_DATES.modified}T00:00:00Z</updated>`));
 });
 
 test('home FAQ has five non-empty pairs in every locale', () => {

@@ -110,6 +110,7 @@ export function buildMetadata({
     alternates: {
       canonical,
       ...(localeAlternates ? { languages: buildLanguageAlternates(path) } : {}),
+      types: { 'application/atom+xml': new URL('/feed.xml', baseUrl).toString() },
     },
     openGraph: {
       type: 'website',

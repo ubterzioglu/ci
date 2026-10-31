@@ -40,6 +40,9 @@ export default function robots(): MetadataRoute.Robots {
           'Perplexity-User',
           'Claude-SearchBot',
           'Claude-User',
+          // Search crawlers that also feed AI answers (AI Overviews, Siri/Spotlight).
+          'Googlebot',
+          'Applebot',
         ],
         allow: '/',
         disallow: privatePaths,

@@ -1,6 +1,7 @@
 import { PageHeader } from '@/components/layout/PageHeader';
 import { MenuTabs } from '@/components/menu/MenuTabs';
 import { JsonLd } from '@/components/seo/JsonLd';
+import { PageSchema } from '@/components/seo/PageSchema';
 import { getMenu } from '@/lib/db/menu';
 import { getMenuServiceNote, getWineMenuNotice } from '@/content/menu-data';
 import { getWinePriceLabels } from '@/content/wine-menu-data';
@@ -26,6 +27,7 @@ export async function MenuPageBody({ locale }: MenuPageBodyProps) {
 
   return (
     <>
+      <PageSchema route="/menu" locale={locale} />
       <JsonLd data={menuSchema(menu, locale)} />
       <JsonLd
         data={breadcrumbSchema([

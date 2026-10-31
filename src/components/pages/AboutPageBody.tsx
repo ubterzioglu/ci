@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { PageHeader } from '@/components/layout/PageHeader';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { JsonLd } from '@/components/seo/JsonLd';
+import { PageSchema } from '@/components/seo/PageSchema';
 import { getAboutContent } from '@/content/pages-i18n';
 import { resolveImage } from '@/lib/images';
 import { getTeamPhotos } from '@/lib/db/team-photos';
@@ -36,6 +37,7 @@ export async function AboutPageBody({ locale }: AboutPageBodyProps) {
 
   return (
     <>
+      <PageSchema route="/about" locale={locale} />
       <JsonLd
         data={breadcrumbSchema([
           { name: dictionary.nav.home, path: localePath('/', locale) },

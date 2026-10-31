@@ -58,12 +58,12 @@ export const chefRestaurantMeta = {
    * the full title already names the brand, so it would read twice and overrun
    * the ~60-character SERP cutoff.
    */
-  seoTitle: 'Kaş’ta Şef Restoranı: Nitelikli Yemek ve Yerel Ürünler',
+  seoTitle: 'Kaş’ta Şef Restoranı ve Yerel Ürünler',
   /** Visible H1. */
   heading: 'Kaş’ta Şef Restoranı Arayanlar İçin',
   eyebrow: 'Çi Neo Cucina by Mezetaryen',
   description:
-    'Kaş’ta şef restoranı, nitelikli yemek ve yerel ürünler arayanlar için: Çi Neo Cucina’nın ürün odaklı, mevsimsel mutfak yaklaşımı, şarap eşleşmeleri ve sık sorulan sorular.',
+    'Kaş’ta şef restoranı ve yerel ürünler arayanlar için Çi Neo Cucina’nın ürün odaklı, mevsimsel mutfak yaklaşımı, şarap eşleşmeleri ve sık sorulan sorular.',
 } as const;
 
 export const chefRestaurantIntro: readonly string[] = [

@@ -15,6 +15,8 @@ export interface WebPageSchemaInput {
   hasArticle?: boolean;
   /** Emit `hasPart: <url>#faq` — only for pages that carry a FAQPage node. */
   hasFaq?: boolean;
+  /** Emit a SpeakableSpecification pointing at the page's visible H1. */
+  speakable?: boolean;
 }
 
 /** `@id` of the WebPage node for a given page URL. */
@@ -37,6 +39,7 @@ export function webPageSchema({
   dateModified,
   hasArticle = false,
   hasFaq = false,
+  speakable = false,
 }: WebPageSchemaInput): Record<string, unknown> {
   const url = new URL(path, baseUrl).toString();
   const image = new URL(siteConfig.ogDefaultImage, baseUrl).toString();
@@ -54,6 +57,7 @@ export function webPageSchema({
     primaryImageOfPage: { '@type': 'ImageObject', url: image },
     ...(hasArticle ? { mainEntity: { '@id': `${url}#article` } } : {}),
     ...(hasFaq ? { hasPart: { '@id': `${url}#faq` } } : {}),
+    ...(speakable ? { speakable: { '@type': 'SpeakableSpecification', cssSelector: ['h1'] } } : {}),
     ...(datePublished ? { datePublished } : {}),
     ...((dateModified ?? datePublished) ? { dateModified: dateModified ?? datePublished } : {}),
   };

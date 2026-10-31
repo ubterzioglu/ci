@@ -12,12 +12,30 @@ import {
   RESTAURANT_ID,
 } from './shared';
 
+function restaurantMapsUrl(): string | null | undefined {
+  const { contact, geo } = siteConfig;
+  return geo.latitude !== null && geo.longitude !== null
+    ? `https://www.google.com/maps/search/?api=1&query=${geo.latitude},${geo.longitude}`
+    : contact.mapsUrl;
+}
+
+/** Social/listing profiles for entity disambiguation (Google "sameAs"). */
+function restaurantSameAs(): string[] {
+  const { social } = siteConfig;
+  return [
+    social.instagram,
+    social.facebook,
+    social.tripadvisor,
+    social.wanderlog,
+    social.restaurantGuru,
+    restaurantMapsUrl(),
+  ].filter((v): v is string => typeof v === 'string' && v.length > 0);
+}
+
 export function restaurantSchema(locale: Locale = defaultLocale): Record<string, unknown> {
-  const { contact, geo, social, hours } = siteConfig;
-  const mapsUrl =
-    geo.latitude !== null && geo.longitude !== null
-      ? `https://www.google.com/maps/search/?api=1&query=${geo.latitude},${geo.longitude}`
-      : contact.mapsUrl;
+  const { contact, geo, hours } = siteConfig;
+  const mapsUrl = restaurantMapsUrl();
+  const sameAs = restaurantSameAs();
 
   // PostalAddress — streetAddress only when a real address is known.
   const address: Record<string, unknown> = {
@@ -28,16 +46,6 @@ export function restaurantSchema(locale: Locale = defaultLocale): Record<string,
     addressCountry: contact.countryCode,
   };
   if (contact.streetAddress) address.streetAddress = contact.streetAddress;
-
-  // Social/listing profiles for entity disambiguation (Google "sameAs").
-  const sameAs = [
-    social.instagram,
-    social.facebook,
-    social.tripadvisor,
-    social.wanderlog,
-    social.restaurantGuru,
-    mapsUrl,
-  ].filter((v): v is string => typeof v === 'string' && v.length > 0);
 
   const image = new URL(siteConfig.ogDefaultImage, baseUrl).toString();
   const reservationsUrl = new URL(localePath('/reservations', locale), baseUrl).toString();
@@ -142,8 +150,10 @@ export function restaurantSchema(locale: Locale = defaultLocale): Record<string,
  * at it) instead of five copies of the same Restaurant node.
  */
 export function restaurantRefSchema(): Record<string, unknown> {
+  const sameAs = restaurantSameAs();
   return {
     '@type': 'Restaurant',
     '@id': RESTAURANT_ID,
+    ...(sameAs.length > 0 ? { sameAs } : {}),
   };
 }

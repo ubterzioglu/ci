@@ -1,6 +1,7 @@
 import { Button } from '@/components/ui/Button';
 import { PageHeader } from '@/components/layout/PageHeader';
 import { JsonLd } from '@/components/seo/JsonLd';
+import { PageSchema } from '@/components/seo/PageSchema';
 import { breadcrumbSchema, faqSchema } from '@/lib/seo/schema';
 import { PRIMARY_CTA } from '@/lib/site-config';
 import type { Locale } from '@/lib/i18n/config';
@@ -31,6 +32,7 @@ export function ExperiencesPageBody({ locale }: ExperiencesPageBodyProps) {
 
   return (
     <>
+      <PageSchema route="/experiences" locale={locale} />
       <JsonLd
         data={breadcrumbSchema([
           { name: dictionary.nav.home, path: localePath('/', locale) },

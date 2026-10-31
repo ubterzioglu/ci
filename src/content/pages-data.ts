@@ -58,6 +58,16 @@ export const HOME_DATES = {
   modified: '2026-10-11',
 } as const;
 
+/**
+ * Dates for the WebPage JSON-LD of the inner pages (menu, about, experiences,
+ * contact, reservations). Hard-coded for the same reason as HOME_DATES; bump
+ * `modified` when an inner page's copy or SEO metadata actually changes.
+ */
+export const INNER_PAGE_DATES = {
+  published: '2026-09-28',
+  modified: '2026-10-31',
+} as const;
+
 export const homeContent = {
   hero: {
     title: 'Çi Neo Cucina',

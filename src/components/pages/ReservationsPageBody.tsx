@@ -1,6 +1,7 @@
 import { PageHeader } from '@/components/layout/PageHeader';
 import { ReservationForm } from '@/components/forms/ReservationForm';
 import { JsonLd } from '@/components/seo/JsonLd';
+import { PageSchema } from '@/components/seo/PageSchema';
 import { breadcrumbSchema } from '@/lib/seo/schema';
 import { siteConfig } from '@/lib/site-config';
 import type { Locale } from '@/lib/i18n/config';
@@ -22,6 +23,7 @@ export function ReservationsPageBody({ locale }: ReservationsPageBodyProps) {
 
   return (
     <>
+      <PageSchema route="/reservations" locale={locale} />
       <JsonLd
         data={breadcrumbSchema([
           { name: dictionary.nav.home, path: localePath('/', locale) },

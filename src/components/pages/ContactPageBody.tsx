@@ -2,6 +2,7 @@ import { PageHeader } from '@/components/layout/PageHeader';
 import { ContactForm } from '@/components/forms/ContactForm';
 import { ContactSection } from '@/components/sections/ContactSection';
 import { JsonLd } from '@/components/seo/JsonLd';
+import { PageSchema } from '@/components/seo/PageSchema';
 import { breadcrumbSchema } from '@/lib/seo/schema';
 import type { Locale } from '@/lib/i18n/config';
 import { getDictionary } from '@/lib/i18n/dictionaries';
@@ -23,6 +24,7 @@ export function ContactPageBody({ locale }: ContactPageBodyProps) {
 
   return (
     <>
+      <PageSchema route="/contact" locale={locale} />
       <JsonLd
         data={breadcrumbSchema([
           { name: dictionary.nav.home, path: localePath('/', locale) },

@@ -54,6 +54,7 @@ export async function HomePageBody({ locale }: HomePageBodyProps) {
           datePublished: HOME_DATES.published,
           dateModified: HOME_DATES.modified,
           hasFaq: true,
+          speakable: true,
         })}
       />
       <JsonLd data={faqSchema(faq, pageUrl)} />

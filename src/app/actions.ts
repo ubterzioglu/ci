@@ -2,6 +2,7 @@
 
 import { createReservationSchema, createContactSchema } from '@/lib/validation';
 import { saveReservation, saveContactMessage } from '@/lib/db/forms';
+import { declineIfSeasonClosed } from '@/lib/db/season-closure';
 import { sendNotificationEmail } from '@/lib/email';
 import type { ActionResult } from '@/lib/types';
 import { defaultLocale, isLocale } from '@/lib/i18n/config';
@@ -39,6 +40,17 @@ export async function submitReservation(
       ok: false,
       error: dictionary.forms.reservation.validationError,
       fieldErrors,
+    };
+  }
+
+  // Closed season: kept on record as declined and the guest gets a decline
+  // mail, but the restaurant is not notified — there is nothing for it to act on.
+  const seasonClosedMessage = await declineIfSeasonClosed(result.data, locale);
+  if (seasonClosedMessage) {
+    return {
+      ok: false,
+      error: seasonClosedMessage,
+      fieldErrors: { requestedDate: [seasonClosedMessage] },
     };
   }
 

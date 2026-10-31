@@ -18,6 +18,11 @@ import {
 } from '@/lib/reservation-rules';
 import { defaultLocale, type Locale } from '@/lib/i18n/config';
 import { getDictionary } from '@/lib/i18n/dictionaries';
+import {
+  isDateInSeasonClosure,
+  seasonClosedCopy,
+  type SeasonClosure,
+} from '@/lib/reservation-closure';
 
 /** Sentinel for the "6 or more" choice — not a real party size. */
 const LARGE_PARTY_VALUE = 'large';
@@ -51,7 +56,16 @@ function ContactHandoff({ title, body }: { title: string; body: string }) {
   );
 }
 
-export function ReservationForm({ locale = defaultLocale }: { locale?: Locale }) {
+interface ReservationFormProps {
+  locale?: Locale;
+  /** Dates the restaurant takes no reservations; picking one shows a warning. */
+  seasonClosure?: SeasonClosure | null;
+}
+
+export function ReservationForm({
+  locale = defaultLocale,
+  seasonClosure = null,
+}: ReservationFormProps) {
   const dictionary = getDictionary(locale);
   const copy = dictionary.forms.reservation;
   const reservationRules = getReservationRuleLines(locale);
@@ -76,6 +90,10 @@ export function ReservationForm({ locale = defaultLocale }: { locale?: Locale })
   const isLargeParty = partySize === LARGE_PARTY_VALUE;
   const slotProblem = date && time ? findSlotProblem(date, time, new Date(), locale) : null;
   const sundayPicked = date ? isClosedDay(date) : false;
+  const seasonClosedPicked =
+    seasonClosure !== null && date ? isDateInSeasonClosure(date, seasonClosure) : false;
+  const seasonClosedNotice =
+    seasonClosure !== null && seasonClosedPicked ? seasonClosedCopy(seasonClosure, locale) : null;
 
   if (state?.ok) {
     return (
@@ -187,6 +205,7 @@ export function ReservationForm({ locale = defaultLocale }: { locale?: Locale })
           name="requestedTime"
           label={copy.time}
           required
+          disabled={seasonClosedPicked}
           value={time}
           onChange={(e) => setTime(e.target.value)}
           error={fieldErrors['requestedTime']?.[0] ?? slotProblem?.message}
@@ -202,12 +221,26 @@ export function ReservationForm({ locale = defaultLocale }: { locale?: Locale })
 
       {sundayPicked && <ContactHandoff title={copy.sundayTitle} body={copy.sundayBody} />}
 
+      {seasonClosedNotice && (
+        <div
+          role="status"
+          aria-live="polite"
+          className="border-wine/40 bg-wine/5 rounded-md border px-5 py-4"
+        >
+          <p className="font-display text-wine text-xl">{seasonClosedNotice.title}</p>
+          <p className="font-body text-charcoal/80 mt-1.5 text-sm leading-relaxed">
+            {seasonClosedNotice.body}
+          </p>
+        </div>
+      )}
+
       <Textarea
         id="res-message"
         name="message"
         label={copy.noteLabel}
         placeholder={copy.notePlaceholder}
         rows={2}
+        disabled={seasonClosedPicked}
         className="min-h-0"
         error={fieldErrors['message']?.[0]}
       />
@@ -220,9 +253,10 @@ export function ReservationForm({ locale = defaultLocale }: { locale?: Locale })
         type="submit"
         variant="solid"
         size="md"
-        // Blocked states hand the guest to the phone instead; leaving the
-        // button live would only produce a rejection they cannot act on.
-        disabled={isPending || isLargeParty || sundayPicked}
+        // Blocked states (large party, Sunday, closed season) cannot be booked
+        // online; leaving the button live would only produce a rejection they
+        // cannot act on. The server still refuses a closed-season date.
+        disabled={isPending || isLargeParty || sundayPicked || seasonClosedPicked}
         className="w-full"
       >
         {isPending ? copy.pending : copy.submit}

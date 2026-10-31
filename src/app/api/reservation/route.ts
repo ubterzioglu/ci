@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 
 import { reservationSchema } from '@/lib/validation';
 import { saveReservation } from '@/lib/db/forms';
+import { declineIfSeasonClosed } from '@/lib/db/season-closure';
 import { isLocale } from '@/lib/i18n/config';
 
 /**
@@ -33,18 +34,25 @@ export async function POST(request: Request) {
   const rawLocale = (body as { locale?: unknown }).locale;
   const locale = typeof rawLocale === 'string' && isLocale(rawLocale) ? rawLocale : null;
 
-  const result = await saveReservation(
-    {
-      name: parsed.data.name,
-      email: parsed.data.email || undefined,
-      phone: parsed.data.phone || undefined,
-      partySize: parsed.data.partySize,
-      requestedDate: parsed.data.requestedDate,
-      requestedTime: parsed.data.requestedTime,
-      message: parsed.data.message || undefined,
-    },
-    locale,
-  );
+  const reservation = {
+    name: parsed.data.name,
+    email: parsed.data.email || undefined,
+    phone: parsed.data.phone || undefined,
+    partySize: parsed.data.partySize,
+    requestedDate: parsed.data.requestedDate,
+    requestedTime: parsed.data.requestedTime,
+    message: parsed.data.message || undefined,
+  };
+
+  const seasonClosedMessage = await declineIfSeasonClosed(reservation, locale);
+  if (seasonClosedMessage) {
+    return NextResponse.json(
+      { ok: false, error: seasonClosedMessage, code: 'season-closed' },
+      { status: 422 },
+    );
+  }
+
+  const result = await saveReservation(reservation, locale);
 
   if (!result.ok && result.reason === 'error') {
     return NextResponse.json({ ok: false, error: 'Talebiniz kaydedilemedi.' }, { status: 500 });

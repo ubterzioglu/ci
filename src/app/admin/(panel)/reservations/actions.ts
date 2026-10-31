@@ -10,7 +10,11 @@ import {
   buildReservationDeclined,
   resolveEmailLocale,
 } from '@/lib/email-content';
+import { setSeasonClosure } from '@/lib/db/season-closure';
 import { sendNotificationEmail } from '@/lib/email';
+import { locales } from '@/lib/i18n/config';
+import { localePath } from '@/lib/i18n/paths';
+import { isValidIsoDate, type SeasonClosure } from '@/lib/reservation-closure';
 import type { ActionResult } from '@/lib/types';
 
 const schema = z.object({
@@ -62,6 +66,64 @@ export async function updateReservationStatusAction(
 
   const notice = await notifyGuestIfNewlyConfirmed(change);
   return { ok: true, data: notice };
+}
+
+const seasonClosureSchema = z
+  .object({
+    start: z.string().refine(isValidIsoDate, 'Başlangıç tarihi geçersiz.'),
+    end: z.string().refine(isValidIsoDate, 'Bitiş tarihi geçersiz.'),
+  })
+  .refine((value) => value.end >= value.start, {
+    message: 'Bitiş tarihi başlangıçtan önce olamaz.',
+    path: ['end'],
+  });
+
+/** The reservations pages (every language) cache the form; refresh them after a change. */
+function revalidateReservationPages(): void {
+  revalidatePath('/admin/reservations');
+  for (const locale of locales) {
+    revalidatePath(localePath('/reservations', locale));
+  }
+}
+
+/**
+ * Sets the dates between which reservation requests are refused. Both ends are
+ * inclusive; requests inside the range are stored as declined and the guest is
+ * told the season is closed.
+ */
+export async function saveSeasonClosureAction(
+  start: string,
+  end: string,
+): Promise<ActionResult<SeasonClosure>> {
+  await requireAdmin();
+
+  const parsed = seasonClosureSchema.safeParse({ start, end });
+  if (!parsed.success) {
+    return { ok: false, error: parsed.error.issues[0]?.message ?? 'Geçersiz tarih aralığı.' };
+  }
+
+  try {
+    await setSeasonClosure(parsed.data);
+  } catch {
+    return { ok: false, error: 'Sezon kapanışı kaydedilemedi. Lütfen tekrar deneyin.' };
+  }
+
+  revalidateReservationPages();
+  return { ok: true, data: parsed.data };
+}
+
+/** Lifts the closure: reservations are accepted for every date again. */
+export async function clearSeasonClosureAction(): Promise<ActionResult> {
+  await requireAdmin();
+
+  try {
+    await setSeasonClosure(null);
+  } catch {
+    return { ok: false, error: 'Sezon kapanışı kaldırılamadı. Lütfen tekrar deneyin.' };
+  }
+
+  revalidateReservationPages();
+  return { ok: true };
 }
 
 async function notifyGuestIfNewlyConfirmed(change: {

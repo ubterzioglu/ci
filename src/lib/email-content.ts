@@ -1,6 +1,7 @@
 import { siteConfig } from '@/lib/site-config';
 import { isLocale, type Locale } from '@/lib/i18n/config';
 import { renderEmailLayout } from '@/lib/email-layout';
+import { seasonClosedCopy, type SeasonClosure } from '@/lib/reservation-closure';
 
 /** Reservation details used to build a guest confirmation email. */
 export interface ReservationConfirmationInput {
@@ -200,6 +201,48 @@ export function buildReservationDeclined(
   });
 
   return { subject: t.subject(restaurantName), text, html };
+}
+
+/**
+ * The note sent to a guest who asked for a date inside the closed season: the
+ * same "Sezon Kapanmıştır" wording the form shows, so the mail never contradicts
+ * the screen. Unlike the generic decline there is no phone invitation — nobody
+ * can be seated until the season reopens.
+ */
+export function buildSeasonClosedDecline(
+  reservation: Pick<ReservationConfirmationInput, 'name'>,
+  closure: SeasonClosure,
+  locale: Locale,
+): EmailBody {
+  const { contact, name: restaurantName } = siteConfig;
+  const t = declinedCopy[locale];
+  const c = copy[locale];
+  const closed = seasonClosedCopy(closure, locale);
+
+  const text = [
+    t.greeting(reservation.name),
+    '',
+    closed.title,
+    closed.body,
+    '',
+    `${c.phone}: ${contact.phoneDisplay}`,
+    `${c.email}: ${contact.email}`,
+    '',
+    restaurantName,
+    contact.region,
+  ].join('\n');
+
+  const html = renderEmailLayout({
+    lang: locale,
+    brandName: restaurantName,
+    greeting: t.greeting(reservation.name),
+    paragraphs: [closed.title, closed.body],
+    contact: layoutContact('', locale),
+    region: contact.region,
+    siteUrl: siteConfig.url,
+  });
+
+  return { subject: `${closed.title} — ${restaurantName}`, text, html };
 }
 
 /** One-language confirmation, in the language the guest booked in. */

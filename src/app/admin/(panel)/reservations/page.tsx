@@ -1,9 +1,14 @@
 import { AdminPageHeader } from '@/components/admin/primitives';
 import { listReservations } from '@/lib/db/admin/reservations';
+import { getSeasonClosure } from '@/lib/db/season-closure';
 import { ReservationsClient } from './ReservationsClient';
+import { SeasonClosurePanel } from './SeasonClosurePanel';
 
 export default async function ReservationsPage() {
-  const reservations = await listReservations();
+  const [reservations, seasonClosure] = await Promise.all([
+    listReservations(),
+    getSeasonClosure(),
+  ]);
 
   return (
     <>
@@ -12,7 +17,10 @@ export default async function ReservationsPage() {
         title="Rezervasyonlar"
         description="Gelen talepleri takip edin, müşteriyle iletişim durumunu yönetin."
       />
-      <ReservationsClient initialReservations={reservations} />
+      <div className="space-y-6">
+        <SeasonClosurePanel initialClosure={seasonClosure} />
+        <ReservationsClient initialReservations={reservations} />
+      </div>
     </>
   );
 }

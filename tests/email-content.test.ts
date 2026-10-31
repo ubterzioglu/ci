@@ -4,6 +4,7 @@ import test from 'node:test';
 import {
   buildReservationConfirmation,
   buildReservationDeclined,
+  buildSeasonClosedDecline,
   resolveEmailLocale,
 } from '../src/lib/email-content';
 import { locales } from '../src/lib/i18n/config';
@@ -93,3 +94,18 @@ test('declined mail escapes the guest name', () => {
   const body = buildReservationDeclined(reservation, 'en');
   assert.ok(!body.html.includes('<b>Schmidt</b>'));
 });
+
+for (const locale of locales) {
+  test(`season-closed decline mail is written in ${locale} and names the reopening`, () => {
+    const body = buildSeasonClosedDecline(
+      reservation,
+      { start: '2026-11-01', end: '2027-04-19' },
+      locale,
+    );
+
+    assert.ok(body.subject.length > 0);
+    assert.ok(body.text.includes('2027'), body.text);
+    assert.ok(body.html.includes('2027'), body.html);
+    assert.ok(!body.html.includes('<b>Schmidt</b>'), 'guest name must be escaped in html');
+  });
+}

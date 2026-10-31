@@ -2,6 +2,7 @@ import { PageHeader } from '@/components/layout/PageHeader';
 import { ReservationForm } from '@/components/forms/ReservationForm';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { PageSchema } from '@/components/seo/PageSchema';
+import { getSeasonClosure } from '@/lib/db/season-closure';
 import { breadcrumbSchema } from '@/lib/seo/schema';
 import { siteConfig } from '@/lib/site-config';
 import type { Locale } from '@/lib/i18n/config';
@@ -18,8 +19,9 @@ interface ReservationsPageBodyProps {
  * locale-prefixed. The reservation form itself is TR-only for now (no locale
  * seam wired into the form component yet).
  */
-export function ReservationsPageBody({ locale }: ReservationsPageBodyProps) {
+export async function ReservationsPageBody({ locale }: ReservationsPageBodyProps) {
   const dictionary = getDictionary(locale);
+  const seasonClosure = await getSeasonClosure();
 
   return (
     <>
@@ -40,7 +42,7 @@ export function ReservationsPageBody({ locale }: ReservationsPageBodyProps) {
       <section className="bg-marble pb-section">
         <div className="container-editorial">
           <div className="border-stone-soft bg-cream-deep/40 mx-auto max-w-2xl rounded-lg border p-6 md:p-8">
-            <ReservationForm locale={locale} />
+            <ReservationForm locale={locale} seasonClosure={seasonClosure} />
           </div>
 
           <p className="text-muted mx-auto mt-6 max-w-2xl text-center text-sm">

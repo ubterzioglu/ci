@@ -32,7 +32,7 @@ interface ReservationRow {
   requested_date: string;
   requested_time: string;
   message: string | null;
-  status: 'new';
+  status: 'new' | 'declined';
   source: 'website';
   locale: Locale | null;
 }
@@ -47,10 +47,18 @@ interface ContactRow {
   source: 'website';
 }
 
-/** `locale` is the site language the guest booked in (null when unknown); the confirmation mail follows it. */
+/**
+ * `locale` is the site language the guest booked in (null when unknown); the confirmation mail follows it.
+ *
+ * `status` is 'declined' for requests refused up front (season closed), so the
+ * restaurant can still see that someone tried. The public INSERT policy only
+ * allows 'new', so a declined row needs the service-role client; without it
+ * the attempt is not recorded.
+ */
 export async function saveReservation(
   input: ReservationInput,
   locale: Locale | null,
+  status: ReservationRow['status'] = 'new',
 ): Promise<PersistResult> {
   if (!isSupabaseConfigured()) return { ok: false, reason: 'not-configured' };
 
@@ -62,7 +70,7 @@ export async function saveReservation(
     requested_date: input.requestedDate,
     requested_time: input.requestedTime,
     message: input.message || null,
-    status: 'new',
+    status,
     source: 'website',
     locale,
   };
@@ -80,6 +88,8 @@ export async function saveReservation(
   }
 
   // Fallback: anon client may insert but not read back (no public SELECT policy).
+  // It can only insert 'new' rows, so a pre-declined request cannot be stored here.
+  if (status !== 'new') return { ok: false, reason: 'not-configured' };
   const anon = await createSupabaseServerClient();
   if (!anon) return { ok: false, reason: 'not-configured' };
 

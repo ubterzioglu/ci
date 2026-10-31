@@ -125,7 +125,7 @@ export const seedPages: PageContent[] = [
     contentMd: null,
     seoTitle: 'Ana Sayfa | Çi Neo Cucina',
     seoDescription:
-      'Kaş’ta doğal malzemeler, Akdeniz ve Anadolu’dan ilham alan zamansız mutfak diliyle Çi Neo Cucina.',
+      'Kaş’ta doğal malzemeler, Akdeniz ve Anadolu’dan ilham alan zamansız mutfak diliyle Çi Neo Cucina. Mevsimsel menü, yerel şaraplar ve sakin bir sofra.',
     ogImageUrl: null,
   },
   {
@@ -135,7 +135,7 @@ export const seedPages: PageContent[] = [
     contentMd: null,
     seoTitle: 'Hakkımızda | Çi Neo Cucina',
     seoDescription:
-      'Çi Neo Cucina’nın dinginlik, sürdürülebilirlik, yerel malzeme ve Akdeniz sofrası odaklı hikâyesi.',
+      'Çi Neo Cucina’nın hikâyesi: Kaş’ta dinginlik, sürdürülebilirlik, yerel malzeme ve Akdeniz sofrası odaklı, şef yönetiminde bir mutfak anlayışı.',
     ogImageUrl: null,
   },
   {
@@ -145,7 +145,7 @@ export const seedPages: PageContent[] = [
     contentMd: null,
     seoTitle: 'Menü | Çi Neo Cucina',
     seoDescription:
-      'Çi Neo Cucina ana menüsü: topraktan, denizden ve otlaktan lezzetler; yerel üreticilerden şarap seçkisi.',
+      'Çi Neo Cucina ana menüsü: topraktan, denizden ve otlaktan lezzetler, Kaş’ta Akdeniz ve Anadolu mutfağı; yerel üreticilerden şarap seçkisi.',
     ogImageUrl: null,
   },
   {
@@ -155,7 +155,7 @@ export const seedPages: PageContent[] = [
     contentMd: null,
     seoTitle: 'Rezervasyonlar | Çi Neo Cucina',
     seoDescription:
-      'Çi Neo Cucina’da rezervasyon talebi oluşturun; kişi sayısı, tarih ve saat bilgilerinizi paylaşın.',
+      'Kaş’taki Çi Neo Cucina’da rezervasyon talebi oluşturun; kişi sayısı, tarih ve saat bilgilerinizi paylaşın, size en uygun masayı ayıralım.',
     ogImageUrl: null,
   },
   {
@@ -164,7 +164,8 @@ export const seedPages: PageContent[] = [
     excerpt: 'Özel deneyimler ve etkinlikler için bizimle iletişime geçin.',
     contentMd: null,
     seoTitle: 'Deneyimler | Çi Neo Cucina',
-    seoDescription: "Çi Neo Cucina deneyimleri, Chef's Table ve özel etkinlikler — talebe göre.",
+    seoDescription:
+      'Çi Neo Cucina deneyimleri: Kaş’ta Chef’s Table, özel akşam yemekleri ve özel etkinlikler. Tarih ve kişi sayısı için talebinizi bize iletin.',
     ogImageUrl: null,
   },
   {
@@ -174,7 +175,7 @@ export const seedPages: PageContent[] = [
     contentMd: null,
     seoTitle: 'İletişim | Çi Neo Cucina',
     seoDescription:
-      'Çi Neo Cucina ile iletişime geçin: rezervasyon, özel etkinlik ve sorularınız için bize ulaşın.',
+      'Çi Neo Cucina ile iletişime geçin: adres, yol tarifi, çalışma saatleri; rezervasyon, özel etkinlik ve sorularınız için Kaş’ta bize ulaşın.',
     ogImageUrl: null,
   },
 ];
